@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - fosdem</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-fosdem.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2017-02-27T21:42:00+00:00</updated><entry><title>FOSDEM 2017 | From the community devroom</title><link href="https://www.jpichon.net/blog/2017/02/fosdem-2017-event-report/" rel="alternate"></link><published>2017-02-27T21:42:00+00:00</published><updated>2017-02-27T21:42:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2017-02-27:/blog/2017/02/fosdem-2017-event-report/</id><summary type="html">&lt;p&gt;A few weeks ago I happily went off to &lt;a class="reference external" href="https://fosdem.org/"&gt;FOSDEM&lt;/a&gt;.
+Saturday I caught up with people, Sunday I spent most of the day in the
+incredibly busy &lt;a class="reference external" href="https://fosdem.org/2017/schedule/track/community/"&gt;Community
+devroom&lt;/a&gt; - right
+until I had to give up my seat for food. I really enjoyed the talks and
+hope the track manages …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A few weeks ago I happily went off to &lt;a class="reference external" href="https://fosdem.org/"&gt;FOSDEM&lt;/a&gt;.
+Saturday I caught up with people, Sunday I spent most of the day in the
+incredibly busy &lt;a class="reference external" href="https://fosdem.org/2017/schedule/track/community/"&gt;Community
+devroom&lt;/a&gt; - right
+until I had to give up my seat for food. I really enjoyed the talks and
+hope the track manages to get a bigger devroom next year, dozens of
+people had to be kept out after every session ended (fire safety
+regulations).&lt;/p&gt;
+&lt;p&gt;Most talks lasted about 30mn and the videos should be available on the
+FOSDEM website. Here are some of the highlights from my perspective and
+notes.&lt;/p&gt;
+&lt;div class="section" id="closing-loops-greg-sutcliffe"&gt;
+&lt;h2&gt;Closing Loops (Greg Sutcliffe)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_closing_loops/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This talk was more about raising questions and figuring out best
+practices based on audience participation rather than offering The One
+Solution. In this context, a &amp;quot;loop&amp;quot; means an RFC still undecided, a
+discussion dying out, patches unreviewed. How do you decide when a topic
+has come to a conclusion?&lt;/p&gt;
+&lt;p&gt;It's important to remember that everybody has the best interests of the
+project at heart, this is more about blaming the systems we use.&lt;/p&gt;
+&lt;p&gt;Say, in a Request For Comments discussing significant changes on a
+mailing list, the discussion tends to peter out after a while, and it
+can be difficult to track how a proposal evolved. Foreman (Greg's
+project) decided to move the discussions to an RFC repository instead,
+but 6 months later it seems to have only moved the problem.&lt;/p&gt;
+&lt;p&gt;From the audience:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;For Debian, the discussion ends &amp;quot;when someone starts the work&amp;quot; :)&lt;/li&gt;
+&lt;li&gt;LibreOffice has a &amp;quot;technical council&amp;quot; type meeting/discussion with
+about 40 people, on the phone. A wiki documents the process to join.&lt;/li&gt;
+&lt;li&gt;In the PHP world, the RFC author gets to choose when to call a vote
+and the deadline for it (at least 2 weeks ahead). Greg wondered if
+that might get divisive if there are too many 50/50 situations, but
+the audience member indicated that it wasn't the case, because most
+problems get solved during the discussions that precede the vote so
+they are usually overwhelmingly accepted. Every contributor gets a
+vote from a certain contribution threshold.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The speaker seemed interested in trying out the technical council
+direction for his project.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="data-science-for-community-management-manrique-lopez"&gt;
+&lt;h2&gt;Data science for community management (Manrique Lopez)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_datascience_for_communitymanagement/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Communities need to have a common vision and self-awareness to see if
+they are walking toward it: what kind of people are part of the
+community, what are they doing... This helps with governance and
+transparency (fairness, trust).&lt;/p&gt;
+&lt;p&gt;What is the role of a community manager? Do communities even need to be
+managed? &amp;quot;Manage&amp;quot; is a strong word.&lt;/p&gt;
+&lt;p&gt;A community manager is interested in keeping their community alive,
+active, and productive. Having visibility into community health is
+important. There are a lot of tools out there with data relevant to
+this: JIRA, git, IRC, slack, StackOverflow, ... A lot of places, which
+individually are only one part of the bigger picture.&lt;/p&gt;
+&lt;p&gt;Rather than cobling a bunch of scripts together to get to all that data,
+GrimoireLab does all the work for you and presents it nicely using
+graphs. One example was the &amp;quot;Pony Factor,&amp;quot; which I hadn't heard of:
+who's doing 50% of the commits? For example in the kernel, the pony
+factor is about 200 people/10 companies. That's a lot of people!&lt;/p&gt;
+&lt;p&gt;When you have that data you can see the evolution of the project over
+time: reviews, gender, demography, pony factor, etc, etc. Cauldron.io,
+in beta, lets you try it out for free for up to 5 Github organisations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="getting-your-issues-fixed-tomer-brisker"&gt;
+&lt;h2&gt;Getting your issues fixed (Tomer Brisker)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_getting_your_issues_fixed/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I think anyone trying to get help or start contributing as a user to an
+open-source project needs to watch this. Tomer summarised a ton of best
+practices that experienced open-source people &amp;quot;just know&amp;quot; and would
+likely never think to document.&lt;/p&gt;
+&lt;p&gt;A super rough summary:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Try to ask for help on IRC&lt;/li&gt;
+&lt;li&gt;Try the mailing list. If no one replies and you solve it yourself or
+find a workaround later, please self-reply. (&lt;a class="reference external" href="https://xkcd.com/979/"&gt;Mandatory xkcd
+link&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Search the bug tracker. If there is a bug, add your input, your use
+case. If there are none, create a new issue and include as much
+information as possible: traces, logs, version (including of the
+plugin if relevant), screenshots... Anything to help the developers
+reproduce the issue. If this is a feature request, explain your use
+case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Patches:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Tabs vs spaces: follow the coding guidelines for the project. If
+there aren't any follow the standards and conventions of the existing
+code base.&lt;/li&gt;
+&lt;li&gt;Make the commit message good. Explain &amp;quot;why&amp;quot; as completely as
+possible. Apparently Github even lets you include screenshots, so
+that the patch can be reviewed without having to pull the code. &amp;quot;Why&amp;quot;
+did you do it this way and not another way, explained in such a way
+people in the future can understand the decision.&lt;/li&gt;
+&lt;li&gt;Include tests. This protects against regressions, so that you don't
+have to fix the same bug two releases later.&lt;/li&gt;
+&lt;li&gt;Be kind. We're building a community. No one wants to be shouted at.
+Be patient.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="handle-conflict-like-a-boss-deb-nicholson"&gt;
+&lt;h2&gt;Handle conflict, like a boss! (Deb Nicholson)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_handle_conflict_like_a_boss/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Conflicts often come from a piece of information that is missing.
+Conflict is natural. If you don't handle it, it will come back worse.&lt;/p&gt;
+&lt;p&gt;How do we minimise it? Try to understand the other people, where they're
+coming from.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Passion. When people get so excited about something they forget why
+they're doing it. Mismatched goals.&lt;/li&gt;
+&lt;li&gt;Identity. When someone's identity is linked to a task, not a goal.
+For example, the person known to be super helpful with wrangling the
+complex bug tracker, who'll end up sad when you finally upgrade to
+something better.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Don't leave conflict unattended or you'll end up in a snake pit. You
+don't owe your mental health to any FOSS project.&lt;/p&gt;
+&lt;p&gt;There are 3 styles of handling conflict. We tend to use them all,
+depending on the circumstances.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Avoidance. This is not good in a project! It festers. It looks like
+you don't care, like you're not connected to the community and its
+concerns.&lt;/li&gt;
+&lt;li&gt;Accommodation. Doing stuff you don't really want to in order to keep
+the group happy. For bigger issues it can make it look like you don't
+mind the way things are going. It works for small things.&lt;/li&gt;
+&lt;li&gt;Assertion. Can also be called Aggression. Name calling, etc. Not a
+good strategy. It wears out other contributors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Conversations happen in many places. Document the decisions so that it
+doesn't feel like they're coming out of nowhere.&lt;/p&gt;
+&lt;p&gt;If you notice in passing a problem in the community you're probably
+missing some information. Gather more info in order to understand the
+source of conflict: misunderstanding goals, stepping on toes (e.g. that
+person &lt;em&gt;always&lt;/em&gt; writes the release notes but someone else went ahead and
+did it this time instead, without asking), ... Is it new members
+clashing with the old ones? Go back to the historical vision, step out
+of the tactical discussion. Are there sekrit goals underway? For example
+a motivation you're not aware of, someone with different goals for their
+participation like a new job or internal deadlines...&lt;/p&gt;
+&lt;p&gt;If the conflict is based on fear, it can be harder to get at, e.g.
+someone afraid they can't learn a new skill if switching language.
+Create a back channel where it's safe to discuss, to try to deal with
+it.&lt;/p&gt;
+&lt;p&gt;Planning for future conflict:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Assume the best.&lt;/li&gt;
+&lt;li&gt;Have a code of conduct. Set expectations.&lt;/li&gt;
+&lt;li&gt;No name calling/ad hominem, only discuss technical merits.&lt;/li&gt;
+&lt;li&gt;Set an example.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We could do so much more in the FOSS world if we didn't spend so much
+time slagging each other :)&lt;/p&gt;
+&lt;p&gt;Some references:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.goodreads.com/book/show/17568812-everything-is-workable"&gt;Everything is
+workable&lt;/a&gt;
+- Diana Musko Hamilton.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://blog.aurynn.com/contempt-culture"&gt;Contempt Culture&lt;/a&gt; -
+Aurynn Shaw.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="mentoring-101-brian-proffitt"&gt;
+&lt;h2&gt;Mentoring 101 (Brian Proffitt)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_mentoring_101/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This was a lively talk on both formal mentoring via programs such as
+the&lt;a class="reference external" href="https://summerofcode.withgoogle.com/"&gt;Google Summer of Code&lt;/a&gt; as
+well as daily mentoring.&lt;/p&gt;
+&lt;p&gt;Onboarding is important. This is not just about keeping people in but
+helping people get in.&lt;/p&gt;
+&lt;p&gt;As software project, should you want to participate in formal mentoring:
+have a plan. Formal programs have their own rules and structure.&lt;/p&gt;
+&lt;p&gt;As a participant, be a member of the community, pick a project that
+interests you. Be ready to commit. Be flexible - it takes time but is
+rewarding. Be ready to ask for help.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Undermentoring&lt;/em&gt; is a problem. Have clear, set goals for the mentee.
+Keep an eye on them while also giving them space.&lt;/p&gt;
+&lt;p&gt;Issue with mentees disappearing... They really should keep a line of
+communication open, even if only to say, &amp;quot;sorry, I cant' participate
+anymore.&amp;quot; (From personal experience mentoring, this is quite stressful
+and it was a relief when the mentee admitted they could no longer
+participate.) You need to proactively mentor to avoid this.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Be consistent. E.g. your style may be authoritative (do it this way),
+democratic (collaboration) or coaching (guidance). Stick to one.
+(...with Brian noting that the last one is best for mentoring!)&lt;/li&gt;
+&lt;li&gt;Set expectations. Make sure the goals are aligned, define the
+process, avoid confusion.&lt;/li&gt;
+&lt;li&gt;Take an interest in the mentee. Listen actively. Build a
+relationship. Learn their style. Don't be a stalker though.&lt;/li&gt;
+&lt;li&gt;Wait before giving advice. It's easy to try to fix things when
+someone comes at you with a problem. You might be able to solve it
+but that won't help them. Hit the pause button. Ask more question,
+get to the heart, guide them to the solution. It takes time. You may
+not solve the problem. As long as it's not time-sensitive that's ok.&lt;/li&gt;
+&lt;li&gt;Don't assume anything. Avoid stereotypes. Learn the details of a
+situation. Emphasise communication.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Remember this one thing: they aren't you!! Understand the mentee. This
+is not only about getting the project done.&lt;/p&gt;
+&lt;p&gt;A question from the audience was, how can I help my mentor as a mentee?
+Once again it's about being proactive: this is what I want to do, how do
+you help me do this? If it isn't working, reconsider the relationship.&lt;/p&gt;
+&lt;p&gt;How to recruit mentors? Some projects are easier to get in than others.
+In oVirt, there's a separate mailing list and no formal process. Spread
+the word, see who's interested. What about a project where there's a lot
+of mentees yet no one ever answers the call for mentors? If this is part
+of a corporate project, a solution could be to make it part of the job.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="impromptu-community-talk"&gt;
+&lt;h2&gt;Impromptu community talk&lt;/h2&gt;
+&lt;p&gt;One of the talks was cancelled, so a couple of people started a
+conversation around community and community events (too many pizzas, too
+much alcohol is the feedback I remember from that part).&lt;/p&gt;
+&lt;p&gt;The need for &amp;quot;cruel empathy&amp;quot; was brought up: sometimes meeting
+organisers should be jerks for good reasons. Loud, demeaning people are
+toxic and need to be called out. Tell them, in private: &amp;quot;I appreciate
+that you're here, etc, but you're sucking air out of the community.&amp;quot;
+They may not realise they are doing it, so be nice about it.&lt;/p&gt;
+&lt;p&gt;The Shotwell community was brought up as one with great first contact.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="overcoming-culture-clash-dave-neary"&gt;
+&lt;h2&gt;Overcoming culture clash (Dave Neary)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_overcoming_culture_clash/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This was a very interesting talk, mainly summarising information and
+graphs from books, which I'm going to list here. And hopefully read
+soon!&lt;/p&gt;
+&lt;p&gt;Basically a lot of what we do and how we interpret things depends on our
+upbringing (country, culture, ...)&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.garretthardinsociety.org/articles_pdf/tragedy_of_the_commons.pdf"&gt;The Tragedy of the
+Commons&lt;/a&gt;
+- Garret Hardin.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.goodreads.com/book/show/17707599-moral-tribes"&gt;Moral
+Tribes&lt;/a&gt;
+- Joshua Greene.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.goodreads.com/book/show/466760.Cultures_and_Organizations"&gt;Culture and
+Organizations&lt;/a&gt;
+- Geert Hofstede. That one brings up 6 dimensions of culture, for
+example tending to be uncomfortable with silence and filling it
+instantly, vs. leaving a couple seconds pause to make sure the person
+is finished.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.goodreads.com/book/show/313605.Getting_to_Yes"&gt;Getting to
+Yes&lt;/a&gt; -
+Roger Fish. This is more psychology-based than about hard
+negotiation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are no easy solutions. Focus on the relationship. Take small
+steps: one conversation at a time. Encourage local user groups - though
+keep them connected e.g. via sending mentors/leaders to these meetups to
+avoid silos. Have short mentoring programs. Learn about the cultural
+norms and sensitivity of the community. Avoid real-time meetings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="i-contributed-but-what-now-bee-padalkar"&gt;
+&lt;h2&gt;I contributed! But what now? (Bee Padalkar)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_contributed_now_what/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Based on the Fedora community, this talk was about improving contributor
+retention rates by finding patterns about successful contributors.&lt;/p&gt;
+&lt;p&gt;Why do people &lt;em&gt;stay&lt;/em&gt;? According to a survey they ran, usually thanks to
+the strong, positive and inclusive community. Other reasons were
+identifying with the Fedora foundations (core values), giving back,
+constantly learning.&lt;/p&gt;
+&lt;p&gt;No matter how interesting the project is, if the community is poor
+people don't stick around.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Have a defined onboarding process.&lt;/li&gt;
+&lt;li&gt;Encourage people to speak up.&lt;/li&gt;
+&lt;li&gt;Assign action items early on, to create a sense of responsibility.&lt;/li&gt;
+&lt;li&gt;Let people know they are doing good work, give feedback (e.g. IRC
+karma).&lt;/li&gt;
+&lt;li&gt;Use inclusive and motivating language.&lt;/li&gt;
+&lt;li&gt;Encourage attending events to meet people in person.&lt;/li&gt;
+&lt;li&gt;Encourage consistency over activity. Let people contribute according
+to their own time.&lt;/li&gt;
+&lt;li&gt;Inspire, interact, give feedback.&lt;/li&gt;
+&lt;li&gt;Help people identify with your mission.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;~&lt;/p&gt;
+&lt;p&gt;Looking forward to next year's event!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="events"></category><category term="fosdem"></category><category term="open-source"></category></entry><entry><title>FOSDEM 2015</title><link href="https://www.jpichon.net/blog/2015/02/fosdem-2015/" rel="alternate"></link><published>2015-02-04T17:43:00+00:00</published><updated>2015-02-04T17:43:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2015-02-04:/blog/2015/02/fosdem-2015/</id><summary type="html">&lt;p&gt;&lt;img alt="FOSDEM logo" src="https://www.jpichon.net/site_media/images/fosdem.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Last week-end I attended &lt;a class="reference external" href="http://fosdem.org"&gt;FOSDEM&lt;/a&gt; for the 7th
+time. It's kinda strange to say and think - if someone tells me they've
+been going to this or that open-source conference for 7 years I tend to
+assume they're hardcore and totally know what they're doing. I go to
+hang out with …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="FOSDEM logo" src="https://www.jpichon.net/site_media/images/fosdem.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Last week-end I attended &lt;a class="reference external" href="http://fosdem.org"&gt;FOSDEM&lt;/a&gt; for the 7th
+time. It's kinda strange to say and think - if someone tells me they've
+been going to this or that open-source conference for 7 years I tend to
+assume they're hardcore and totally know what they're doing. I go to
+hang out with cool folks and learn new things. This year's FOSDEM didn't
+disappoint in that regard!&lt;/p&gt;
+&lt;p&gt;As usual, the conference was packed and most rooms filled up quickly,
+but I was happily surprised to see it was still possible to squeeze in
+some of the more popular rooms regardless. I think many devrooms
+organisers are well aware of the frustration with not being able to get
+in and they did a great job at encouraging/demanding folks use all seats
+rather than leave spaces in the middle, which really helped (special
+kudos to the Legal devroom, which was in a smaller room in H). Also the
+main conference organisers appear quite good at trying to adjust the
+room size based on popularity year to year (e.g. the Mozilla room used
+to be utterly impossible to get into).&lt;/p&gt;
+&lt;p&gt;Some of the conference highlights from my perspective:&lt;/p&gt;
+&lt;div class="section" id="identity-crisis-are-we-who-we-say-we-are"&gt;
+&lt;h2&gt;Identity Crisis: Are we who we say we are?&lt;/h2&gt;
+&lt;p&gt;This was the first keynote on Saturday morning, which I think did a good
+job of bringing up many possible ambiguities hidden in the &amp;quot;we&amp;quot; we use
+when contributing to a project. One of the strengths of open-source is
+that we're quick to say &amp;quot;we&amp;quot; and include everyone, but sometimes it
+bears more thinking or clarification of who we actually mean with &amp;quot;we&amp;quot; -
+sometimes two &amp;quot;we&amp;quot; can describe different subgroups of contributors even
+in the same sentence. Taking the time to think explicitly about who we
+mean, and avoid unintended conflicts of interests is important.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2015/schedule/event/identity_crisis/"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fog-of-war-the-gnome-trademark-battle"&gt;
+&lt;h2&gt;Fog of War - The GNOME Trademark Battle&lt;/h2&gt;
+&lt;p&gt;The story of what was happening in the background during the Gnome
+battle for their trademark with Groupon last year, told by a Gnome board
+member and the lawyer that helped them on the case. Interesting insights
+thanks to the lawyer's perspective particularly, who also took a guess
+at what possibly happened in the Groupon lawyers' mind during their risk
+analysis and the consequences (e.g. &lt;a class="reference external" href="https://twitter.com/storming/status/561521125294092288"&gt;&amp;quot;Groupon was dealing with an animal
+they'd never seen before.&amp;quot; A charitable org not willing to be silenced
+or take a big
+donation.&lt;/a&gt;)
+Not a kind reflection on Groupon.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2015/schedule/event/gnome/"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="why-samba-moved-to-gplv3-why-we-moved-what-we-gained-what-we-lost"&gt;
+&lt;h2&gt;Why Samba moved to GPLv3: Why we moved, what we gained, what we lost.&lt;/h2&gt;
+&lt;p&gt;Emboldened by having managed to get a seat in the Legal devroom, I
+decided to also stick around for the next talk. I hadn't attended a talk
+on GPLv3 in a few years and I wasn't to be disappointed. It was a very
+honest and funny talk - I knew of Jeremy Allison aka the Samba guy, but
+I didn't know he was such an entertaining speaker. Overall Samba seems
+very happy with the move to GPLv3, it simplified a lot of things for
+them especially in terms of copyright managenent (some companies are
+just nasty), and most of the contributors and users they initially lost
+ended up returning (multiple closed-source vendors being bought out and
+leaving their customers in the cold likely helped). They felt really let
+down that the FSF didn't force their own projects to move as well
+(though I understand that is not the case anymore) and of course the
+Linux kernel being GPLv2-only is hurtful too. The speaker is convinced
+that all the scary stuff around GPLv3 is FUD and everyone should switch
+to using GPLv3+ right now if they don't have to link to v2 stuff. An
+audience member did raise an issue/unclear point with the v3 licence,
+for when a company &lt;em&gt;rents&lt;/em&gt; a device to a customer (that the user doesn't
+actually own and thus perhaps? shouldn't be allowed to modify).&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2015/schedule/event/samba/"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="participation-metrics-at-mozilla-a-story-of-systems-and-data"&gt;
+&lt;h2&gt;Participation metrics at Mozilla: A story of systems and data&lt;/h2&gt;
+&lt;p&gt;For projects that depend so heavily on volunteer contributions as
+Mozilla does, understanding who the community is made of and where/when
+people are being lost or leave is really important. The speaker started
+by showing us some of the ways they tried and failed to measure
+participation and what they ended up with. They defined what
+&amp;quot;participation&amp;quot; means by formalising paths a contributor might take
+across their systems (e.g. file a bug, comment on a bug, translate a
+string, etc) and they extract and map the data they have to these paths.
+This enables them to also deduplicate contributor information: for
+instance it's not because you have 100 translators and 300 developers
+that you have 400 contributors, people can do more than one thing, and
+it also lets them identify more clearly whether someone is leaving the
+project altogether or simply moving to another area. Very interesting
+stuff!&lt;/p&gt;
+&lt;p&gt;This is work in progress but their current results and reports are
+available at &lt;a class="reference external" href="http://areweamillionyet.org/"&gt;Are we a million yet&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2015/schedule/event/participation_metrics_mozilla/"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="maintaining-growing-a-technical-community-mozilla-developer-network"&gt;
+&lt;h2&gt;Maintaining &amp;amp; growing a technical community: Mozilla Developer Network&lt;/h2&gt;
+&lt;p&gt;The other Mozilla talk I attended explored the meaning of community and
+the motivations behind why people start contributing, why they continue
+to contribute and how to help folks feel involved and want to
+contribute. The speaker made some really good points, one that really
+stuck with me being that contributors ≠ community. It's really important
+to connect contributors to your community or they will not stick around!
+The example she used was getting people to contribute at hackathons-like
+events, but then disappear - as someone who's run such events that
+certainly rang true, simply showing folks they can make a positive
+impact easily is not enough to make them come back or feel part of the
+community.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2015/schedule/event/maintaining_growing_technical_community/"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="retooling-fedora-a-retrospective-on-fedora-21-and-looking-to-22"&gt;
+&lt;h2&gt;Retooling Fedora: A Retrospective on Fedora 21 (and looking to 22)&lt;/h2&gt;
+&lt;p&gt;I knew Fedora had been changing their model since the past release but I
+hadn't been following closely. This clarified the goals and the why, and
+I was very impressed with the beginning of the talk where the speaker
+(Matthew Miller, the current Fedora Project Leader) took a really hard
+look at where distributions are today and why they appear to be becoming
+less relevant - for instance looking at the contrast between the number
+of open-source projects available on platforms like Github compared to
+what is actually packaged in the distro. People used to care about
+getting their software into the major distributions but it doesn't seem
+to matter as much nowadays. In that light the &amp;quot;ring&amp;quot; graph showed toward
+the end, explaining that perhaps the apps at the outer layer don't need
+as strict and stringent criterias for inclusion than the more core OS
+components, totally makes sense and the future looks interesting.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2015/schedule/event/retooling_fedora/"&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;¤&lt;/p&gt;
+&lt;p&gt;I continue to be hugely impressed by how much Mozilla cares about
+improving the experience for new and existing contributors (impressed
+but not surprised! Their &amp;quot;Get Involved&amp;quot; page remains excellent, letting
+you get in touch with real people while showing at one glance all the
+different ways you can help, and having a &lt;a class="reference external" href="http://blog.paulbiggar.com/archive/helping-new-contributors-part-2-mentoring/"&gt;mentored bugs
+process&lt;/a&gt;
+for new contributors is an awesome step-up from simply tagging easy
+bugs. Keep rocking and showing us all how it's done Mozilla!)&lt;/p&gt;
+&lt;p&gt;Videos of the talks should be available in time on the FOSDEM website.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="fosdem"></category><category term="open-source"></category></entry><entry><title>FOSDEM, over and out</title><link href="https://www.jpichon.net/blog/2011/02/fosdem-over-and-out/" rel="alternate"></link><published>2011-02-06T23:16:00+00:00</published><updated>2011-02-06T23:16:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-02-06:/blog/2011/02/fosdem-over-and-out/</id><summary type="html">&lt;p&gt;Another fantastic edition of FOSDEM is now finished. Many thanks to the
+organisers for another great job!&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2011/fosdem/welcome_talk.jpg"&gt;&lt;img alt="Welcome talk, picture of the room" src="https://www.jpichon.net/site_media/images/2011/fosdem/welcome_talk_small.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Amazingly, the Welcome talk managed to top off last year's FOSDEM dance,
+this time by making the audience contribute the music. I hope they do it
+again next year, it was kind of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Another fantastic edition of FOSDEM is now finished. Many thanks to the
+organisers for another great job!&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2011/fosdem/welcome_talk.jpg"&gt;&lt;img alt="Welcome talk, picture of the room" src="https://www.jpichon.net/site_media/images/2011/fosdem/welcome_talk_small.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Amazingly, the Welcome talk managed to top off last year's FOSDEM dance,
+this time by making the audience contribute the music. I hope they do it
+again next year, it was kind of fun smashing hands on the wooden board
+(middle row, yep!)&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2011/fosdem/lift_door.jpg"&gt;&lt;img alt="Lift door with the writing: Today's recommendation: Make a friend. Smile at the person next to you." src="https://www.jpichon.net/site_media/images/2011/fosdem/lift_door_small.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Many stands, a ton of talks, even more people than last year. Some dev
+rooms remained closed because full for most of the conference, but
+surprisingly if one carefully planned which talks to attend and made
+sure to be there a little early, it was usually possible to get in and
+even grab a seat.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2011/fosdem/keysigning.jpg"&gt;&lt;img alt="Lots of people standing outside" src="https://www.jpichon.net/site_media/images/2011/fosdem/keysigning_small.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I'll post short summaries of some of the talks I attended. This year I
+took notes on my phone (&lt;a class="reference external" href="https://www.jpichon.net/blog/2010/12/spring-cleaning/"&gt;my lovely *lovely*
+N900&lt;/a&gt;) for all
+talks but one. I also took more pictures, which is great (although the
+quality of the pictures isn't always). Looks like getting the phone out
+to snap a pic is less of an effort than having an actual camera to carry
+around, get out of the case etc.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2011/fosdem/perl_camel.jpg"&gt;&lt;img alt="A huge camel plush at a stand" src="https://www.jpichon.net/site_media/images/2011/fosdem/perl_camel_small.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This was my 3rd FOSDEM and this time I spent a bit more time on the
+social aspect, sometimes even skipping talks (gasp!) I cared a little
+bit less about to chat with interesting people. This is great, though it
+made the conference quite a bit more exhausting. Must balance better --
+and find a nice hotel in a quieter neighbourhood.&lt;/p&gt;
+&lt;p&gt;Once again delighted with the experience. Until next year,
+&lt;a class="reference external" href="http://fosdem.org"&gt;FOSDEM&lt;/a&gt;! :)&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2011/fosdem/chocolate_snowman.jpg"&gt;&lt;img alt="A chocolate snowman" src="https://www.jpichon.net/site_media/images/2011/fosdem/chocolate_snowman_small.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="linux"></category><category term="open-source"></category><category term="fosdem"></category></entry><entry><title>FOSDEM 2010: Gnome talks | Bug triaging, Plugin framework, A new kind of IDE</title><link href="https://www.jpichon.net/blog/2010/02/fosdem-2010-gnome-talks/" rel="alternate"></link><published>2010-02-10T22:41:00+00:00</published><updated>2010-02-10T22:41:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-02-10:/blog/2010/02/fosdem-2010-gnome-talks/</id><summary type="html">&lt;p&gt;There were quite a few talks about Gnome, I'm going to highlight here 3
+of them.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gnome foot" src="https://www.jpichon.net/site_media/images/gnome.png" /&gt;&lt;/p&gt;
+&lt;div class="section" id="gnome-bugsquad"&gt;
+&lt;h2&gt;Gnome Bugsquad&lt;/h2&gt;
+&lt;p&gt;The first talk was about &lt;a class="reference external" href="http://fosdem.org/2010/schedule/events/gnome_bugsquad"&gt;bug triaging in
+Gnome&lt;/a&gt;. I
+can't believe there are only 5 active bug triagers in the project (as
+in, people fully focused on cleaning up the bug …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;There were quite a few talks about Gnome, I'm going to highlight here 3
+of them.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Gnome foot" src="https://www.jpichon.net/site_media/images/gnome.png" /&gt;&lt;/p&gt;
+&lt;div class="section" id="gnome-bugsquad"&gt;
+&lt;h2&gt;Gnome Bugsquad&lt;/h2&gt;
+&lt;p&gt;The first talk was about &lt;a class="reference external" href="http://fosdem.org/2010/schedule/events/gnome_bugsquad"&gt;bug triaging in
+Gnome&lt;/a&gt;. I
+can't believe there are only 5 active bug triagers in the project (as
+in, people fully focused on cleaning up the bug database). Tobias
+Mueller, the happy and dynamic speaker, made a good job explaining why
+this is such an important task, as the bug tracker is basically a window
+to the world. This is what people will be confronted with when they try
+to interact with the project, and having unanswered bugs lingering
+around doesn't give a very good impression.&lt;/p&gt;
+&lt;p&gt;In itself, bug triaging is a great entry point into the project because
+it doesn't require in-depth knowledge and it brings you closer to the
+community as you get to know the developers by name, so it's a good way
+to get involved, learn more about Gnome and help out.&lt;/p&gt;
+&lt;p&gt;The way triaging work:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;There are bugs. People find them and complain about them in the bug
+tracker.&lt;/li&gt;
+&lt;li&gt;We need to understand and get all the necessary information for the
+developer to be able to fix it.&lt;/li&gt;
+&lt;li&gt;So the status of the bug needs to be kept accurate (more on that
+later)&lt;/li&gt;
+&lt;li&gt;And bug triagers can identify severe issues, such as bugs that come
+back often or many times so we can inform the adequate people.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I love that quote: &lt;strong&gt;&amp;quot;Bug triaging is about making people happy.&amp;quot;&lt;/strong&gt; We
+want our users to be happy, Gnome is about the people in the end!&lt;/p&gt;
+&lt;p&gt;Some other happy mottos:&lt;/p&gt;
+&lt;p&gt;&amp;quot;Be nice, be friendly, be happy.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&amp;quot;Answer early, answer often.&amp;quot;&lt;/p&gt;
+&lt;p&gt;There are several ways to get in touch, through IRC, the mailing list,
+they're trying to hold bug days but currently lack the manpower to do
+so. They have a triage guide that is apparently so awesome even the KDE
+guys use it! :D &lt;a class="reference external" href="http://live.gnome.org/Bugsquad/TriageGuide"&gt;Here's a
+link&lt;/a&gt;, I have to carve
+out time to read it.&lt;/p&gt;
+&lt;p&gt;After showing us some tools to find duplicate bugs and what sort of
+information to ask for, Toby walked us through the different statuses
+and how to use them, like what to do if you can't get information from
+the bug reporter after 6 weeks (the assumption is that this is not a
+problem anymore so resolve the bug), or if you're triaging a bug from
+more than 2 releases ago (resolve it as obsolete). Some statuses are
+reserved for the module maintainers. It's all summarised in a &lt;a class="reference external" href="http://live.gnome.org/Bugsquad/TriageGuide?action=AttachFile&amp;amp;do=view&amp;amp;target=Diagram_triagers.png"&gt;shiny
+diagram available on the
+wiki&lt;/a&gt;.
+When you start out you actually can't modify the status yourself, so you
+should add a comment explaining why you think the status should be
+updated and someone with the Power on #bugs will change it for you.
+Quickly enough, once you've shown you understand how this works, you can
+ask for the ability to change statuses yourself.&lt;/p&gt;
+&lt;p&gt;The final statement was that they need people and it's a good way to
+start if you want to get involved, it's not too hard for beginners and
+it doesn't cost too much time or requires that much knowledge. And you
+get to know the people and projects.&lt;/p&gt;
+&lt;p&gt;To get started:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;Create a Bugzilla account,&lt;/li&gt;
+&lt;li&gt;Read the wiki,&lt;/li&gt;
+&lt;li&gt;Ask questions on IRC,&lt;/li&gt;
+&lt;li&gt;Get started. You can't do anything yet, so write it in the comments,&lt;/li&gt;
+&lt;li&gt;If it all makes sense ask for access to do it yourself.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;At the end, he asked who he convinced, I think he should have asked who
+would consider contributing to bug triaging, that's less commitment
+while still showing interest :) I joined the ML while he was speaking
+but I didn't raise my hand when he asked, because my way of doing things
+is to lurk for a while and then see if/how I can fit something in my
+schedule, rather than making promises I will break. We'll see how that
+one goes! I'd love to get more involved with Gnome.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="adding-plugins-to-your-gnome-apps"&gt;
+&lt;h2&gt;Adding plugins to your Gnome apps&lt;/h2&gt;
+&lt;p&gt;Steve Frécinaux &lt;a class="reference external" href="http://fosdem.org/2010/schedule/events/gnome_apps_plugins"&gt;talked to
+us&lt;/a&gt; about
+libpeas, a framework being developed to make plugin development within
+Gnome applications easier and more consistent across applications.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Plate of peas" src="https://www.jpichon.net/site_media/images/fosdem2010/peas.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Building a plug-in API is very, very hard, and having dissimilar APIs
+makes it harder -- that is, if you write a plugin for Nautilus, you will
+have to relearn from scratch to build a plugin for gedit. There's a
+heavily duplicated code base as well, as most projects seem to have
+taken the gedit plugin framework as a basis, but it's all slightly
+different because of bug fixes and fitting their own special needs that
+are not transmitted upstream.&lt;/p&gt;
+&lt;p&gt;Libpeas aims to fix all this. Plugins are good because they enable the
+main codebase to remain simple and clean while allowing for lots of
+additional functionality.&lt;/p&gt;
+&lt;p&gt;The goals are:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Ease of use: the framework should be minimalist with little
+boilerplate code&lt;/li&gt;
+&lt;li&gt;Extensible: different applications have different needs, not every
+project is like gedit&lt;/li&gt;
+&lt;li&gt;Lightweigth: it should only load what you use, e.g. not load python
+if it's not needed by any plugin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Plugins can be written in C, Python, or Javascript.&lt;/p&gt;
+&lt;p&gt;A plugin is what you install, which can consist of one or more
+extension. An extension is the implementation of an extension point
+(hooks). So plugins can register extensions with several extensions
+points within the application.&lt;/p&gt;
+&lt;p&gt;The speaker walked us through the different principles of plugins vs
+extensions, and finally showed us the steps to follow to make your
+applicable extensible and create hooks.&lt;/p&gt;
+&lt;p&gt;I can't find a page for the project on the Gnome wiki though, which is
+not cool :/&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="gnome-development-tools-high-level-debugging-and-the-misha-research-ide"&gt;
+&lt;h2&gt;Gnome Development Tools: High-Level Debugging and the Misha Research IDE&lt;/h2&gt;
+&lt;p&gt;To be honest I'm not sure this was particularly Gnome-specific, although
+it WAS written using Gtk tools :) &lt;a class="reference external" href="http://fosdem.org/2010/schedule/events/gnome_devtools"&gt;Nick Papoylias introduced
+us&lt;/a&gt; to a new
+genre of IDE, based on the premise that debugging hasn't really evolved
+in the past 20 years when really, there are many ways it could be used
+besides stepping line-by-line through a program after encountering a
+problem. Debuggers can be integrated to different phases of the
+development life cycle, and there are many ideas that academia has put
+forward that are slow to be adopted, if at all (reverse debugging just
+made it into the latest gdb for instance).&lt;/p&gt;
+&lt;p&gt;He admitted that they didn't respect every Gnome UI guideline but as
+they were experimenting with a new approach to IDE and programming
+workflow, it made sense to experiment with a different UI as well to
+save space. The interface felt really busy but I'm not particularly
+worried about that, that's how IDE tend to be by nature.&lt;/p&gt;
+&lt;p&gt;They are adding new things to rethink the debugging workflow, that work
+together with the symbol debugger (gdb).&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Syntax parser: Navigate code in terms of structures, loop iteration,
+functions -- not only line by line&lt;/li&gt;
+&lt;li&gt;Data visualisation&lt;/li&gt;
+&lt;li&gt;General purpose extension language: Python&lt;/li&gt;
+&lt;li&gt;Reverse debugging&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It supports stepping through the syntactic structure while having a
+up-to-date data visualisation. This is a very nice way to see what is
+happening as we run through the code, he showed an example of variable
+insertion in a Binary Search Tree and it was amazing to see the tree be
+updated for every iteration of the loop. That'd be a much faster way to
+catch silly little bugs that tend to creep up as you develop (so you can
+catch them even before writing lengthy unit tests).&lt;/p&gt;
+&lt;p&gt;The presentation ended by showing us what the extension language could
+do and wow. Was that impressive. You can use Python functions to call
+your C code, for both simple and elaborate calls. The Python code
+directly calls C functions with no intervention from the developer. And
+through the debugging console we can visualise what's going on (e.g. the
+tree that is created through Python).&lt;/p&gt;
+&lt;p&gt;Additionally, if you create a main.py in your project, you can attach
+callbacks buttons to the IDE. This is &lt;em&gt;really cool&lt;/em&gt;. He had it call a
+plotting application to display random results in a graph and check the
+distribution or whatever. It was really impressive.&lt;/p&gt;
+&lt;p&gt;So Python can be used to make inter-language calls, import external
+libraries, add functionality to the IDE, and call C programs directly.
+Check out the &lt;a class="reference external" href="http://www.softnet.tuc.gr/%7Ewhoneedselta/misha/"&gt;project
+website&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="fosdem"></category><category term="gnome"></category></entry><entry><title>FOSDEM 2010: Saturday morning keynotes | Welcome to FOSDEM, Promoting open-source methods in large companies, Evil on the Internet</title><link href="https://www.jpichon.net/blog/2010/02/fosdem2010-saturday-morning-keynotes/" rel="alternate"></link><published>2010-02-08T19:45:00+00:00</published><updated>2010-02-08T19:45:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-02-08:/blog/2010/02/fosdem2010-saturday-morning-keynotes/</id><summary type="html">&lt;p&gt;I barely took any pictures at FOSDEM this year, so I'm going to steal
+(with credit!) pictures from various Flickr streams.&lt;/p&gt;
+&lt;p&gt;Saturday morning began with the customary welcome keynote, with a little
+twist for the FOSDEM dance (heh!). Wireless was up and running well
+before 12.00, which was a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I barely took any pictures at FOSDEM this year, so I'm going to steal
+(with credit!) pictures from various Flickr streams.&lt;/p&gt;
+&lt;p&gt;Saturday morning began with the customary welcome keynote, with a little
+twist for the FOSDEM dance (heh!). Wireless was up and running well
+before 12.00, which was a nice surprise.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;img alt="FOSDEM dance" src="https://www.jpichon.net/site_media/images/fosdem2010/fosdem_dance.jpg" /&gt;&lt;/div&gt;
+&lt;div class="line"&gt;(Picture credit: itkovian, Creative Commons
+&amp;quot;Attribution-Non-Commercial-Share Alike 2.0 Generic&amp;quot;, &lt;a class="reference external" href="http://www.flickr.com/photos/itkovian/4335124919/"&gt;taken from
+Flickr&lt;/a&gt;)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="promoting-open-source-methods-in-large-companies"&gt;
+&lt;h2&gt;Promoting open-source methods in large companies&lt;/h2&gt;
+&lt;p&gt;The first keynote was on &lt;a class="reference external" href="http://fosdem.org/2010/schedule/events/promoting"&gt;promoting open-source methods in large
+companies&lt;/a&gt;. Not
+using slides made it quite hard to follow, that made me realise how
+slide stacks help with understanding the structure of a talk, what was
+said when there is noise around, or just remember/understand where we're
+at after being distracted and having zoned out for a couple of
+minutes... (and let's be honest that's always going to happen!)&lt;/p&gt;
+&lt;p&gt;Brooks Davis described his journey getting open-source adopted
+internally. It was more in the sense of having people open-source their
+projects within the company than anything larger, although quite a lot
+of open-source projects were used to achieve that (Apache, PostgreSQL,
+trac...) He started from quite far since he had to sell people on the
+concept of version control itself to begin with! (I empathise with that,
+it's very hard to make devs who are not familiar with it&amp;nbsp; use version
+control tools to their full potential. For instance I keep having to
+remind my team that it's ok to delete a now-unused file or big chunk of
+code because we can find it again if we need to. Dead files and dead
+code just make maintenance more painful.) The policy they set out for
+their internal open-source repository was that ALL projects had to be
+ENTIRELY open-source (can't keep any section secret.)&lt;/p&gt;
+&lt;p&gt;The barriers to adoption were mostly driven by fear:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Fear of misuse: People need to trust their colleagues! (This is
+actually an interesting point. The speaker works with space-related
+software so I'm guessing there's quite a lot of IP and other trade
+secrets in their software. I wonder how they ensure and/or convince
+management that no employee would sell them out to the competition. I
+understand how the policy is tremendously useful to avoid
+duplication, foster collaboration between internal projects and just
+make sure part of the project doesn't disappear or get lost with a
+single developer. It's possible the speaker talked about this and I
+missed it though, the keynote should have been recorded... I guess
+this point includes &amp;quot;trust your employees&amp;quot; as well.)&lt;/li&gt;
+&lt;li&gt;Misplaced sense of ownership, with people believing &amp;quot;this is MY code&amp;quot;
+when actually, this is the COMPANY code!&lt;/li&gt;
+&lt;li&gt;Credit: Although the open-source community is quite good at it,
+within a company people tend not to be so good at giving credit where
+it's due (although they are learning, according to the speaker!)&lt;/li&gt;
+&lt;li&gt;Another concern was that &amp;quot;people will like it and then they will
+modify it and make it better,&amp;quot; quite a confusing complaint&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The positive points of this approach and policy are that:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;anyone can access the code in the public repository, rather than have
+it exist on only the one guy's laptop, that has to be hunted down
+when someone wants to reuse the code or needs it for another project&lt;/li&gt;
+&lt;li&gt;there is a snowball effect once people start using the system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Along the way a few lessons were learnt and changes were made
+accordingly:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The &amp;quot;everything must be open and available&amp;quot; policy was relaxed a bit
+to accommodate for NDA, work by contractors, etc. A project must
+submit an application to justify such security requirements, to be
+reviewed and approved (many teams believe their project require such
+mechanism when really, it doesn't)&lt;/li&gt;
+&lt;li&gt;Moved from mod_python to wsgi (easier to manage)&lt;/li&gt;
+&lt;li&gt;Performance: They bought more RAM to handle the multiple Python
+instances (1/project), and thanks to WSGI have the project sleep when
+not accessed (they still have issues with the internal search crawler
+though, as it means every project page gets accessed within a few
+seconds!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The barriers to adoption by development teams are:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Team isolation, each team kinda works in its own island&lt;/li&gt;
+&lt;li&gt;People don't know it exists&lt;/li&gt;
+&lt;li&gt;People think it's a heavy-weight project involving lots of paperwork
+(e.g. fill 6 forms to make a change)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There was a bit of talk on distributed version control. He finds it
+interesting but as his people are just getting used to the concept of
+centralised version control it might be a bit early. There is also the
+issue of backing up the projects, because the distributed nature of
+those tools could mean that people revert to only having a copy on their
+own machine. He's interested to see how people in open-source deal with
+this, and hopefully learn from it.&lt;/p&gt;
+&lt;p&gt;They are working on a few improvements to trac that they aim to
+contribute back (e.g. seeing tickets for multiple projects on the one
+screen.)&lt;/p&gt;
+&lt;p&gt;In the end I was a bit disappointed by the talk, because it focused so
+much on implementation (which is cool, I love hearing about this kind of
+stuff but I already had this with &lt;a class="reference external" href="https://www.jpichon.net/blog/2010/01/ship-it/"&gt;Ship
+It!&lt;/a&gt;. I know I want
+it.) when I was hoping for more strategies on how to help management and
+developers see the benefits of open-source. I'm interested in
+understanding how to get it adopted internally, how to bring change.
+Someone in the audience actually asked kind of a similar question,
+asking how he got management to pressure one particular internal project
+to use the new tools (mentioned during the talk.) I think the answer was
+along the lines of if the company spends a couple of millions a year on
+a project or another, they're interested in seeing it reused and easily
+available internally. Which doesn't really help us, but I guess if he
+has support from management to begin with it's just difficult to answer.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="evil-on-the-internet"&gt;
+&lt;h2&gt;Evil on the Internet&lt;/h2&gt;
+&lt;p&gt;The second morning keynote was about &lt;a class="reference external" href="http://fosdem.org/2010/schedule/events/eviloninternet"&gt;Evil on the
+Internet&lt;/a&gt;. The
+poor speaker, Richard Clayton, was severely booed at the beginning when
+the Windows screen showed up as people struggled to get Windows to play
+nice with the projector, but once he started with his talk it was most
+excellent because presented in such a funny way. Apparently the only
+thing bad guys have to do all day is design very nice and sleek looking
+websites, while trying to screw people over every possible way. To me
+the highlight of the talk was the job ad for Millenium Inc., a phishing
+company (though it doesn't present itself as such, for obvious reasons.)
+Their vacancies page advertises for a lot of positions, most them &amp;quot;not
+currently available&amp;quot; ...except for one. They are looking for a &amp;quot;payment
+processing assistant.&amp;quot; Your job would consist of receiving payments from
+their clients onto your bank account, that you then take out and send on
+to Millenium through Western Union. Very nice. When the bank realises
+the money was moved onto your account through fraud it will take it
+away, and you'll be left with no recourse because Western Union will
+never ever refund any money you send using their services. There were
+many other examples, and there's &lt;a class="reference external" href="http://www.lightbluetouchpaper.org/"&gt;more on his
+blog&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="fosdem"></category><category term="open-source"></category></entry></feed>

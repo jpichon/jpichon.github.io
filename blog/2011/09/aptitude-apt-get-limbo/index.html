@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>aptitude / apt-get limbo</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="A couple of weeks ago I started getting in trouble when trying to update my system (Debian Wheezy) via aptitude. A dozen or so packages were..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/09/aptitude-apt-get-limbo/" rel="bookmark"
+           title="Permalink to aptitude / apt-get limbo">aptitude / apt-get limbo</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-09-13T17:22:00+01:00">
+                Published: Tue 13 September 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/linux/">linux</a> </p>
+</footer><!-- /.post-info -->      <p>A couple of weeks ago I started getting in trouble when trying to update
+my system (Debian Wheezy) via aptitude. A dozen or so packages were
+failing to configure, and while these failures occurred other packages
+couldn't install.</p>
+<p>Output would contain things like this:</p>
+<pre class="literal-block">
+Setting up install-info (4.13a.dfsg.1-8) ...
+/var/lib/dpkg/info/install-info.postinst: 32: /var/lib/dpkg/info/install-info.postinst: update-info-dir: not found
+dpkg: error processing install-info (--configure):
+&nbsp;subprocess installed post-installation script returned error exit status 127
+configured to not write apport reports
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Setting up gconf2 (2.32.4-1) ...
+/var/lib/dpkg/info/gconf2.postinst: 52: /var/lib/dpkg/info/gconf2.postinst: gconf-schemas: not found
+dpkg: error processing gconf2 (--configure):
+&nbsp;subprocess installed post-installation script returned error exit status 127
+configured to not write apport reports
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dpkg: dependency problems prevent configuration of evolution:
+&nbsp;evolution depends on gconf2 (&gt;= 2.28.1-2); however:
+&nbsp; Package gconf2 is not configured yet.
+[...etc... updaterc.d not found... update-initramfs not found...]
+</pre>
+<p>I'm not quite sure how or why that happened but it turned out to be a
+$PATH issue. Widespread problems that wreck systems tend to be small
+changes in one critical place, I find.</p>
+<p>To debug it, I picked the first item not found:</p>
+<pre class="literal-block">
+$ locate update-info-dir
+/usr/sbin/update-info-dir
+/usr/share/man/man8/update-info-dir.8.gz
+$ echo $PATH
+&lt;lots of stuff but not /usr/sbin&gt;
+</pre>
+<p>From then on, append the missing directory to your $PATH in .bashrc,
+and/or you can also switch to the root user who hopefully would have a
+clean environment. <em>$ dpkg --configure -a</em> and you're flying again!</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

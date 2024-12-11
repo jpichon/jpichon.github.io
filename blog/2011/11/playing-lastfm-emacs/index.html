@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Playing Last.fm from emacs</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="I enjoy listening to Last.fm and recently decided it would be handier to control it from within my emacs session. Getting it to work didn't take..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/11/playing-lastfm-emacs/" rel="bookmark"
+           title="Permalink to Playing Last.fm from emacs">Playing Last.fm from emacs</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-11-07T21:10:00+00:00">
+                Published: Mon 07 November 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->      <p>I enjoy listening to <a class="reference external" href="http://www.last.fm">Last.fm</a> and recently
+decided it would be handier to control it from within my emacs session.
+Getting it to work didn't take too long but wasn't as straightforward as
+I hoped, mostly because it's easier to find documentation for older
+versions of <a class="reference external" href="http://www.gnu.org/s/emms/">emms</a> (including on the
+official website) and the last.fm parts have been entirely rewritten
+recently. Anyhow! If you're in a rush, the short version is: <a class="reference external" href="https://github.com/emacsmirror/emms/blob/master/doc/emms.texinfo">find the
+latest version of the code and follow the documentation from the source
+itself</a>!</p>
+<div class="section" id="what-to-install">
+<h2>What to install</h2>
+<p>From your package manager, using Debian here:</p>
+<pre class="literal-block">
+aptitude install emms mplayer2
+</pre>
+<p>Note, that installing <em>mplayer</em> instead worked fine on an Ubuntu
+machine.</p>
+</div>
+<div class="section" id="getting-an-api-key">
+<h2>Getting an API key</h2>
+<p>Search the documentation linked above to get more details. Basically,
+using the latest version of the Last.fm API requires a secret API key,
+which isn't a concept that works well with GPL software. To work around
+this, we request a personal API key, which we will add to our .emacs
+config file.</p>
+<p><a class="reference external" href="http://www.last.fm/api/authentication">Request a key</a> at Last.fm.
+The keys will be displayed on screen rather than sent to you, therefore
+write them down now. As far as I can tell the &quot;app description&quot; will
+only be seen by yourself, when you allow emms-lastfm-client to access
+your Last.fm account so don't worry too much about the description.</p>
+</div>
+<div class="section" id="emacs">
+<h2>.emacs</h2>
+<p>Add the following to your config file:</p>
+<pre class="literal-block">
+(require 'emms-setup)
+(emms-all)
+(emms-default-players)
+(setq emms-lastfm-client-username &quot;myusername&quot;)
+(setq emms-lastfm-client-api-key &quot;myapikey&quot;)
+(setq emms-lastfm-client-api-secret-key &quot;mysecretkey&quot;)
+</pre>
+</div>
+<div class="section" id="setting-up-emms-lastfm-client">
+<h2>Setting up emms-lastfm-client</h2>
+<p>Now, within emacs (taken straight from the docs!):</p>
+<ol class="arabic simple">
+<li><strong>M-x emms-lastfm-client-user-authorization</strong> - this will open a web
+page, asking if you want to grant access to the app (with the name
+and description you gave it when requesting the API key)</li>
+<li><strong>M-x emms-lastfm-client-get-session</strong> - this is to store the
+authorisation key so you don't have to go through the authorisation
+process every time. If it doesn't work you might need to first create
+~/.emacs.d/emms manually.</li>
+</ol>
+<p>You're set! <strong>M-x emms-lastfm-client-play-similar-artists</strong> to select
+who to listen to :)</p>
+</div>
+<div class="section" id="useful-tips">
+<h2>Useful tips</h2>
+<p>To stop the music: <strong>M-x emms-stop</strong>.</p>
+<p>To remove the url display/track information:&nbsp; <strong>M-x
+emms-mode-line-toggle</strong> (or -disable) and to remove the playing time
+information: <strong>M-x emms-playing-time-disable-display</strong> (they push the
+org messages too far out right!)</p>
+</div>
+<div class="section" id="other-error-messages">
+<h2>Other error messages</h2>
+<p>Some messages you may encounter along the way...</p>
+<pre class="literal-block">
+Contacting host: ws.audioscrobbler.com:80
+progn: missing variables to generate handshake call
+</pre>
+<p>The documentation seems to suggest that setting a username is optional,
+but it's not. Make sure your .emacs contains your username in addition
+to the API key and secret key.</p>
+<pre class="literal-block">
+f: Don't know how to play track: (*track* (type . url) (name . &quot;http://play.last.fm/user/1234567890abcdef0.mp3&quot;) (metadata))
+</pre>
+<p>emms uses an external program to play music, which is why you need to
+<a class="reference external" href="http://old.nabble.com/mp3-radio-td28602607.html">install mplayer or
+vlc</a>.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

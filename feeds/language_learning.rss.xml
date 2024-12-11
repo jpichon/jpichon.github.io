@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>jpichon.net - Language_learning</title><link>https://www.jpichon.net/</link><description></description><lastBuildDate>Wed, 26 Dec 2018 22:57:00 +0000</lastBuildDate><item><title>Anki &amp; Japanese Support Add-on on Fedora 28: "Something something 32 bit support"</title><link>https://www.jpichon.net/blog/2018/12/anki-japanese-support-add-on-on-fedora-28-something-something-32-bit-support/</link><description>&lt;p&gt;For a few months now, I've been having issues with the &lt;a class="reference external" href="https://apps.ankiweb.net/"&gt;Anki&lt;/a&gt; Japanese support
+add-on. Normally the add-on adds the readings automatically when creating new
+cards, but lately that was failing with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+An error occurred in an add-on.
+Please post on the add-on forum:
+https://anki.tenderapp.com/discussions/add-ons
+
+Traceback (most recent call last):
+  File &amp;quot;/usr/share/anki/aqt/webview.py&amp;quot;, line 18, in run
+    return unicode(self._bridge(unicode(str)))
+  File &amp;quot;/usr/share/anki/aqt/editor.py&amp;quot;, line 462, in bridge
+    &amp;quot;editFocusLost&amp;quot;, False, self.note, self.currentField):
+  File &amp;quot;/usr/share/anki/anki/hooks.py&amp;quot;, line 32, in runFilter
+    arg = func(arg, *args)
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 209, in onFocusLost
+    n[dst] = mecab.reading(srcTxt)
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 76, in reading
+    self.ensureOpen()
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 73, in ensureOpen
+    raise Exception(&amp;quot;Please ensure your Linux system has 32 bit binary support.&amp;quot;)
+Exception: Please ensure your Linux system has 32 bit binary support.
+&lt;/pre&gt;
+&lt;p&gt;At first I thought, meh, the rest works fine, and usually I don't need to add
+the readings for &lt;em&gt;every&lt;/em&gt; word anyway, just the one that's new to me in the
+sentence so that shouldn't take too much time.&lt;/p&gt;
+&lt;p&gt;It took me a few months to realise I wasn't creating new cards anymore, just
+plopping them into a list of &amp;quot;cards to create when I have the time someday.&amp;quot;
+Whoops.&lt;/p&gt;
+&lt;p&gt;The solution, found via a &lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=1681613#p1681613"&gt;ArchLinux thread&lt;/a&gt; is also dead simple:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo dnf install libstdc++.i686 # Note the i686, that's the important bit!
+&lt;/pre&gt;
+&lt;p&gt;Better get on with that word list now.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Wed, 26 Dec 2018 22:57:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2018-12-26:/blog/2018/12/anki-japanese-support-add-on-on-fedora-28-something-something-32-bit-support/</guid><category>Language_learning</category><category>japanese</category><category>open-source</category></item><item><title>Japan</title><link>https://www.jpichon.net/blog/2015/04/japan/</link><description>&lt;p&gt;I'm taking a year out to travel in Japan on a working holiday visa,
+starting with a couple of months of studying the language some more. I
+landed about 2 weeks ago. The school put me at a slightly higher level
+than I had dared to hope and I am now learning new words, new
+expressions, new nuances every day and generally having a tremendous
+time :) I'm exactly where I want to be, doing and learning what I want
+to.&lt;/p&gt;
+&lt;p&gt;I'm experimenting with &lt;a class="reference external" href="https://www.flickr.com/photos/132254976&amp;#64;N03/"&gt;posting pictures on
+Flickr&lt;/a&gt; as I go, we'll
+see how that works out!&lt;/p&gt;
+&lt;p&gt;Also, note for future-self and other folks who are about to travel with
+a cold: the so-called &amp;quot;ear planes&amp;quot; work great to avoid painful ear pain
+on descent. I put them about 1h30 before landing on the second flight
+and it was painless, quite a contrast with the previous flight 10 hours
+earlier. Nasal spray helps a bit for comfort too.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Sat, 18 Apr 2015 00:35:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2015-04-18:/blog/2015/04/japan/</guid><category>Language_learning</category><category>japanese</category></item><item><title>DK House Sapporo</title><link>https://www.jpichon.net/blog/2014/10/dk-house-sapporo/</link><description>&lt;p&gt;I wanted to take a few minutes to give a shout out to &lt;a class="reference external" href="http://www.e-guesthouse.com/eng/sapporo/"&gt;DK House in
+Sapporo&lt;/a&gt;, as a great option
+to get affordable housing for mediumish to longer stays in Japan. I
+spent a month there in September.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DK house front" src="https://www.jpichon.net/site_media/images/2014/dk_house.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;They specialise in short-term accommodations, normally starting from 3
+months but if you want to stay for a shorter time like I did, you can
+get in touch with them in advance and ask if it's ok. Despite sending my
+queries in both Japanese and English, they replied in English only so
+you don't need to be overly concerned about the language if your
+Japanese isn't up to snuff yet :-)&lt;/p&gt;
+&lt;p&gt;The facilities are clean and the staff is always really helpful. As I
+was staying only a few weeks I couldn't get a room with a private
+bathroom, but it didn't turn out to be a problem. I never had to queue
+for a shower. There's also a shared kitchen and a convenient laundry
+room.&lt;/p&gt;
+&lt;p&gt;The rooms have a desk and a LAN port and I didn't have any major issues
+with the Internet. As a backup I'd rented a &amp;quot;&lt;a class="reference external" href="http://www.globaladvancedcomm.com/pocketwifi.html"&gt;pocket
+wifi&lt;/a&gt;&amp;quot; and I was
+glad to have it for network-intensive operations (ahem, devstack) or
+when there was a bit too much contention. Also, there is no wireless in
+the rooms. (If you're planning to spend a lot of time at that desk, you
+may want to mentally prepare yourself for the fact that the chair was
+not picked for its ergonomic qualities!).&lt;/p&gt;
+&lt;p&gt;There's some totally optional activities from time to time in the common
+room, if you want to meet with the other residents. You're a few minutes
+away from the tramway (市電) which leads you straight to the city centre
+in 15 minutes, 3 konbinis (Lawson, Seven Eleven) and a super tasty ramen
+place (てつや - I recommend the しょうゆ).&lt;/p&gt;
+&lt;p&gt;Now if you're used to luxurious super comfortable hotel mattresses and
+spacious rooms I suppose you may be disappointed.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DK House - Room" src="https://www.jpichon.net/site_media/images/2014/dk_house_room.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Personally I'm really happy with my experience and heartily recommend
+the place :)&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Wed, 08 Oct 2014 17:54:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2014-10-08:/blog/2014/10/dk-house-sapporo/</guid><category>Language_learning</category><category>japanese</category></item><item><title>Adventures in Japan</title><link>https://www.jpichon.net/blog/2012/06/adventures-in-japan/</link><description>&lt;p&gt;In the middle of May, I went away for a couple of weeks in lovely
+Fukuoka, Japan with the goal of expanding my knowledge of Japanese.&lt;/p&gt;
+&lt;p&gt;Every weekday, I went to a language school,
+&lt;a class="reference external" href="http://www.genkijacs.com"&gt;GenkiJACS&lt;/a&gt;. On the first day, my level was
+accurately evaluated through a written test and interview, and on the
+same afternoon I was put into a small class (5 people, myself included)
+with students at a similar level from all over the world. The lessons
+were held entirely in Japanese, with students' chitchat also happening
+in Japanese -- a lovely atmosphere :)&lt;/p&gt;
+&lt;p&gt;Support from the staff, both by email during the preceding months and
+during my stay, was top notch. The school also offers all sorts of
+native language materials for students to borrow, though considering the
+building was right above Mandarake, a manga/video games/DVD/etc shop, I
+must say I mostly bought my own... :)&lt;/p&gt;
+&lt;p&gt;I stayed with a host family for the whole time, which was wonderful in
+terms of language practice, making friends and experiencing varied
+aspects of Japanese daily life. The perceived lack of independence made
+me a bit twitchy at times though.&lt;/p&gt;
+&lt;p&gt;The concepts and vocabulary I learnt in and out of class have stuck well
+so far -- the class format is very good, with lots of reviewing after a
+new concept is introduced. In the end though, 2 weeks isn't enough time
+to acquire that much new knowledge and I mostly treat the experience as
+a very thorough level check. There are lots of conversations I had I
+didn't realise were within my grasp. Because Japanese people are often
+reluctant or unable to speak English (but always so nice and helpful!),
+I had plenty of opportunities to practice in varied contexts and I'm now
+a lot less shy about speaking in Japanese.&lt;/p&gt;
+&lt;p&gt;With only 2 weeks, unfortunately there was little time for tourism,
+though what I saw of Fukuoka City (Canal City, Kushida shrine and many
+other temples, Oohori Park, my local yakitori izakaya and kappazushi...)
+and the Fukuoka Prefecture (Dazaifu, Abura yama...) was delightful.&lt;/p&gt;
+&lt;p&gt;Definitely a wonderful experience. Study-wise, it was good for building
+confidence and boosting motivation. It was also good for cheaply
+acquiring plenty of contents in the language for practice... and making
+new friends! :)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Wooden staircase in the forest" src="https://www.jpichon.net/site_media/images/2012/stairs.jpg" /&gt;&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Mon, 04 Jun 2012 09:02:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2012-06-04:/blog/2012/06/adventures-in-japan/</guid><category>Language_learning</category><category>japanese</category></item><item><title>Learning Japanese | or, what to after the Michel Thomas Method</title><link>https://www.jpichon.net/blog/2011/10/learning-japanese/</link><description>&lt;p&gt;Since listening to the &lt;a class="reference external" href="https://www.jpichon.net/blog/2011/09/michel-thomas-method/"&gt;Michel Thomas Foundation
+Course&lt;/a&gt;,
+I've been intensifying my learning of Japanese. I'm not sure if I'm
+learning in a sustainable way, but I'm enjoying the journey and will
+ride the wave of motivation while it lasts :) In case I inadvertently
+take a break and later want to come back to it, I'm going to write down
+a few words on what I'm doing at the moment. Perhaps it'll be useful to
+someone else too.&lt;/p&gt;
+&lt;div class="section" id="audio"&gt;
+&lt;h2&gt;Audio&lt;/h2&gt;
+&lt;p&gt;I just finished the &lt;a class="reference external" href="http://www.amazon.co.uk/Michel-Thomas-Method-Japanese-Advanced/dp/0340974591/"&gt;**Michel Thomas** Advanced
+Course&lt;/a&gt;,
+listening to one lesson in the bus every morning for the last while.
+When I initially picked up the &lt;a class="reference external" href="https://www.jpichon.net/blog/2011/09/michel-thomas-method/"&gt;Foundation
+Course&lt;/a&gt;, I
+was hoping to learn some conversational Japanese without worrying about
+the writing system ; however I really enjoyed the Advanced Course, which
+taught me lots of things I either never learnt or more likely completely
+forgot about since my initial stint at Japanese 10 years ago.&lt;/p&gt;
+&lt;p&gt;The Michel Thomas Method is wonderful to build confidence, and the
+Advanced course introduces you to many interesting grammar structures
+using the -て and -た forms. I'm looking at &lt;a class="reference external" href="http://www.japanesepod101.com/"&gt;Japanese Pod
+101&lt;/a&gt; to get my audio fix now --
+their content seems very good, despite the spammy feel of their sign-up
+process. They actually offer a lot more than audio.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="grammar"&gt;
+&lt;h2&gt;Grammar&lt;/h2&gt;
+&lt;p&gt;To get back to writing, a text book seemed appropriate to start learning
+&amp;quot;proper.&amp;quot; I'm using the kana version of &lt;a class="reference external" href="http://www.amazon.com/Japanese-Busy-People-Kana-Version/dp/4770030096/"&gt;**Japanese for Busy
+People**&lt;/a&gt;,
+mainly because I was eager to begin learning and it was available at my
+local bookshop, and the Amazon reviews are good. Don't use the romaji
+version. I'm enjoying it, there are plenty of exercises and they try to
+use pictures as often as possible to help with retention, there's a CD
+included with the book and some of exercises are audio (listen then
+answer the questions in the book). It doesn't expand on grammar rules a
+lot though, so one should make sure to go back to the grammar pages
+regularly. For those not in a rush and with the money to spare, the
+&lt;strong&gt;Genki&lt;/strong&gt; series &lt;a class="reference external" href="http://www.tofugu.com/japanese-resources/genki/"&gt;looks to be fairly
+good&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="kanji-vocabulary"&gt;
+&lt;h2&gt;Kanji &amp;amp; Vocabulary&lt;/h2&gt;
+&lt;p&gt;One of the things I'm determined not to be discouraged by this time is
+kanji. I got myself the very &lt;a class="reference external" href="http://www.whiterabbitpress.com/catalog/Japanese-Kanji-Flashcards-Series-2-Volume-1-p-16165.html"&gt;nice and sturdy **White Rabbit flash
+cards**&lt;/a&gt;...&lt;/p&gt;
+&lt;p&gt;...Unfortunately after 40 or 50 kanji the ideograms, readings and
+meanings stopped sticking into my head. It was time for context. See
+below! The cards are still good to have around for recall, just not as a
+single learning source.&lt;/p&gt;
+&lt;p&gt;For vocabulary, I'm also testing &lt;a class="reference external" href="http://iknow.jp/"&gt;**Iknow.jp**&lt;/a&gt;,
+for which I luckily obtained a 4 month free subscription. It doesn't
+focus on kanji as much as I'd like, but you learn to recognise words and
+sentences with both audio and text, which is quite good. They have
+several courses that together teach thousands of words of vocabulary.&lt;/p&gt;
+&lt;p&gt;In general, to guide my learning of kanji I'm using the kanji list
+recommendations for the &lt;a class="reference external" href="http://en.wikipedia.org/wiki/Jlpt"&gt;Japanese Proficiency Level
+Test&lt;/a&gt;. Weakest level is N5 and
+requires about 100 kanjis (reading a newspaper requires about 2000!).
+I'm also curious at the &lt;strong&gt;TextFugu&lt;/strong&gt; approach of &lt;a class="reference external" href="http://www.textfugu.com/free-lessons/"&gt;teaching the radicals
+first&lt;/a&gt;, which seems to make
+more sense to me and is another avenue to explore.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="kanji-in-context"&gt;
+&lt;h2&gt;Kanji in context&lt;/h2&gt;
+&lt;p&gt;I tried a bilingual manga, which was a mistake (the English sticks out
+more prominently than the Japanese, and probably doesn't encourage
+focusing as hard on recognising kanjis). What I will warmly recommend
+are the wonderful &lt;a class="reference external" href="http://www.whiterabbitpress.com/product.php?productid=16972&amp;amp;cat=0&amp;amp;page=1"&gt;**Japanese Graded Level Reader** book
+series&lt;/a&gt;.
+I'm going through Volume 0 at the moment (300 words/story, about 300
+words of vocabulary overall) which read like simple children stories and
+I find them as confidence building for reading as the Michel Thomas
+method was for listening. Each volume contains 6 booklets entirely in
+Japanese, in which new concepts and words are repeated a lot so that
+between the repetition and the pictures, the reader can figure out the
+meaning of most of the story. It's very cute, and you learn about
+Japanese culture as well. Very much recommended. There are many volumes
+for different levels.&lt;/p&gt;
+&lt;p&gt;After I read one of the aforementioned &amp;quot;Reader&amp;quot; booklets, I add the
+kanji and grammar expressions I don't yet know to a set of
+&lt;a class="reference external" href="http://ankisrs.net/"&gt;**Anki**&lt;/a&gt; flashcards, with the help of
+&lt;a class="reference external" href="http://jisho.org/"&gt;jisho.org&lt;/a&gt; and &lt;a class="reference external" href="http://www.guidetojapanese.org/learn/grammar"&gt;Tae Kim's guide to Japanese
+grammar&lt;/a&gt; if needed.
+Anki's a wonderful piece of software! You can synchronise for free
+between different machines to make sure the Spaced Repetition algorithm
+keeps up no matter where you go through the cards, and it has a Maemo
+port (ankiqt900), among many other platforms. I'm still figuring out how
+best to make cards ; sometimes having the kanji on its own, other times
+including context.&lt;/p&gt;
+&lt;p&gt;Finally, I bought the first volume of a manga I'm interested in that has
+furigana, and I'm still exploring what's the best way to read, and
+learn, and create flash cards out of it without ruining the flow, losing
+interest or having to make 20 flashcards out of every bubble... (ahem!)
+I don't expect the process to be fast in any case :)&lt;/p&gt;
+&lt;p&gt;勉強しましょう。(&amp;lt;- let's begin testing the unicode resilience of this
+lil' blog!)&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Mon, 24 Oct 2011 20:19:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2011-10-24:/blog/2011/10/learning-japanese/</guid><category>Language_learning</category><category>japanese</category></item></channel></rss>

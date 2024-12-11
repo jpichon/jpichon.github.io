@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Recovering a lost partition table | Trial by fire</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="If your hard drives are currently doing fine and you're ready to skip this article, please just do this for me: run *fdisk -l* as root, maybe..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/10/recovering-a-lost-partition-table/" rel="bookmark"
+           title="Permalink to Recovering a lost partition table | Trial by fire">Recovering a lost partition table  | Trial by fire</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-10-30T21:51:00+01:00">
+                Published: Sat 30 October 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/linux/">linux</a> </p>
+</footer><!-- /.post-info -->      <p>If your hard drives are currently doing fine and you're ready to skip
+this article, please just do this for me: <strong>run *fdisk -l* as root,
+maybe *fdisk -u -l* as well and store the output in a file on a usb
+stick or another machine</strong>. Thanks. That's the kind of thing you chuckle
+at until a twitch or update destroys your partition table and you're
+staring at a black screen with a blinking grey underscore instead of a
+boot screen, knowing that your data is there somewhere but the computer
+doesn't know where to find it. Neither do you. With that info you'll be
+able to recreate the partition table using fdisk or parted, following
+tutorials online.</p>
+<p>Now let's assume you're like me and you don't have that data. Here are a
+few links and ideas that you can try out, most of which didn't work for
+me but all taken together ended up giving me a working system back. Arm
+yourself with a LiveUSB stick running Linux, and let's begin.</p>
+<div class="section" id="try-1-gpart">
+<h2>Try #1: gpart</h2>
+<p>Not to confuse with gparted, which by the way is the tool I messed up my
+laptop with. I was reading the menus wondering why the resize option was
+greyed out, when I had one of those finger twitches (too much caffeine?)
+and bam! An 'error' alert popped up and the layout of my hard drive
+changed to &quot;Unallocated&quot; -- and that was it. One twitch! I should try to
+reproduce the bug now that I have my fdisk output, but I'm not brave
+enough yet... (Working machines are so handy!)</p>
+<p>...Anyhow. Gpart came with the recommendation that &quot;it worked for me X
+years ago, and here's the <a class="reference external" href="http://salingfamily.net/trav/linux/lost_partition.html">actual web
+page</a> I used
+to fix things&quot;, so I tried it. Gpart works non-destructively and tries
+to guess where your lost partitions start and end.</p>
+<p>I'm afraid to say gpart failed miserably for me, only listing a 3Mb
+partition that I don't think actually exist, after a 2h run. It's still
+worth a shot, and won't do any harm if it doesn't work.</p>
+<p>Resources:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://salingfamily.net/trav/linux/lost_partition.html">Recovering a lost partition
+table</a>,
+including what to do after gpart gives you back accurate looking
+information</li>
+<li><a class="reference external" href="http://www.ibiblio.org/pub/linux/docs/howto/other-formats/html_single/Partition-Rescue.html">Partition-Rescue
+HOWTO</a>
+-- I was reading this while waiting for gpart to finish, it gives
+other tips on how to find/guess your partition table, including a
+command (cat /proc/partitions) that should <strong>work beautifully if you
+haven't rebooted the machine yet</strong> after erasing/losing the partition
+table</li>
+<li><a class="reference external" href="http://www.brzitwa.de/mb/gpart/">gpart</a> -- A bit more
+information, example output, manpage, changelog</li>
+</ul>
+</div>
+<div class="section" id="try-2-testdisk">
+<h2>Try #2: Testdisk</h2>
+<div class="section" id="running-testdisk-quick-search">
+<h3>Running testdisk (quick search)</h3>
+<p>Googling more I came across
+<a class="reference external" href="http://www.cgsecurity.org/wiki/TestDisk">Testdisk</a>, a very cool
+utility that do the same thing as gpart and then more, and is also
+available in the Fedora repositories. The most important thing I can say
+is to read the site carefully. I found the <a class="reference external" href="http://www.cgsecurity.org/wiki/TestDisk_Step_By_Step">step by step
+guide</a>
+especially useful. The commands are not always straightforward (p to
+list files?) but it's incredibly powerful and the second the &quot;Quick
+search&quot; started running it was already listing a fairly good idea of my
+6 main partitions and their types.</p>
+</div>
+<div class="section" id="running-testdisk-deep-search">
+<h3>Running testdisk (deep search)</h3>
+<p>I thought deep search wasn't working for me but reading the step by step
+guide, I realised it gives back potentially overlapping partitions and
+it's up to you to examine them to find the most likely one. Considering
+I could list the files off all my partitions after the quick search, I
+decided to give up on the deep search output and start again, using what
+quick search gave me as my best bet for writing a new partition table.</p>
+</div>
+<div class="section" id="writing-the-partition-table">
+<h3>Writing the partition table</h3>
+<p>Select the Write option when you feel ready. This is not a destructive
+option either, in that if you get it wrong you can try running gpart or
+testdisk again, and write another table based on a different guess.</p>
+</div>
+<div class="section" id="win-1-data-backup">
+<h3>Win #1: Data backup</h3>
+<p>The new partition table didn't actually quite work for me. Windows
+wouldn't boot, and Grub was gone so I had no access to my Linux
+partitions. I booted off the LiveUSB stick again, and mounted the newly
+remade partitions from the 'Places' menu to back up the files I sort of
+cared about (this is a 1-week old laptop! Not much data).</p>
+</div>
+<div class="section" id="chroot-magic-grub">
+<h3>chroot magic + grub</h3>
+<p>Making sure I only had one partition mounted (Ubuntu in this case), I
+chrooted into it from its mount point in /media.</p>
+<pre class="literal-block">
+chroot /media/1234-5678-90ab-cdef
+</pre>
+<p>From there the idea was to use grub-install to reinstall grub. The hard
+drive I was trying to rehabilitate was /dev/sda, replace with the drive
+you want to fix.</p>
+<pre class="literal-block">
+grub-install /dev/sda
+</pre>
+<p>Now that didn't quite work for me. I forgot to write down the exact
+error messages, but it was complaining about not being able to write to
+/dev/null. This <a class="reference external" href="http://ubuntuforums.org/showthread.php?t=224351">Ubuntu Forum
+post</a> helped me
+solve that one, and by the way also contains more ideas to try out if
+you end up still grub-less.</p>
+<p>Now, for the proper /dev directory to be picked up in your chroot
+environment:</p>
+<pre class="literal-block">
+mount -o bind /dev /media/1234-5678-90ab-cdef/dev
+</pre>
+<p><em>grub-install /dev/sda</em> should now works handsomely :) Rebooting the
+machine, only Ubuntu was visible in the Grub boot menu. Running
+<em>update-grub</em> within Ubuntu resulted in an accurate list of every OS
+during the following boot, yay.</p>
+<p>Note that I actually sort of lost a partition in the process, the OEM
+&quot;Rescue partition&quot; that Lenovo set up at the end of the drive. TestDisk
+picked it up properly, but this partition is supposed to run when
+pressing the blue ThinkVantage button, and wouldn't start anymore. I
+didn't feel too sorry and deleted it (one more primary partition slot
+for me!). I also had to recreate the swap partition, which is pretty
+minor.</p>
+<p>Thanks TestDisk for saving the day! :)</p>
+<p>Resources:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.cgsecurity.org/wiki/TestDisk">TestDisk</a></li>
+<li><a class="reference external" href="http://ubuntuforums.org/showthread.php?t=224351">Ubuntu forums: How to restore grub from a
+LiveCD</a></li>
+</ul>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

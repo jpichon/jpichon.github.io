@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Balsamiq Mockups, oh, and Pinch too | Pinch is a micro-blogging reader for identi.ca on the N900</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="I like micro-blogging, or well, I hang out on identi.ca anyway. I'd like to use it more but I have trouble keeping track when I add..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/09/balsamiq-mockups/" rel="bookmark"
+           title="Permalink to Balsamiq Mockups, oh, and Pinch too | Pinch is a micro-blogging reader for identi.ca on the N900">Balsamiq Mockups, oh, and Pinch too  | Pinch is a micro-blogging reader for identi.ca on the N900</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-09-12T20:06:00+01:00">
+                Published: Mon 12 September 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/hci/">HCI</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->      <p>I like micro-blogging, or well, I hang out on
+<a class="reference external" href="http://identi.ca">identi.ca</a> anyway. I'd like to use it more but I
+have trouble keeping track when I add interesting-but-too-prolific
+people on my subscription list, or I sink when the occasional
+flamewar/&quot;debate&quot; erupts in a group I follow. I don't write a lot but I
+read, and I wanted the reading to be more efficient. The way I read
+identi.ca at the moment is:</p>
+<ul class="simple">
+<li>either through the web page, trying to find back the page where I
+last read a notice and then coming back slowly to the first page</li>
+<li>or on XMPP, where if something came up while I was disconnected I can
+receive a huge heap of messages when coming online even though I may
+only have a few minutes available to read, and there's no way to mark
+where I stop if I only read through some of the notices.</li>
+</ul>
+<p>Hm... You'd think there's a nice software announcement coming after this
+but there isn't really. This was the problem I set out to fix a few
+months ago and here I want to show how I used the wonderful <a class="reference external" href="http://balsamiq.com/products/mockups">Balsamiq
+Mockups</a> software to wireframe
+my interface before jumping into the code (there is code though. You may
+skip to the end if that's the only thing you care about.)</p>
+<div class="section" id="balsamiq-mockups">
+<h2>Balsamiq Mockups</h2>
+<p>I've been using this for 18 months or so, and I really like it. It
+enables me to make on screen, in a nice readable way, something I used
+to scribble on paper before. The end result is something nice to look at
+that I can work from, and if this is software built for someone else I
+can show them (without any recoil of horror!) and make sure this is what
+they have in mind and that I'm not forgetting something glaringly
+obvious.</p>
+<p>Let's go back to the micro-blogging reader. The first thing to handle
+was the timeline.</p>
+<p><img alt="Wireframe of a fake timeline with messages and side-notes" src="https://www.jpichon.net/site_media/images/2011/pinch_timeline.png" /></p>
+<p>The first time you use Balsamiq -- after the first 5 minutes where you
+will be amazed and clicking eveywhere (try it, they have a web demo on
+their site!) -- it will take a bit of time to learn where to find what,
+and what widgets exist. Soon enough though, you'll be making these nice
+wireframes about as fast as the crappy hand drawings.</p>
+<p>You can have several mockups open in different tabs, which is useful
+when working on a sequence of screens or different parts of the same
+project.</p>
+<p>As hinted at on that first image, Balsamiq provides widgets both for
+wireframing, as well as for annotations about the wireframe itself.</p>
+<p><a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2011/pinch_one_event.png"><img alt="Wireframe of a single event, with the possible actions (reply, highlight, repeat), the follow-up screens and a post-it note" src="https://www.jpichon.net/site_media/images/2011/pinch_one_event_thumb.png" /></a></p>
+<p>Here I use fancy arrows, and a post-it note. There are other elements
+like the curly braces from before or the round yellow numbers, to help
+call attention to differents part of the design. With the different
+containers and widgets you can easily mock up desktop, web and mobile
+apps. The font and general feel of the different elements is this way --
+a bit unequal, not perfect -- to remind of hand drawing and avoid giving
+a slick, &quot;finished&quot; impression. It's still easy to make radical changes
+at this stage of the development, so that's the kind of discussions it
+should encourage (also, as opposed to say a realistic HTML mock-up, the
+customer/user is less likely to ask if it'll be done by next week since
+it looks nearly ready already!)</p>
+<p>The third and last mock-up I made for the project was of the menu:</p>
+<p><img alt="image2" src="https://www.jpichon.net/site_media/images/2011/pinch_menu.png" /></p>
+<p>Nice and simple. Go give <a class="reference external" href="http://balsamiq.com/products/mockups">Balsamiq's web
+demo</a> a try, you'll see how
+intuitive the interface is and then you'll remember it when you need it
+or wish for something similar. It's worth every penny ($79).</p>
+<p>Now, what about Pinch, you ask? Well, the first attempt looked like
+this:</p>
+<p><img alt="Initial maemo version" src="https://www.jpichon.net/site_media/images/2011/pinch_maemo.png" /></p>
+<p>The wireframe was a very helpful guideline in remembering my goals and
+the big picture, to avoid getting lost in the details over and over
+again, though of course one should feel free to veer away when needed.
+On a touchscreen, a button with some text is a lot easier to click than
+just a small icon for instance. Also, the moving red line turned out to
+be a pain in the butt to figure out in pygtk so messages are simply
+greyed out and it's just as readable.</p>
+<p>By the way, did anyone notice the glaring feature omission in the
+mockups? If not, maybe you're more of a spectator, like me...! I found
+out when attending an interesting talk wanting to share some good tidbit
+and... oops. There's no way to post a brand new message :) Ah well.</p>
+</div>
+<div class="section" id="pinch">
+<h2>Pinch</h2>
+<p>The app ended up being named pinch due to... a thesaurus really, never
+mind. At the moment it's really read-only: you get your messages, you
+mark them as read or highlight the stuff you want to deal with later.
+You can remove messages you've read. No replying or writing anything
+though. I still consider it technically usable by other people as my
+name isn't hard-coded anymore, thus it's possible to set up the app for
+yourself ;)</p>
+<p>The main reason development stalled is that using the app is dead slow
+and I'm not sure of the best way to deal with it, and I haven't made the
+time to research how to handle this on a phone. There's a lot of waiting
+around looking at nothing while the app needs to grab URLs from
+identi.ca and parse the XML. There are still a lot of interesting
+problems to solve (and I still need a nice reader-optimised
+micro-blogging tool dammit), so I should get back to it eventually.</p>
+<p>In the spirit of the <a class="reference external" href="https://www.jpichon.net/blog/2011/07/europython-2011-myth-genius-programmer/">Myth of the Genius
+Programmer</a>
+talk and other people <a class="reference external" href="http://news.ycombinator.com/item?id=2968828">saying the shame of sharing code goes away after
+a while</a>, I decided to
+<a class="reference external" href="https://github.com/jpichon/pinch">open up my GitHub repo</a> (or
+perhaps it is happening because I haven't touched the code since June
+and forgot how terrible, terrible it is).</p>
+<p>Resources or tips on making performance improvements for pygtk and/or
+Maemo apps would be so very welcome, if anyone has recommendations? :)</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

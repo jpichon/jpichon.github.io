@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>OpenStack Pike PTG: OpenStack Client | Tips and background for interested contributors</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Last week I went off to Atlanta for the first OpenStack Project Teams Gathering, for a productive week discussing all sort of issues and..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2017/02/pike-ptg-openstack-client/" rel="bookmark"
+           title="Permalink to OpenStack Pike PTG: OpenStack Client | Tips and background for interested contributors">OpenStack Pike PTG: OpenStack Client  | Tips and background for interested contributors</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-02-28T15:45:00+00:00">
+                Published: Tue 28 February 2017
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/openstack/">openstack</a> </p>
+</footer><!-- /.post-info -->      <p>Last week I went off to Atlanta for the first <a class="reference external" href="http://www.openstack.org/ptg">OpenStack Project Teams
+Gathering</a>, for a productive week
+discussing all sort of issues and cross-projects concerns with fellow
+OpenStack contributors.</p>
+<p>For the first two days, I decided to do something you're not supposed to
+and attend the OpenStack Client (OSC) sessions despite not being a
+contributor yet. From my perspective it was incredibly helpful, as I got
+to hear about technical choices, historical decisions, current pain
+points and generally increase my understanding of the context around the
+project. I expect this will come very handy as I become more involved
+and thought I'd document some of this here, or more accurately have a
+giant braindump I can reference in the future. These are the things that
+were of interest to me during the meetings and is not meant to be an
+authoritative representation of everything that was discussed or other
+participants' thoughts and decisions.</p>
+<p>The etherpad for these sessions lives at
+<a class="reference external" href="https://etherpad.openstack.org/p/osc-ptg-pike">https://etherpad.openstack.org/p/osc-ptg-pike</a>.</p>
+<div class="section" id="issue-microversions">
+<h2>Issue: Microversions</h2>
+<p>Microversions are a big topic that I think came up in multiple rooms.
+From the client's perspective, a huge problem is that most of the
+microversion stuff is hidden within the various clients and little of it
+surfaces back to the user.</p>
+<p>There's a need for better negotiation, for the client to determine what
+is available. The path forward seems to be for the client to do
+auto-discovery of the latest available version.</p>
+<p>The issue was mainly discussed while Cinder folks were around, so a lot
+of the discussion centred around the project. For example they do
+microversions like Nova, where everything is in the headers. OSC will be
+relying on what's available in cinderclient itself and is unlikely to
+ever develop more capabilities than already exist there. However in the
+cinder case, microversions are only available from v3 and that hasn't
+merged in OSC yet.</p>
+<p>Other problems with microversions: how to keep track of what's available
+in each version? The plan is to use &quot;latest&quot; and cap specific commands
+if they are known to break. However there will still be issues with the
+interactive mode, as the conversation isn't reinitialised with each
+call.</p>
+</div>
+<div class="section" id="issue-listing-all-the-commands-vs-only-available-ones">
+<h2>Issue: Listing all the commands vs only available ones</h2>
+<p>This appears to be a topic where the answer is &quot;we gave up a long time
+ago,&quot; for technical and other reasons. Many service endpoints don't even
+let you get to the version without being authenticated.</p>
+<p>But even without that, there is a reluctance with having to do a server
+round-trip just to display the help.</p>
+<p>It's low priority for OSC, although it may be more important for other
+projects like Horizon.</p>
+</div>
+<div class="section" id="terminology-cinder-manage-unmanage-vs-adopt-abandon">
+<h2>Terminology (Cinder): manage/unmanage vs adopt/abandon</h2>
+<p>One of the of specific issues that was brought up and resolved was about
+the terminology used by a couple of Cinder commands.</p>
+<p>UX studies have been done on the client and the feedback is clear that
+what we currently have is not obvious. In the case of &quot;manage&quot; it is
+probably too generic, and not particularly a standard term that every
+Storage expert would instantly recognise (outside of Cinder).</p>
+<p>For a similar use case, both Heat and Ironic are using the
+&quot;adopt&quot;/&quot;abandon&quot; terminology therefore an agreement was reached to use
+it here as well. It's up to the Cinder folks to decide if they wish to
+do the same deprecation or not in their own client.</p>
+<p>To help people familiar with the existing command to find the new,
+clearer name, the usual way to do it is to include the old name in the
+help string so that users can grep for it.</p>
+</div>
+<div class="section" id="terminology-cinder-consistency-groups-deprecation-policy">
+<h2>Terminology (Cinder): Consistency groups &amp; deprecation policy</h2>
+<p>Consistency group is being replaced by volume_group. If the command is
+mostly similar from the user perspective the recommendation is to simply
+alias it. Both commands should be kept for a while, then the old one can
+be deprecated. As much as possible, don't break scripts.</p>
+<p>The logic can also be hidden within the client, like it is for Neutron
+and nova-network: many commands look the same from the user's
+perspective, the branching to use either as required is done internally.</p>
+</div>
+<div class="section" id="issue-noauth-requirements">
+<h2>Issue: NoAuth requirements</h2>
+<p>The requirement for a --no-auth option came up, which doesn't seem
+currently possible. It's important for projects like Ironic that support
+a stand-alone mode where there is no Keystone.</p>
+<p>There might be a &quot;Token 'off' type&quot; already available in some cases,
+though it still requires other &quot;unnecessary&quot; parameters like auth_url.</p>
+<p>OSC doesn't currently support that, though it may be already in the new
+layer that Monty is creating.</p>
+</div>
+<div class="section" id="a-new-layer">
+<h2>A new layer</h2>
+<p>That new layer came up a few times. I think this is
+<a class="reference external" href="https://docs.openstack.org/infra/shade/index.html">shade</a>?
+Apparently the (long term) end goal is to destroy the Python libraries
+and replace them with straight REST calls aka using requests for
+everything, to get rid of some of the issues with the existing Python
+libraries.</p>
+<p>Some examples of the issues:</p>
+<ul class="simple">
+<li>The Neutron client has a strange architecture and was never brought
+into OSC because of this.</li>
+<li>The Glance client has unique dependencies that no one requires, like
+openssl which make it hard to install on Windows.</li>
+</ul>
+<p>There were some discussions around why this new layer is not using the
+SDK. This may be because the SDK has a big ORM data layer, which doesn't
+fit with the &quot;simple&quot; strategy.</p>
+<p>So the goal becomes building a thin REST layer on of the REST APIs,
+which of course has its own set of concerns e.g. how to keep track of
+what's available in every release, with the microversion stuff.</p>
+<p>How about OSC using shade? It does seem to have filled a need and gained
+traction. However it is opiniated, there's duplication on both sides. It
+is both slightly higher-level and lower-level than needed. I didn't get
+the impression it's on the cards at this point.</p>
+</div>
+<div class="section" id="new-meta-package">
+<h2>New meta-package</h2>
+<p>There is a new meta-package,
+<a class="reference external" href="https://github.com/openstack/openstackclient">openstackclient</a> (as
+opposed to python-openstackclient) to install the client together with
+all the plugins. A downside of the plugin architecture that some people
+don't like is that it requires multiple steps to get access to
+everything. The meta-package would resolve that.</p>
+<p>This project is basically a requirement file, with some docs and a few
+tests (more may migrate there). It is ready for a &quot;0.1&quot; release,
+although the recommendation from the release team is to keep the
+versioning in sync with the main OSC.</p>
+<p>I was wondering why python-tripleoclient wasn't in there yet, it turns
+out for now only projects that are in the <a class="reference external" href="https://github.com/openstack/requirements/">global
+requirements</a> are
+included. I got distracted with wanting to fix this before remembering
+that due to A Series Of Unfortunate Dependencies, installing the TripleO
+client also brings in the Mistral server... and cutting that chain is
+not as straightforward as I'd hoped (now documented in a <a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1666268">Launchpad
+bug</a>). Though if the
+other clients are there with their current set of issues, maybe it'd be
+ok to add it anyway.</p>
+<p>From now on, projects should add themselves to the meta-package when
+creating a new plugin - this will be added to the
+<a class="reference external" href="https://docs.openstack.org/developer/python-openstackclient/plugins.html#checklist-for-adding-new-openstack-plugins">checklist</a>.</p>
+<p>Another note, for this to work individual clients should not depend on
+OSC itself. They shouldn't anyway, because it brings in too many things.</p>
+</div>
+<div class="section" id="deprecating-all-the-clients">
+<h2>Deprecating ALL the clients</h2>
+<p>OSC is meant to deprecate all of the existing clients. However there is
+no timeline, this is specific to each project. At the moment, Cinder and
+Neutron are getting up to speed but it's up to them to decide when to
+get rid of the old client - if at all.</p>
+<p>In the case of Keystone, it took 2 releases to get deprecated, during
+which it established a very strict security fixes-only policy - even
+typo fixes were refused!</p>
+</div>
+<div class="section" id="migration-path-for-users">
+<h2>Migration path for users</h2>
+<p>There's a need for docs to help users familiar with the old clients to
+learn the new commands. stevemar already documented most of them,
+amotoki provided a mapping for Neutron commands as well.</p>
+<p>Since the work is already done, these will be added to the docs. In
+theory it shouldn't get too stale since no new commands are to be added
+to the old CLIs (?). The mapping should start with the old commands
+first, as this how people will be searching.</p>
+</div>
+<div class="section" id="cliff-topics-entry-point-freedom-adding-to-existing-commands">
+<h2>Cliff topics: entry point freedom, adding to existing commands</h2>
+<p>dhellman dropped by on Tuesday morning to address Cliff-specific issues
+and feature requests. I missed the beginning but learnt a bunch of
+interesting things by listening in. Cliff is what gives us the base
+class structure and maps entry points.</p>
+<p>Some security issues were brought up, and so was the possibility for
+users to lock down namespaces and give them some control over what gets
+added. It would be nice if there was a tool to check which entry point
+was hooked from where. Cliff could be modified to include additional
+information on where the command comes from, and an independent tool
+could be written up that uses that. I don't think a bug's open for it
+yet, though the goal seems to get it in for Pike.</p>
+<p>Another feature request related to Cliff was to add to existing
+commands, which comes up a lot especially for quotas. &quot;Purge&quot; may be
+another candidate.</p>
+</div>
+<div class="section" id="pike-community-goal-python-3">
+<h2>Pike community goal: Python 3</h2>
+<p>Python 3 should be supported by the client already. The only thing left
+to do is to modify devstack to load OSC with Python 3 by default.</p>
+</div>
+<div class="section" id="blueprints-in-osc">
+<h2>Blueprints in OSC</h2>
+<p>In passing I learnt that OSC doesn't really use blueprints nor want to -
+these are used for implementing Neutron commands at the moment, but the
+team would rather it doesn't get used for anything else.</p>
+<p>If someone wishes to implement a feature, better to open it as a bug
+instead so that it doesn't get lost.</p>
+</div>
+<div class="section" id="osc-lib-and-feature-branches">
+<h2>osc_lib and feature branches</h2>
+<p>It took a long time to implement osc_lib. What to do next time big
+changes are expected, e.g. removing things for the next big version?</p>
+<p>Using feature branches is generally not recommended as deleting them and
+integrating them at the end requires a lot of effort.</p>
+<p>In this case since removals will break things, working with infra to
+create a feature branch seems to make sense.</p>
+</div>
+<div class="section" id="glance-v2">
+<h2>Glance v2</h2>
+<p>Old operations like create, etc are supported but the new commands
+aren't (mainly around metadata and namespaces). We spent a bit of time
+trying to figure out what are metadata definitions (it's related to
+Glare, pre-Big Tent, and expanded a bit the scope of Glance. They could
+be used as artifacts for Nova, hardware affinity, identifying what flags
+actually mean). It's exposed through Horizon currently.</p>
+<p>Current verdict: they won't be implemented till someone asks for them.</p>
+</div>
+<div class="section" id="adding-your-project-to-the-client-creating-your-own-plugin">
+<h2>Adding your project to the client, creating your own plugin</h2>
+<p>Finally, a couple of PTLs dropped by to ask for advice on how to get
+started creating their client (and avoid folks trying to do it in-tree).
+The most important and difficult part seems to be naming resources.
+There is no process to determine terminology, but try to keep it
+consistent with the existing commands (verbs are easier than nouns, e.g.
+new thing = create).</p>
+<p>There's no good answer for quotas yet, though this may change. For now,
+taking a new 'load-balancer' resource as an example, this would look
+like:</p>
+<pre class="literal-block">
+$ openstack load-balancer quotas
+</pre>
+<p>In the future, we may get something similar to:</p>
+<pre class="literal-block">
+$ openstack quotas --load-balancer
+</pre>
+<p>though the extension to do this doesn't exist yet.</p>
+<p>There is no OSC convention for cascade-delete (e.g. adding a flag). A
+purge command is underway. It would delete all the resources under a
+project.</p>
+<p>With regard to version/microversions, give a way for the client to
+detect what it needs to.</p>
+<p>Good examples to learn from: Identity v3 is cleanly done. Volume v2 is
+very recent and includes a lot of lessons learnt.</p>
+<p>On the other hand Object may not be such a good example, it's a bit
+different and taken directly from the Swift CLI.</p>
+<p>I think the <a class="reference external" href="https://docs.openstack.org/developer/python-openstackclient/plugins.html">documentation for writing new plugins is over
+there</a>.
+Most OSC developers and devs from related libraries hang out on
+#openstack-sdks. It's a good place to ask any client-related question!</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Python meetup, June 2012: Message brokers & Python | ActiveMQ</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Last Wednesday was June's monthly Python Ireland meet-up, this time with a talk by Fernando Ciciliati about message brokers and Python. After a..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2012/06/python-meetup-june-2012/" rel="bookmark"
+           title="Permalink to Python meetup, June 2012: Message brokers & Python | ActiveMQ">Python meetup, June 2012: Message brokers &amp; Python  | ActiveMQ</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-06-15T20:19:00+01:00">
+                Published: Fri 15 June 2012
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>Last Wednesday was <a class="reference external" href="http://python.ie/meetup/2012/python-ireland-talk-june-2012/">June's monthly Python Ireland
+meet-up</a>,
+this time with a talk by Fernando Ciciliati about message brokers and
+Python.</p>
+<p>After a general&nbsp; introduction on the advantages and concepts behind
+messaging, the main part of the talk was about
+<a class="reference external" href="http://activemq.apache.org/">ActiveMQ</a>, a message broker under the
+Apache umbrella. Fernando explained that this was a broker mostly used
+by Java people and required a bit of work on their part to get it to
+play nicely with Python. They had to make significant changes and
+improvements to the existing libraries.</p>
+<p>ActiveMQ is written in Java and designed for <strong>high-performance</strong> as
+opposed to reliability, and the default configuration reflects this. If
+you want your messages to persist after reboot and never be dropped, you
+will have to tweak the default setup.</p>
+<p>The community is very active... which also means lots of bugs! Fernando
+recommends reading the tracker, as there will certainly be a couple of
+bugs that are relevant to your situation.</p>
+<p>Thanks to the provided binaries, ActiveMQ is easy to install. You get a
+nice web interface to manage and monitor your queues and messages.</p>
+<p>By default, <strong>STOMP</strong> is not installed and ActiveMQ is only configured
+to talk to Java via OpenWire. Enabling STOMP support is simply a matter
+of adding one line to an XML configuration file, and is the easiest way
+to communicate with Python.</p>
+<p>There are several Python libraries available: stomp.py, stompy, Twisted
+also supports it... They selected stomp.py.</p>
+<p>To test your ActiveMQ setup, you can simply telnet into the port and
+send messages, while using the web interface to see what's happening.
+The protocol is similar to SMTP.</p>
+<p>The terminology used by ActiveMQ differs a bit from other message
+brokers, be careful when comparing them. (I wonder if this is due to
+using STOMP vs. using AMQP?). For instance, &quot;topics&quot; seem to be a way to
+broadcast in ActiveMQ, rather than a way to filter interesting messages.</p>
+<p>As usual, the technical talks continued in the pub afterwards :)</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

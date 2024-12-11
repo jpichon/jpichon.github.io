@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - moodle</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-moodle.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2011-06-07T21:16:00+01:00</updated><entry><title>Upgrading to Moodle 2.0</title><link href="https://www.jpichon.net/blog/2011/06/upgrading-moodle-20/" rel="alternate"></link><published>2011-06-07T21:16:00+01:00</published><updated>2011-06-07T21:16:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-06-07:/blog/2011/06/upgrading-moodle-20/</id><summary type="html">&lt;p&gt;Over the week-end, I thought it was time to see how my Moodle
+&lt;a class="reference external" href="https://github.com/jpichon/moodle-dvreport"&gt;block&lt;/a&gt; handled the
+upgrade to 2.0. I did a brand new install of Moodle 1.9-latest, restored
+my old SQL dev backup, anxiously proceeded to start the upgrade and...
+ta-dah! Short answer: it doesn't work. Here …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Over the week-end, I thought it was time to see how my Moodle
+&lt;a class="reference external" href="https://github.com/jpichon/moodle-dvreport"&gt;block&lt;/a&gt; handled the
+upgrade to 2.0. I did a brand new install of Moodle 1.9-latest, restored
+my old SQL dev backup, anxiously proceeded to start the upgrade and...
+ta-dah! Short answer: it doesn't work. Here are my notes on a couple of
+issues I encountered during the upgrade, so I don't waste time when I
+try again after updating the plug-in.&lt;/p&gt;
+&lt;div class="section" id="upgrading-error-database-connection-failed"&gt;
+&lt;h2&gt;Upgrading: &amp;quot;Error: database connection failed&amp;quot;&lt;/h2&gt;
+&lt;p&gt;I use PostgreSQL and after uploading the 2.0 code the site would only
+display &amp;quot;Error: database connection failed&amp;quot;. I'm not sure what's the
+best way to move past this, but here what worked for me. The
+configuration string for Postgres dabatases always looked strange in
+config.php, something like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$CFG-&amp;gt;dbhost&amp;nbsp;&amp;nbsp;&amp;nbsp; = 'user=\'mydbuser\' password=\'mydbpass\' dbname=\'moodle\'';
+&lt;/pre&gt;
+&lt;p&gt;I changed it to this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$CFG-&amp;gt;dbhost&amp;nbsp;&amp;nbsp;&amp;nbsp; = 'localhost';
+$CFG-&amp;gt;dbname&amp;nbsp;&amp;nbsp;&amp;nbsp; = 'moodle';
+$CFG-&amp;gt;dbuser&amp;nbsp;&amp;nbsp;&amp;nbsp; = 'mydbuser';
+$CFG-&amp;gt;dbpass&amp;nbsp;&amp;nbsp;&amp;nbsp; = 'mydbpass';
+&lt;/pre&gt;
+&lt;p&gt;and happily, I was able to move on. Unfortunately I had forgotten to
+turn off debugging (activated from the SQL backup), and there may have
+been some CSS/theme trickery to set up before upgrading so... the
+upgrade screens were quite bare and sad looking.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="plugin-block-dvreport-is-defective-or-outdated-can-not-continue-sorry"&gt;
+&lt;h2&gt;Plugin &amp;quot;block/dvreport&amp;quot; is defective or outdated, can not continue, sorry.&lt;/h2&gt;
+&lt;p&gt;The upgrade is quite a depressing process. Whenever it encounters a
+module that won't work with 2.0, it just shows this message about
+&amp;quot;defective&amp;quot; and &amp;quot;outdated&amp;quot; and won't move forward until the 'defective'
+module is removed. I just rm -rf'ed them since this is a dev system, but
+this was a fresh install, and besides DVReport these used to be standard
+modules. The migration path for people who actually used them must be
+painful.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="no-css-text-only-homepage"&gt;
+&lt;h2&gt;No CSS, text-only homepage&lt;/h2&gt;
+&lt;p&gt;After the upgrade, search for &amp;quot;Theme selector&amp;quot; and select a theme.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next"&gt;
+&lt;h2&gt;Next?&lt;/h2&gt;
+&lt;p&gt;Well, there is &lt;a class="reference external" href="http://docs.moodle.org/dev/Migrating_contrib_code_to_2.0"&gt;some
+documentation&lt;/a&gt;
+on migrating code to work with Moodle 2.0 so I'll start there. It's a
+stub though, and looks fairly incomplete. Reminds me of the initial work
+on DVReport: Moodle 1.7 came out when I was starting out and
+contributors had to figure out all the novelties like the new Role
+system before they were documented. I can do this again, just need to
+make the time!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="moodle"></category></entry><entry><title>First publication!</title><link href="https://www.jpichon.net/blog/2010/10/first-publication/" rel="alternate"></link><published>2010-10-07T22:31:00+01:00</published><updated>2010-10-07T22:31:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-10-07:/blog/2010/10/first-publication/</id><summary type="html">&lt;p&gt;I'm back from a short holiday (therefore of course sick, but it was
+relaxing up to that point!). I found out last week-end that the paper I
+wrote with my FYP supervisor, based on my final year project and
+dissertation in &lt;a class="reference external" href="http://www.ul.ie"&gt;UL&lt;/a&gt;, has been published! The
+article abstract is available …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm back from a short holiday (therefore of course sick, but it was
+relaxing up to that point!). I found out last week-end that the paper I
+wrote with my FYP supervisor, based on my final year project and
+dissertation in &lt;a class="reference external" href="http://www.ul.ie"&gt;UL&lt;/a&gt;, has been published! The
+article abstract is available on the Inderscience website: &amp;quot;&lt;a class="reference external" href="http://www.inderscience.com/search/index.php?action=record&amp;amp;rec_id=35290"&gt;Seeing is
+believing: using Data Visualisation for formative feedback in computer
+supported online learning
+collaboration&lt;/a&gt;&amp;quot;.
+I'm quite proud! The article talks about using data visualisation to
+help provide useful formative feedback in the context of the &lt;a class="reference external" href="http://github.com/jpichon/moodle-dvreport"&gt;DVReport
+Moodle plug-in&lt;/a&gt; I wrote
+(and that I should really resume refactoring, some time...)&lt;/p&gt;
+</content><category term="Tech"></category><category term="moodle"></category></entry><entry><title>Moodle deprecation warnings -&gt; navigation bar | build_navigation()</title><link href="https://www.jpichon.net/blog/2010/05/moodle-deprecation-warnings-navigation-bar/" rel="alternate"></link><published>2010-05-17T20:32:00+01:00</published><updated>2010-05-17T20:32:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-05-17:/blog/2010/05/moodle-deprecation-warnings-navigation-bar/</id><summary type="html">&lt;p&gt;Over the week-end I rediscovered &lt;a class="reference external" href="http://moodle.org"&gt;Moodle&lt;/a&gt;'s
+DEVELOPER &lt;a class="reference external" href="http://docs.moodle.org/en/Debugging#How_to_turn_on_debugging"&gt;debug
+setting&lt;/a&gt;
+which surfaced many unpleasant warnings. The first kind was removed by
+following proper programming practices (ahem), the second kind involved
+a couple of deprecation warnings that reminded me that Moodle is slowly
+and surely making its way toward 2.0 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Over the week-end I rediscovered &lt;a class="reference external" href="http://moodle.org"&gt;Moodle&lt;/a&gt;'s
+DEVELOPER &lt;a class="reference external" href="http://docs.moodle.org/en/Debugging#How_to_turn_on_debugging"&gt;debug
+setting&lt;/a&gt;
+which surfaced many unpleasant warnings. The first kind was removed by
+following proper programming practices (ahem), the second kind involved
+a couple of deprecation warnings that reminded me that Moodle is slowly
+and surely making its way toward 2.0. I &lt;a class="reference external" href="http://github.com/jpichon/moodle-dvreport/issues/issue/8"&gt;filed a
+bug&lt;/a&gt; about
+this against DVReport, I should be looking into that one over the summer
+(&lt;a class="reference external" href="http://docs.moodle.org/en/Moodle_2.0_release_notes"&gt;Moodle 2.0 release
+date&lt;/a&gt; is July
+20th! It's so strange to see an actual date, after years of reading
+about the preparations. Sounds awesome :))&lt;/p&gt;
+&lt;p&gt;The old navigation bar, pre-1.9.8 I assume though I'm not sure when it
+was deprecated, used to look like this:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$navigation = '&amp;lt;a href=&amp;quot;$url&amp;quot;&amp;gt;$block_name&amp;lt;/a&amp;gt; -&amp;gt; $action_name';
+&lt;/pre&gt;
+&lt;p&gt;The &amp;quot;-&amp;gt;&amp;quot; would indicate a separation between 2 links, and automatically
+generate a nice triangle picture in the breadcrumb.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DVReport screenshot of the navigation bar" src="https://www.jpichon.net/site_media/images/2010/dvreport-navigation-bar.png" /&gt;&lt;/p&gt;
+&lt;p&gt;With the new navigation style, you get to split up the different
+sections into different arrays. It might seem more cumbersome but I
+think in the end it's neater, because you get to make a distinction
+between every element of the navigation, as opposed to one long messy
+string where you can easily miss the arrows when reading. The visual
+output is the same.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$navigation = build_navigation(array(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; array('name' =&amp;gt; $block_name,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 'link' =&amp;gt; $url,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 'type' =&amp;gt; 'title'),
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; array('name' =&amp;gt; $action_name,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 'link' =&amp;gt; '',
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 'type' =&amp;gt; 'title')
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; )
+&amp;nbsp;&amp;nbsp;&amp;nbsp; );
+&lt;/pre&gt;
+&lt;p&gt;The only meh thing about this is that &amp;quot;type&amp;quot; isn't really documented.
+The phpdoc comment reads &amp;quot;this really needs to be documented better&amp;quot; and
+lists a few values. As usual, there isn't one that quite fits what
+DVReport does, because DVReport is a block, not an activity or course
+module. So I picked 'title', which seems innocent enough -- we'll see
+what future updates to the core navigation bar code make out of that!&lt;/p&gt;
+</content><category term="Tech"></category><category term="moodle"></category></entry><entry><title>Synchronous Hackathon</title><link href="https://www.jpichon.net/blog/2010/05/synchronous-hackathon/" rel="alternate"></link><published>2010-05-15T19:49:00+01:00</published><updated>2010-05-15T19:49:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-05-15:/blog/2010/05/synchronous-hackathon/</id><summary type="html">&lt;p&gt;I attended for a couple of hours the &lt;a class="reference external" href="http://www.tog.ie/2010/05/may-synchronicity-hackathon/"&gt;Synchronous Hackathon in
+Tog&lt;/a&gt; today. I
+had vague plans on making progress with the Moodle plug-in, probably
+related to the unit testing / refactoring of the data crunching
+methods... Didn't happen, but I did find a new bug, which I managed to
+fix …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I attended for a couple of hours the &lt;a class="reference external" href="http://www.tog.ie/2010/05/may-synchronicity-hackathon/"&gt;Synchronous Hackathon in
+Tog&lt;/a&gt; today. I
+had vague plans on making progress with the Moodle plug-in, probably
+related to the unit testing / refactoring of the data crunching
+methods... Didn't happen, but I did find a new bug, which I managed to
+fix 10 minutes before my battery went down. Wince-worthy, a couple of
+global variables (ouch) not being cleared properly in various places,
+but still -- progress! I'm happy with the day, it was good fun. Now, to
+see if I can hook Geany saving function to a shell script I have to
+execute manually each time...&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category><category term="moodle"></category><category term="tog"></category></entry><entry><title>Back to Moodle | The joys of digging up old projects</title><link href="https://www.jpichon.net/blog/2010/05/back-moodle/" rel="alternate"></link><published>2010-05-11T19:11:00+01:00</published><updated>2010-05-11T19:11:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-05-11:/blog/2010/05/back-moodle/</id><summary type="html">&lt;p&gt;I've ended up a bit discouraged about my Sugar involvement (there's
+probably a blog post about lessons learnt in there, after I finish
+processing events in a useful way) so I decided it'd be best to step
+back for a while and digest things in the background before trying
+again …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've ended up a bit discouraged about my Sugar involvement (there's
+probably a blog post about lessons learnt in there, after I finish
+processing events in a useful way) so I decided it'd be best to step
+back for a while and digest things in the background before trying
+again. In the meantime I thought it'd be cool to remove the dust from my
+old, old, &lt;em&gt;old&lt;/em&gt; &lt;a class="reference external" href="http://moodle.org"&gt;Moodle&lt;/a&gt; plug-in back from
+college.&lt;/p&gt;
+&lt;p&gt;Various things learnt, re-learnt and discovered over the past couple of
+days:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Remembered my old tip of appending a version number to the Moodle
+folders in /var/www/ and /var/wwwdata/ so I can install multiple
+versions of Moodle in parallel without having to remember which
+version is in &amp;quot;moodle&amp;quot;&lt;/li&gt;
+&lt;li&gt;Could not install nor find a threaded mod_php5 Apache module in my
+Debian repos, had to remove apache and install apache2 prefork
+instead. To be investigated still, I want to understand why the repos
+are set up this way.&lt;/li&gt;
+&lt;li&gt;Learnt to check http.conf for port conflicts before installing a new
+module. Django and mod_wsgi trying to read my PHP files on port 80
+did not work well.&lt;/li&gt;
+&lt;li&gt;After updating the mod_wsgi port in httpd.conf, without having to
+add or configure anything the php files were running with no issues
+-- surprising and cool!&lt;/li&gt;
+&lt;li&gt;New Moodle point version, woohoo! Go 1.9.8, as smooth to install as
+usual.&lt;/li&gt;
+&lt;li&gt;Happy surprise: my plugin, DVReport, installed and worked properly!
+Guess there was no major architectural change between 1.9 and
+1.9.8... ;)&lt;/li&gt;
+&lt;li&gt;Nasty surprise: visualisations (the core of the plugin) were not
+working&lt;/li&gt;
+&lt;li&gt;Realisation #1: using double-quotes (&amp;quot;) to delimit text in not proper
+SQL. This is pretty sad considering how much effort and agony I spent
+worrying about creating database neutral queries at the time.&lt;/li&gt;
+&lt;li&gt;Realisation #2: MySQL is way too kind with horrible, broken,
+standardless SQL. I must have been tight on a deadline (or on crack)
+when I wrote one particularly crazy GROUP BY statement. I'm guessing
+MySQL just ignored the bits that didn't make sense, but since working
+on this plugin last I've fallen in love with PostgreSQL, who isn't so
+kind (sloppy?) in parsing queries. I'll keep using Postgres as my
+main backend (&amp;lt;3), but will be testing with MySQL as well for this
+plugin considering I'm apparently unable to write db neutral SQL the
+first time around :)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The project had remained untouched since October 2008, according to
+GitHub. Since then GitHub has acquired an issue tracker (major YAY!) and
+a download tab so I cleaned up the wiki (who'd been upgraded and wasn't
+parsing all the old syntax anymore either) and set those up. Now the
+only horrible thing that's left, is &lt;a class="reference external" href="http://github.com/jpichon/moodle-dvreport"&gt;all that dreadful
+code&lt;/a&gt;... ;)&lt;/p&gt;
+</content><category term="Tech"></category><category term="moodle"></category></entry></feed>

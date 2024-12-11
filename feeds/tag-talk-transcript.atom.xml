@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - talk-transcript</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-talk-transcript.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2017-07-07T12:45:00+01:00</updated><entry><title>TripleO Deep Dive: Internationalisation in the UI</title><link href="https://www.jpichon.net/blog/2017/07/tripleo-deep-dive-internationalisation-ui/" rel="alternate"></link><published>2017-07-07T12:45:00+01:00</published><updated>2017-07-07T12:45:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2017-07-07:/blog/2017/07/tripleo-deep-dive-internationalisation-ui/</id><summary type="html">&lt;p&gt;Yesterday, as part of the &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-deep-dive-topics"&gt;TripleO Deep
+Dives&lt;/a&gt;
+series I gave a short introduction to internationalisation in &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui"&gt;TripleO
+UI&lt;/a&gt;: the technical aspects
+of it, as well as a quick overview of how we work with the I18n team.&lt;/p&gt;
+&lt;p&gt;You can catch the recording on
+&lt;a class="reference external" href="https://bluejeans.com/s/XmuHa"&gt;BlueJeans&lt;/a&gt; or
+&lt;a class="reference external" href="https://www.youtube.com/watch?v=dmAw7b2yUEo"&gt;YouTube&lt;/a&gt;, and below's a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Yesterday, as part of the &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-deep-dive-topics"&gt;TripleO Deep
+Dives&lt;/a&gt;
+series I gave a short introduction to internationalisation in &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui"&gt;TripleO
+UI&lt;/a&gt;: the technical aspects
+of it, as well as a quick overview of how we work with the I18n team.&lt;/p&gt;
+&lt;p&gt;You can catch the recording on
+&lt;a class="reference external" href="https://bluejeans.com/s/XmuHa"&gt;BlueJeans&lt;/a&gt; or
+&lt;a class="reference external" href="https://www.youtube.com/watch?v=dmAw7b2yUEo"&gt;YouTube&lt;/a&gt;, and below's a
+transcript.&lt;/p&gt;
+&lt;p&gt;~&lt;/p&gt;
+&lt;div class="section" id="life-and-journey-of-a-string"&gt;
+&lt;h2&gt;Life and Journey of a String&lt;/h2&gt;
+&lt;p&gt;Internationalisation was added to the UI during Ocata - just a release
+ago. &lt;a class="reference external" href="https://twitter.com/florianfuchs"&gt;Florian&lt;/a&gt; implemented most of
+it and did the lion's share of the work, as can be seen &lt;a class="reference external" href="https://blueprints.launchpad.net/tripleo/+spec/tripleo-ui-i18n-support-for-js"&gt;on the
+blueprint&lt;/a&gt;
+if you're curious about the nitty-gritty details.&lt;/p&gt;
+&lt;div class="section" id="addition-to-the-codebase"&gt;
+&lt;h3&gt;Addition to the codebase&lt;/h3&gt;
+&lt;p&gt;Here's &lt;a class="reference external" href="https://review.openstack.org/#/c/416564/3/src/js/components/plan/NewPlan.js"&gt;an example
+patch&lt;/a&gt;
+from during the transition. On the left you can see how things were
+hard-coded, and on the right you can see the new defineMessages()
+interface we now use. Obviously new patches should directly look like on
+the right hand-side nowadays.&lt;/p&gt;
+&lt;p&gt;The defineMessages() dictionary requires a unique id and default English
+string for every message. Optionally, you can also provide a description
+if you think there could be confusion or to clarify the meaning. The
+description will be shown in Zanata to the translators - remember they
+see no other context, only the string itself.&lt;/p&gt;
+&lt;p&gt;For example, &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/src/js/components/plan/PlanFormTabs.js#L29-L33"&gt;a string might sound active like if it were related to an
+action/button but actually be a descriptive help
+string&lt;/a&gt;.
+Or some expressions are known to be confusing in English - &amp;quot;provide a
+node&amp;quot; has been the source of multiple &lt;a class="reference external" href="http://lists.openstack.org/pipermail/openstack-dev/2016-July/098746.html"&gt;discussions on
+list&lt;/a&gt;
+and live so might as well pre-empt questions and &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/src/js/components/nodes/NodesTableView.js#L31-L36"&gt;offer additional
+context to help the translators decide on an appropriate
+translation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="extraction-conversion"&gt;
+&lt;h3&gt;Extraction &amp;amp; conversion&lt;/h3&gt;
+&lt;p&gt;Now we know how to add an internationalised string to the codebase - how
+do these get extracted into a file that will be uploaded to Zanata?&lt;/p&gt;
+&lt;p&gt;All of the following steps are described in the &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/docs/translation.rst"&gt;translation
+documentation&lt;/a&gt;
+in the tripleo-ui repository. Assuming you've already run the
+installation steps (basically, &lt;em&gt;npm install&lt;/em&gt;):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ npm run build
+&lt;/pre&gt;
+&lt;p&gt;This does a lot more than just extracting strings - it prepares the code
+for being deployed in production. Once this ends you'll be able to find
+your newly extracted messages under the &lt;em&gt;i18n&lt;/em&gt; directory:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ls i18n/extracted-messages/src/js/components
+&lt;/pre&gt;
+&lt;p&gt;You can see the directory structure is kept the same as the source code.
+And if you peek into one of the files, you'll note the content is
+basically the same as what we had in our defineMessages() dictionary:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ cat i18n/extracted-messages/src/js/components/Login.json
+[
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;UserAuthenticator.authenticating&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Authenticating...&amp;quot;
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;Login.username&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Username&amp;quot;
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;Login.usernameRequired&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Username is required.&amp;quot;
+  },
+[...]
+&lt;/pre&gt;
+&lt;p&gt;However, JSON is not a format that Zanata understands by default. I
+think the latest version we upgraded to, or the next one might have some
+support for it, but since there's no i18n JSON standard it's somewhat
+limited. In open-source software projects, po/pot files are generally
+the standard to go with.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ npm run json2pot
+
+&amp;gt; tripleo-ui&amp;#64;7.1.0 json2pot /home/jpichon/devel/tripleo-ui
+&amp;gt; rip json2pot ./i18n/extracted-messages/**/*.json -o ./i18n/messages.pot
+
+&amp;gt; [react-intl-po] write file -&amp;gt; ./i18n/messages.pot ✔️
+
+$ cat i18n/messages.pot
+msgid &amp;quot;&amp;quot;
+msgstr &amp;quot;&amp;quot;
+&amp;quot;POT-Creation-Date: 2017-07-07T09:14:10.098Z\n&amp;quot;
+&amp;quot;Content-Type: text/plain; charset=UTF-8\n&amp;quot;
+&amp;quot;Content-Transfer-Encoding: 8bit\n&amp;quot;
+&amp;quot;MIME-Version: 1.0\n&amp;quot;
+&amp;quot;X-Generator: react-intl-po\n&amp;quot;
+
+
+#: ./i18n/extracted-messages/src/js/components/nodes/RegisterNodesDialog.json
+#. [RegisterNodesDialog.noNodesToRegister] - undefined
+msgid &amp;quot;&amp;quot;No Nodes To Register&amp;quot;&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/nodes/NodesToolbar/NodesToolbar.json
+#. [Toolbar.activeFilters] - undefined
+#: ./i18n/extracted-messages/src/js/components/validations/ValidationsToolbar.json
+#. [Toolbar.activeFilters] - undefined
+msgid &amp;quot;Active Filters:&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/nodes/RegisterNodesDialog.json
+#. [RegisterNodesDialog.addNew] - Small button, to add a new Node
+msgid &amp;quot;Add New&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/plan/PlanFormTabs.json
+#. [PlanFormTabs.addPlanName] - Tooltip for &amp;quot;Plan Name&amp;quot; form field
+msgid &amp;quot;Add a Plan Name&amp;quot;
+msgstr &amp;quot;&amp;quot;
+[...]
+&lt;/pre&gt;
+&lt;p&gt;This messages.pot file is what will be automatically uploaded to Zanata.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="infra-from-the-git-repo-to-zanata"&gt;
+&lt;h3&gt;Infra: from the git repo, to Zanata&lt;/h3&gt;
+&lt;p&gt;The following steps are done by the infrastructure scripts. There's
+&lt;a class="reference external" href="https://docs.openstack.org/infra/manual/creators.html#enabling-translation-infrastructure"&gt;infra documentation on how to enable translations for your
+project&lt;/a&gt;,
+in our case as the first internationalised JavaScript project we had to
+update the scripts a little as well. This is useful to know if an issue
+happens with the infra jobs; debugging will probably bring you here.&lt;/p&gt;
+&lt;p&gt;The scripts live in the &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/tree/605299/jenkins/scripts"&gt;project-config infra
+repo&lt;/a&gt;
+and there are three files of interest for us:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/common_translation_update.sh"&gt;common_translation_update.sh&lt;/a&gt;
+- a bunch of common functions&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L241"&gt;propose_translation_update.sh&lt;/a&gt;
+- proposes the translations back to the repository (we'll talk about
+it in a bit)&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L75"&gt;upstream_translation_update.sh&lt;/a&gt;
+- that sends the translations up to Zanata&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this case, upstream_translation_update.sh is the file of interest
+to us: it simply &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/master/jenkins/scripts/upstream_translation_update.sh#L75-L79"&gt;sets up the project on line
+76&lt;/a&gt;,
+then &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L115"&gt;sends the pot file up to Zanata on line
+115&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What does &amp;quot;setting up the project&amp;quot; entails? It's a function in
+common_translations_update.sh, that pretty much &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/common_translation_update.sh#L252-L271"&gt;runs the steps we
+talked about in the previous section, and also creates a config file to
+talk to
+Zanata&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="monitoring-the-post-jobs"&gt;
+&lt;h3&gt;Monitoring the post jobs&lt;/h3&gt;
+&lt;p&gt;Post jobs run after a patch has already merged - usually to upload
+tarballs where they should be, update the documentation pages, etc, and
+also upload messages catalogues onto Zanata. Being a 'post' job however
+means that if something goes wrong, there is no notification on the
+original review so it's easy to miss.&lt;/p&gt;
+&lt;p&gt;Here's the &lt;a class="reference external" href="http://status.openstack.org/openstack-health/#/g/build_queue/post?groupKey=build_queue&amp;amp;searchJob=tripleo-ui"&gt;OpenStack Health page to monitor 'post' jobs related to
+tripleo-ui&lt;/a&gt;.
+Scroll to the bottom - hopefully tripleo-ui-upstream-translation-update
+is still green! It's good to keep an eye on it although it's easy to
+forget. Thankfully, AJaeger from #openstack-infra has been great at
+filing bugs and letting us know when &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1691006"&gt;something does go
+wrong&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="debugging-when-things-go-wrong-an-example"&gt;
+&lt;h3&gt;Debugging when things go wrong: an example&lt;/h3&gt;
+&lt;p&gt;We had a couple of issues whereby a &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1674011"&gt;linebreak gets
+introduced&lt;/a&gt; into one
+of the strings, which works fine in JSON but breaks our pot file. If you
+look at the content from the bug (the full logs are no longer
+accessible):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+2017-03-16 12:55:13.468428 | + zanata-cli -B -e push --copy-trans False
+[...]
+2017-03-16 12:55:15.391220 | [INFO] Found source documents:
+2017-03-16 12:55:15.391405 | [INFO]            i18n/messages
+2017-03-16 12:55:15.531164 | [ERROR] Operation failed: missing end-quote
+&lt;/pre&gt;
+&lt;p&gt;You'll notice the first line is &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L115"&gt;the last function we call in the
+upstream_translation_update.sh
+script&lt;/a&gt;;
+for debugging that gives you an idea of the steps to follow to
+reproduce. The &lt;a class="reference external" href="https://translate.zanata.org"&gt;upstream Zanata
+instance&lt;/a&gt; also lets you create toy
+projects, if you want to test uploads yourself (this can't be done
+directly on the OpenStack Zanata instance.)&lt;/p&gt;
+&lt;p&gt;This particular newline issue has popped up a couple of times already.
+We're treating it with band-aids at the moment, ideally we'd get a
+proper test on the gate to prevent it from happening again: this is why
+&lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1674011"&gt;this bug is still
+open&lt;/a&gt;. I'm not very
+familiar with JavaScript testing and haven't had a chance to look into
+it yet; if you'd like to give it a shot that'd be a useful contribution
+:)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="zanata-and-contributing-translations"&gt;
+&lt;h3&gt;Zanata, and contributing translations&lt;/h3&gt;
+&lt;p&gt;The OpenStack Zanata instance lives at &lt;a class="reference external" href="https://translate.openstack.org"&gt;https://translate.openstack.org&lt;/a&gt;.
+This is where the translators do their work. &lt;a class="reference external" href="https://translate.openstack.org/project/view/tripleo-ui"&gt;Here's the page for
+tripleo-ui&lt;/a&gt;,
+you can see there is one project per branch (stable/ocata and master,
+for now). Sort by &amp;quot;Percent Translated&amp;quot; to see the languages currently
+translated. Here's an example of the &lt;a class="reference external" href="https://translate.openstack.org/webtrans/translate?project=tripleo-ui&amp;amp;iteration=stable-ocata&amp;amp;localeId=es&amp;amp;locale=en-US&amp;amp;dswid=-8746#view:doc;doc:i18n/messages"&gt;translator's view, for
+Spanish&lt;/a&gt;:
+you can see the English string on the left, and the translator fills in
+the right side. No context! Just strings.&lt;/p&gt;
+&lt;p&gt;At this stage of the release cycle, the focus would be on 'master,'
+although it is still early to do translations; there is a lot of churn
+still.&lt;/p&gt;
+&lt;p&gt;If you'd like to contribute translations, the &lt;a class="reference external" href="https://wiki.openstack.org/wiki/I18n"&gt;I18n
+team&lt;/a&gt; has &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/"&gt;good
+documentation&lt;/a&gt; about &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/official_translator.html"&gt;how to
+go about how to do
+it&lt;/a&gt;.
+The short version: sign up on Zanata, request to join your language
+team, once you're approved - you're good to go!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="return-of-the-string"&gt;
+&lt;h3&gt;Return of the string&lt;/h3&gt;
+&lt;p&gt;Now that we have our strings available in multiple languages, it's time
+for another infra job to kick in and bring them into our repository.
+This is where
+&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L241-L257"&gt;propose_translation_update.sh&lt;/a&gt;
+comes in. We pull the po files from Zanata, convert them to JSON, then
+do a git commit that will be proposed to Gerrit.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L245"&gt;cleanup
+step&lt;/a&gt;
+does more than it might seem. It checks if files are translated over a
+certain ratio (~75% for code), which avoids adding new languages when
+there might only be one or two words translated (e.g. someone just
+testing Zanata to see how it works). Switching to your language and yet
+having the vast majority of the UI still appear in English is not a
+great user experience.&lt;/p&gt;
+&lt;p&gt;In theory, files that were added but are now below 40% should get
+automatically removed, however this &lt;a class="reference external" href="https://storyboard.openstack.org/#!/story/2000949"&gt;doesn't quite work for
+JavaScript&lt;/a&gt; at the
+moment - another opportunity to help! Manual cleanups can be done in the
+meantime, but it's a rare event so not a major issue.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="monitoring-the-periodic-jobs"&gt;
+&lt;h3&gt;Monitoring the periodic jobs&lt;/h3&gt;
+&lt;p&gt;Zanata is checked once a day every morning, there is an &lt;a class="reference external" href="http://status.openstack.org/openstack-health/#/g/build_queue/periodic?groupKey=build_queue&amp;amp;searchJob=tripleo-ui"&gt;OpenStack
+Health
+page&lt;/a&gt;
+for this as well. You can see there are two jobs at the moment
+(hopefully green!), one per branch:
+tripleo-ui-propose-translation-update and
+tripleo-ui-propose-translation-update-ocata. The job should run every
+day even if there are no updates - it simply means there might not be a
+git review proposed at the end.&lt;/p&gt;
+&lt;p&gt;We haven't had issues with the periodic job so far, though the debugging
+process would be the same: figure out based on the failure if it is
+happening at the infra script stage or in one of our commands (e.g. &lt;em&gt;npm
+run po2json&lt;/em&gt;), try to reproduce and fix. I'm sure super-helpful AJaeger
+would also let us know if he were to notice an issue here.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automated-patches"&gt;
+&lt;h3&gt;Automated patches&lt;/h3&gt;
+&lt;p&gt;You may have seen the &lt;a class="reference external" href="https://review.openstack.org/#/q/project:openstack/tripleo-ui+topic:zanata/translations"&gt;automated translations
+updates&lt;/a&gt;
+pop up on Gerrit. The commit message has some &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/reviewing-translation-import.html"&gt;tips on how to
+review&lt;/a&gt;
+these: basically don't agonise over the translation contents as problems
+there should be handled in Zanata anyway, just make sure the format
+looks good and is unlikely to break the code. A &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L251"&gt;JSON validation
+tool&lt;/a&gt;
+runs during the infra prep step in order to &amp;quot;prettify&amp;quot; the JSON blob and
+limit the size of the diffs, therefore once the patch&amp;nbsp; makes it out to
+Gerrit we know the JSON is well-formed at least.&lt;/p&gt;
+&lt;p&gt;Try to review these patches quickly to respect the translators' work.
+Not very nice to spend a lot of time on translating a project and yet
+not have your work included because no one was bothered to merge it :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-note-about-new-languages"&gt;
+&lt;h3&gt;A note about new languages...&lt;/h3&gt;
+&lt;p&gt;If the automated patch adds a new language, there'll be an &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e8684162811c88fb10c8c43c8e59bec3510eb2/docs/translation.rst#adding-a-new-language"&gt;additional
+step
+required&lt;/a&gt;
+after merging the translations in order to enable it: adding a string
+with the language name to a constants file. Until recently, this took 3
+or 4 steps - &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1682452"&gt;thanks to Honza for making it much
+simpler&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;This concludes the technical journey of a string. If you'd like to help
+with i18n tasks, we have &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bugs?field.tag=i18n"&gt;a few related
+bugs&lt;/a&gt; open.
+They go from very simple low-hanging-fruits you could use to make your
+first contribution to the UI, to weird buttons that have translations
+available yet show in English but only in certain modals, to the kind of
+CI resiliency tasks I linked to earlier. Something for everyone! ;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="working-with-the-i18n-team"&gt;
+&lt;h2&gt;Working with the I18n team&lt;/h2&gt;
+&lt;p&gt;It's really all about communication. Starting with...&lt;/p&gt;
+&lt;div class="section" id="release-schedule-and-string-freezes"&gt;
+&lt;h3&gt;Release schedule and string freezes&lt;/h3&gt;
+&lt;p&gt;String freezes are noted on the &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html"&gt;main
+schedule&lt;/a&gt; but tend
+to fit the regular cycle-with-milestones work. This is a problem for a
+cycle-trailing project like tripleo-ui as we could be implementing
+features up to 2 weeks after the other projects, so we can't freeze
+strings that early.&lt;/p&gt;
+&lt;p&gt;There were discussions at the Atlanta PTG around whether the I18n should
+care at all about projects that don't respect the freeze deadlines. That
+would have made it impossible for projects like ours to ever make it
+onto the I18n official radar. The compromise was that cycle-trailing
+project should have a &lt;a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n"&gt;I18n cross-project
+liaison&lt;/a&gt;
+that communicates with the I18n PTL and team to inform them of
+deadlines, and also to ignore Soft Freeze and only do a Hard Freeze.&lt;/p&gt;
+&lt;p&gt;This will all be documented under an i18n governance tag; while waiting
+for it the &lt;a class="reference external" href="https://etherpad.openstack.org/p/i18n-horizon-release-collaboration-session"&gt;notes from the sessions are
+available&lt;/a&gt;
+for the curious!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-a-string-freeze-again"&gt;
+&lt;h3&gt;What's a String Freeze again?&lt;/h3&gt;
+&lt;p&gt;The two are defined on the schedule: &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html#p-soft-sf"&gt;soft
+freeze&lt;/a&gt;
+means not allowing changes to strings, as it invalidates the
+translator's work and forces them to retranslate; &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html#p-hard-sf"&gt;hard
+freeze&lt;/a&gt;
+means no additions, changes or anything else in order to give
+translators a chance to catch up.&lt;/p&gt;
+&lt;p&gt;When we looked at Zanata earlier, there were &lt;a class="reference external" href="https://translate.openstack.org/iteration/view/tripleo-ui/master"&gt;translation percentages
+beside each
+language&lt;/a&gt;:
+the goal is always the satisfaction of reaching 100%. If we keep adding
+new strings then the goalpost keeps moving, which is discouraging and
+unfair.&lt;/p&gt;
+&lt;p&gt;Of course there's also an &amp;quot;exception process&amp;quot; when needed, to ask for
+permission to merge a string change with an explanation or at least a
+heads-up, by sending an email to the &lt;a class="reference external" href="http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-i18n"&gt;openstack-i18n mailing
+list&lt;/a&gt;.
+Not to be abused :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="role-of-the-i18n-liaison"&gt;
+&lt;h3&gt;Role of the I18n liaison&lt;/h3&gt;
+&lt;p&gt;...Liaise?! Haha. The role is defined briefly on the &lt;a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n"&gt;Cross-Projects
+Liaison wiki
+page&lt;/a&gt;.
+It's much more important toward the end of the cycle, when the codebase
+starts to stabilise, there are fewer changes and translators look at
+starting their work to be included in the release.&lt;/p&gt;
+&lt;p&gt;In general it's good to hang out on the #openstack-i18n IRC channel
+(very low traffic), &lt;a class="reference external" href="https://wiki.openstack.org/wiki/Meetings/I18nTeamMeeting"&gt;attend the weekly
+meeting&lt;/a&gt;
+(it alternates times), be available to answer questions, and keep the
+PTL informed of the I18n status of the project. In the case of
+cycle-trailing projects (quite a new release model still), it's also
+important to be around to explain the deadlines.&lt;/p&gt;
+&lt;p&gt;A couple of examples having an active liaison helps with:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Toward the end or after the release, once translations into the
+stable branch have settled, the stable translations get copied into
+the master branch on Zanata. The strings should still be fairly
+similar at that point and it avoids translators having to re-do the
+work. It's a manual process, so you need to let the I18n PTL know
+when there are no longer changes to stable/*.&lt;/li&gt;
+&lt;li&gt;Last cycle, because the cycle-trailing status of tripleo-ui was not
+correctly documented, a Zanata upgrade was planned right after the
+main release - which for us ended up being right when the codebase
+had stabilised enough and several translators had planned to be most
+active. Would have been solved with better, earlier communication :)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="post-release"&gt;
+&lt;h3&gt;Post-release&lt;/h3&gt;
+&lt;p&gt;After the Ocata release, I sent &lt;a class="reference external" href="http://imgur.com/a/tlnAx"&gt;a few
+screenshots&lt;/a&gt; of tripleo-ui to the i18n list
+so translators could see the result of their work. I don't know if
+anybody cared :-) But unlike Horizon, which has an informal test system
+available for translators to check their strings during the RC period,
+most of the people who volunteered translations had no idea what the UI
+looked like. It'd be cool if we could offer a test system with regular
+string updates next release - maybe just an undercloud on the new RDO
+cloud? Deployment success/failures strings wouldn't be verifiable but
+the rest would, while the system would be easier to maintain than a full
+dev TripleO environment - better than nothing. Perhaps an idea for the
+Queens cycle!&lt;/p&gt;
+&lt;p&gt;The I18n team has a &lt;a class="reference external" href="https://translate.openstack.org/"&gt;priority board on the Zanata main
+page&lt;/a&gt; (only visible when logged in
+I think). I'm grateful to see TripleO UI in there! :) Realistically
+we'll never move past Low or perhaps Medium priority which is fair, as
+TripleO doesn't have the same kind of reach or visibility that Horizon
+or the installation guides do. I'm happy that we're included! The
+OpenStack I18n team is probably the most volunteer-driven team in
+OpenStack. Let's be kind, respect string freezes and translators' time!
+\o/&lt;/p&gt;
+&lt;p&gt;&amp;lt;/braindump&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="open-source"></category><category term="openstack"></category><category term="talk-transcript"></category><category term="tripleo"></category></entry><entry><title>A Quick Introduction to Mistral Usage in TripleO (Newton) | For developers</title><link href="https://www.jpichon.net/blog/2016/12/quick-introduction-mistral-tripleo/" rel="alternate"></link><published>2016-12-15T11:09:00+00:00</published><updated>2016-12-15T11:09:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2016-12-15:/blog/2016/12/quick-introduction-mistral-tripleo/</id><summary type="html">&lt;p&gt;Since Newton, Mistral has become a central component to the TripleO
+project, handling many of the operations in the back-end. I recently
+gave a short crash course on Mistral, what it is and how we use it to a
+few people and thought it might be useful to share some …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Since Newton, Mistral has become a central component to the TripleO
+project, handling many of the operations in the back-end. I recently
+gave a short crash course on Mistral, what it is and how we use it to a
+few people and thought it might be useful to share some of my bag of
+tricks here as well.&lt;/p&gt;
+&lt;div class="section" id="what-is-mistral"&gt;
+&lt;h2&gt;What is Mistral?&lt;/h2&gt;
+&lt;p&gt;It's a workflow service. You describe what you want as a series of steps
+(tasks) in YAML, and it will coordinate things for you, usually
+asynchronously.&lt;/p&gt;
+&lt;p&gt;Link: &lt;a class="reference external" href="http://docs.openstack.org/developer/mistral/overview.html"&gt;Mistral
+overview&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We are using it for a few reasons:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;it lets us manage long-running processes (e.g. introspection) and
+track their state&lt;/li&gt;
+&lt;li&gt;it acts a common interface/API, that is currently used by both the
+TripleO CLI and UI thus avoiding duplication, and can also be
+consumed directly by external non-OpenStack consumers (e.g.
+ManageIQ).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="terminology"&gt;
+&lt;h2&gt;Terminology&lt;/h2&gt;
+&lt;p&gt;A &lt;strong&gt;workbook&lt;/strong&gt; contains multiple workflows. (The TripleO workbooks live
+at &lt;a class="reference external" href="https://github.com/openstack/tripleo-common/tree/master/workbooks"&gt;https://github.com/openstack/tripleo-common/tree/master/workbooks&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;workflow&lt;/strong&gt; contains a series of '&lt;strong&gt;tasks&lt;/strong&gt;' which can be thought of
+as steps. We use the default 'direct' type of workflow on TripleO, which
+means tasks are executed in the order written, moving around based on
+the on-success and on-error values.&lt;/p&gt;
+&lt;p&gt;Every task calls to an &lt;strong&gt;action&lt;/strong&gt; (or to another workflow), which is
+where the work actually gets done.&lt;/p&gt;
+&lt;p&gt;OpenStack services are automatically mapped into actions thanks to the
+&lt;a class="reference external" href="https://github.com/openstack/mistral/blob/master/mistral/actions/openstack/mapping.json"&gt;mappings defined in
+Mistral&lt;/a&gt;,
+so we get a ton of actions for free already.&lt;/p&gt;
+&lt;p&gt;Useful tip: with the following commands you can see locally which
+actions are available, for a given project.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ mistral action-list | grep $projectname
+&lt;/pre&gt;
+&lt;p&gt;You can of course create your own actions. &lt;a class="reference external" href="https://github.com/openstack/tripleo-common/tree/master/tripleo_common/actions"&gt;Which we do. Quite a
+lot.&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ mistral action-list | grep tripleo
+&lt;/pre&gt;
+&lt;p&gt;An &lt;strong&gt;execution&lt;/strong&gt; is what an instance of a running workflow is called,
+once you started one.&lt;/p&gt;
+&lt;p&gt;Link: &lt;a class="reference external" href="http://docs.openstack.org/developer/mistral/terminology/index.html"&gt;Mistral
+terminology&lt;/a&gt;
+(very detailed, with diagrams and examples).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="where-the-tripleo-mistral-workflows-live"&gt;
+&lt;h2&gt;Where the TripleO Mistral workflows live&lt;/h2&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;a class="reference external" href="https://github.com/openstack/tripleo-common/tree/master/workbooks"&gt;https://github.com/openstack/tripleo-common/tree/master/workbooks&lt;/a&gt;&lt;/div&gt;
+&lt;div class="line"&gt;&lt;a class="reference external" href="https://github.com/openstack/tripleo-common/tree/master/tripleo_common/actions"&gt;https://github.com/openstack/tripleo-common/tree/master/tripleo_common/actions&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Let's look at a couple of examples.&lt;/p&gt;
+&lt;div class="section" id="a-short-one-to-start-with-scaling-down"&gt;
+&lt;h3&gt;A short one to start with, scaling down&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/openstack/tripleo-common/blob/156d2c/workbooks/scale.yaml#L8"&gt;https://github.com/openstack/tripleo-common/blob/156d2c/workbooks/scale.yaml#L8&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It takes some input, starts with the 'delete_node' task and continues
+on to on-success or on-error depending on the action result.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; You can see we always end the workflow with send_message,
+which is a convention we use in the project. Even if an action failed
+and moves to on-error, the workflow itself should be successful (a
+failed workflow would indicate a problem at the Mistral level). We end
+with send_message because we want to let the caller know what was the
+result.&lt;/p&gt;
+&lt;p&gt;How will the consumer get to that result? We associate every workflow
+with a Zaqar queue. This is a TripleO convention, not a Mistral
+requirement. Each of our workflow takes a queue_name as input, and the
+clients are expected to listen to the Zaqar socket for that queue in
+order to receive the messages.&lt;/p&gt;
+&lt;p&gt;Another point, about the action itself on line 20:
+tripleo.scale.delete_node is a TripleO-specific action, as indicated in
+the name. If you were interested in finding the code for it, you should
+look at the entry_points in setup.cfg for tripleo-common (where all the
+workflows live):&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/openstack/tripleo-common/blob/156d2c/setup.cfg#L81"&gt;https://github.com/openstack/tripleo-common/blob/156d2c/setup.cfg#L81&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;which would lead you to the code at:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/openstack/tripleo-common/blob/156d2c/tripleo_common/actions/scale.py#L52"&gt;https://github.com/openstack/tripleo-common/blob/156d2c/tripleo_common/actions/scale.py#L52&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-bit-more-complex-node-configuration"&gt;
+&lt;h3&gt;A bit more complex: node configuration&lt;/h3&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/openstack/tripleo-common/blob/156d2c/workbooks/baremetal.yaml#L402"&gt;https://github.com/openstack/tripleo-common/blob/156d2c/workbooks/baremetal.yaml#L402&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It's &amp;quot;slightly more complex&amp;quot; in that it has a couple more tasks, and it
+also calls to another workflow (line 426). You can see it starts with a
+call to ironic.node_list in its first task at line 417, which comes for
+free with Mistral. No need to reimplement it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="debugging-notes-on-workflows-and-zaqar"&gt;
+&lt;h3&gt;Debugging notes on workflows and Zaqar&lt;/h3&gt;
+&lt;p&gt;Each workflow creates a Zaqar queue, to send progress information back
+to the client (CLI, web UI, other...).&lt;/p&gt;
+&lt;p&gt;Sometimes these messages get lost and the process hangs. It doesn't mean
+the action didn't complete successfully.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Check the Zaqar processes are up and running: $ sudo systemctl |
+grep zaqar (this has happened to me after reboots)&lt;/li&gt;
+&lt;li&gt;Check Mistral for any errored workflow: $ mistral execution-list&lt;/li&gt;
+&lt;li&gt;Check the Mistral logs (executor.log and engine.log are usually where
+the interesting errors are)&lt;/li&gt;
+&lt;li&gt;Ocata has timeouts for some of the commands now, so this is getting
+better&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="following-a-workflow-through-its-execution-via-cli"&gt;
+&lt;h3&gt;Following a workflow through its execution via CLI&lt;/h3&gt;
+&lt;p&gt;This particular example will run somewhat fast so it's more of a
+&amp;quot;tracing back what happened afterwards.&amp;quot;&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ openstack overcloud plan create my-new-overcloud
+Started Mistral Workflow. Execution ID: 05d550f2-5d13-4782-be7f-a775a1d86a84
+Default plan created
+&lt;/pre&gt;
+&lt;p&gt;The CLI nicely tells you which execution ID to look for, so let's use
+it:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ mistral task-list 05d550f2-5d13-4782-be7f-a775a1d86a84
+
++--------------------------------------+---------------------------------+--------------------------------------------+--------------------------------------+---------+------------------------------+
+| ID&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | Name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | Workflow name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | Execution ID&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | State&amp;nbsp;&amp;nbsp; | State info&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
++--------------------------------------+---------------------------------+--------------------------------------------+--------------------------------------+---------+------------------------------+
+| c6e0fef0-4e65-4ee6-9ae4-a6d9e8451fd0 | verify_container_doesnt_exist&amp;nbsp;&amp;nbsp; | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | ERROR&amp;nbsp;&amp;nbsp; | Failed to run action [act... |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| 72c1310d-8379-4869-918e-62eb04530e46 | verify_environment_doesnt_exist | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | ERROR&amp;nbsp;&amp;nbsp; | Failed to run action [act... |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| 74438300-8b18-40fd-bf73-62a1d90f71b3 | create_container&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | SUCCESS | None&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| 667c0e4b-6f6c-447d-9325-ab6c20c8ad98 | upload_to_container&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | SUCCESS | None&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| ef447ea6-86ec-4a62-bca2-a083c66f96d3 | create_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | SUCCESS | None&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| f37ebe9f-b39c-4f7a-9a60-eceb80782714 | ensure_passwords_exist&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | SUCCESS | None&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| 193f65fb-502a-4e4c-9a2d-053966500990 | plan_process_templates&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | SUCCESS | None&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| 400d7e11-aea8-45c7-96e8-c61523d66fe4 | plan_set_status_success&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | SUCCESS | None&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| 9df60103-15e2-442e-8dc5-ff0d61dba449 | notify_zaqar&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | tripleo.plan_management.v1.create_default_ | 05d550f2-5d13-4782-be7f-a775a1d86a84 | SUCCESS | None&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | deployment_plan&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
++--------------------------------------+---------------------------------+--------------------------------------------+--------------------------------------+---------+------------------------------+
+&lt;/pre&gt;
+&lt;p&gt;This gives you an idea of what Mistral did to accomplish the goal. You
+can also map it back to the &lt;a class="reference external" href="https://github.com/openstack/tripleo-common/blob/156d2c/workbooks/plan_management.yaml#L123"&gt;workflow defined in
+tripleo-common&lt;/a&gt;
+to follow through the steps and find out what exactly was run. It if the
+workflow stopped too early, this can give you an idea of where the
+problem occurred.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="side-node-about-plans-and-the-errored-tasks-above"&gt;
+&lt;h3&gt;Side-node about plans and the ERRORed tasks above&lt;/h3&gt;
+&lt;p&gt;As of Newton, information about deployment is stored in a &amp;quot;Plan&amp;quot; which
+is implemented as a Swift container together with a Mistral environment.
+This could change in the future but for now that is what a plan is.
+(Edited to add: this changed in Pike. The plan environment is now stored
+in Swift as well, in a file named plan-environment.yaml.)&lt;/p&gt;
+&lt;p&gt;To create a new plan, we need to make sure there isn't already a
+container or an environment with that name. We could implement this in
+an action in Python, or since Mistral already has commands to get a
+container / get an environment we can be clever about this and reverse
+the on-error and on-success actions compared to usual:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://github.com/openstack/tripleo-common/blob/156d2c/workbooks/plan_management.yaml#L129"&gt;https://github.com/openstack/tripleo-common/blob/156d2c/workbooks/plan_management.yaml#L129&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If we do get a 'container' then it means it already exists and the plan
+already exists, so we cannot reuse this name. So 'on-success' becomes
+the error condition.&lt;/p&gt;
+&lt;p&gt;I sometimes regret a little us going this way because it leaves
+exception tracebacks in the logs, which is misleading when folks go to
+the Mistral logs for the first time in order to debug some other issue.&lt;/p&gt;
+&lt;p&gt;Finally I'd like to end all this by mentioning the &lt;a class="reference external" href="http://docs.openstack.org/developer/mistral/quickstart.html"&gt;Mistral Quick Start
+tutorial&lt;/a&gt;,
+which is excellent. It takes you from creating a very simple workflow to
+following its journey through the execution.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-to-create-your-own-action-workflow-in-tripleo"&gt;
+&lt;h2&gt;How to create your own action/workflow in TripleO&lt;/h2&gt;
+&lt;p&gt;Mistral documentation:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://docs.openstack.org/developer/mistral/developer/creating_custom_action.html"&gt;Creating your own
+action&lt;/a&gt;
+(not the bestest documentation)&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://docs.openstack.org/developer/mistral/dsl/dsl_v2.html"&gt;DSL for creating
+workflows&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In short:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Start writing your python code, probably under
+tripleo_common/actions&lt;/li&gt;
+&lt;li&gt;Add an entry point referencing it to setup.cfg&lt;/li&gt;
+&lt;li&gt;/!\ Restart Mistral /!\ Action code is only taken in once Mistral
+starts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is summarised in the &lt;a class="reference external" href="https://github.com/openstack/tripleo-common#action-development"&gt;TripleO common
+README&lt;/a&gt;
+(personally I put this in a script to easily rerun it all).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="back-to-deployments-what-s-in-a-plan"&gt;
+&lt;h2&gt;Back to deployments: what's in a plan&lt;/h2&gt;
+&lt;p&gt;As mentioned earlier, a plan is the combination of a as a Swift
+container + Mistral environment. In theory this is an implementation
+detail which shouldn't matter to deployers. In practice knowing this
+gives you access to a few more debugging tricks.&lt;/p&gt;
+&lt;p&gt;For example, the templates you initially provided will be accessible
+through Swift.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ swift list $plan-name
+&lt;/pre&gt;
+&lt;p&gt;Everything else will live in the Mistral environment. This contains:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The default passwords (which is a potential source of confusion)&lt;/li&gt;
+&lt;li&gt;The parameters_default aka overriden parameters (this takes priority
+and would override the passwords above)&lt;/li&gt;
+&lt;li&gt;The list of enabled environments (this looks nicer for plans created
+from the UI, as they are all munged into one user-environment.yaml
+file when deploying from CLI - see &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1640861"&gt;bug
+1640861&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+$ mistral environment-get $plan-name
+&lt;/pre&gt;
+&lt;p&gt;For example, with an SSL-deployment done from the UI:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ mistral environment-get ssl-overcloud
++-------------+-----------------------------------------------------------------------------------+
+| Field&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | Value&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
++-------------+-----------------------------------------------------------------------------------+
+| Name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | ssl-overcloud&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| Description | &amp;lt;none&amp;gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| Variables&amp;nbsp;&amp;nbsp; | {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;passwords&amp;quot;: {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;KeystoneFernetKey1&amp;quot;: &amp;quot;V3Dqp9MLP0mFvK0C7q3HlIsGBAI5VM1aW9JJ6c5lLjo=&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;KeystoneFernetKey0&amp;quot;: &amp;quot;ll6gbwcbhyAi9jNvBnpWDImMmEAaW5dog5nRQvzvEz4=&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;HAProxyStatsPassword&amp;quot;: &amp;quot;NXgvwfJ23VHJmwFf2HmKMrgcw&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;HeatPassword&amp;quot;: &amp;quot;Fs7K3CxR636BFhyDJWjsbAQZr&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;ManilaPassword&amp;quot;: &amp;quot;Kya6gr2zp2x8ApD6wtwUUMcBs&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;NeutronPassword&amp;quot;: &amp;quot;x2YK6xMaYUtgn8KxyFCQXfzR6&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;SnmpdReadonlyUserPassword&amp;quot;: &amp;quot;5a81d2d83ee4b69b33587249abf49cd672d08541&amp;quot;,&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;GlancePassword&amp;quot;: &amp;quot;pBdfTUqv3yxpH3BcPjrJwb9d9&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;AdminPassword&amp;quot;: &amp;quot;KGGz6ApEDGdngj3KMpy7M2QGu&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;IronicPassword&amp;quot;: &amp;quot;347ezHCEqpqhmANK4fpWK2MvN&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;HeatStackDomainAdminPassword&amp;quot;: &amp;quot;kUk6VNxe4FG8ECBvMC6C4rAqc&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;ZaqarPassword&amp;quot;: &amp;quot;6WVc8XWFjuKFMy2qP2qqqVk82&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;MysqlClustercheckPassword&amp;quot;: &amp;quot;M8V26MfpJc8FmpG88zu7p3bpw&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;GnocchiPassword&amp;quot;: &amp;quot;3H6pmazAQnnHj24QXADxPrguM&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;CephAdminKey&amp;quot;: &amp;quot;AQDloEFYAAAAABAAcCT546pzZnkfCJBSRz4C9w==&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;CeilometerPassword&amp;quot;: &amp;quot;6DfAKDFdEFhxWtm63TcwsEW2D&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;CinderPassword&amp;quot;: &amp;quot;R8DvNyVKaqA44wRKUXEWfc4YH&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;RabbitPassword&amp;quot;: &amp;quot;9NeRMdCyQhekJAh9zdXtMhZW7&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;CephRgwKey&amp;quot;: &amp;quot;AQDloEFYAAAAABAACIfOTgp3dxt3Sqn5OPhU4Q==&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;TrovePassword&amp;quot;: &amp;quot;GbpxyPdnJkUCjXu4AsjmgqZVv&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;KeystoneCredential0&amp;quot;: &amp;quot;1BNiiNQjthjaIBnJd3EtoihXu25ZCzAYsKBpPQaV12M=&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;KeystoneCredential1&amp;quot;: &amp;quot;pGZ4OlCzOzgaK2bEHaD1xKllRdbpDNowQJGzJHo6ETU=&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;CephClientKey&amp;quot;: &amp;quot;AQDloEFYAAAAABAAoTR3S00DaBpfz4cyREe22w==&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;NovaPassword&amp;quot;: &amp;quot;wD4PUT4Y4VcuZsMJTxYsBTpBX&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;AdminToken&amp;quot;: &amp;quot;hdF3kfs6ZaCYPUwrTzRWtwD3W&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;RedisPassword&amp;quot;: &amp;quot;2bxUvNZ3tsRfMyFmTj7PTUqQE&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;MistralPassword&amp;quot;: &amp;quot;mae3HcEQdQm6Myq3tZKxderTN&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;SwiftHashSuffix&amp;quot;: &amp;quot;JpWh8YsQcJvmuawmxph9PkUxr&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;AodhPassword&amp;quot;: &amp;quot;NFkBckXgdxfCMPxzeGDRFf7vW&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;CephClusterFSID&amp;quot;: &amp;quot;3120b7cc-b8ac-11e6-b775-fa163e0ee4f4&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;CephMonKey&amp;quot;: &amp;quot;AQDloEFYAAAAABAABztgp5YwAxLQHkpKXnNDmw==&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;SwiftPassword&amp;quot;: &amp;quot;3bPB4yfZZRGCZqdwkTU9wHFym&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;CeilometerMeteringSecret&amp;quot;: &amp;quot;tjyywuf7xj7TM7W44mQprmaC9&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;NeutronMetadataProxySharedSecret&amp;quot;: &amp;quot;z7mb6UBEHNk8tJDEN96y6Acr3&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;BarbicanPassword&amp;quot;: &amp;quot;6eQm4fwqVybCecPbxavE7bTDF&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;SaharaPassword&amp;quot;: &amp;quot;qx3saVNTmAJXwJwBH8n3w8M4p&amp;quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; },&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;parameter_defaults&amp;quot;: {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;OvercloudControlFlavor&amp;quot;: &amp;quot;control&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;ComputeCount&amp;quot;: &amp;quot;2&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;ControllerCount&amp;quot;: &amp;quot;3&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;OvercloudComputeFlavor&amp;quot;: &amp;quot;compute&amp;quot;,&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;NtpServer&amp;quot;: &amp;quot;my.ntp-server.example.com&amp;quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; },&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;environments&amp;quot;: [&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;path&amp;quot;: &amp;quot;overcloud-resource-registry-puppet.yaml&amp;quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; },&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;path&amp;quot;: &amp;quot;environments/inject-trust-anchor.yaml&amp;quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; },&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;path&amp;quot;: &amp;quot;environments/tls-endpoints-public-ip.yaml&amp;quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; },&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; {&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;path&amp;quot;: &amp;quot;environments/enable-tls.yaml&amp;quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; ],&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;quot;template&amp;quot;: &amp;quot;overcloud.yaml&amp;quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+|&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | }&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| Scope&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | private&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| Created at&amp;nbsp; | 2016-12-02 16:27:11&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
+| Updated at&amp;nbsp; | 2016-12-06 21:25:35&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; |
++-------------+-----------------------------------------------------------------------------------+
+&lt;/pre&gt;
+&lt;p&gt;Note: 'environment' is an overloaded word in the TripleO world, be
+careful. Heat environment, Mistral environment, specific templates (e.g.
+TLS/SSL, Storage...), your whole setup, ...&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bonus-track"&gt;
+&lt;h2&gt;Bonus track&lt;/h2&gt;
+&lt;p&gt;There is documentation on going from zero (no plan, no nodes registered)
+till running a deployment, directly using Mistral:
+&lt;a class="reference external" href="http://tripleo.org/mistral-api/mistral-api.html"&gt;http://tripleo.org/mistral-api/mistral-api.html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Also, with the way we work with Mistral and Zaqar, you can switch
+between the UI and CLI, or even using Mistral directly, at any point in
+the process.&lt;/p&gt;
+&lt;p&gt;~&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a class="reference external" href="http://www.dougalmatthews.com"&gt;Dougal&lt;/a&gt; for his feedback on
+the initial outline!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="open-source"></category><category term="openstack"></category><category term="talk-transcript"></category><category term="tripleo"></category></entry><entry><title>Talk transcript: Making your first open-source contribution</title><link href="https://www.jpichon.net/blog/2013/02/talk-transcript-first-open-source-contribution/" rel="alternate"></link><published>2013-02-22T19:53:00+00:00</published><updated>2013-02-22T19:53:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2013-02-22:/blog/2013/02/talk-transcript-first-open-source-contribution/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://www.slideshare.net/jpichon/making-your-first-opensource-contribution"&gt;Slides available on
+SlideShare&lt;/a&gt;
+(I need to fix an embedding bug on the blog, oops).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image0" src="https://www.jpichon.net/site_media/images/2011/contributing_to_open-source.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Most of you know what Open Source Software is and hopefully think it's
+awesome. Have you ever contributed a patch? A translation? A bug report?
+Would you like to do any of this?&lt;/p&gt;
+&lt;p&gt;(If this …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="http://www.slideshare.net/jpichon/making-your-first-opensource-contribution"&gt;Slides available on
+SlideShare&lt;/a&gt;
+(I need to fix an embedding bug on the blog, oops).&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image0" src="https://www.jpichon.net/site_media/images/2011/contributing_to_open-source.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Most of you know what Open Source Software is and hopefully think it's
+awesome. Have you ever contributed a patch? A translation? A bug report?
+Would you like to do any of this?&lt;/p&gt;
+&lt;p&gt;(If this is the first time you hear the term, roughly open-source is
+software for which the source code is freely available, that can be
+redistributed and modified.)&lt;/p&gt;
+&lt;p&gt;This talk is for people who like open-source and would like to give
+back, but are not sure where to start, or if they're smart enough or if
+their skills would be valued.&lt;/p&gt;
+&lt;p&gt;And my goal is to encourage you to make the jump from 0 to 1
+contribution (or one more!) :)&lt;/p&gt;
+&lt;p&gt;Because I'm a software developer, this talk focuses a bit more on code
+contributions. (Don't think this means other types of contributions
+aren't needed, help is always welcome everywhere!) For many years, I
+wasn't strongly attached to any particular project but got patches in
+here and there (&lt;a class="reference external" href="http://sugarlabs.org/"&gt;Sugar&lt;/a&gt;,
+&lt;a class="reference external" href="http://www.gnome.org/"&gt;Gnome&lt;/a&gt;,
+&lt;a class="reference external" href="http://www.djangoproject.com/"&gt;Django&lt;/a&gt;...) Nowadays you're more
+likely to find me in the land of
+&lt;a class="reference external" href="http://www.openstack.org"&gt;OpenStack&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;First, let's clarify something important: you don't need to be a genius
+to contribute. It's not as difficult as it may initially appear. All
+skill levels and all types of skills are needed and appreciated.&lt;/p&gt;
+&lt;p&gt;As to where to start, first I'm going to tell you about a wonderful
+shortcut, and then I'll go through how it usually works.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.openhatch.org"&gt;OpenHatch&lt;/a&gt; is an organisation whose
+mission statement is: &amp;quot;helping newcomers find their way into free
+software projects.&amp;quot; They aim to bring together all the simple bugs, help
+requests and help wanted, documentation, all sorted by project and by
+language. It's a great way to get started.&lt;/p&gt;
+&lt;p&gt;Now, the way it usually works. When you're looking to contribute to a
+project, you should first look around for contributor guidelines. If a
+project has contributor guidelines, it's an excellent sign. It means
+that they care and that they've thought about it, which is very
+important when it comes to first contributions.&lt;/p&gt;
+&lt;p&gt;Read them! You don't have to remember it all. It will give you a sense
+of direction and an idea of what matters for the project, what to watch
+out for too (patch format, coding conventions, where/who to talk to,
+etc.)&lt;/p&gt;
+&lt;p&gt;As an example, here's a screenshot of the &lt;a class="reference external" href="https://live.gnome.org/GnomeLove"&gt;Gnome documentation for new
+contributors&lt;/a&gt;. There's a lot in
+there! They care a lot about welcoming new people.&lt;/p&gt;
+&lt;p&gt;In any case, whether a project has contributor guidelines or not, the
+workflow tends to be the same. Read the guidelines if they exist :) From
+then on, look at the bug tracker to find something that you'd be
+interested in working on. Now that you know which part of the project
+you will be working on, build it. Find the bug, fix it and submit your
+patch!&lt;/p&gt;
+&lt;p&gt;I'm going to be using the first contribution I made to Gnome as an
+example throughout this presentation. The Gnome folks are a very
+friendly community, and have a special tags for bugs that are good for
+newcomers called &amp;quot;gnome-love&amp;quot;. In other projects this may be called
+&amp;quot;easy picking&amp;quot;, &amp;quot;bite-sized&amp;quot;, &amp;quot;low hanging fruit&amp;quot;, etc... It should be
+mentioned in the contributor guidelines.&lt;/p&gt;
+&lt;p&gt;Look at the list of bugs tagged with that keyword and find one you like
+that is easy. (Avoid choosing a big feature as a first contribution. You
+need to earn some trust first, as well as pick up the project technical
+and cultural conventions.)&lt;/p&gt;
+&lt;p&gt;Once you know what you will be working on, it's time to build the
+software. This is very important, you will be learning new tools,
+perhaps even new languages. For instance I chose a bug from
+gnome-terminal which is written in C and uses autotools, which I wasn't
+very familiar with. This is why it's important to select a small first
+bug, because you have a lot more to learn to get there.&lt;/p&gt;
+&lt;p&gt;If you can't find instructions to build the software, you have a couple
+of solutions. Sometimes a mentor comes together with the &amp;quot;easy pickings&amp;quot;
+tag, or the community has its own mentorship program. You can also go
+back to the magical portal mentioned earlier, OpenHatch, where &amp;quot;training
+missions&amp;quot; are available to get people up to speed with some of tools
+commonly used in open-source.&lt;/p&gt;
+&lt;p&gt;People forget they had to learn all this in the first place. Don't sweat
+it. This is a stepping stone.&lt;/p&gt;
+&lt;p&gt;Once you have a working build, it's time to reproduce the bug, find it
+and fix it! If you're lucky, the location of the bug may have been
+mentioned in the bug report. As said earlier, the person who marked the
+bug as an easy task may be willing to help mentor you through it. It's
+ok to ask for help if you're having trouble.&lt;/p&gt;
+&lt;p&gt;As an example of a first task, I was lucky, and I indeed picked a very
+simple one - changing a colour in the gnome terminal!&lt;/p&gt;
+&lt;p&gt;Once your fix is ready and tested (you have rebuilt the software with
+your fix in it), it's time to submit the patch. Now is a good time to
+refer yourselves to the contributor guidelines once again, it will be
+useful to find out what your patch should look like (coding guidelines),
+what command you should use to create the patch, and where you should
+send it. If there are no such instructions, the safest path is to attach
+the patch to the bug report in the tracker.&lt;/p&gt;
+&lt;p&gt;And... congratulations! You've made your first contribution to
+open-source. Take the time to pat yourself in the back and be proud, you
+deserve it.&lt;/p&gt;
+&lt;p&gt;The process isn't quite finished yet: the next step is to wait. Perhaps
+your patch will be accepted since it's a small contribution. It's just
+as likely you might get some feedback on how to improve it - everybody
+wants to make their project better so don't take it personally, take the
+feedback on-board and resubmit the patch. If your patch gets lost in the
+ether, you should consider pinging the component or project maintainer.&lt;/p&gt;
+&lt;p&gt;In my case... I was lucky :) The patch was accepted and merged in the
+main codebase about an hour later!&lt;/p&gt;
+&lt;p&gt;If the only answer you get is silence - don't take it personally,
+really. People want you to stay, a healthy project know they need new
+people in order to stay alive. Open-source projects are always short in
+resources.&lt;/p&gt;
+&lt;p&gt;If the people involved in the project you contributed to have a bad
+attitude, don't be discouraged. And don't stick around either, there are
+a ton of cool, useful projects with friendly communities who could use
+your contributions. Life's too short.&lt;/p&gt;
+&lt;p&gt;If you've done your research, read the guidelines, there won't be any
+dragons. Most people are very nice! It's great to become part of a
+community that cares about creating the most awesome project they can.&lt;/p&gt;
+&lt;p&gt;And as a closing word before opening for questions: remember
+OpenHatch.org. They are people dedicated to helping newcomers find their
+way.&lt;/p&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="talk-transcript"></category></entry></feed>

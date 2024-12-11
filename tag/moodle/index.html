@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - moodle</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2011/06/upgrading-moodle-20/">Upgrading to Moodle 2.0</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2011-06-07T21:16:00+01:00">
+                Published: Tue 07 June 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/moodle/">moodle</a> </p>
+</footer><!-- /.post-info --><p>Over the week-end, I thought it was time to see how my Moodle
+<a class="reference external" href="https://github.com/jpichon/moodle-dvreport">block</a> handled the
+upgrade to 2.0. I did a brand new install of Moodle 1.9-latest, restored
+my old SQL dev backup, anxiously proceeded to start the upgrade and...
+ta-dah! Short answer: it doesn't work. Here are my notes on a couple of
+issues I encountered during the upgrade, so I don't waste time when I
+try again after updating the plug-in.</p>
+<div class="section" id="upgrading-error-database-connection-failed">
+<h2>Upgrading: &quot;Error: database connection failed&quot;</h2>
+<p>I use PostgreSQL and after uploading the 2.0 code the site would only
+display &quot;Error: database connection failed&quot;. I'm not sure what's the
+best way to move past this, but here what worked for me. The
+configuration string for Postgres dabatases always looked strange in
+config.php, something like this:</p>
+<pre class="literal-block">
+$CFG-&gt;dbhost&nbsp;&nbsp;&nbsp; = 'user=\'mydbuser\' password=\'mydbpass\' dbname=\'moodle\'';
+</pre>
+<p>I changed it to this:</p>
+<pre class="literal-block">
+$CFG-&gt;dbhost&nbsp;&nbsp;&nbsp; = 'localhost';
+$CFG-&gt;dbname&nbsp;&nbsp;&nbsp; = 'moodle';
+$CFG-&gt;dbuser&nbsp;&nbsp;&nbsp; = 'mydbuser';
+$CFG-&gt;dbpass&nbsp;&nbsp;&nbsp; = 'mydbpass';
+</pre>
+<p>and happily, I was able to move on. Unfortunately I had forgotten to
+turn off debugging (activated from the SQL backup), and there may have
+been some CSS/theme trickery to set up before upgrading so... the
+upgrade screens were quite bare and sad looking.</p>
+</div>
+<div class="section" id="plugin-block-dvreport-is-defective-or-outdated-can-not-continue-sorry">
+<h2>Plugin &quot;block/dvreport&quot; is defective or outdated, can not continue, sorry.</h2>
+<p>The upgrade is quite a depressing process. Whenever it encounters a
+module that won't work with 2.0, it just shows this message about
+&quot;defective&quot; and &quot;outdated&quot; and won't move forward until the 'defective'
+module is removed. I just rm -rf'ed them since this is a dev system, but
+this was a fresh install, and besides DVReport these used to be standard
+modules. The migration path for people who actually used them must be
+painful.</p>
+</div>
+<div class="section" id="no-css-text-only-homepage">
+<h2>No CSS, text-only homepage</h2>
+<p>After the upgrade, search for &quot;Theme selector&quot; and select a theme.</p>
+</div>
+<div class="section" id="next">
+<h2>Next?</h2>
+<p>Well, there is <a class="reference external" href="http://docs.moodle.org/dev/Migrating_contrib_code_to_2.0">some
+documentation</a>
+on migrating code to work with Moodle 2.0 so I'll start there. It's a
+stub though, and looks fairly incomplete. Reminds me of the initial work
+on DVReport: Moodle 1.7 came out when I was starting out and
+contributors had to figure out all the novelties like the new Role
+system before they were documented. I can do this again, just need to
+make the time!</p>
+</div>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2010/10/first-publication/" rel="bookmark"
+                           title="Permalink to First publication!">First publication!</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-10-07T22:31:00+01:00">
+                Published: Thu 07 October 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/moodle/">moodle</a> </p>
+</footer><!-- /.post-info -->                <p>I'm back from a short holiday (therefore of course sick, but it was
+relaxing up to that point!). I found out last week-end that the paper I
+wrote with my FYP supervisor, based on my final year project and
+dissertation in <a class="reference external" href="http://www.ul.ie">UL</a>, has been published! The
+article abstract is available …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2010/10/first-publication/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2010/05/moodle-deprecation-warnings-navigation-bar/" rel="bookmark"
+                           title="Permalink to Moodle deprecation warnings -> navigation bar | build_navigation()">Moodle deprecation warnings -&gt; navigation bar  | build_navigation()</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-05-17T20:32:00+01:00">
+                Published: Mon 17 May 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/moodle/">moodle</a> </p>
+</footer><!-- /.post-info -->                <p>Over the week-end I rediscovered <a class="reference external" href="http://moodle.org">Moodle</a>'s
+DEVELOPER <a class="reference external" href="http://docs.moodle.org/en/Debugging#How_to_turn_on_debugging">debug
+setting</a>
+which surfaced many unpleasant warnings. The first kind was removed by
+following proper programming practices (ahem), the second kind involved
+a couple of deprecation warnings that reminded me that Moodle is slowly
+and surely making its way toward 2.0 …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2010/05/moodle-deprecation-warnings-navigation-bar/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2010/05/synchronous-hackathon/" rel="bookmark"
+                           title="Permalink to Synchronous Hackathon">Synchronous Hackathon</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-05-15T19:49:00+01:00">
+                Published: Sat 15 May 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> <a href="https://www.jpichon.net/tag/moodle/">moodle</a> <a href="https://www.jpichon.net/tag/tog/">tog</a> </p>
+</footer><!-- /.post-info -->                <p>I attended for a couple of hours the <a class="reference external" href="http://www.tog.ie/2010/05/may-synchronicity-hackathon/">Synchronous Hackathon in
+Tog</a> today. I
+had vague plans on making progress with the Moodle plug-in, probably
+related to the unit testing / refactoring of the data crunching
+methods... Didn't happen, but I did find a new bug, which I managed to
+fix …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2010/05/synchronous-hackathon/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2010/05/back-moodle/" rel="bookmark"
+                           title="Permalink to Back to Moodle | The joys of digging up old projects">Back to Moodle  | The joys of digging up old projects</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-05-11T19:11:00+01:00">
+                Published: Tue 11 May 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/moodle/">moodle</a> </p>
+</footer><!-- /.post-info -->                <p>I've ended up a bit discouraged about my Sugar involvement (there's
+probably a blog post about lessons learnt in there, after I finish
+processing events in a useful way) so I decided it'd be best to step
+back for a while and digest things in the background before trying
+again …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2010/05/back-moodle/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

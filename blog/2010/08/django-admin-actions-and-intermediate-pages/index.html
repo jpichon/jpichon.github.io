@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Django admin actions and intermediate pages | Tagging multiple articles at once</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="The other day I created an "Ireland" tag on this blog and thought, hey, wouldn't it be cool to go back and tag all the posts I wrote about events..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/08/django-admin-actions-and-intermediate-pages/" rel="bookmark"
+           title="Permalink to Django admin actions and intermediate pages | Tagging multiple articles at once">Django admin actions and intermediate pages  | Tagging multiple articles at once</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-08-24T21:36:00+01:00">
+                Published: Tue 24 August 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>The other day I created an &quot;Ireland&quot; tag on this blog and thought, hey,
+wouldn't it be cool to go back and tag all the posts I wrote about
+events in Ireland, so I have an easy way to see what's going on locally?</p>
+<p>Of course retagging each post manually would suck so I decided to create
+a new Django admin action, with an intermediate page that would present
+me with my current list of tags so I could select one, then update.</p>
+<p>I also wanted:</p>
+<ol class="arabic simple">
+<li>To keep the Django admin look and feel</li>
+<li>To have the nice admin message &quot;X posts were successfully updated&quot;</li>
+</ol>
+<p>Now the Django documentation is very clear at explaining and showing how
+to do each of those, but not together.</p>
+<p>Here's how I ended up doing it, see links at the end for other helpful
+resources. I'm quite pleased with this solution because it's done the
+Django way (through the use of forms, etc) rather than by working around
+Django.</p>
+<p>Directly in the ModelAdmin section for blog posts, create an inner class
+for the new form (tag picker in my case), and a function to process the
+form like you would in a normal view. Don't forget to add the new method
+to the actions list.</p>
+<pre class="literal-block">
+actions = ['add_tag']
+
+class AddTagForm(forms.Form):
+&nbsp;&nbsp;&nbsp; _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
+&nbsp;&nbsp;&nbsp; tag = forms.ModelChoiceField(Tag.objects)
+
+def add_tag(self, request, queryset):
+&nbsp;&nbsp;&nbsp; form = None
+
+&nbsp;&nbsp;&nbsp; if 'apply' in request.POST:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; form = self.AddTagForm(request.POST)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if form.is_valid():
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tag = form.cleaned_data['tag']
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count = 0
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for article in queryset:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; article.tags.add(tag)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count += 1
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; plural = ''
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if count != 1:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; plural = 's'
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self.message_user(request, &quot;Successfully added tag %s to %d article%s.&quot; % (tag, count, plural))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return HttpResponseRedirect(request.get_full_path())
+
+&nbsp;&nbsp;&nbsp; if not form:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; form = self.AddTagForm(initial={'_selected_action': request.POST.getlist(admin.ACTION_CHECKBOX_NAME)})
+
+&nbsp;&nbsp;&nbsp; return render_to_response('admin/add_tag.html', {'articles': queryset,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'tag_form': form,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; })
+add_tag.short_description = &quot;Add tag to articles&quot;
+</pre>
+<p>And here's my intermediate page (quite simple!), which uses the admin
+look &amp; feel and is located in templates/admin/add_tag.html.</p>
+<pre class="literal-block">
+{% extends &quot;admin/base_site.html&quot; %}
+
+{% block content %}
+
+&lt;p&gt;Select tag to apply:&lt;/p&gt;
+
+&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+
+&nbsp;&nbsp;&nbsp; {{ tag_form }}
+
+&nbsp;&nbsp;&nbsp; &lt;p&gt;The tag will be applied to:&lt;/p&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;ul&gt;{{ articles|unordered_list }}&lt;/ul&gt;
+
+&nbsp;&nbsp;&nbsp; &lt;input type=&quot;hidden&quot; name=&quot;action&quot; value=&quot;add_tag&quot; /&gt;
+&nbsp;&nbsp;&nbsp; &lt;input type=&quot;submit&quot; name=&quot;apply&quot; value=&quot;Apply tag&quot; /&gt;
+&lt;/form&gt;
+
+{% endblock %}
+</pre>
+<p>The hidden field is essential for Django to recognise the form
+submission as an admin action.</p>
+<p>Update: Follow <a class="reference external" href="http://code.djangoproject.com/ticket/15742">this
+ticket</a> to learn how to
+apply an admin action to selected items on multiple pages -- or look at
+the comments below for tips!</p>
+<p>Example of the code in action:</p>
+<p><img alt="Selecting articles and the new admin action" src="https://www.jpichon.net/site_media/images/2010/django-admin-action01.png" /> --&gt; <img alt="Select the tag to apply" src="https://www.jpichon.net/site_media/images/2010/django-admin-action02.png" /> --&gt; <img alt="The message is displayed" src="https://www.jpichon.net/site_media/images/2010/django-admin-action03.png" /></p>
+<p>Resources:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/actions/">Django documentation: Admin
+actions</a></li>
+<li><a class="reference external" href="http://www.hoboes.com/Mimsy/hacks/django-actions-their-own-intermediate-page/">Django actions as their own intermediate
+page</a></li>
+</ul>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

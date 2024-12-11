@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - python</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2023/05/extracting-reviews-from-goodreads-into-markdown-pages/">Extracting reviews from Goodreads into Markdown pages</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2023-05-07T11:00:00+01:00">
+                Published: Sun 07 May 2023
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/julie-pichon.html">Julie Pichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info --><p>In early 2020, it became really difficult to read books. I'm slowly starting to
+get past that at last, but while Goodreads was super fun for a few years, right
+now tracking and counting and rating just makes reading feel like a chore and
+Not Fun as a hobby.</p>
+<p>I still would like to keep a record of what I read, though. And I used to write
+<a href="/tag/book-review/">book reviews</a> on this blog before getting onto
+Goodreads. It seems like a nice way to keep a record of what I read without it
+becoming a number thing. I'll probably still write Goodreads reviews for small
+authors since I know it can help, but I feel less pressed about having
+everything there.</p>
+<p>I also wanted to save the reviews I wrote only on Goodreads here, and wrote a
+script to migrate my reviews into Pelican-friendly Markdown pages since that's
+what powers this blog now. I decided to keep to a single entry per year
+rather than one entry per book, since I had a few good reading years in there
+(and others will only a single review!)</p>
+<h1>Step 1: CSV export of the books</h1>
+<p>First, if you go to 'My books' and find the 'Tools' menu at the bottom of the
+leftside menu on Goodreads, you'll find a page to <a href="https://www.goodreads.com/review/import">export your
+library</a>. You may have to try a couple
+of times: my first export only had a handful a books, the second one looks more
+comprehensive although the number of books was off by two, but what can you do.</p>
+<h1>Step 2: Python script to create the Markdown pages</h1>
+<p>This is the script I wrote to extract only the books I've actually read. I
+don't really care about DNF (did not finish) and to-read, right now. I also
+hardcoded the years relevant to me. May someone find something helpful in here!</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">datetime</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Review</span><span class="p">:</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">author</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">date_read</span><span class="p">:</span> <span class="n">date</span>
+    <span class="n">review</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">rating</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="k">def</span> <span class="nf">get_reviews</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">reviews</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;goodreads_library_export.csv&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">Review</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">],</span>
+                           <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Author&#39;</span><span class="p">],</span>
+                           <span class="n">row</span><span class="p">[</span><span class="s1">&#39;Date Read&#39;</span><span class="p">],</span>
+                           <span class="n">row</span><span class="p">[</span><span class="s1">&#39;My Review&#39;</span><span class="p">],</span>
+                           <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;My Rating&#39;</span><span class="p">]))</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="c1"># When the int() cast fails, usually it means the CSV is</span>
+                <span class="c1"># corrupted for that line. In my case, it was for a few to-read</span>
+                <span class="c1"># records so I ignore them rather than attempt to fix the</span>
+                <span class="c1"># original CSV. You can print the row here if you want to check</span>
+                <span class="c1"># what&#39;s failing.</span>
+                <span class="k">pass</span>
+
+            <span class="k">if</span> <span class="n">year</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">date_read</span><span class="p">:</span>
+                <span class="n">reviews</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">reviews</span>
+
+
+<span class="k">def</span> <span class="nf">rating_or_review</span><span class="p">(</span><span class="n">review</span><span class="p">):</span>
+    <span class="c1"># If I wrote a review, return that</span>
+    <span class="k">if</span> <span class="n">review</span><span class="o">.</span><span class="n">review</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">review</span><span class="o">.</span><span class="n">review</span>
+
+    <span class="c1"># Otherwise, make the rating into words.</span>
+    <span class="k">if</span> <span class="n">review</span><span class="o">.</span><span class="n">rating</span> <span class="o">&gt;=</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;I really enjoyed it.&quot;</span>
+    <span class="k">elif</span> <span class="n">review</span><span class="o">.</span><span class="n">rating</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;It was fine.&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;Wasn&#39;t for me.&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">format_reviews</span><span class="p">(</span><span class="n">reviews</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;book-reviews-</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">.md&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Title: Book reviews: Year </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Date: </span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;tags: book review</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">reviews</span><span class="p">:</span>
+            <span class="c1"># A couple of abandoned books sneaked in with a &#39;0&#39; rating, and I&#39;m</span>
+            <span class="c1"># not interested in preserving those</span>
+            <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">rating</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;## </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2"> by </span><span class="si">{</span><span class="n">r</span><span class="o">.</span><span class="n">author</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rating_or_review</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2023</span><span class="p">):</span>
+    <span class="n">reviews</span> <span class="o">=</span> <span class="n">get_reviews</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
+    <span class="c1"># Chronological order</span>
+    <span class="n">reviews</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">reviews</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">date_read</span><span class="p">)</span>
+    <span class="n">format_reviews</span><span class="p">(</span><span class="n">reviews</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The hardest part was probably to decide what text to convert a rating into,
+since I didn't want to keep numbers!</p>
+<h1>Step 3: Checking the output looks right and recalling fond memories</h1>
+<p>I used the <a href="https://www.goodreads.com/user/year_in_books/2022/">'Year in Books'
+pages</a> on Goodreads to
+compare the results. There was some funkiness sometimes, like a book read in
+2011 showing in year in books but without any shelves and a date read showing
+as 2020, even though I don't remember messing with it. The review also shows as
+Jan 2020 on the Goodreads UI despite appearing in the correct 'Year in
+books'. 2020 turned out to be <code>date_added</code> (which is definitely false) while
+the <code>date_read</code> field is empty. Maybe some data migration funkiness on the
+Goodreads side at some point during the last 12 years. Otherwise, a duplicate
+once, and a couple of intra-Goodreads links that didn't work.</p>
+<p>I still have to clean up the file for 2022. I was getting annoyed with tracking
+myself so I didn't write reviews, but if it's for the blog I wouldn't mind
+adding a few notes. And I need to decide if I want to post my 2023 reviews as I
+go, or batch them in some way!</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2014/11/pycon-ireland-2014/" rel="bookmark"
+                           title="Permalink to PyCon Ireland 2014">PyCon Ireland 2014</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-11-20T08:56:00+00:00">
+                Published: Thu 20 November 2014
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->                <p>Together with a couple of colleagues, I wrote a <a class="reference external" href="http://community.redhat.com/blog/2014/11/pycon-ireland-2014-report/">short report about
+PyCon Ireland
+2014</a>.
+Once again the conference was a lot of fun and I'm looking forward to
+the 2015 edition! :)</p>
+
+                <a class="readmore" href="https://www.jpichon.net/blog/2014/11/pycon-ireland-2014/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2014/08/training-europython-2014/" rel="bookmark"
+                           title="Permalink to Training at EuroPython 2014 | Making your first contribution to OpenStack">Training at EuroPython 2014  | Making your first contribution to OpenStack</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-08-01T11:18:00+01:00">
+                Published: Fri 01 August 2014
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/contributing/">contributing</a> <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/openstack/">openstack</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/teaching/">teaching</a> <a href="https://www.jpichon.net/tag/tog/">tog</a> </p>
+</footer><!-- /.post-info -->                <p><img alt="OpenStack logo" src="http://www.openstack.org/assets/openstack-logo/openstack-cloud-software-vertical-small.png" /></p>
+<p>Last week I ran a 3-hour training on how to <a class="reference external" href="https://ep2014.europython.eu/en/schedule/sessions/76/">get started contributing to
+OpenStack</a> at
+<a class="reference external" href="https://ep2014.europython.eu/en/">EuroPython</a>. The aim was to give a
+high-level overview of how the contribution process works in the project
+and guide people through making their first contribution, from account
+creation to submitting a patch.</p>
+<div class="section" id="overview">
+<h2>Overview …</h2></div>
+                <a class="readmore" href="https://www.jpichon.net/blog/2014/08/training-europython-2014/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2012/11/python-ie-november-2012-devops-101/" rel="bookmark"
+                           title="Permalink to Python meet-up, November 2012: DevOps 101 | DevOps 101">Python meet-up, November 2012: DevOps 101  | DevOps 101</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-11-27T20:19:00+00:00">
+                Published: Tue 27 November 2012
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->                <p>Shame on me for not blogging about <a class="reference external" href="http://python.ie/pycon/2012/">PyCon
+Ireland</a> this year, another success
+where I happily spent a big chunk of time greeting attendees at the
+registration desk and attended some interesting talks.</p>
+<p>The stylish volunteers:</p>
+<p><a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2012/Python-Ireland-Volunteers.jpg"><img alt="PyCon Ireland 2012 Volunteers" src="https://www.jpichon.net/site_media/images/2012/Python-Ireland-Volunteers.thumb.jpg" /></a></p>
+<p>In the meantime, I took better notes at the November Python Ireland
+meet-up, where …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2012/11/python-ie-november-2012-devops-101/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2012/06/europython-2012/" rel="bookmark"
+                           title="Permalink to EuroPython 2012 | Let's go">EuroPython 2012  | Let's go</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-06-30T20:55:00+01:00">
+                Published: Sat 30 June 2012
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->                <p>I'm very happy to be going to EuroPython again this year :) Once more
+the talks I'm most looking forward to are mainly related to scalability,
+perhaps with a dash of internationalisation/encoding on the side. The
+tutorial on Django testing with Selenium should be interesting too.</p>
+<p>Say hi if you …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2012/06/europython-2012/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<nav>
+    Page 1 / 12
+        <a href="https://www.jpichon.net/tag/python/index2.html">&rang;</a>
+        <a href="https://www.jpichon.net/tag/python/index12.html">&Rang;</a>
+</nav>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

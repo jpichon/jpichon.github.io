@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - testing</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-testing.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2011-09-07T21:17:00+01:00</updated><entry><title>Using Coverage to generate reports (Python)</title><link href="https://www.jpichon.net/blog/2011/09/using-coverage-python/" rel="alternate"></link><published>2011-09-07T21:17:00+01:00</published><updated>2011-09-07T21:17:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-09-07:/blog/2011/09/using-coverage-python/</id><summary type="html">&lt;p&gt;A couple of tips so I don't have to look it up again. A few months back
+I wanted to generate coverage data for a stand-alone application, with a
+few tweaks.&lt;/p&gt;
+&lt;div class="section" id="combining-the-output-of-trial-and-python-unit-tests"&gt;
+&lt;h2&gt;Combining the output of Trial and Python unit tests&lt;/h2&gt;
+&lt;pre class="literal-block"&gt;
+$ coverage run -p tests/my_python_tests.py
+$ coverage run -p tests …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;A couple of tips so I don't have to look it up again. A few months back
+I wanted to generate coverage data for a stand-alone application, with a
+few tweaks.&lt;/p&gt;
+&lt;div class="section" id="combining-the-output-of-trial-and-python-unit-tests"&gt;
+&lt;h2&gt;Combining the output of Trial and Python unit tests&lt;/h2&gt;
+&lt;pre class="literal-block"&gt;
+$ coverage run -p tests/my_python_tests.py
+$ coverage run -p tests/my_trial_tests.py
+$ coverage combine
+$ coverage html -d tests/coverage_html  --include=./*py --omit='lib/*.py,tests/*.py'
+&lt;/pre&gt;
+&lt;p&gt;Helpful resources to get used to &lt;em&gt;combine&lt;/em&gt;:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://blogs.thescallop.com/zhouxiuhu/?p=52"&gt;coverage in python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://nedbatchelder.com/code/coverage/cmd.html"&gt;Coverage command line
+usage&lt;/a&gt; (Manual)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="getting-coverage-report-for-a-simple-project"&gt;
+&lt;h2&gt;Getting coverage report for a simple project&lt;/h2&gt;
+&lt;pre class="literal-block"&gt;
+$ coverage run tests/python_tests.py
+$ coverage report --include=./*py --omit='lib/*.py,tests/*.py' # For a text summary
+$ coverage html -d tests/reports&amp;nbsp; --include=./*py --omit='lib/*.py,tests/*.py' # For a nice HTML report
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="installing-the-latest-version"&gt;
+&lt;h2&gt;Installing the latest version&lt;/h2&gt;
+&lt;p&gt;To get access to the command line tools, I had to install Coverage in a
+virtualenv to get around some other constraints on the system. I thought
+I'd build it from master while I was at it :)&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ virtualenv coverage
+$ cd coverage
+$ source bin/activate
+$ pip install hg+http://bitbucket.org/ned/coveragepy
+&lt;/pre&gt;
+&lt;p&gt;Coverage is a lovely library and a wonderful way to encourage yourself
+to think more about your unit tests -- give it a try if you haven't
+already. (PS: For Django, see
+&lt;a class="reference external" href="http://pypi.python.org/pypi/django-coverage"&gt;django-coverage&lt;/a&gt;)&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="python"></category><category term="testing"></category></entry><entry><title>Bees with machine guns | Load testing</title><link href="https://www.jpichon.net/blog/2011/05/bees-machine-guns/" rel="alternate"></link><published>2011-05-29T22:36:00+01:00</published><updated>2011-05-29T22:36:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-05-29:/blog/2011/05/bees-machine-guns/</id><summary type="html">&lt;p&gt;Another interesting PyCon talk to watch was &lt;a class="reference external" href="http://blip.tv/pycon-us-videos-2009-2010-2011/pycon-2011-best-practices-for-impossible-deadlines-4899490"&gt;Best practices for
+impossible
+deadlines&lt;/a&gt;.
+One of the tools mentioned in the talk is &lt;em&gt;Bees with machine guns&lt;/em&gt;, a
+load testing tool that uses the power of
+&lt;a class="reference external" href="http://aws.amazon.com/ec2/"&gt;EC2&lt;/a&gt; and with a name like that I was
+gleeful thinking about the day when I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Another interesting PyCon talk to watch was &lt;a class="reference external" href="http://blip.tv/pycon-us-videos-2009-2010-2011/pycon-2011-best-practices-for-impossible-deadlines-4899490"&gt;Best practices for
+impossible
+deadlines&lt;/a&gt;.
+One of the tools mentioned in the talk is &lt;em&gt;Bees with machine guns&lt;/em&gt;, a
+load testing tool that uses the power of
+&lt;a class="reference external" href="http://aws.amazon.com/ec2/"&gt;EC2&lt;/a&gt; and with a name like that I was
+gleeful thinking about the day when I would have an opportunity to use
+it.&lt;/p&gt;
+&lt;p&gt;This week the day came :D And despite the &lt;a class="reference external" href="https://github.com/newsapps/beeswithmachineguns"&gt;useful
+README&lt;/a&gt; I had to
+tweak a bit to get things working; here are my notes for later, and for
+anyone else who might ask themselves the same questions.&lt;/p&gt;
+&lt;div class="section" id="bringing-up-the-swarm"&gt;
+&lt;h2&gt;Bringing up the swarm&lt;/h2&gt;
+&lt;p&gt;The documentation mentions some of the defaults you should override, but
+not all of them and you might find yourself scratching your head
+wondering why things are timing out.&lt;/p&gt;
+&lt;p&gt;Pre-requisites:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Creates a 'bees' (or whatever) security group, with SSH/port 22 open
+(&lt;strong&gt;-g&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Make sure the AMI you're trying to find is available with that name
+in the zone you're in (&lt;strong&gt;-i&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Make sure the region in your Boto config file matches the region
+you're trying to connect to (&lt;strong&gt;-z&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Mind the default username! If you don't specify it, it will default
+to newsapp and the bees won't be able to connect (&lt;strong&gt;-l&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;For additional paranoia I also created a specific key pair just for
+the bees, to make sure there's no way in hell I can bring down an
+instance with something important on it (&lt;strong&gt;-k&lt;/strong&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+./bees up -s 4 -g bees -k bees -i ami-12345678 -z eu-west-1a -l root
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="still-timing-out"&gt;
+&lt;h2&gt;Still timing out!&lt;/h2&gt;
+&lt;p&gt;Now... The bees use the apache benchmark tool to hammer your site. If
+the tool doesn't produce any output the script assumes there was a time
+out. Which means, if the tool isn't installed on the AMI the bees will
+always time out! Without an appropriate error message. There are a few
+options. You could create a custom AMI that has ab installed. This is a
+bit overkill. Or, if the AMI you're using supports it (not a given!) you
+can launch a user data script by tweaking the bees.py script around line
+100 and adding something like this to the run_instances call.
+(Debian-based system, use sudo if necessary.)&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+user_data = '#!bin/bash\napt-get -y install apache2-utils'
+&lt;/pre&gt;
+&lt;p&gt;thus becoming:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+reservation = ec2_connection.run_instances(
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; image_id=image_id,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; min_count=count,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; max_count=count,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; key_name=key_name,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; security_groups=[group],
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; instance_type=EC2_INSTANCE_TYPE,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; placement=zone,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; user_data = '#!bin/bash\napt-get -y install apache2-utils')
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="other-tips"&gt;
+&lt;h2&gt;Other tips&lt;/h2&gt;
+&lt;p&gt;If testing say a Django-based site, don't forget to add the ending slash
+at the end of the URL. ab doesn't follow 301 codes.&lt;/p&gt;
+&lt;p&gt;If changing regions to test from elsewhere:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Find the new AMI id for the image. It has to be EBS backed.&lt;/li&gt;
+&lt;li&gt;You may encounter errors if the zone doesn't offer t1.micro images,
+but the error message will clearly indicate so.&lt;/li&gt;
+&lt;li&gt;~/.boto must be updated:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+[Boto]
+#ec2_region_name = eu-west-1
+#ec2_region_endpoint = eu-west-1.ec2.amazonaws.com
+ec2_region_name = us-east-1
+ec2_region_endpoint = us-east-1.ec2.amazonaws.com
+
+[Credentials]
+aws_access_key_id = ......
+aws_secret_access_key = .....
+&lt;/pre&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="python"></category><category term="testing"></category></entry><entry><title>A Quick and Incomplete Intro to Jasmine | Javascript unit testing</title><link href="https://www.jpichon.net/blog/2011/04/quick-and-incomplete-intro-to-jasmine/" rel="alternate"></link><published>2011-04-10T22:01:00+01:00</published><updated>2011-04-10T22:01:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-04-10:/blog/2011/04/quick-and-incomplete-intro-to-jasmine/</id><summary type="html">&lt;p&gt;Recently I needed to find some sort of Javascript framework to start
+unit testing new code, some of which was using jQuery. I ended up
+deciding on &lt;a class="reference external" href="http://pivotal.github.com/jasmine/"&gt;Jasmine&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="why-jasmine"&gt;
+&lt;h2&gt;Why Jasmine?&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Primarily and essentially, it's maintained, it seems &lt;a class="reference external" href="https://github.com/pivotal/jasmine"&gt;fairly
+active&lt;/a&gt; and has a community
+around it: looking at the pull requests …&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Recently I needed to find some sort of Javascript framework to start
+unit testing new code, some of which was using jQuery. I ended up
+deciding on &lt;a class="reference external" href="http://pivotal.github.com/jasmine/"&gt;Jasmine&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="why-jasmine"&gt;
+&lt;h2&gt;Why Jasmine?&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Primarily and essentially, it's maintained, it seems &lt;a class="reference external" href="https://github.com/pivotal/jasmine"&gt;fairly
+active&lt;/a&gt; and has a community
+around it: looking at the pull requests, github network, issues, code
+changes and glowing reviews all over the web&lt;/li&gt;
+&lt;li&gt;It can test asynchronous calls&lt;/li&gt;
+&lt;li&gt;It can integrate with a continuous integration system (though that
+seems to require an external plug-in, listed on the website? -- to be
+investigated more deeply when I need to set this up!)&lt;/li&gt;
+&lt;li&gt;It attempts to be platform/language/etc agnostic, though you do feel
+a strong tie to Ruby, rummaging around&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Background"&gt;Other nice
+things&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;And I've heard the name mentioned in local tech meetups and mailing
+lists, which is always good (it's good enough to be picked up by real
+people, who can potentially become a source of help in the future if
+needed :))&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="getting-started-10-minutes"&gt;
+&lt;h2&gt;Getting started (~10 minutes)&lt;/h2&gt;
+&lt;div class="section" id="download"&gt;
+&lt;h3&gt;Download&lt;/h3&gt;
+&lt;p&gt;You should download Jasmine from this link:
+&lt;a class="reference external" href="http://pivotal.github.com/jasmine/download.html"&gt;http://pivotal.github.com/jasmine/download.html&lt;/a&gt;. It's actually a bit
+unclear from reading the
+&lt;a class="reference external" href="https://github.com/pivotal/jasmine/wiki"&gt;wiki&lt;/a&gt;, I initially
+downloaded the latest version from its associated tag and had trouble
+because the directory structure didn't seem to match the documentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="read-the-instructions"&gt;
+&lt;h3&gt;Read the instructions&lt;/h3&gt;
+&lt;p&gt;The main wiki page really serves as the &lt;a class="reference external" href="https://github.com/pivotal/jasmine/wiki"&gt;user
+guide&lt;/a&gt;. Here're a few
+helpful links to get started, all short and useful:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Suites-and-specs"&gt;Suites and
+specs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Matchers"&gt;Matchers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Before-and-After"&gt;Before and
+After&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;(For my project) &lt;a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Asynchronous-specs"&gt;Asynchronous
+tests&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There's a chapter on mocking as well, which I skipped until I need it --
+it's enough to try out already!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="interlude-vocabulary"&gt;
+&lt;h3&gt;Interlude: Vocabulary&lt;/h3&gt;
+&lt;p&gt;I'm assuming this is because Jasmine is &amp;quot;BDD&amp;quot; (Behaviour Driven
+Development) and I come from TDD (Test Driven Development), but there
+was a bit of new vocabulary to get used to. Here's a short BDD to TDD
+dictionary.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;em&gt;Spec&lt;/em&gt;: Test&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;beforeEach&lt;/em&gt;: setUp&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;afterEach&lt;/em&gt;: tearDown&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Spies&lt;/em&gt;: Mocks, mocking&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;.toBeTruthy&lt;/em&gt;: .assertTrue (it sounded like it could be approximately
+or almostEquals to my untrained ears)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="setting-up"&gt;
+&lt;h3&gt;Setting up&lt;/h3&gt;
+&lt;p&gt;Have a look at &lt;a class="reference external" href="https://github.com/pivotal/jasmine/wiki/A-simple-project"&gt;A simple
+project&lt;/a&gt;
+for an extremely brief overview, and open the example specs, especially
+&lt;a class="reference external" href="https://github.com/pivotal/jasmine/blob/master/example/spec/PlayerSpec.js"&gt;PlayerSpec.js&lt;/a&gt;
+which I found really useful. That should be enough to get you going!&lt;/p&gt;
+&lt;p&gt;Don't forget to include jQuery or whichever, in your spec runner file if
+using such a framework.&lt;/p&gt;
+&lt;p&gt;I'm not sure yet what's the best structure for organising Javascript
+tests. I'd like to find out what people do. At the moment I've put my
+spec runner file and tests in the directory that makes the most sense
+semantically, but this means that by default the file would end up
+accessible on prod after deployment, which does not sound ideal. Any
+reading suggestions for me or best practices to share?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="testing"></category></entry><entry><title>Testing django admin customisations</title><link href="https://www.jpichon.net/blog/2011/03/testing-django-admin-customisations/" rel="alternate"></link><published>2011-03-17T10:05:00+00:00</published><updated>2011-03-17T10:05:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-03-17:/blog/2011/03/testing-django-admin-customisations/</id><summary type="html">&lt;p&gt;In preparation for an upgrade, I've been writing unit tests for a Django
+app with the help of a fantastic book -- &lt;a class="reference external" href="http://www.amazon.co.uk/Django-Testing-Debugging-Karen-Tracey/dp/1847197566/"&gt;Django 1.1 Testing and
+Debugging&lt;/a&gt;
+by Karen M. Tracey, there'll be a review coming up when I finish it.&lt;/p&gt;
+&lt;p&gt;I had some issues with the code to test …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In preparation for an upgrade, I've been writing unit tests for a Django
+app with the help of a fantastic book -- &lt;a class="reference external" href="http://www.amazon.co.uk/Django-Testing-Debugging-Karen-Tracey/dp/1847197566/"&gt;Django 1.1 Testing and
+Debugging&lt;/a&gt;
+by Karen M. Tracey, there'll be a review coming up when I finish it.&lt;/p&gt;
+&lt;p&gt;I had some issues with the code to test admin customisations (Chapter
+4), I want to document the changes I made for future reference.&lt;/p&gt;
+&lt;div class="section" id="error-403"&gt;
+&lt;h2&gt;Error 403&lt;/h2&gt;
+&lt;p&gt;Despite using client.login() in the setUp() method, response returned
+with a status_code of 403 (Forbidden) when creating a new item.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+class AdminCustomisationTest(TestCase):
+
+    def setUp(self):
+        username = 'test_user'
+        pwd = 'secret'
+
+        self.u = User.objects.create_user(username, '', pwd)
+        self.u.is_staff = True
+        self.u.is_superuser = True
+        self.u.save()
+
+        self.assertTrue(self.client.login(username=username, password=pwd),
+            &amp;quot;Logging in user %s, pwd %s failed.&amp;quot; % (username, pwd))
+
+        Survey.objects.all().delete()
+
+    def tearDown(self):
+        self.client.logout()
+        self.u.delete()
+
+    def test_add_survey_ok(self):
+        self.assertEquals(Survey.objects.count(), 0)
+
+        post_data = { 'title': u'Test OK',
+                      'open_date': datetime.now(),
+                    }
+
+        response = self.client.post(reverse('admin:survey_survey_add'), post_data)
+
+        self.assertRedirects(response, reverse('admin:survey_survey_changelist'))
+        self.assertEquals(Survey.objects.count(), 1)
+&lt;/pre&gt;
+&lt;p&gt;At first I blamed some customisations I did to the authentication
+backends to allow OpenID, however printing the response.content revealed
+otherwise:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+&amp;lt;html xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot; xml:lang=&amp;quot;en&amp;quot;&amp;gt;&amp;lt;body&amp;gt;&amp;lt;h1&amp;gt;403 Forbidden&amp;lt;/h1&amp;gt;&amp;lt;p&amp;gt;Cross Site Request Forgery detected. Request aborted.&amp;lt;/p&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;The Django CSRF protection system prevented the tests from passing. Note
+that this app runs on Django 1.1, Django 1.2 overhauled the CSRF system
+and would likely work without problems.&lt;/p&gt;
+&lt;p&gt;I'm sure there are more elegant ways to solve this. Here's a method that
+works:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+def get_csrf_token(self, response):
+    csrf = &amp;quot;name='csrfmiddlewaretoken' value='&amp;quot;
+    start = response.content.find(csrf) + len(csrf)
+    end = response.content.find(&amp;quot;'&amp;quot;, start)
+
+    return response.content[start:end]
+
+def test_add_survey_ok(self):
+    self.assertEquals(Survey.objects.count(), 0)
+
+    response = self.client.get(reverse('admin:survey_survey_add'))
+    csrf = self.get_csrf_token(response)
+    post_data = { 'title': u'Test OK',
+                  'open_date': datetime.now(),
+                  'csrfmiddlewaretoken': csrf,
+                }
+
+    response = self.client.post(reverse('admin:survey_survey_add'), post_data)
+
+    self.assertRedirects(response, reverse('admin:survey_survey_changelist'))
+    self.assertEquals(Survey.objects.count(), 1)
+&lt;/pre&gt;
+&lt;p&gt;(Note/Update: If I had waited until the next chapter, I would have found
+out how to integrate &lt;a class="reference external" href="http://pypi.python.org/pypi/twill/0.9"&gt;Twill&lt;/a&gt;
+with Django apps and none of this would have been necessary -- haha!)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="this-field-is-required-datetime"&gt;
+&lt;h2&gt;This field is required (datetime)&lt;/h2&gt;
+&lt;p&gt;After this, although the response.status_code was finally 200, the
+article still wasn't created. Peering through response.content showed
+that the datetime field was considered to be missing. This is what the
+postdata should look like instead for a datetime field:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+post_data = { 'title': u'Test OK',
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 'open_date_0': '2011-03-17',
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 'open_date_1': '9:50:00',
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 'csrfmiddlewaretoken': csrf,
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; }
+&lt;/pre&gt;
+&lt;p&gt;Test passes!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="django"></category><category term="python"></category><category term="testing"></category></entry><entry><title>Python Ireland February meet-up | Introduction, unit testing</title><link href="https://www.jpichon.net/blog/2011/02/python-ireland-february-meetup/" rel="alternate"></link><published>2011-02-15T20:36:00+00:00</published><updated>2011-02-15T20:36:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-02-15:/blog/2011/02/python-ireland-february-meetup/</id><summary type="html">&lt;p&gt;A delayed summary of &lt;a class="reference external" href="http://www.python.ie/meetup/2011/feb_2011_talks__science_gallery/"&gt;Python Ireland's February
+meet-up&lt;/a&gt;
+last Wednesday -- another great event, after which I promptly fell sick
+(getting ready to kick ass again now though :)). In January, the group
+had a simple and nice &amp;quot;pub meet-up&amp;quot;, where a few Python beginners and
+novices turned up (including one who's …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A delayed summary of &lt;a class="reference external" href="http://www.python.ie/meetup/2011/feb_2011_talks__science_gallery/"&gt;Python Ireland's February
+meet-up&lt;/a&gt;
+last Wednesday -- another great event, after which I promptly fell sick
+(getting ready to kick ass again now though :)). In January, the group
+had a simple and nice &amp;quot;pub meet-up&amp;quot;, where a few Python beginners and
+novices turned up (including one who's now my student *waves*), and it
+was thus decided it would be good to have some introductory talks in the
+following months. Hence February's first talk:&lt;/p&gt;
+&lt;div class="section" id="introduction-to-python"&gt;
+&lt;h2&gt;Introduction to Python&lt;/h2&gt;
+&lt;p&gt;In this talk, Sean gave a quick introduction to Python by comparing it
+with other programming languages ; namely C, Java and Ruby.&lt;/p&gt;
+&lt;p&gt;I must say I took notes in preparation for my crash course later on :o)
+Nice ideas on how to present a new language to programmers. The
+comparison wasn't only on the syntax or verbosity, and general
+programming paradigms espoused by the languages but also on the
+different cultures encouraged by their respective community. Very
+interesting! Though unfortunately, probably difficult to follow for
+beginners new to programming, of which there was at least 1 in the room
+-- but it's difficult (impossible) to create a talk that caters to
+everyone in the whole world.&lt;/p&gt;
+&lt;p&gt;Somehow post-talk questions mostly resolved around high performance
+parallel programming :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="advanced-unit-testing"&gt;
+&lt;h2&gt;Advanced unit testing&lt;/h2&gt;
+&lt;p&gt;Rory enthusiastically introduced us to the latest additions in the unit
+test framework for Python 2.7 (backported from 3.x into unittest2), and
+after this talk I can't wait to enthusiastically switch my programs to
+Python 2.7. Exciting stuff. For instance...&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;more Asserts! With cool names, like assertAlmostEquals ;)
+assertMultiLineEquals sounds fairly cool too, it gives you a diff as
+opposed to the whole strings that didn't match.&lt;/li&gt;
+&lt;li&gt;when you have a slow setUp() or you simply do reads without writes...
+I introduce setUpClass()! Yes! There's even a setUpModule if all the
+tests for your module share a setup step. Of course the same exist
+for tearDown().&lt;/li&gt;
+&lt;li&gt;&amp;quot;discover&amp;quot; will find and run your tests without you having to add the
+__main__ stanza to all your test files, yay. It works like this:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="literal-block"&gt;
+python -m unittest discover -s [path]
+&lt;/pre&gt;
+&lt;p&gt;You can specify a class or function if you like.&lt;/p&gt;
+&lt;p&gt;The rest of the talk was about mocks. Mocks. Mocks. They're not in the
+main unit test framework and voidspace's seems to be the recommended
+library. It was interesting to see how they're used. Mock patch enables
+doing all the mocking stuff with fancy decorators, thus avoiding you the
+pain of manually storing and restoring the original value of something
+before you replace it with a mock. Overall veeery interesting.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="agm-pub"&gt;
+&lt;h2&gt;AGM &amp;amp; Pub&lt;/h2&gt;
+&lt;p&gt;A short and sweet AGM followed where the committee ended up re-elected
+(go committee, y'all rock!). We then moved on to the pub where general
+Python and other techie discussions happily prevailed for the rest of
+the evening.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category><category term="python"></category><category term="testing"></category></entry></feed>

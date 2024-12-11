@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>jpichon.net - openstack</title><link>https://www.jpichon.net/</link><description></description><lastBuildDate>Fri, 09 Mar 2018 11:57:00 +0000</lastBuildDate><item><title>OpenStack PTG Dublin - Rocky</title><link>https://www.jpichon.net/blog/2018/03/openstack-ptg-dublin-rocky/</link><description>&lt;p&gt;I was so excited when it was first hinted in Denver that the next
+OpenStack PTG would be in Dublin. In my town! Zero jet lag! Commuting
+from home! Showing people around! Alas, it was not to be. Thanks,
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/2018_Great_Britain_and_Ireland_cold_wave"&gt;Beast from the East&lt;/a&gt;.
+Now everybody hates Ireland forever.&lt;/p&gt;
+&lt;p&gt;The weather definitely had some impact on sessions and
+productivity. People were jokingly then worryingly checking on the
+news, dropping in and out of rooms as they tried to rebook their
+cancelled flights. Still we did what we could and had snow-related
+activities too - good for building team spirit, if nothing else!&lt;/p&gt;
+&lt;p&gt;I mostly dropped in and out of rooms, here are some of my notes and
+sometimes highlights.&lt;/p&gt;
+&lt;div class="section" id="openstack-client"&gt;
+&lt;h2&gt;OpenStack Client&lt;/h2&gt;
+&lt;p&gt;Like before, the first two days of the PTG were focused on
+cross-projects concerns. The OpenStack Client didn't have a room this
+time, which seems fair as it was sparsely attended the last couple of
+times - I would have thought there'd have been one helproom session at
+least but if there was I missed it.&lt;/p&gt;
+&lt;p&gt;I regret missing the &lt;a class="reference external" href="https://etherpad.openstack.org/p/api-sig-ptg-rocky"&gt;API Working Group&lt;/a&gt; morning
+sessions on API discovery and micro-versions, which I think were
+relevant. The afternoon API sessions were more focused on services and
+less applicable for me. I need to be smarter about it next time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="first-contact-sig"&gt;
+&lt;h2&gt;First Contact SIG&lt;/h2&gt;
+&lt;p&gt;Instead, that morning I attended the &lt;a class="reference external" href="https://etherpad.openstack.org/p/FC_SIG_Rocky_PTG"&gt;First Contact Special Interest
+Group&lt;/a&gt; sessions,
+which aim to make OpenStack more accessible to newcomers. It was well
+attended, with even a few new and want-to-be contributors who were
+first-time PTG attendes - I think having the PTG in Europe really
+helped with that. The session focused on making sure everyone in the
+room/SIG is aware of the resources that are out there, to be able to
+help people looking to get started.&lt;/p&gt;
+&lt;p&gt;The SIG is also looking for &lt;a class="reference external" href="https://wiki.openstack.org/wiki/First_Contact_SIG#Project_Liaisons"&gt;points of contact for every project&lt;/a&gt;,
+so that newcomers have someone to ask questions to directly (even
+better if there's a backup person too, but difficult enough to find one
+as it is!).&lt;/p&gt;
+&lt;p&gt;Some of the questions that came up from people in the room related to being
+able to map projects to IRC channel (e.g. devstack questions go to
+#openstack-qa).&lt;/p&gt;
+&lt;p&gt;Also, the OpenStack community has a ton of mentoring programs, both
+formal and informal and just going through the list to explain them
+took a while. Outreachy, Google Summer of Code, Upstream Institute,
+Women of OpenStack, First Contact Liaisons (see above). Didn't realise
+there were so many!&lt;/p&gt;
+&lt;p&gt;I remember when a lot of the initiatives discussed were started. It was
+interesting to hear the perspectives from people who arrived later,
+especially the discussions around the ones that have become irrelevant.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="packaging-rpms"&gt;
+&lt;h2&gt;Packaging RPMs&lt;/h2&gt;
+&lt;p&gt;On Tuesday I dropped by the &lt;a class="reference external" href="https://etherpad.openstack.org/p/rpm-packaging-rocky-ptg"&gt;packaging RPMs Working Group&lt;/a&gt;
+session. A small group made up of very focused RDO/Red Hat/SUSE
+people. The discussions were intense, with Python 2 going End Of Life
+in under 2 years now.&lt;/p&gt;
+&lt;p&gt;The current consensus seems to be to create a RPM-based Python 3 gate
+based on 3.6. There's no supported distro that offers this at the
+moment, so we will create our own Fedora-based distro with only what we
+need at the versions we need it. Once RDO is ready with this, it could
+be moved upstream.&lt;/p&gt;
+&lt;p&gt;There were some concerns about 3.5 vs 3.6 as the current gating is done
+on 3.5. Debian also appears to prefer 3.6. In general it was agreed
+there should not be major differences and generally ok.&lt;/p&gt;
+&lt;p&gt;The clients must still support Python 2.&lt;/p&gt;
+&lt;p&gt;There was a little bit of discussion about the stable policy and how it
+doesn't apply to the specs or the rpm-packaging project (I think the
+example was with Monasca and the default backend not working (?), so a
+spec change to modify the backend was backported - which could be
+considered a feature backport, but since the project isn't under the
+stable policy remit it could be done).&lt;/p&gt;
+&lt;p&gt;There was a brief chat at the end about whether there is still interest in
+packaging services, as opposed to just shipping them as containers. There
+certainly still seems to be at this point.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="release-management"&gt;
+&lt;h2&gt;Release management&lt;/h2&gt;
+&lt;p&gt;A much &lt;a class="reference external" href="http://lists.openstack.org/pipermail/openstack-dev/2018-March/128005.html"&gt;more complete summary&lt;/a&gt;
+has already been posted on the list, and I had to leave the session
+halfway to attend something else.&lt;/p&gt;
+&lt;p&gt;There seems to be an agreement that it &lt;em&gt;is&lt;/em&gt; getting easier to upgrade
+(although some people still don't want to do it, perhaps an education
+effort is needed to help with this). People do use the stable point
+release tags.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;pressure to upgrade&amp;quot;: would Long-Term Support release actually
+help? Probably it would make it worse. The pressure to upgrade will
+still be there except there won't be a need to work on it for another
+year, and it'll make life worse for operators/etc submitting back fixes
+because it'll take over a year for a patch to make it into their
+system.&lt;/p&gt;
+&lt;p&gt;Fast-Forward Upgrade (which is &lt;strong&gt;not&lt;/strong&gt; skip-level upgrades) may help with
+that pressure... Or not, maybe different problems will come up because
+of things like not restarting services in between upgrades. It batches
+things and helps to upgrade faster, but changes nothing.&lt;/p&gt;
+&lt;p&gt;The conversation moved to one year release cycles just before I
+left. It seemed to be all concerns and I don't recall active support
+for the idea. Some of the concerns:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Concerns about backports - so many changes&lt;/li&gt;
+&lt;li&gt;Concerns about marketing - it's already hard to keep up with all
+that's going on, and it's good to show the community is active and
+stuff is happening more than once a year. It's not that closely tied
+to releases though, announces could still go out more regularly.&lt;/li&gt;
+&lt;li&gt;Planning when something will land may become even harder as so much
+can happen in a year&lt;/li&gt;
+&lt;li&gt;It's painful for both people who keep up &lt;em&gt;and&lt;/em&gt; people who don't,
+because there is so much new stuff happening at once.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tripleo"&gt;
+&lt;h2&gt;TripleO&lt;/h2&gt;
+&lt;p&gt;The sessions began with a &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky-retro"&gt;retrospective&lt;/a&gt; on
+Wednesday. I was really excited to hear that tripleo-common was going
+to get unit tests for workflows. I still love the idea of workflows but
+I found them becoming more and more difficult to work with as they get
+larger, and difficult to review. Boilerplate gets copy-pasted, can't
+work without a few changes that are easy to miss unless manually tested
+and these get missed in reviews all the time.&lt;/p&gt;
+&lt;p&gt;The next session was about &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-ci"&gt;CI&lt;/a&gt;. The focus during
+Queens was on reliability, which worked well although promotions
+suffered as a result. There were some questions as to whether we should
+try to prevent people from merging anything when the promotion pipeline
+is broken but no consensus was really reached.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky-workflows-api"&gt;Workflows session&lt;/a&gt;
+was really interesting, there's been a lot of Lessons Learnt from our
+initial attempt with Mistral this last couple of years and it looks
+like we're setting up for a v2 overhaul that'll get rid of many of the
+issues we found. Exciting! There was a brief moment of talk about
+ripping Mistral out and reimplementing everything in Ansible,
+conclusions unclear.&lt;/p&gt;
+&lt;p&gt;I didn't take good notes during the other sessions and once the venue
+closed down (snow!) it became a bit difficult to find people in the
+hotel and then actually hear them. Most etherpads with the notes are
+linked from the &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky"&gt;main TripleO etherpad&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Fri, 09 Mar 2018 11:57:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2018-03-09:/blog/2018/03/openstack-ptg-dublin-rocky/</guid><category>Tech</category><category>events</category><category>openstack</category></item><item><title>OpenStack Client in Queens - Notes from the PTG</title><link>https://www.jpichon.net/blog/2017/09/openstack-client-queens-notes-ptg/</link><description>&lt;p&gt;Here are a couple of notes about the &lt;a class="reference external" href="https://docs.openstack.org/python-openstackclient"&gt;OpenStack
+Client&lt;/a&gt;, taken
+while dropping in and out of the room during the &lt;a class="reference external" href="https://www.openstack.org/ptg/"&gt;OpenStack
+PTG&lt;/a&gt; in Denver, a couple of weeks
+ago.&lt;/p&gt;
+&lt;div class="section" id="osc-4"&gt;
+&lt;h2&gt;OSC 4&lt;/h2&gt;
+&lt;p&gt;The original plan was to simply get rid of deprecated stuff, change a
+few names here and there and have few compatibility breaking changes.&lt;/p&gt;
+&lt;p&gt;However, now &lt;a class="reference external" href="https://docs.openstack.org/shade"&gt;shade&lt;/a&gt; may adopt the
+&lt;a class="reference external" href="https://developer.openstack.org/sdks/python/openstacksdk/"&gt;SDK&lt;/a&gt; and
+move some of its contents into it. Then shade would consume the SDK, and
+OSC would consume it as well. It would be pretty clean and easy to use,
+but would mean major breaking changes for OSC4. OSC would become a shim
+layer over &lt;a class="reference external" href="https://docs.openstack.org/developer/osc-lib/"&gt;osc-lib&lt;/a&gt;.
+The plugin interface is going to change, as the loading time is long -
+every command requires loading all of the plugins which takes over half
+of the loading time even though the commands themselves load quickly.
+(There will be more communication once we understand what the new plugin
+interface will look like.) OSC4 would rip out global argument processing
+and adopt
+&lt;a class="reference external" href="https://docs.openstack.org/os-client-config"&gt;os-client-config&lt;/a&gt;(breaking
+change). It would adopt the SDK and stop using the client libraries.&lt;/p&gt;
+&lt;p&gt;Note that this may all change depending on how the SDK situation
+evolves.&lt;/p&gt;
+&lt;p&gt;From the end-user perspective, some option names will change. There is
+some old cruft left around for compatibility reasons that will disappear
+(e.g. &amp;quot;ip floating&amp;quot; will be gone, it changed a year ago to &amp;quot;floating
+ip&amp;quot;). The column output will handle structured data better and some of
+this is already commited to the osc4 feature branch.&lt;/p&gt;
+&lt;p&gt;The order of commands will not be changed.&lt;/p&gt;
+&lt;p&gt;For authentication, the bevahiour may change a bit between the CLI
+behaviour or clouds.yaml. os-client-config came along and changed a few
+things, notably with regard to precedence. The OSC way of doing will be
+removed and replaced with OCC.&lt;/p&gt;
+&lt;p&gt;Best effort will be made not to break scripts. The &amp;quot;configuration show&amp;quot;
+command shows your current configuration but not where it comes from -
+it's a bit hard to do because of all the merging of parameters going on.&lt;/p&gt;
+&lt;p&gt;The conversation continued about auth, how shade uses adapters and may
+change the SDK to use them as well: would sessions or adapters make the
+most sense? I had to attend another session and missed the discussion
+and conclusions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="command-aliases"&gt;
+&lt;h2&gt;Command aliases&lt;/h2&gt;
+&lt;p&gt;There was a long discussion around command aliases, as some commands are
+very long to type (e.g. healthmonitor). It was very clear it's not
+something OSC wants to get into the business of managing itself (master
+list of collisions, etc) so it would be up to individual plugins. There
+could be individual .osc config file that would do the short to long
+name mapping, similar to a shell alias. It shouldn't be part of the
+official plugin (otherwise, &amp;quot;why don't we just use those names to begin
+with?&amp;quot;) but it could be another pluging that sets up alias mappings to
+the short name or a second set of entry points, or include a &amp;quot;list of
+shortcuts we found handy&amp;quot; in the documentation. Perhaps there should be
+a community-wide discussion about this.&lt;/p&gt;
+&lt;p&gt;Collisions are to be managed by users, not by OSC. Having one master
+list to manage the initial set of keywords is already an unfortunate
+compromise.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="filtering-and-others"&gt;
+&lt;h2&gt;Filtering and others&lt;/h2&gt;
+&lt;p&gt;It's not possible to do filtering on lists or any kind of complex
+filtering at the moment. The recommendation, or what people currently
+do, is to output to --json and pipe the output to
+&lt;a class="reference external" href="https://stedolan.github.io/jq/manual/"&gt;jq&lt;/a&gt; to do what they need. The
+documentation should be extended to show how to do this.&lt;/p&gt;
+&lt;p&gt;At the moment filtering varies wildly between APIs and none of them are
+very expressive, so there isn't a lot OSC can do.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Wed, 27 Sep 2017 08:40:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2017-09-27:/blog/2017/09/openstack-client-queens-notes-ptg/</guid><category>Tech</category><category>events</category><category>openstack</category></item><item><title>TripleO Deep Dive: Internationalisation in the UI</title><link>https://www.jpichon.net/blog/2017/07/tripleo-deep-dive-internationalisation-ui/</link><description>&lt;p&gt;Yesterday, as part of the &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-deep-dive-topics"&gt;TripleO Deep
+Dives&lt;/a&gt;
+series I gave a short introduction to internationalisation in &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui"&gt;TripleO
+UI&lt;/a&gt;: the technical aspects
+of it, as well as a quick overview of how we work with the I18n team.&lt;/p&gt;
+&lt;p&gt;You can catch the recording on
+&lt;a class="reference external" href="https://bluejeans.com/s/XmuHa"&gt;BlueJeans&lt;/a&gt; or
+&lt;a class="reference external" href="https://www.youtube.com/watch?v=dmAw7b2yUEo"&gt;YouTube&lt;/a&gt;, and below's a
+transcript.&lt;/p&gt;
+&lt;p&gt;~&lt;/p&gt;
+&lt;div class="section" id="life-and-journey-of-a-string"&gt;
+&lt;h2&gt;Life and Journey of a String&lt;/h2&gt;
+&lt;p&gt;Internationalisation was added to the UI during Ocata - just a release
+ago. &lt;a class="reference external" href="https://twitter.com/florianfuchs"&gt;Florian&lt;/a&gt; implemented most of
+it and did the lion's share of the work, as can be seen &lt;a class="reference external" href="https://blueprints.launchpad.net/tripleo/+spec/tripleo-ui-i18n-support-for-js"&gt;on the
+blueprint&lt;/a&gt;
+if you're curious about the nitty-gritty details.&lt;/p&gt;
+&lt;div class="section" id="addition-to-the-codebase"&gt;
+&lt;h3&gt;Addition to the codebase&lt;/h3&gt;
+&lt;p&gt;Here's &lt;a class="reference external" href="https://review.openstack.org/#/c/416564/3/src/js/components/plan/NewPlan.js"&gt;an example
+patch&lt;/a&gt;
+from during the transition. On the left you can see how things were
+hard-coded, and on the right you can see the new defineMessages()
+interface we now use. Obviously new patches should directly look like on
+the right hand-side nowadays.&lt;/p&gt;
+&lt;p&gt;The defineMessages() dictionary requires a unique id and default English
+string for every message. Optionally, you can also provide a description
+if you think there could be confusion or to clarify the meaning. The
+description will be shown in Zanata to the translators - remember they
+see no other context, only the string itself.&lt;/p&gt;
+&lt;p&gt;For example, &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/src/js/components/plan/PlanFormTabs.js#L29-L33"&gt;a string might sound active like if it were related to an
+action/button but actually be a descriptive help
+string&lt;/a&gt;.
+Or some expressions are known to be confusing in English - &amp;quot;provide a
+node&amp;quot; has been the source of multiple &lt;a class="reference external" href="http://lists.openstack.org/pipermail/openstack-dev/2016-July/098746.html"&gt;discussions on
+list&lt;/a&gt;
+and live so might as well pre-empt questions and &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/src/js/components/nodes/NodesTableView.js#L31-L36"&gt;offer additional
+context to help the translators decide on an appropriate
+translation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="extraction-conversion"&gt;
+&lt;h3&gt;Extraction &amp;amp; conversion&lt;/h3&gt;
+&lt;p&gt;Now we know how to add an internationalised string to the codebase - how
+do these get extracted into a file that will be uploaded to Zanata?&lt;/p&gt;
+&lt;p&gt;All of the following steps are described in the &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/docs/translation.rst"&gt;translation
+documentation&lt;/a&gt;
+in the tripleo-ui repository. Assuming you've already run the
+installation steps (basically, &lt;em&gt;npm install&lt;/em&gt;):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ npm run build
+&lt;/pre&gt;
+&lt;p&gt;This does a lot more than just extracting strings - it prepares the code
+for being deployed in production. Once this ends you'll be able to find
+your newly extracted messages under the &lt;em&gt;i18n&lt;/em&gt; directory:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ls i18n/extracted-messages/src/js/components
+&lt;/pre&gt;
+&lt;p&gt;You can see the directory structure is kept the same as the source code.
+And if you peek into one of the files, you'll note the content is
+basically the same as what we had in our defineMessages() dictionary:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ cat i18n/extracted-messages/src/js/components/Login.json
+[
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;UserAuthenticator.authenticating&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Authenticating...&amp;quot;
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;Login.username&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Username&amp;quot;
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;Login.usernameRequired&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Username is required.&amp;quot;
+  },
+[...]
+&lt;/pre&gt;
+&lt;p&gt;However, JSON is not a format that Zanata understands by default. I
+think the latest version we upgraded to, or the next one might have some
+support for it, but since there's no i18n JSON standard it's somewhat
+limited. In open-source software projects, po/pot files are generally
+the standard to go with.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ npm run json2pot
+
+&amp;gt; tripleo-ui&amp;#64;7.1.0 json2pot /home/jpichon/devel/tripleo-ui
+&amp;gt; rip json2pot ./i18n/extracted-messages/**/*.json -o ./i18n/messages.pot
+
+&amp;gt; [react-intl-po] write file -&amp;gt; ./i18n/messages.pot ✔️
+
+$ cat i18n/messages.pot
+msgid &amp;quot;&amp;quot;
+msgstr &amp;quot;&amp;quot;
+&amp;quot;POT-Creation-Date: 2017-07-07T09:14:10.098Z\n&amp;quot;
+&amp;quot;Content-Type: text/plain; charset=UTF-8\n&amp;quot;
+&amp;quot;Content-Transfer-Encoding: 8bit\n&amp;quot;
+&amp;quot;MIME-Version: 1.0\n&amp;quot;
+&amp;quot;X-Generator: react-intl-po\n&amp;quot;
+
+
+#: ./i18n/extracted-messages/src/js/components/nodes/RegisterNodesDialog.json
+#. [RegisterNodesDialog.noNodesToRegister] - undefined
+msgid &amp;quot;&amp;quot;No Nodes To Register&amp;quot;&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/nodes/NodesToolbar/NodesToolbar.json
+#. [Toolbar.activeFilters] - undefined
+#: ./i18n/extracted-messages/src/js/components/validations/ValidationsToolbar.json
+#. [Toolbar.activeFilters] - undefined
+msgid &amp;quot;Active Filters:&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/nodes/RegisterNodesDialog.json
+#. [RegisterNodesDialog.addNew] - Small button, to add a new Node
+msgid &amp;quot;Add New&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/plan/PlanFormTabs.json
+#. [PlanFormTabs.addPlanName] - Tooltip for &amp;quot;Plan Name&amp;quot; form field
+msgid &amp;quot;Add a Plan Name&amp;quot;
+msgstr &amp;quot;&amp;quot;
+[...]
+&lt;/pre&gt;
+&lt;p&gt;This messages.pot file is what will be automatically uploaded to Zanata.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="infra-from-the-git-repo-to-zanata"&gt;
+&lt;h3&gt;Infra: from the git repo, to Zanata&lt;/h3&gt;
+&lt;p&gt;The following steps are done by the infrastructure scripts. There's
+&lt;a class="reference external" href="https://docs.openstack.org/infra/manual/creators.html#enabling-translation-infrastructure"&gt;infra documentation on how to enable translations for your
+project&lt;/a&gt;,
+in our case as the first internationalised JavaScript project we had to
+update the scripts a little as well. This is useful to know if an issue
+happens with the infra jobs; debugging will probably bring you here.&lt;/p&gt;
+&lt;p&gt;The scripts live in the &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/tree/605299/jenkins/scripts"&gt;project-config infra
+repo&lt;/a&gt;
+and there are three files of interest for us:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/common_translation_update.sh"&gt;common_translation_update.sh&lt;/a&gt;
+- a bunch of common functions&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L241"&gt;propose_translation_update.sh&lt;/a&gt;
+- proposes the translations back to the repository (we'll talk about
+it in a bit)&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L75"&gt;upstream_translation_update.sh&lt;/a&gt;
+- that sends the translations up to Zanata&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this case, upstream_translation_update.sh is the file of interest
+to us: it simply &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/master/jenkins/scripts/upstream_translation_update.sh#L75-L79"&gt;sets up the project on line
+76&lt;/a&gt;,
+then &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L115"&gt;sends the pot file up to Zanata on line
+115&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What does &amp;quot;setting up the project&amp;quot; entails? It's a function in
+common_translations_update.sh, that pretty much &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/common_translation_update.sh#L252-L271"&gt;runs the steps we
+talked about in the previous section, and also creates a config file to
+talk to
+Zanata&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="monitoring-the-post-jobs"&gt;
+&lt;h3&gt;Monitoring the post jobs&lt;/h3&gt;
+&lt;p&gt;Post jobs run after a patch has already merged - usually to upload
+tarballs where they should be, update the documentation pages, etc, and
+also upload messages catalogues onto Zanata. Being a 'post' job however
+means that if something goes wrong, there is no notification on the
+original review so it's easy to miss.&lt;/p&gt;
+&lt;p&gt;Here's the &lt;a class="reference external" href="http://status.openstack.org/openstack-health/#/g/build_queue/post?groupKey=build_queue&amp;amp;searchJob=tripleo-ui"&gt;OpenStack Health page to monitor 'post' jobs related to
+tripleo-ui&lt;/a&gt;.
+Scroll to the bottom - hopefully tripleo-ui-upstream-translation-update
+is still green! It's good to keep an eye on it although it's easy to
+forget. Thankfully, AJaeger from #openstack-infra has been great at
+filing bugs and letting us know when &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1691006"&gt;something does go
+wrong&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="debugging-when-things-go-wrong-an-example"&gt;
+&lt;h3&gt;Debugging when things go wrong: an example&lt;/h3&gt;
+&lt;p&gt;We had a couple of issues whereby a &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1674011"&gt;linebreak gets
+introduced&lt;/a&gt; into one
+of the strings, which works fine in JSON but breaks our pot file. If you
+look at the content from the bug (the full logs are no longer
+accessible):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+2017-03-16 12:55:13.468428 | + zanata-cli -B -e push --copy-trans False
+[...]
+2017-03-16 12:55:15.391220 | [INFO] Found source documents:
+2017-03-16 12:55:15.391405 | [INFO]            i18n/messages
+2017-03-16 12:55:15.531164 | [ERROR] Operation failed: missing end-quote
+&lt;/pre&gt;
+&lt;p&gt;You'll notice the first line is &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L115"&gt;the last function we call in the
+upstream_translation_update.sh
+script&lt;/a&gt;;
+for debugging that gives you an idea of the steps to follow to
+reproduce. The &lt;a class="reference external" href="https://translate.zanata.org"&gt;upstream Zanata
+instance&lt;/a&gt; also lets you create toy
+projects, if you want to test uploads yourself (this can't be done
+directly on the OpenStack Zanata instance.)&lt;/p&gt;
+&lt;p&gt;This particular newline issue has popped up a couple of times already.
+We're treating it with band-aids at the moment, ideally we'd get a
+proper test on the gate to prevent it from happening again: this is why
+&lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1674011"&gt;this bug is still
+open&lt;/a&gt;. I'm not very
+familiar with JavaScript testing and haven't had a chance to look into
+it yet; if you'd like to give it a shot that'd be a useful contribution
+:)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="zanata-and-contributing-translations"&gt;
+&lt;h3&gt;Zanata, and contributing translations&lt;/h3&gt;
+&lt;p&gt;The OpenStack Zanata instance lives at &lt;a class="reference external" href="https://translate.openstack.org"&gt;https://translate.openstack.org&lt;/a&gt;.
+This is where the translators do their work. &lt;a class="reference external" href="https://translate.openstack.org/project/view/tripleo-ui"&gt;Here's the page for
+tripleo-ui&lt;/a&gt;,
+you can see there is one project per branch (stable/ocata and master,
+for now). Sort by &amp;quot;Percent Translated&amp;quot; to see the languages currently
+translated. Here's an example of the &lt;a class="reference external" href="https://translate.openstack.org/webtrans/translate?project=tripleo-ui&amp;amp;iteration=stable-ocata&amp;amp;localeId=es&amp;amp;locale=en-US&amp;amp;dswid=-8746#view:doc;doc:i18n/messages"&gt;translator's view, for
+Spanish&lt;/a&gt;:
+you can see the English string on the left, and the translator fills in
+the right side. No context! Just strings.&lt;/p&gt;
+&lt;p&gt;At this stage of the release cycle, the focus would be on 'master,'
+although it is still early to do translations; there is a lot of churn
+still.&lt;/p&gt;
+&lt;p&gt;If you'd like to contribute translations, the &lt;a class="reference external" href="https://wiki.openstack.org/wiki/I18n"&gt;I18n
+team&lt;/a&gt; has &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/"&gt;good
+documentation&lt;/a&gt; about &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/official_translator.html"&gt;how to
+go about how to do
+it&lt;/a&gt;.
+The short version: sign up on Zanata, request to join your language
+team, once you're approved - you're good to go!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="return-of-the-string"&gt;
+&lt;h3&gt;Return of the string&lt;/h3&gt;
+&lt;p&gt;Now that we have our strings available in multiple languages, it's time
+for another infra job to kick in and bring them into our repository.
+This is where
+&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L241-L257"&gt;propose_translation_update.sh&lt;/a&gt;
+comes in. We pull the po files from Zanata, convert them to JSON, then
+do a git commit that will be proposed to Gerrit.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L245"&gt;cleanup
+step&lt;/a&gt;
+does more than it might seem. It checks if files are translated over a
+certain ratio (~75% for code), which avoids adding new languages when
+there might only be one or two words translated (e.g. someone just
+testing Zanata to see how it works). Switching to your language and yet
+having the vast majority of the UI still appear in English is not a
+great user experience.&lt;/p&gt;
+&lt;p&gt;In theory, files that were added but are now below 40% should get
+automatically removed, however this &lt;a class="reference external" href="https://storyboard.openstack.org/#!/story/2000949"&gt;doesn't quite work for
+JavaScript&lt;/a&gt; at the
+moment - another opportunity to help! Manual cleanups can be done in the
+meantime, but it's a rare event so not a major issue.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="monitoring-the-periodic-jobs"&gt;
+&lt;h3&gt;Monitoring the periodic jobs&lt;/h3&gt;
+&lt;p&gt;Zanata is checked once a day every morning, there is an &lt;a class="reference external" href="http://status.openstack.org/openstack-health/#/g/build_queue/periodic?groupKey=build_queue&amp;amp;searchJob=tripleo-ui"&gt;OpenStack
+Health
+page&lt;/a&gt;
+for this as well. You can see there are two jobs at the moment
+(hopefully green!), one per branch:
+tripleo-ui-propose-translation-update and
+tripleo-ui-propose-translation-update-ocata. The job should run every
+day even if there are no updates - it simply means there might not be a
+git review proposed at the end.&lt;/p&gt;
+&lt;p&gt;We haven't had issues with the periodic job so far, though the debugging
+process would be the same: figure out based on the failure if it is
+happening at the infra script stage or in one of our commands (e.g. &lt;em&gt;npm
+run po2json&lt;/em&gt;), try to reproduce and fix. I'm sure super-helpful AJaeger
+would also let us know if he were to notice an issue here.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automated-patches"&gt;
+&lt;h3&gt;Automated patches&lt;/h3&gt;
+&lt;p&gt;You may have seen the &lt;a class="reference external" href="https://review.openstack.org/#/q/project:openstack/tripleo-ui+topic:zanata/translations"&gt;automated translations
+updates&lt;/a&gt;
+pop up on Gerrit. The commit message has some &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/reviewing-translation-import.html"&gt;tips on how to
+review&lt;/a&gt;
+these: basically don't agonise over the translation contents as problems
+there should be handled in Zanata anyway, just make sure the format
+looks good and is unlikely to break the code. A &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L251"&gt;JSON validation
+tool&lt;/a&gt;
+runs during the infra prep step in order to &amp;quot;prettify&amp;quot; the JSON blob and
+limit the size of the diffs, therefore once the patch&amp;nbsp; makes it out to
+Gerrit we know the JSON is well-formed at least.&lt;/p&gt;
+&lt;p&gt;Try to review these patches quickly to respect the translators' work.
+Not very nice to spend a lot of time on translating a project and yet
+not have your work included because no one was bothered to merge it :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-note-about-new-languages"&gt;
+&lt;h3&gt;A note about new languages...&lt;/h3&gt;
+&lt;p&gt;If the automated patch adds a new language, there'll be an &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e8684162811c88fb10c8c43c8e59bec3510eb2/docs/translation.rst#adding-a-new-language"&gt;additional
+step
+required&lt;/a&gt;
+after merging the translations in order to enable it: adding a string
+with the language name to a constants file. Until recently, this took 3
+or 4 steps - &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1682452"&gt;thanks to Honza for making it much
+simpler&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;This concludes the technical journey of a string. If you'd like to help
+with i18n tasks, we have &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bugs?field.tag=i18n"&gt;a few related
+bugs&lt;/a&gt; open.
+They go from very simple low-hanging-fruits you could use to make your
+first contribution to the UI, to weird buttons that have translations
+available yet show in English but only in certain modals, to the kind of
+CI resiliency tasks I linked to earlier. Something for everyone! ;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="working-with-the-i18n-team"&gt;
+&lt;h2&gt;Working with the I18n team&lt;/h2&gt;
+&lt;p&gt;It's really all about communication. Starting with...&lt;/p&gt;
+&lt;div class="section" id="release-schedule-and-string-freezes"&gt;
+&lt;h3&gt;Release schedule and string freezes&lt;/h3&gt;
+&lt;p&gt;String freezes are noted on the &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html"&gt;main
+schedule&lt;/a&gt; but tend
+to fit the regular cycle-with-milestones work. This is a problem for a
+cycle-trailing project like tripleo-ui as we could be implementing
+features up to 2 weeks after the other projects, so we can't freeze
+strings that early.&lt;/p&gt;
+&lt;p&gt;There were discussions at the Atlanta PTG around whether the I18n should
+care at all about projects that don't respect the freeze deadlines. That
+would have made it impossible for projects like ours to ever make it
+onto the I18n official radar. The compromise was that cycle-trailing
+project should have a &lt;a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n"&gt;I18n cross-project
+liaison&lt;/a&gt;
+that communicates with the I18n PTL and team to inform them of
+deadlines, and also to ignore Soft Freeze and only do a Hard Freeze.&lt;/p&gt;
+&lt;p&gt;This will all be documented under an i18n governance tag; while waiting
+for it the &lt;a class="reference external" href="https://etherpad.openstack.org/p/i18n-horizon-release-collaboration-session"&gt;notes from the sessions are
+available&lt;/a&gt;
+for the curious!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-a-string-freeze-again"&gt;
+&lt;h3&gt;What's a String Freeze again?&lt;/h3&gt;
+&lt;p&gt;The two are defined on the schedule: &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html#p-soft-sf"&gt;soft
+freeze&lt;/a&gt;
+means not allowing changes to strings, as it invalidates the
+translator's work and forces them to retranslate; &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html#p-hard-sf"&gt;hard
+freeze&lt;/a&gt;
+means no additions, changes or anything else in order to give
+translators a chance to catch up.&lt;/p&gt;
+&lt;p&gt;When we looked at Zanata earlier, there were &lt;a class="reference external" href="https://translate.openstack.org/iteration/view/tripleo-ui/master"&gt;translation percentages
+beside each
+language&lt;/a&gt;:
+the goal is always the satisfaction of reaching 100%. If we keep adding
+new strings then the goalpost keeps moving, which is discouraging and
+unfair.&lt;/p&gt;
+&lt;p&gt;Of course there's also an &amp;quot;exception process&amp;quot; when needed, to ask for
+permission to merge a string change with an explanation or at least a
+heads-up, by sending an email to the &lt;a class="reference external" href="http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-i18n"&gt;openstack-i18n mailing
+list&lt;/a&gt;.
+Not to be abused :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="role-of-the-i18n-liaison"&gt;
+&lt;h3&gt;Role of the I18n liaison&lt;/h3&gt;
+&lt;p&gt;...Liaise?! Haha. The role is defined briefly on the &lt;a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n"&gt;Cross-Projects
+Liaison wiki
+page&lt;/a&gt;.
+It's much more important toward the end of the cycle, when the codebase
+starts to stabilise, there are fewer changes and translators look at
+starting their work to be included in the release.&lt;/p&gt;
+&lt;p&gt;In general it's good to hang out on the #openstack-i18n IRC channel
+(very low traffic), &lt;a class="reference external" href="https://wiki.openstack.org/wiki/Meetings/I18nTeamMeeting"&gt;attend the weekly
+meeting&lt;/a&gt;
+(it alternates times), be available to answer questions, and keep the
+PTL informed of the I18n status of the project. In the case of
+cycle-trailing projects (quite a new release model still), it's also
+important to be around to explain the deadlines.&lt;/p&gt;
+&lt;p&gt;A couple of examples having an active liaison helps with:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Toward the end or after the release, once translations into the
+stable branch have settled, the stable translations get copied into
+the master branch on Zanata. The strings should still be fairly
+similar at that point and it avoids translators having to re-do the
+work. It's a manual process, so you need to let the I18n PTL know
+when there are no longer changes to stable/*.&lt;/li&gt;
+&lt;li&gt;Last cycle, because the cycle-trailing status of tripleo-ui was not
+correctly documented, a Zanata upgrade was planned right after the
+main release - which for us ended up being right when the codebase
+had stabilised enough and several translators had planned to be most
+active. Would have been solved with better, earlier communication :)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="post-release"&gt;
+&lt;h3&gt;Post-release&lt;/h3&gt;
+&lt;p&gt;After the Ocata release, I sent &lt;a class="reference external" href="http://imgur.com/a/tlnAx"&gt;a few
+screenshots&lt;/a&gt; of tripleo-ui to the i18n list
+so translators could see the result of their work. I don't know if
+anybody cared :-) But unlike Horizon, which has an informal test system
+available for translators to check their strings during the RC period,
+most of the people who volunteered translations had no idea what the UI
+looked like. It'd be cool if we could offer a test system with regular
+string updates next release - maybe just an undercloud on the new RDO
+cloud? Deployment success/failures strings wouldn't be verifiable but
+the rest would, while the system would be easier to maintain than a full
+dev TripleO environment - better than nothing. Perhaps an idea for the
+Queens cycle!&lt;/p&gt;
+&lt;p&gt;The I18n team has a &lt;a class="reference external" href="https://translate.openstack.org/"&gt;priority board on the Zanata main
+page&lt;/a&gt; (only visible when logged in
+I think). I'm grateful to see TripleO UI in there! :) Realistically
+we'll never move past Low or perhaps Medium priority which is fair, as
+TripleO doesn't have the same kind of reach or visibility that Horizon
+or the installation guides do. I'm happy that we're included! The
+OpenStack I18n team is probably the most volunteer-driven team in
+OpenStack. Let's be kind, respect string freezes and translators' time!
+\o/&lt;/p&gt;
+&lt;p&gt;&amp;lt;/braindump&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Fri, 07 Jul 2017 12:45:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2017-07-07:/blog/2017/07/tripleo-deep-dive-internationalisation-ui/</guid><category>Tech</category><category>open-source</category><category>openstack</category><category>talk-transcript</category><category>tripleo</category></item><item><title>OpenStack Pike PTG: TripleO, TripleO UI | Some highlights</title><link>https://www.jpichon.net/blog/2017/03/openstack-pike-ptg-tripleo-tripleo-ui/</link><description>&lt;p&gt;For the second part of the &lt;a class="reference external" href="http://www.openstack.org/ptg"&gt;PTG&lt;/a&gt;
+(vertical projects), I mainly stayed in the TripleO room, moving around
+a couple of times to attend cross-project sessions related to i18n.&lt;/p&gt;
+&lt;p&gt;Although I always wish I understood more/everything, in the end my areas
+of interest (and current understanding!) in TripleO are around the
+&lt;a class="reference external" href="https://github.com/openstack/tripleo-ui"&gt;UI&lt;/a&gt;, installing and
+configuring it, the &lt;a class="reference external" href="https://github.com/openstack/python-tripleoclient"&gt;TripleO
+CLI&lt;/a&gt;, and the
+&lt;a class="reference external" href="https://github.com/openstack/tripleo-common/"&gt;tripleo-common&lt;/a&gt;
+Mistral workflows. Therefore the couple of thoughts in this post are
+mainly relevant to these - if you're looking for a more exhaustive
+summary of the TripleO discussions and decisions made during the PTG, I
+recommend reading the &lt;a class="reference external" href="http://lists.openstack.org/pipermail/openstack-dev/2017-February/112995.html"&gt;PTL's excellent thread about this on the dev
+list&lt;/a&gt;,
+and the &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-pike"&gt;associated
+etherpads&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="random-points-of-interest"&gt;
+&lt;h2&gt;Random points of interest&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Containers is the big topic and had multiple sessions dedicated to
+it, both single and cross-projects. Many other sessions ended up
+revisiting the subject as well, sometimes with &amp;quot;oh that'll be solved
+with containers&amp;quot; and sometimes with &amp;quot;hm good but that won't work with
+containers.&amp;quot;&lt;/li&gt;
+&lt;li&gt;A couple of API-breaking changes may need to happen in &lt;a class="reference external" href="https://github.com/openstack/tripleo-heat-templates"&gt;Tripleo Heat
+Templates&lt;/a&gt;
+(e.g. for NFV, passing a role mapping vs a role name around). The
+recommendation is to get this in as early as possible (by the first
+milestone) and communicate it well for out of tree services.&lt;/li&gt;
+&lt;li&gt;When needing to test something new on the CI, look at the existing
+scenarios and prioritise adding/changing something there to test for
+what you need, as opposed to trying to create a brand new job.&lt;/li&gt;
+&lt;li&gt;Running Mistral workflows as part of or after the deployment came up
+several times and was even a topic during a cross-project Heat /
+Mistral / TripleO sessions. Things can get messy, switching between
+Heat, Mistral and Puppet. Where should these workflows live (THT,
+tripleo-common)? Service-specific workflows (pre/post-deploy) are
+definitely something people want and there's a need to standardise
+how to do that. Ceph's likely to be the first to try their hand at
+this.&lt;/li&gt;
+&lt;li&gt;One lively cross-project session with OpenStack Ansible and Kolla was
+about parameters in configuration files. Currently whenever a new
+feature is added to Nova or whatever service, Puppet and so on need
+to be updated manually. The proposal is to make a small change to
+oslo.config to enable it to give an output in machine-readable YAML
+which can then be consumed (currently the config generated is only
+human readable). This will help with validations, and it may help to
+only have to maintain a structure as opposed to a template.&lt;/li&gt;
+&lt;li&gt;Heat folks had a feedback session with us about the TripleO needs.
+They've been super helpful with e.g. helping to improve our memory
+usage over the last couple of cycles. My takeaway from this session
+was &amp;quot;beware/avoid using YAQL, especially in nested stacks.&amp;quot; YAQL is
+badly documented and everyone ends up reading the source code and
+tests to figure out how to things. Bringing Jinja2 into Heat or some
+kind of way to have repeated patterns from resources (e.g. based on a
+file) also came up and was cautiously acknowledged.&lt;/li&gt;
+&lt;li&gt;Predictable IP assignment on the control plane is a big enough issue
+that some people are suggesting dropping Neutron in the undercloud
+over it. We'd lose so many other benefits though, that it seems
+unlikely to happen.&lt;/li&gt;
+&lt;li&gt;Cool work incoming allowing built-in network examples to Just Work,
+based on a sample configuration. Getting the networking stuff right
+is a huge pain point and I'm excited to hear this should be
+achievable within Pike.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="python-3"&gt;
+&lt;h2&gt;Python 3&lt;/h2&gt;
+&lt;p&gt;Python 3 is an OpenStack &lt;a class="reference external" href="https://governance.openstack.org/tc/goals/pike/python35.html"&gt;community goal for
+Pike&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Tripleo-common and python-tripleoclient both have voting unit tests jobs
+for Python 3.5, though I trust them only moderately for a number of
+reasons. For example many of the tests tend to focus on the happy path
+and I've seen and fixed Python 3 incompatible code in exceptions several
+times (no 'message' attribute seems easy to get caught into), despite
+the unit testing jobs being all green. Apparently there are coverage
+jobs we could enable for the client, to ensure the coverage ratio
+doesn't drop.&lt;/p&gt;
+&lt;p&gt;Python 3 for functional tests was also brought up. We don't have
+functional tests in any of our projects and it's not clear the value we
+would get out of it (mocking servers) compared to the unit testing and
+all the integration testing we already do. Increasing unit test coverage
+was deemed a more valuable goal to pursue for now.&lt;/p&gt;
+&lt;p&gt;There are other issues around functional/integration testing with Python
+3 which will need to be resolved (though likely not during Pike). For
+example our integration jobs run on CentOS and use packages, which won't
+be Python 3 compatible yet (cue SCL and the need to respin
+dependencies). If we do add functional tests, perhaps it would be easier
+to have them run on a Fedora gate (although if I recall correctly gating
+on Fedora was investigated once upon a time at the OpenStack level, but
+caused too many issues due to churn and the lack of long-term releases).&lt;/p&gt;
+&lt;p&gt;Another issue with Python 3 support and functional testing is that the
+TripleO client depends on Mistral server (due to the &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1666268"&gt;Series Of
+Unfortunate
+Dependencies&lt;/a&gt; I also
+mentioned in the last post). That means Mistral itself would need to
+fully support Python 3 as well.&lt;/p&gt;
+&lt;p&gt;Python 2 isn't going anywhere just yet so we still have time to figure
+things out. The conclusions, as described in Emilien's email seem to be:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Improve the unit test coverage&lt;/li&gt;
+&lt;li&gt;Enable the coverage job in CI&lt;/li&gt;
+&lt;li&gt;Investigate functional testing for python-tripleoclient to start
+with, see if it makes sense and is feasible&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="sample-environment-generator"&gt;
+&lt;h2&gt;Sample environment generator&lt;/h2&gt;
+&lt;p&gt;Currently &lt;a class="reference external" href="https://github.com/openstack/tripleo-heat-templates/tree/master/environments"&gt;environment files in
+THT&lt;/a&gt;
+are written by hand and quite inconsistent. This is also important for
+the UI, which needs to display this information. For example currently
+the environment general description is in a comment at the top of the
+file (if it exists at all), which can't be accessed programmatically.
+Dependencies between environment files are not described either.&lt;/p&gt;
+&lt;p&gt;To make up for this, currently all that information lives in the
+&lt;a class="reference external" href="https://github.com/openstack/tripleo-heat-templates/blob/master/capabilities-map.yaml"&gt;capabilities
+map&lt;/a&gt;
+but it's external to the template themselves, needs to be updated
+manually and gets out of sync easily.&lt;/p&gt;
+&lt;p&gt;The sample environment generator to fix this has been out there for a
+year, and currently has two blockers. First, it needs a way to determine
+which parameters are private (that is, parameters that are expected to
+be passed in by another template and shouldn't be set by the user).&lt;/p&gt;
+&lt;p&gt;One way could be to use a naming convention, perhaps an underscore
+prefix similar to Python. Parameter groups cannot be used because of a
+historical limitation, there can only be one group (so you couldn't be
+both Private and Deprecated). Changing Heat with a new feature like
+Nested Groups or generic Parameter Tags could be an option. The
+advantage of the naming convention is that it doesn't require any change
+to Heat.&lt;/p&gt;
+&lt;p&gt;From the UI perspective, validating if an environment or template is
+redefining parameters already defined elsewhere also matters. Because if
+it has the same name, then it needs to be set up with the same value
+everywhere or it's uncertain what the final value will end up as.&lt;/p&gt;
+&lt;p&gt;I think the second issue was that the general environment description
+can only be a comment at the moment, there is no Heat parameter to do
+this. The Heat experts in the room seemed confident this is
+non-controversial as a feature and should be easy to get in.&lt;/p&gt;
+&lt;p&gt;Once the existing templates are updated to match the new format, the
+validation should be added to CI to make sure that any new patch with
+environments does include these parameters. Having &amp;quot;description&amp;quot; show up
+as an empty string when generating a new environment will make it more
+obvious that something can/should be there, while it's easy to forget
+about it with the current situation.&lt;/p&gt;
+&lt;p&gt;The agreement was:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Use underscores as a naming convention to start with&lt;/li&gt;
+&lt;li&gt;Start with a comment for the general description&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once we get the new Heat description attribute we can move things
+around. If parameter tags get accepted, likewise we can automate moving
+things around. Tags would also be useful to the UI, to determine what
+subset of relevant parameters to display to the user in smaller forms
+(easier to understand that one form with several dozens of fields
+showing up all at once). Tags, rather than parameter groups are required
+because of the aforementioned issue: it's already used for deprecation
+and a parameter can only have one group.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="trusts-and-federation"&gt;
+&lt;h2&gt;Trusts and federation&lt;/h2&gt;
+&lt;p&gt;This was a cross-project session together with Heat, Keystone and
+Mistral. A
+&amp;quot;&lt;a class="reference external" href="https://blogs.rdoproject.org/5858/role-delegation-in-keystone-trusts"&gt;Trust&lt;/a&gt;&amp;quot;
+lets you delegate or impersonate a user with a subset of their rights.
+From my experience in TripleO, this is particularly useful with long
+running Heat stacks as a authentication token expires after a few hours
+which means you lose the ability to do anything in the middle of an
+operation.&lt;/p&gt;
+&lt;p&gt;Trusts have been working very well for Heat since 2013. Before that they
+had to encrypt the user password in order to ask for a new token when
+needed, which all agreed was pretty horrible and not anything people
+want to go back to. Unfortunately with the federation model and using
+external Identity Providers, this is no longer possible. Trusts break,
+but some kind of delegation is still needed for Heat.&lt;/p&gt;
+&lt;p&gt;There were a lot of tangents about security issues (obviously!),
+revocation, expiration, role syncing. From what I understand Keystone
+currently validates Trusts to make sure the user still has the requested
+permissions (that the relevant role hasn't been removed in the
+meantime). There's a desire to have access to the entire role list,
+because the APIs currently don't let us check which role is necessary to
+perform a specific action. Additionally, when Mistral workflows launched
+from Heat get in, Mistral will create its own Trusts and Heat can't know
+what that will do. In the end you always kinda end up needing to do
+everything. Karbor is running into this as well.&lt;/p&gt;
+&lt;p&gt;No solution was discovered during the session, but I think all sides
+were happy enough that the problem and use cases have been clearly laid
+out and are now understood.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tripleo-ui"&gt;
+&lt;h2&gt;TripleO UI&lt;/h2&gt;
+&lt;p&gt;Some of the issues relevant to the UI were brought up in other sessions,
+like standardising the environment files. Other issues brought up were
+around plan management, for example why do we use the Mistral
+environment in addition to Swift? Historically it looks like it's
+because it was a nice drop-in replacement for the defunct TripleO API
+and offered a similar API. Although it won't have an API by default, the
+suggestion is to move to using a file to store the environment during
+Pike and have a consistent set of templates: this way all the
+information related to a deployment plan will live in the same place.
+This will help with exporting/importing plans, which itself will help
+with CLI/UI interoperability (for instance there are still some
+differences in how and when the Mistral environment is generated,
+depending on whether you deployed with the CLI or the UI).&lt;/p&gt;
+&lt;p&gt;A number of other issues were brought up around networking, custom
+roles, tracking deployment progress, and a great many other topics but I
+think the larger problems around plan management was the only expected
+to turn into a spec, now &lt;a class="reference external" href="https://review.openstack.org/#/c/438918/"&gt;proposed for
+review&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="i18n-and-release-models"&gt;
+&lt;h2&gt;I18n and release models&lt;/h2&gt;
+&lt;p&gt;After the UI session I left the TripleO room to attend a &lt;a class="reference external" href="https://etherpad.openstack.org/p/i18n-horizon-release-collaboration-session"&gt;cross-project
+session about i18n, horizon and release
+models&lt;/a&gt;.
+The &lt;a class="reference external" href="https://releases.openstack.org/reference/release_models.html"&gt;release
+model&lt;/a&gt;
+point is particularly relevant because the TripleO UI is a newly
+internationalised project as of Ocata and the first to be cycle-trailing
+(TripleO releases a couple of weeks after the main OpenStack release).&lt;/p&gt;
+&lt;p&gt;I'm glad I was able to attend this session. For one it was really nice
+to collaborate directly with the i18n and release management team, and
+catch up with a couple of Horizon people. For second it turns out
+tripleo-ui was &lt;em&gt;not&lt;/em&gt; properly documented as cycle-trailing (&lt;a class="reference external" href="https://review.openstack.org/#/c/438932/"&gt;fixed
+now!&lt;/a&gt;) and that led to
+other issues.&lt;/p&gt;
+&lt;p&gt;Having different release models is a source of headaches for the i18n
+community, already stretched thin. It means string freezes happen at
+different times, stable branches are cut at different points, which
+creates a lot of tracking work for the i18n PTL to figure which project
+is ready and do the required &lt;a class="reference external" href="https://docs.openstack.org/developer/i18n/release_management.html"&gt;manual
+work&lt;/a&gt;
+to update Zanata upon branching. One part of the solution is likely to
+figure out if we can script the manual parts of this workflow so that
+when the release patch (which creates the stable branch) is merged, the
+change is automatically reflected in Zanata.&lt;/p&gt;
+&lt;p&gt;For the non-technical aspects of the work (mainly keeping track of
+deadlines and string freezes) the decision was that if you want to be
+translated, then you need to respect the same deadlines than the
+cycle-with-milestones projects do on the &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html"&gt;main
+schedule&lt;/a&gt;, and if
+a project doesn't want to - if it doesn't respect the freezes or cut
+branches when expected, then they will be dropped from the i18n priority
+dashboard in Zanata. This was particularly relevant for Horizon plugins,
+as there's about a dozen of them now with various degrees of diligence
+when it comes to doing releases.&lt;/p&gt;
+&lt;p&gt;These expectations will be documented in a new governance tag, something
+like i18n:translated.&lt;/p&gt;
+&lt;p&gt;Obviously this would mean that cycle-trailing projects would likely
+never be able to get the tag. The work we depend on lands late and so we
+continue making changes up to two weeks after each of the documented
+deadlines. ianychoi, the i18n PTL seemed happy to take these projects
+under the i18n wing and do the manual work required, as long as there is
+an active &lt;a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n"&gt;i18n
+liaison&lt;/a&gt;
+for the project communicating with the i18n team to keep them informed
+about freezes and new branches. This seemed to work ok for us during
+Ocata so I'm hopeful we can keep that model. It's not entirely clear to
+me if this will also be documented/included in the governance tag so I
+look forward to reading the spec once it is proposed! :)&lt;/p&gt;
+&lt;p&gt;In the case of tripleo-ui we're not a priority project for translations
+nor looking to be, but we still rely on the i18n PTL to create Zanata
+branches and merge translations for us, and would like to continue with
+being able to translate stable branches as needed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ci-q-a"&gt;
+&lt;h2&gt;CI Q&amp;amp;A&lt;/h2&gt;
+&lt;p&gt;The CI Q&amp;amp;A session on Friday morning was amazingly useful and
+unanimously agreed it should be moved to the documentation (&lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1669320"&gt;not done
+yet&lt;/a&gt;). If you've
+ever scratched your head about something related to TripleO CI, &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-ci-qa"&gt;have a
+look at the
+etherpad&lt;/a&gt;!&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Thu, 02 Mar 2017 09:55:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2017-03-02:/blog/2017/03/openstack-pike-ptg-tripleo-tripleo-ui/</guid><category>Tech</category><category>events</category><category>openstack</category><category>tripleo</category></item><item><title>OpenStack Pike PTG: OpenStack Client | Tips and background for interested contributors</title><link>https://www.jpichon.net/blog/2017/02/pike-ptg-openstack-client/</link><description>&lt;p&gt;Last week I went off to Atlanta for the first &lt;a class="reference external" href="http://www.openstack.org/ptg"&gt;OpenStack Project Teams
+Gathering&lt;/a&gt;, for a productive week
+discussing all sort of issues and cross-projects concerns with fellow
+OpenStack contributors.&lt;/p&gt;
+&lt;p&gt;For the first two days, I decided to do something you're not supposed to
+and attend the OpenStack Client (OSC) sessions despite not being a
+contributor yet. From my perspective it was incredibly helpful, as I got
+to hear about technical choices, historical decisions, current pain
+points and generally increase my understanding of the context around the
+project. I expect this will come very handy as I become more involved
+and thought I'd document some of this here, or more accurately have a
+giant braindump I can reference in the future. These are the things that
+were of interest to me during the meetings and is not meant to be an
+authoritative representation of everything that was discussed or other
+participants' thoughts and decisions.&lt;/p&gt;
+&lt;p&gt;The etherpad for these sessions lives at
+&lt;a class="reference external" href="https://etherpad.openstack.org/p/osc-ptg-pike"&gt;https://etherpad.openstack.org/p/osc-ptg-pike&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="section" id="issue-microversions"&gt;
+&lt;h2&gt;Issue: Microversions&lt;/h2&gt;
+&lt;p&gt;Microversions are a big topic that I think came up in multiple rooms.
+From the client's perspective, a huge problem is that most of the
+microversion stuff is hidden within the various clients and little of it
+surfaces back to the user.&lt;/p&gt;
+&lt;p&gt;There's a need for better negotiation, for the client to determine what
+is available. The path forward seems to be for the client to do
+auto-discovery of the latest available version.&lt;/p&gt;
+&lt;p&gt;The issue was mainly discussed while Cinder folks were around, so a lot
+of the discussion centred around the project. For example they do
+microversions like Nova, where everything is in the headers. OSC will be
+relying on what's available in cinderclient itself and is unlikely to
+ever develop more capabilities than already exist there. However in the
+cinder case, microversions are only available from v3 and that hasn't
+merged in OSC yet.&lt;/p&gt;
+&lt;p&gt;Other problems with microversions: how to keep track of what's available
+in each version? The plan is to use &amp;quot;latest&amp;quot; and cap specific commands
+if they are known to break. However there will still be issues with the
+interactive mode, as the conversation isn't reinitialised with each
+call.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="issue-listing-all-the-commands-vs-only-available-ones"&gt;
+&lt;h2&gt;Issue: Listing all the commands vs only available ones&lt;/h2&gt;
+&lt;p&gt;This appears to be a topic where the answer is &amp;quot;we gave up a long time
+ago,&amp;quot; for technical and other reasons. Many service endpoints don't even
+let you get to the version without being authenticated.&lt;/p&gt;
+&lt;p&gt;But even without that, there is a reluctance with having to do a server
+round-trip just to display the help.&lt;/p&gt;
+&lt;p&gt;It's low priority for OSC, although it may be more important for other
+projects like Horizon.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="terminology-cinder-manage-unmanage-vs-adopt-abandon"&gt;
+&lt;h2&gt;Terminology (Cinder): manage/unmanage vs adopt/abandon&lt;/h2&gt;
+&lt;p&gt;One of the of specific issues that was brought up and resolved was about
+the terminology used by a couple of Cinder commands.&lt;/p&gt;
+&lt;p&gt;UX studies have been done on the client and the feedback is clear that
+what we currently have is not obvious. In the case of &amp;quot;manage&amp;quot; it is
+probably too generic, and not particularly a standard term that every
+Storage expert would instantly recognise (outside of Cinder).&lt;/p&gt;
+&lt;p&gt;For a similar use case, both Heat and Ironic are using the
+&amp;quot;adopt&amp;quot;/&amp;quot;abandon&amp;quot; terminology therefore an agreement was reached to use
+it here as well. It's up to the Cinder folks to decide if they wish to
+do the same deprecation or not in their own client.&lt;/p&gt;
+&lt;p&gt;To help people familiar with the existing command to find the new,
+clearer name, the usual way to do it is to include the old name in the
+help string so that users can grep for it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="terminology-cinder-consistency-groups-deprecation-policy"&gt;
+&lt;h2&gt;Terminology (Cinder): Consistency groups &amp;amp; deprecation policy&lt;/h2&gt;
+&lt;p&gt;Consistency group is being replaced by volume_group. If the command is
+mostly similar from the user perspective the recommendation is to simply
+alias it. Both commands should be kept for a while, then the old one can
+be deprecated. As much as possible, don't break scripts.&lt;/p&gt;
+&lt;p&gt;The logic can also be hidden within the client, like it is for Neutron
+and nova-network: many commands look the same from the user's
+perspective, the branching to use either as required is done internally.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="issue-noauth-requirements"&gt;
+&lt;h2&gt;Issue: NoAuth requirements&lt;/h2&gt;
+&lt;p&gt;The requirement for a --no-auth option came up, which doesn't seem
+currently possible. It's important for projects like Ironic that support
+a stand-alone mode where there is no Keystone.&lt;/p&gt;
+&lt;p&gt;There might be a &amp;quot;Token 'off' type&amp;quot; already available in some cases,
+though it still requires other &amp;quot;unnecessary&amp;quot; parameters like auth_url.&lt;/p&gt;
+&lt;p&gt;OSC doesn't currently support that, though it may be already in the new
+layer that Monty is creating.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-new-layer"&gt;
+&lt;h2&gt;A new layer&lt;/h2&gt;
+&lt;p&gt;That new layer came up a few times. I think this is
+&lt;a class="reference external" href="https://docs.openstack.org/infra/shade/index.html"&gt;shade&lt;/a&gt;?
+Apparently the (long term) end goal is to destroy the Python libraries
+and replace them with straight REST calls aka using requests for
+everything, to get rid of some of the issues with the existing Python
+libraries.&lt;/p&gt;
+&lt;p&gt;Some examples of the issues:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The Neutron client has a strange architecture and was never brought
+into OSC because of this.&lt;/li&gt;
+&lt;li&gt;The Glance client has unique dependencies that no one requires, like
+openssl which make it hard to install on Windows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There were some discussions around why this new layer is not using the
+SDK. This may be because the SDK has a big ORM data layer, which doesn't
+fit with the &amp;quot;simple&amp;quot; strategy.&lt;/p&gt;
+&lt;p&gt;So the goal becomes building a thin REST layer on of the REST APIs,
+which of course has its own set of concerns e.g. how to keep track of
+what's available in every release, with the microversion stuff.&lt;/p&gt;
+&lt;p&gt;How about OSC using shade? It does seem to have filled a need and gained
+traction. However it is opiniated, there's duplication on both sides. It
+is both slightly higher-level and lower-level than needed. I didn't get
+the impression it's on the cards at this point.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="new-meta-package"&gt;
+&lt;h2&gt;New meta-package&lt;/h2&gt;
+&lt;p&gt;There is a new meta-package,
+&lt;a class="reference external" href="https://github.com/openstack/openstackclient"&gt;openstackclient&lt;/a&gt; (as
+opposed to python-openstackclient) to install the client together with
+all the plugins. A downside of the plugin architecture that some people
+don't like is that it requires multiple steps to get access to
+everything. The meta-package would resolve that.&lt;/p&gt;
+&lt;p&gt;This project is basically a requirement file, with some docs and a few
+tests (more may migrate there). It is ready for a &amp;quot;0.1&amp;quot; release,
+although the recommendation from the release team is to keep the
+versioning in sync with the main OSC.&lt;/p&gt;
+&lt;p&gt;I was wondering why python-tripleoclient wasn't in there yet, it turns
+out for now only projects that are in the &lt;a class="reference external" href="https://github.com/openstack/requirements/"&gt;global
+requirements&lt;/a&gt; are
+included. I got distracted with wanting to fix this before remembering
+that due to A Series Of Unfortunate Dependencies, installing the TripleO
+client also brings in the Mistral server... and cutting that chain is
+not as straightforward as I'd hoped (now documented in a &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1666268"&gt;Launchpad
+bug&lt;/a&gt;). Though if the
+other clients are there with their current set of issues, maybe it'd be
+ok to add it anyway.&lt;/p&gt;
+&lt;p&gt;From now on, projects should add themselves to the meta-package when
+creating a new plugin - this will be added to the
+&lt;a class="reference external" href="https://docs.openstack.org/developer/python-openstackclient/plugins.html#checklist-for-adding-new-openstack-plugins"&gt;checklist&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Another note, for this to work individual clients should not depend on
+OSC itself. They shouldn't anyway, because it brings in too many things.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="deprecating-all-the-clients"&gt;
+&lt;h2&gt;Deprecating ALL the clients&lt;/h2&gt;
+&lt;p&gt;OSC is meant to deprecate all of the existing clients. However there is
+no timeline, this is specific to each project. At the moment, Cinder and
+Neutron are getting up to speed but it's up to them to decide when to
+get rid of the old client - if at all.&lt;/p&gt;
+&lt;p&gt;In the case of Keystone, it took 2 releases to get deprecated, during
+which it established a very strict security fixes-only policy - even
+typo fixes were refused!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="migration-path-for-users"&gt;
+&lt;h2&gt;Migration path for users&lt;/h2&gt;
+&lt;p&gt;There's a need for docs to help users familiar with the old clients to
+learn the new commands. stevemar already documented most of them,
+amotoki provided a mapping for Neutron commands as well.&lt;/p&gt;
+&lt;p&gt;Since the work is already done, these will be added to the docs. In
+theory it shouldn't get too stale since no new commands are to be added
+to the old CLIs (?). The mapping should start with the old commands
+first, as this how people will be searching.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cliff-topics-entry-point-freedom-adding-to-existing-commands"&gt;
+&lt;h2&gt;Cliff topics: entry point freedom, adding to existing commands&lt;/h2&gt;
+&lt;p&gt;dhellman dropped by on Tuesday morning to address Cliff-specific issues
+and feature requests. I missed the beginning but learnt a bunch of
+interesting things by listening in. Cliff is what gives us the base
+class structure and maps entry points.&lt;/p&gt;
+&lt;p&gt;Some security issues were brought up, and so was the possibility for
+users to lock down namespaces and give them some control over what gets
+added. It would be nice if there was a tool to check which entry point
+was hooked from where. Cliff could be modified to include additional
+information on where the command comes from, and an independent tool
+could be written up that uses that. I don't think a bug's open for it
+yet, though the goal seems to get it in for Pike.&lt;/p&gt;
+&lt;p&gt;Another feature request related to Cliff was to add to existing
+commands, which comes up a lot especially for quotas. &amp;quot;Purge&amp;quot; may be
+another candidate.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="pike-community-goal-python-3"&gt;
+&lt;h2&gt;Pike community goal: Python 3&lt;/h2&gt;
+&lt;p&gt;Python 3 should be supported by the client already. The only thing left
+to do is to modify devstack to load OSC with Python 3 by default.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="blueprints-in-osc"&gt;
+&lt;h2&gt;Blueprints in OSC&lt;/h2&gt;
+&lt;p&gt;In passing I learnt that OSC doesn't really use blueprints nor want to -
+these are used for implementing Neutron commands at the moment, but the
+team would rather it doesn't get used for anything else.&lt;/p&gt;
+&lt;p&gt;If someone wishes to implement a feature, better to open it as a bug
+instead so that it doesn't get lost.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="osc-lib-and-feature-branches"&gt;
+&lt;h2&gt;osc_lib and feature branches&lt;/h2&gt;
+&lt;p&gt;It took a long time to implement osc_lib. What to do next time big
+changes are expected, e.g. removing things for the next big version?&lt;/p&gt;
+&lt;p&gt;Using feature branches is generally not recommended as deleting them and
+integrating them at the end requires a lot of effort.&lt;/p&gt;
+&lt;p&gt;In this case since removals will break things, working with infra to
+create a feature branch seems to make sense.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="glance-v2"&gt;
+&lt;h2&gt;Glance v2&lt;/h2&gt;
+&lt;p&gt;Old operations like create, etc are supported but the new commands
+aren't (mainly around metadata and namespaces). We spent a bit of time
+trying to figure out what are metadata definitions (it's related to
+Glare, pre-Big Tent, and expanded a bit the scope of Glance. They could
+be used as artifacts for Nova, hardware affinity, identifying what flags
+actually mean). It's exposed through Horizon currently.&lt;/p&gt;
+&lt;p&gt;Current verdict: they won't be implemented till someone asks for them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="adding-your-project-to-the-client-creating-your-own-plugin"&gt;
+&lt;h2&gt;Adding your project to the client, creating your own plugin&lt;/h2&gt;
+&lt;p&gt;Finally, a couple of PTLs dropped by to ask for advice on how to get
+started creating their client (and avoid folks trying to do it in-tree).
+The most important and difficult part seems to be naming resources.
+There is no process to determine terminology, but try to keep it
+consistent with the existing commands (verbs are easier than nouns, e.g.
+new thing = create).&lt;/p&gt;
+&lt;p&gt;There's no good answer for quotas yet, though this may change. For now,
+taking a new 'load-balancer' resource as an example, this would look
+like:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ openstack load-balancer quotas
+&lt;/pre&gt;
+&lt;p&gt;In the future, we may get something similar to:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ openstack quotas --load-balancer
+&lt;/pre&gt;
+&lt;p&gt;though the extension to do this doesn't exist yet.&lt;/p&gt;
+&lt;p&gt;There is no OSC convention for cascade-delete (e.g. adding a flag). A
+purge command is underway. It would delete all the resources under a
+project.&lt;/p&gt;
+&lt;p&gt;With regard to version/microversions, give a way for the client to
+detect what it needs to.&lt;/p&gt;
+&lt;p&gt;Good examples to learn from: Identity v3 is cleanly done. Volume v2 is
+very recent and includes a lot of lessons learnt.&lt;/p&gt;
+&lt;p&gt;On the other hand Object may not be such a good example, it's a bit
+different and taken directly from the Swift CLI.&lt;/p&gt;
+&lt;p&gt;I think the &lt;a class="reference external" href="https://docs.openstack.org/developer/python-openstackclient/plugins.html"&gt;documentation for writing new plugins is over
+there&lt;/a&gt;.
+Most OSC developers and devs from related libraries hang out on
+#openstack-sdks. It's a good place to ask any client-related question!&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Tue, 28 Feb 2017 15:45:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2017-02-28:/blog/2017/02/pike-ptg-openstack-client/</guid><category>Tech</category><category>events</category><category>openstack</category></item></channel></rss>

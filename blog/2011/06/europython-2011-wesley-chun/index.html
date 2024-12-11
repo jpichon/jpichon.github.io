@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>EuroPython 2011: Wesley Chun on Python 3, Python 103 | Incomplete notes on interesting talks</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Python 3: The Next Generation Link: Talk description and video Python was created in 1991 -- it's 20 years old now! Lots of time for cruft. Python..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/06/europython-2011-wesley-chun/" rel="bookmark"
+           title="Permalink to EuroPython 2011: Wesley Chun on Python 3, Python 103 | Incomplete notes on interesting talks">EuroPython 2011: Wesley Chun on Python 3, Python 103  | Incomplete notes on interesting talks</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-06-27T15:09:00+01:00">
+                Published: Mon 27 June 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <div class="section" id="python-3-the-next-generation">
+<h2>Python 3: The Next Generation</h2>
+<p>Link: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/python-3-the-next-generation-is-here-already">Talk description and
+video</a></p>
+<p>Python was created in 1991 -- it's 20 years old now! Lots of time for
+cruft.</p>
+<p>Python 3 is backwards incompatible. Stuff will break. Hopefully the
+migration will not be grudging, the main thing for most programs will
+likely be unicode strings.</p>
+<p>In 1997 Guido wrote &quot;<a class="reference external" href="http://www.python.org/doc/essays/ppt/regrets/PythonRegrets.pdf">Python
+regrets</a>&quot;
+which later on and with other things became the basis for Python 3000.</p>
+<p>A few of the changes (note from me: they were not all mentioned and I
+didn't take note of everything either!):</p>
+<ul class="simple">
+<li>The print statement becomes the print() function.</li>
+<li>Numbers, divisions: division will now be true division by default
+(1/2 == 0.5 as opposed to the current 1/2 == 0 -- better to teach,
+especially young ones)</li>
+<li>Dictionaries will use itertools by default to save memory</li>
+<li>Likewise for built-ins like map/filter, many changes to have better
+speed and/or memory efficiency</li>
+</ul>
+<p>With regard to migrating:</p>
+<ul class="simple">
+<li>Wait for your dependencies to port</li>
+<li>Have a good test suite</li>
+<li>Move your code to at least 2.6, which is when Python 3 functionality
+started to be backported</li>
+<li>The <strong>-3</strong> switch tells you about incompatibilities</li>
+<li>The 2to3 tool offers diffs on what should be ported</li>
+</ul>
+<p>Be careful with Python 3 books, if they cover 3.0 they are already
+obsolete. Lots of changes!</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="python-103">
+<h2>Python 103</h2>
+<p>Link: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/python-103-mmmm-understanding-pythons-memory-model-mutability-and-methods">Talk description and
+video</a></p>
+<p>This talks aims to fill in the gaps in the knowledge of
+not-quite-beginners-anymore. We'll have a look at: the memory model,
+mutability, and methods.</p>
+<div class="section" id="special-methods">
+<h3>Special methods</h3>
+<p>Mutable objects are passed by reference, immutable objects (like a
+string or number) are passed by value.</p>
+<pre class="literal-block">
+class Stuff:
+&nbsp;&nbsp;&nbsp; version = 1.0
+
+john = Stuff()
+</pre>
+<p>As a shortcut you can call john.version rather than Stuff.version.
+However if you assign john.version = &quot;blah&quot;, you're hiding access to the
+class 'version' attribute, and only changing this attribute for the john
+instance -- basically creating a new local variable.</p>
+<p>To initialise, if there's one parent you should do
+Parent.__init__(self). If you're lower down, try to use super() for
+<a class="reference external" href="http://www.python.org/download/releases/2.3/mro/">MRO</a> and stuff.
+Extra reading: <a class="reference external" href="http://rhettinger.wordpress.com/2011/05/26/super-considered-super/">Python's super() considered
+super!</a>
+and <a class="reference external" href="http://fuhm.net/super-harmful/">Python's Super Considered
+Harmful</a>.</p>
+<p>You can make your own classes act like Python types, by overloading
+existing operators and existing built-in functions. There are loads of
+them! __init__, __new__ (for immutable objects), __len__,
+__eq__, __getslice__, __getitem__, __contains__ (for the
+'in' keyword), ...</p>
+</div>
+<div class="section" id="how-to-not-use-the-stack-performance">
+<h3>How to (not) use the stack - performance</h3>
+<p>The <a class="reference external" href="http://docs.python.org/library/timeit.html">**timeit** module</a>
+will run a problem a million times and help find which implementation is
+faster.</p>
+<p>For instance:</p>
+<div class="line-block">
+<div class="line">1. while i &lt; len(x)</div>
+<div class="line">2. strlen = len(x); while i &lt; strlen</div>
+</div>
+<p>The second one is faster, that's the penalty of a stackframe: the len()
+value is not cached because it could change! (With overloading, etc.)
+With the 2nd version we removed a function call.</p>
+</div>
+<div class="section" id="objects-and-references">
+<h3>Objects and references</h3>
+<p>All Python objects have:</p>
+<ul class="simple">
+<li>An identity (similar to the memory address)</li>
+<li>A type</li>
+<li>A value (only that one can change, sort of)</li>
+</ul>
+<p>References are also called aliases. There is a reference count to track
+the total number. Variables do not hold data, they point to objects. For
+instance if 2 variables are assigned 1, they would both be pointing to
+the same (immutable) Integer object representing 1.</p>
+</div>
+<div class="section" id="types-of-standard-types">
+<h3>3 types of standard types</h3>
+<p>His classification, nothing official.</p>
+<ul class="simple">
+<li>Storage: Linear/Scalar vs. Container</li>
+<li>Update: Mutable vs. Immutable</li>
+<li>Access: Direct (number) vs. Sequence (string, list) vs. Mapping
+(dictionary)</li>
+</ul>
+<p>&quot;Interned&quot; numbers are a list of integers in range(-5, 257): these are
+special numbers that are never deallocated.</p>
+<p>&quot;is&quot; is a keyword to assess if 2 variables point to the same object.</p>
+<p>Beware shallow copy vs. deep copy when you have a list of lists.</p>
+</div>
+<div class="section" id="memory-allocation">
+<h3>Memory allocation</h3>
+<p><strong>Growing memory</strong>: When you call .append() and the list is full, 4 free
+units are malloc'ed, then double that, then a bit less: usually about
+12.5% additional free slots are created at once in advance. What this
+means is that you should try not to have a lot of short lists.</p>
+<p><strong>Shrinking memory</strong> is a fairly inexpensive operation.</p>
+<p>Inserting in the middle of a list creates a lot of shifting. <strong>Deque</strong>
+is better for push() and pop(), though less good for access.</p>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

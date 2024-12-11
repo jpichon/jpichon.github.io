@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Adventures with Steam on Linux | Today: Mark of the Ninja doesn't start</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="I've been getting back into PC gaming for the last couple of months, and that has involved a lot of checking out what Steam on Linux looks like..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2014/05/steam-on-linux/" rel="bookmark"
+           title="Permalink to Adventures with Steam on Linux | Today: Mark of the Ninja doesn't start">Adventures with Steam on Linux  | Today: Mark of the Ninja doesn't start</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-05-19T20:09:00+01:00">
+                Published: Mon 19 May 2014
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/games/">games</a> <a href="https://www.jpichon.net/tag/linux/">linux</a> </p>
+</footer><!-- /.post-info -->      <p>I've been getting back into PC gaming for the last couple of months, and
+that has involved a lot of checking out what Steam on Linux looks like
+nowadays (i.e. playing lots of games). Most of the time everything works
+just fine and smoothly, but sometimes there are hiccups and yesterday I
+was motivated to learn how to debug them. Our story begins: <a class="reference external" href="http://store.steampowered.com/app/214560/">*Mark of
+the Ninja*</a> wouldn't start
+when clicking on the &quot;Play&quot; button from within the Steam client.</p>
+<p>For context I'm running Steam on Fedora 19, 64 bits. I have a separate
+&quot;Library&quot; folder on another partition on which I install the games
+instead of Steam's default location in <em>~/.local/share</em>.</p>
+<div class="section" id="running-the-game-from-the-command-line">
+<h2>Running the game from the command-line</h2>
+<p>Launching from the Steam client gives me zero information, just a brief
+black screen, so I thought I would see what happens when attempting to
+launch the game from the command-line.</p>
+<pre class="literal-block">
+jpichon&#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ./ninja.sh
+dlopen failed trying to load:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.sowith error:
+libtier0_s.so: cannot open shared object file: No such file or directory
+[S_API FAIL] SteamAPI_Init() failed; Sys_LoadModule failed to load: /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+[S_API FAIL] SteamAPI_Init() failed; unable to locate a running instance of Steam, or a local steamclient.dll.
+./ninja.sh: line 3:&nbsp; 6477 Segmentation fault&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (core dumped) ./ninja-bin32
+</pre>
+<p>Note that the Steam client must be started in order to even get that
+far. That library does exist at that location, let's see what's
+preventing it from being loaded:</p>
+<pre class="literal-block">
+$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+&nbsp;&nbsp;&nbsp; linux-gate.so.1 =&gt;&nbsp; (0xf77cb000)
+&nbsp;&nbsp;&nbsp; libtier0_s.so =&gt; not found
+&nbsp;&nbsp;&nbsp; libvstdlib_s.so =&gt; not found
+&nbsp;&nbsp;&nbsp; librt.so.1 =&gt; /lib/librt.so.1 (0xf67f4000)
+&nbsp;&nbsp;&nbsp; libX11.so.6 =&gt; /lib/libX11.so.6 (0xf66ba000)
+&nbsp;&nbsp;&nbsp; libusb-1.0.so.0 =&gt; /lib/libusb-1.0.so.0 (0xf66a1000)
+&nbsp;&nbsp;&nbsp; libopenal.so.1 =&gt; /lib/libopenal.so.1 (0xf664a000)
+&nbsp;&nbsp;&nbsp; libpulse.so.0 =&gt; /lib/libpulse.so.0 (0xf65fa000)
+&nbsp;&nbsp;&nbsp; libgobject-2.0.so.0 =&gt; /lib/libgobject-2.0.so.0 (0xf65aa000)
+&nbsp;&nbsp;&nbsp; libglib-2.0.so.0 =&gt; /lib/libglib-2.0.so.0 (0xf647b000)
+&nbsp;&nbsp;&nbsp; libdbus-glib-1.so.2 =&gt; not found
+&nbsp;&nbsp;&nbsp; libnm-glib.so.4 =&gt; not found
+&nbsp;&nbsp;&nbsp; libnm-util.so.2 =&gt; not found
+&nbsp;&nbsp;&nbsp; libudev.so.0 =&gt; not found
+&nbsp;&nbsp;&nbsp; libm.so.6 =&gt; /lib/libm.so.6 (0xf6437000)
+&nbsp;&nbsp;&nbsp; libdl.so.2 =&gt; /lib/libdl.so.2 (0xf6432000)
+&nbsp;&nbsp;&nbsp; ...
+</pre>
+<p>A number of these libraries already exist in Steam's <em>ubuntu12_32</em>
+directory. Let's add it to our library path.</p>
+<pre class="literal-block">
+$ export LD_LIBRARY_PATH=/home/jpichon/.local/share/Steam/ubuntu12_32:/home/jpichon/.local/share/Steam/linux32
+jpichon&#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+&nbsp;&nbsp;&nbsp; linux-gate.so.1 =&gt;&nbsp; (0xf7749000)
+&nbsp;&nbsp;&nbsp; libtier0_s.so =&gt; /home/jpichon/.local/share/Steam/ubuntu12_32/libtier0_s.so (0xf676b000)
+&nbsp;&nbsp;&nbsp; libvstdlib_s.so =&gt; /home/jpichon/.local/share/Steam/ubuntu12_32/libvstdlib_s.so (0xf6727000)
+&nbsp;&nbsp;&nbsp; ...
+&nbsp;&nbsp;&nbsp; libdbus-glib-1.so.2 =&gt; not found
+&nbsp;&nbsp;&nbsp; libnm-glib.so.4 =&gt; not found
+&nbsp;&nbsp;&nbsp; libnm-util.so.2 =&gt; not found
+&nbsp;&nbsp;&nbsp; libudev.so.0 =&gt; not found
+</pre>
+<p>Yup, that does seem to help. Let's add the rest:</p>
+<pre class="literal-block">
+$ export LD_LIBRARY_PATH=/home/jpichon/.local/share/Steam/ubuntu12_32:/home/jpichon/.local/share/Steam/linux32:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/usr/lib:/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/lib/i386-linux-gnu
+$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so | grep not
+$
+</pre>
+<p>Excellent! Let's see if the game can run from the CLI now:</p>
+<pre class="literal-block">
+$ ./ninja-bin32
+[S_API FAIL] SteamAPI_Init() failed; no appID found.
+Either launch the game from Steam, or put the file steam_appid.txt containing the correct appID in your game folder.
+Segmentation fault (core dumped)
+</pre>
+</div>
+<div class="section" id="how-to-find-a-steam-appid">
+<h2>How to find a Steam appID?</h2>
+<p>That one's <a class="reference external" href="http://gaming.stackexchange.com/questions/149837/how-do-i-find-the-id-for-a-game-on-steam">easy to find a solution
+for</a>.
+One can either look at the ID in the store URL as linked earlier or
+check out <a class="reference external" href="http://steamdb.info">steamdb</a>. Let's create a file with
+the correct ID in that directory and try again.</p>
+<pre class="literal-block">
+$ emacs -nw steam_appid.txt
+jpichon&#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ./ninja-bin32
+Setting breakpad minidump AppID = 214560
+Steam_SetMinidumpSteamID:&nbsp; Caching Steam ID:&nbsp; 76561198074768941 [API loaded no]
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+</pre>
+</div>
+<div class="section" id="missing-required-opengl-extensions">
+<h2>Missing required OpenGL extensions</h2>
+<p>At first I thought that was it - my laptop simply wasn't powerful enough
+to play the game. But fear not, <a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=1324172#p1324172">ArchLinux came to the
+rescue</a>
+and thanks to them I learnt about the handy <em>-enablelog</em> flag for the
+game.</p>
+<pre class="literal-block">
+$ ./ninja-bin32 -enablelog
+...
+$ less ~/.klei/ninja/log/rendering.log
+...
+[16:34.09] (4144580416) EXT_texture_compression_s3tc required
+</pre>
+<p>The solution is to install the <strong>libtxc_dxtn</strong> package (available in
+<em>rpmfusion-free</em>) and/or set <em>force_s3tc_enable=true</em> as an
+environment variable (discovered in a cached version of the <a class="reference external" href="http://forums.kleientertainment.com/topic/27805-cant-run-motn-64-bits-archlinux/">developer's
+official
+forum</a>,
+as it's currently showing blank pages for me).</p>
+<p>I think I had to restart X to make sure the new library was picked up
+correctly, and then success!</p>
+<p>Additional notes: The game still requires the Steam client to be
+running, and the Steam overlay won't work. However your Steam status
+will be correctly shown as in-game and the time, etc, should update
+correctly.</p>
+</div>
+<div class="section" id="starting-the-game-from-steam">
+<h2>Starting the game from Steam</h2>
+<p>Unfortunately, starting the game from Steam still didn't work, and I
+also happen to quite like the overlay especially for games that don't
+react well to Alt-tabbing. I modified the <em>ninja.sh</em> script to add the
+new paths and environment variables, with no luck.</p>
+<p><strong>To help with troubleshooting:</strong> right-click on the game name then go
+to Properties, there is a &quot;Set launch options&quot; button. There we can add
+the friendly <em>-enablelog</em> flag discovered earlier. Trying and failing to
+launch the game again gives us some helpful logs in the same location as
+before in <em>~/.klei</em>.</p>
+<pre class="literal-block">
+crash.log:
+[17:25.42] (4144023360) Failed to CreateDevice
+[17:25.42] (4144023360) KGraphics failed to initialize.
+
+rendering.log:
+[17:25.42] (4144023360) EXT_texture_compression_s3tc required
+</pre>
+<p>Sadly, the same problem as before - it turns out <em>ninja.sh</em> is likely
+not used at all when launching from Steam so the extra environment
+variables are not being picked up.</p>
+<p>If Steam isn't using <em>ninja.sh</em>, how can I find out what it is using and
+if I can change it?</p>
+<p>In the end, installing <strong>libtxc_dxtn.i686</strong> (in parallel to the
+.x86_64 version) resolved the problem. I'm not sure why the game
+insists on using 32 bits libraries when articles over the web make it
+clear it supports 64 bits, but either way that did the trick and the
+game now behaves correctly like any other Steam game.</p>
+<p>I'm still somewhat unhappy about that last part because it was more
+guesswork than debugging, and I don't feel equipped to properly gather
+information next time a similar issue occurs. How can I know which
+binary / path / file Steam is trying to launch and with what flags?</p>
+<p>Hopefully while I go on to continue my Steam journey, this will have
+been helpful to someone else. Happy gaming!</p>
+</div>
+<div class="section" id="bonus-track-the-game-is-sloooow">
+<h2>Bonus track: the game is sloooow</h2>
+<p>After all this, it turns out my laptop is indeed a bit underpowered to
+play this particular game. Deactivating blur, bloom and displacement in
+the options helped, and so did greatly lowering the resolution (windowed
+mode would help too but it became pretty much unreadable to me then, so
+I favoured the fullscreen 640x480 instead. Your tolerance levels may
+vary!)</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

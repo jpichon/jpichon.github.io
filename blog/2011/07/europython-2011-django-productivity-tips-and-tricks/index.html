@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>EuroPython 2011: Simone Federici on Django Productivity Tips and Tricks</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Links: Talk description, video and slides Know the environment Use Linux with the "Terminator" shell. Use a version control system. Use..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/07/europython-2011-django-productivity-tips-and-tricks/" rel="bookmark"
+           title="Permalink to EuroPython 2011: Simone Federici on Django Productivity Tips and Tricks">EuroPython 2011: Simone Federici on Django Productivity Tips and Tricks</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-07-05T19:40:00+01:00">
+                Published: Tue 05 July 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>Links: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/django-productivity-tips-and-tricks">Talk description, video and
+slides</a></p>
+<hr class="docutils" />
+<div class="section" id="know-the-environment">
+<h2>Know the environment</h2>
+<p>Use Linux with the <a class="reference external" href="http://software.jessies.org/terminator/">&quot;Terminator&quot;
+shell</a>.</p>
+<p>Use a version control system.</p>
+<p>Use <a class="reference external" href="http://pypi.python.org/pypi/virtualenv/">virtualenv</a>, for
+managing different versions of Python and dependencies, e.g.</p>
+<pre class="literal-block">
+virtualenv path --python=python2.7 --no-sites-packages
+system libs: ./configure --prefix=envpath ; export LD_LIBRARY_PATH=envpath/lib
+</pre>
+<p>Use <a class="reference external" href="http://pypi.python.org/pypi/yolk/">yolk</a>, handy tool to query
+pypi and status of pypi installed packages</p>
+<pre class="literal-block">
+yolk -l (to see installed packages)
+yolk -U (to see if there are updates on pypi)
+yolk -a
+</pre>
+<p>Use the <a class="reference external" href="https://code.djangoproject.com/browser/django/trunk/extras/django_bash_completion">bash autocomplete
+script</a>.</p>
+<p>Use djangodevtools
+(<a class="reference external" href="http://pypi.python.org/pypi/djangodevtools/">PyPi</a>/<a class="reference external" href="http://www.os4d.org/djangodevtools">site with
+description of the new
+commands</a>), for lots of useful
+things such as adding test coverage (./manage.py cover test myapp).</p>
+</div>
+<div class="section" id="continuous-integration">
+<h2>Continuous integration</h2>
+<p>Use <a class="reference external" href="http://trac.buildbot.net/">Buildbot</a> and
+<a class="reference external" href="http://code.google.com/p/django-buildbot">Django-Buildbot</a> (note:
+there was a configuration example on the speaker slides).</p>
+<p>In settings.py:</p>
+<pre class="literal-block">
+try:
+&nbsp;&nbsp;&nbsp; from setting_local import *
+</pre>
+<p>setting_local.py shouldn't be shared or checked in.</p>
+<p>Thanks to <strong>alias</strong>, from djangodevtools, you can simply create commands
+to do whatever you want, e.g. clean up rabbit queues. The commands are
+stored in a manage.cfg file that is shared.</p>
+<p>uWSGI is an application server with many options. --auto-snapshot sounds
+quite interesting. It supports clustering. It'll be in the official
+Django deployment documentation from the next release (ticket 16057).</p>
+</div>
+<div class="section" id="coding">
+<h2>Coding</h2>
+<p>get_profile() tends to be a problem. It's possible to monkey patch the
+User.get_profile() method (to make sure a new profile is created if it
+doesn't exist) but you have to be careful where it's loaded. It's also
+possible to use a Meta proxy together with a new middleware (set up
+after the authentication middleware)</p>
+<p>Django model form factory (django.forms.models.modelform_factory)
+sounds interesting to create forms more quickly.</p>
+</div>
+<div class="section" id="uwsgi">
+<h2>uWSGI</h2>
+<p>There was an on-the-fly short talk on uWSGI after the talk, by someone
+whose name I didn't pick up. It can talk to many protocols, it has lots
+of plugins so you can only use what you need. It's not the fastest but
+speed isn't the main factor that should make you decide to use it.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

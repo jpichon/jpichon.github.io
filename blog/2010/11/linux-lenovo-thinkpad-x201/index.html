@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Linux on the Lenovo ThinkPad X201</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="As anyone who's been within hearing range can tell you, I've acquired a new laptop recently that I've grown quite fond of. Here's my experience..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/11/linux-lenovo-thinkpad-x201/" rel="bookmark"
+           title="Permalink to Linux on the Lenovo ThinkPad X201">Linux on the Lenovo ThinkPad X201</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-11-14T21:17:00+00:00">
+                Published: Sun 14 November 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/linux/">linux</a> </p>
+</footer><!-- /.post-info -->      <p>As anyone who's been within hearing range can tell you, I've acquired a
+new laptop recently that I've grown quite fond of. Here's my experience
+getting various Linux distributions working on it, your mileage may vary
+(e.g. my experience with Debian was <a class="reference external" href="http://www.nico.schottelius.org/blog/lenovo-x201-with-linux/">widely different from
+others'</a>).
+I ordered the laptop from the Lenovo website, the only significant specs
+change was to upgrade to the i5-540M processor.</p>
+<div class="section" id="ubuntu-10-10">
+<h2>Ubuntu 10.10</h2>
+<p>The latest version, Maverick Meerkat / 10.10 installed fine, no issues
+whatsoever.</p>
+</div>
+<div class="section" id="debian-squeeze">
+<h2>Debian Squeeze</h2>
+<p>Debian is my main development distro and I absolutely needed it working
+on the laptop before setting up everything to be Just Right<sup>TM</sup>.
+Unfortunately, stable wouldn't boot, and the daily testing images were
+acting very weird, asking me for a password and, no matter what I typed,
+showing me an empty grub menu that slowly disappears up the screen.</p>
+<p>Eventually I solved this thanks to
+<a class="reference external" href="http://unetbootin.sourceforge.net">UNetbootin</a>, using it to create a
+LiveUSB from Debian unstable. I'm not quite sure how it does that, but
+whatever it did did the trick (yay!) and I was able to boot from the
+stick and install Debian off it. If you go this way, don't forget to
+update your apt sources.list to point to unstable. Also, Suspend works
+for the first time ever, wahoo :D Hibernate was a bit more moody, though
+it worked last time I tried it. The option seems to have disappeared
+from my menus a couple of weeks back, but I've been messing with various
+things including Gnome Shell, which may be related.</p>
+</div>
+<div class="section" id="fedora-13-14">
+<h2>Fedora 13/14</h2>
+<p>The Fedora 13 stick seemed a bit reluctant to boot up fully, but did so
+after a couple of tries. The installer's partition editor wasn't playing
+so nice and I ended up using GParted first to create the partition
+(which led to <a class="reference external" href="https://www.jpichon.net/blog/2010/10/recovering-a-lost-partition-table/">entirely unrelated problems due to my own
+clumsiness</a>).
+Once this was done everything was fine, including the wireless. When I
+was trying Fedora 14 prerelease in late October the stick booted fine,
+and since then I've upgraded to Fedora 14 without an issue either.</p>
+</div>
+<div class="section" id="sugar-on-a-stick-mirabelle-based-on-fedora-13">
+<h2>Sugar on a Stick (Mirabelle -- based on Fedora 13)</h2>
+<p>The stick does not boot :/ (Black screen with the grey blinking
+underscore on the top left). I must install Mango Lassi (based on Fedora
+14) on a stick soon and check out if that works...</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>I still have more space than I need after installing those 3. I'll
+probably try to install a source-based distro as well, either Arch or
+Gentoo, not sure yet. Recommendations?</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

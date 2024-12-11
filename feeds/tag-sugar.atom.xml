@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - sugar</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-sugar.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2010-08-17T22:46:00+01:00</updated><entry><title>Oh, sweet! The Sugar learning environment</title><link href="https://www.jpichon.net/blog/2010/08/oh-sweet-sugar-learning-environment/" rel="alternate"></link><published>2010-08-17T22:46:00+01:00</published><updated>2010-08-17T22:46:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-08-17:/blog/2010/08/oh-sweet-sugar-learning-environment/</id><summary type="html">&lt;p&gt;I did &lt;a class="reference external" href="http://www.tog.ie/2010/08/irish-hackerspaces-week/#24"&gt;my talk in
+TOG&lt;/a&gt; tonight.
+I think it went quite well! I certainly got some positive feedback
+afterwards. Lots of room for improvements still, of course, many &amp;quot;um&amp;quot;s
+especially at the beginning, and it probably would have been better if I
+had rehearsed more, to remove the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I did &lt;a class="reference external" href="http://www.tog.ie/2010/08/irish-hackerspaces-week/#24"&gt;my talk in
+TOG&lt;/a&gt; tonight.
+I think it went quite well! I certainly got some positive feedback
+afterwards. Lots of room for improvements still, of course, many &amp;quot;um&amp;quot;s
+especially at the beginning, and it probably would have been better if I
+had rehearsed more, to remove the attachment to my notes for prompts
+when I got stuck, but otherwise it flowed well and people seemed clear
+and happy on what Sugar was, what it looks like and the type of learning
+it tries to encourage. Very nice audience, smallish and I knew most
+people! Many interesting questions, and having 4 laptops running Sugar
+(2 XOs with 0.82, 2 Eee with Mirabelle) for people to try out afterwards
+was a hit, I was delighted to see people rushing toward them and trying
+out all sorts of activities. (Delightful, noisy Tam Tam!)&lt;/p&gt;
+&lt;p&gt;The &amp;quot;&lt;a class="reference external" href="https://www.jpichon.net/blog/2010/08/presentation-zen/"&gt;Presentation
+Zen&lt;/a&gt;&amp;quot; style of
+presenting worked well too, I think, and I got a few questions about
+this and the pictures I used. I still need to practice more and become a
+stronger speaker to support this style better, though. (Motivated!)&lt;/p&gt;
+&lt;p&gt;Here are the &lt;a class="reference external" href="https://www.jpichon.net/site_media/presentations/2010_08_17_Sugar_TOG.pdf"&gt;presentation
+slides&lt;/a&gt;,
+for the curious. In true &amp;quot;Presentation Zen&amp;quot; style they are much less
+useful without me chatting in front of them, but you'll find most of the
+information I used for content on &lt;a class="reference external" href="http://sugarlabs.org"&gt;http://sugarlabs.org&lt;/a&gt; and
+&lt;a class="reference external" href="http://wiki.sugarlabs.org"&gt;http://wiki.sugarlabs.org&lt;/a&gt; ! :)&lt;/p&gt;
+</content><category term="Tech"></category><category term="sugar"></category><category term="tog"></category></entry><entry><title>Hackerspaces Week</title><link href="https://www.jpichon.net/blog/2010/08/hackerspaces-week/" rel="alternate"></link><published>2010-08-07T18:10:00+01:00</published><updated>2010-08-07T18:10:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-08-07:/blog/2010/08/hackerspaces-week/</id><summary type="html">&lt;p&gt;There hasn't been much public info about it yet, but inspired by
+&lt;a class="reference external" href="http://chebe.dreamwidth.org/26743.html"&gt;Cheryl's Hackerspace Week
+teaser&lt;/a&gt; I'm going to start
+speaking about it too! The first &lt;a class="reference external" href="http://hackerspaces.org/wiki/Irish_Hackerspaces_Week"&gt;Irish Hackerspaces
+week&lt;/a&gt; will
+happen soon in August, from the 14th to 22nd, and I'll be talking about
+&lt;a class="reference external" href="http://www.sugarlabs.org"&gt;Sugar&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My talk will last about …&lt;/p&gt;</summary><content type="html">&lt;p&gt;There hasn't been much public info about it yet, but inspired by
+&lt;a class="reference external" href="http://chebe.dreamwidth.org/26743.html"&gt;Cheryl's Hackerspace Week
+teaser&lt;/a&gt; I'm going to start
+speaking about it too! The first &lt;a class="reference external" href="http://hackerspaces.org/wiki/Irish_Hackerspaces_Week"&gt;Irish Hackerspaces
+week&lt;/a&gt; will
+happen soon in August, from the 14th to 22nd, and I'll be talking about
+&lt;a class="reference external" href="http://www.sugarlabs.org"&gt;Sugar&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My talk will last about 30 minutes, in the evening of the 17th in
+&lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+Come and learn about Sugar, the learning platform for children.
+Sugar offers an innovative desktop environment designed to encourage
+collaboration and critical thinking through Activities. Initially
+developed as part of the One Laptop Per Child project, Sugar is now
+community led and can run on any machine thanks to Sugar on a Stick.&lt;/blockquote&gt;
+&lt;p&gt;There will be plenty of other interesting talks, workshops, demos and
+&lt;em&gt;more&lt;/em&gt;... that I will happily link to once more information starts
+surfacing!&lt;/p&gt;
+&lt;p&gt;EDIT: It's alive! &lt;a class="reference external" href="http://www.tog.ie/2010/08/irish-hackerspaces-week/"&gt;Full schedule of the
+week&lt;/a&gt; now
+available.&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category><category term="sugar"></category><category term="tog"></category></entry><entry><title>Contributing to an open-source project: Sugar, a newcomer's perspective.</title><link href="https://www.jpichon.net/blog/2010/06/contributing-to-open-source-sugar/" rel="alternate"></link><published>2010-06-02T23:01:00+01:00</published><updated>2010-06-02T23:01:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-06-02:/blog/2010/06/contributing-to-open-source-sugar/</id><summary type="html">&lt;p&gt;It's proven difficult to write up a summary of my experience as
+someone-who's-not-a-hardcore-open-source-contributor-yet-but-certainly-plans-on-becoming-one.
+There's an easy dialogue-killing answer to any anecdote I relate: &amp;quot;suck
+it up.&amp;quot; I'm still trying to find a way to express all this though,
+because I'm sure there's something to learn from any newcomer's attempt
+to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;It's proven difficult to write up a summary of my experience as
+someone-who's-not-a-hardcore-open-source-contributor-yet-but-certainly-plans-on-becoming-one.
+There's an easy dialogue-killing answer to any anecdote I relate: &amp;quot;suck
+it up.&amp;quot; I'm still trying to find a way to express all this though,
+because I'm sure there's something to learn from any newcomer's attempt
+to join a project, and also for my future self, when I'll be the one
+encouraging others to get involved with open-source and won't remember
+what it's like to stand on the edge, trying to understand how a
+community functions and how to find a space that fits you in there.&lt;/p&gt;
+&lt;p&gt;So. Two anecdotes on contributing to Sugar, then a description of the
+incredible level of confusion I've been experiencing looking at the
+development process overhaul, followed by some ponderings on &amp;quot;what's
+next&amp;quot; which I better follow up on in the future :)&lt;/p&gt;
+&lt;div class="section" id="anecdote-1-fixing-a-bug-infoslicer"&gt;
+&lt;h2&gt;Anecdote 1: Fixing a bug (InfoSlicer)&lt;/h2&gt;
+&lt;p&gt;Sugar (and the XO!) had been on my radar for a while. Last summer I
+finally made the time to set up sugar-jhbuild on my laptop and start
+trying it out for myself. I was enthusiastic but despite the very good
+wiki I wasn't sure where I could make myself the most useful (Sugar
+core? Making a new activity? Fixing activity bugs?). I find fixing bugs
+to be a fantastic way to get familiar with a project and a code base,
+however I wasn't sure how to pick one because every ticket in
+bugs.sugarlabs.org is already assigned to someone. It wasn't obvious to
+me whether I was welcome to work on any or if there was some sort of
+&amp;quot;please may I work on this bug&amp;quot; process or if assigned people might be
+protective of their code (I've met a few virulent &amp;quot;It's my code/my bug!&amp;quot;
+people before, albeit mostly in college.) The sugar-love bugs were few.&lt;/p&gt;
+&lt;p&gt;Enters &lt;a class="reference external" href="http://www.ossbarcamp.com/"&gt;OSS BarCamp&lt;/a&gt; in September 2009,
+where I met &lt;a class="reference external" href="http://www.lauracowen.co.uk/blog/2009/02/19/presentinginfoslicer-educational-software-for-sugar/"&gt;Laura
+Cowen&lt;/a&gt;
+(thanks Jaime for pushing me to introduce myself!) who presented a
+lightning talk on a Sugar activity, InfoSlicer. Having met with a real
+person who was enthusiastic and sort of involved with Sugar, I thought
+I'd take a look at InfoSlicer. There was only one bug filed against it
+at the time, that quite seriously limited the capabilities of the
+activity. I set out to fix it. A few weeks later, I was attaching my
+patch to &lt;a class="reference external" href="http://bugs.sugarlabs.org/ticket/1348"&gt;the ticket&lt;/a&gt;,
+discreetly sweating over the associated comment. Someone replied less
+than a day later, suggesting a different approach inspired after another
+activity I hadn't heard about and before I had come back from work that
+same day, the current maintainer had accepted my patch and also
+suggested another way to do it that &lt;strong&gt;we&lt;/strong&gt; could work on together. I was
+double-elated and thanks to the &amp;quot;we&amp;quot; felt very welcome.&lt;/p&gt;
+&lt;p&gt;Unfortunately I hadn't enjoyed a lot working on the parsing code for
+InfoSlicer and despite promising myself I would update the activity with
+the new toolbar &amp;quot;soon&amp;quot; I didn't get back to it (yet, shall we say. I'd
+still like to do the toolbar thing sometime.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="anecdote-2-fixing-bugs-pippy"&gt;
+&lt;h2&gt;Anecdote 2: Fixing bugs (Pippy)&lt;/h2&gt;
+&lt;p&gt;'round the same time I had volunteered to show cool engineering things
+to a transition year (high school) student spending a few &amp;quot;work
+experience&amp;quot; days in my workplace. Although he was a bit older than the
+Sugar usual demographics, I gave him a usb stick with Sugar on it
+anyway: Sugar is &lt;em&gt;cool&lt;/em&gt; and we all had unrealistic expectations of what
+a student could accomplish in a week. I thought perhaps he could get
+familiar with the project then investigate a bug. After he showed some
+curiosity about programming, I stirred him toward Pippy which he enjoyed
+greatly despite the occasional stracktraces some examples were
+invariably throwing up.&lt;/p&gt;
+&lt;p&gt;Most of these issues had already been reported so I thought, &amp;quot;I love
+Pippy, I'm gonna try to fix as many as I can.&amp;quot; Along the way someone I
+know got a bit hyped up by my enthusiastic chanting of &amp;quot;Sugar Sugar
+Sugar&amp;quot; and had set out to fix a &lt;a class="reference external" href="http://bugs.sugarlabs.org/ticket/347"&gt;serious display
+bug&lt;/a&gt; in Pippy, #347, despite
+not being particularly fond of Python. I fixed a couple of other bugs,
+attached the patches to the relevant reports and hopped away, waiting
+for a review or update. Months went by. My friend lost interest. I began
+to pep myself up to ask about the Pippy maintainer on IRC. At the time I
+was trying to build up some confidence by getting my work accepted first
+before going about and expressing opinions or asking questions in public
+places (not the way people usually prefer things to be done in
+open-source, I realise.)&lt;/p&gt;
+&lt;p&gt;A series of coincidences happened and I suddenly was offered commit
+access to the Pippy repository (&lt;a class="reference external" href="https://www.jpichon.net/blog/2010/03/commit-access/"&gt;I mentioned that
+before.&lt;/a&gt;) Despite
+the best intentions, I wasn't comfortable pushing my patches to the
+mainline merely because I had the power to do so ; I find it preferable
+and better for patches to be looked at and approved by people who know
+what they're doing. Eventually I pushed
+&lt;a class="reference external" href="http://dev.sugarlabs.org/ticket/843"&gt;#843&lt;/a&gt; myself into the mainline,
+as Chris Ball kindly reviewed it as part of an email thread. I still
+didn't feel so good about it, managing the statuses in Trac was unclear
+(both status + resolution must be marked as fixed/resolved?) and the bug
+never ended up assigned to me (it looked like Trac's button would change
+both the status and assignee so I wasn't sure and then it was too late,
+I didn't want to revert the status back.) Basically, as I've stated
+before, I was still in dear need of a mentor, and I still didn't reach
+out. I fully understand and accept that this is my fault for not
+communicating well enough with the community.&lt;/p&gt;
+&lt;p&gt;Another bug I had worked on, I didn't fix correctly the first time
+around. When this was brought up I responded quickly, explaining where I
+thought the issue was and submitting &lt;a class="reference external" href="http://bugs.sugarlabs.org/ticket/638"&gt;a second
+patch&lt;/a&gt; a few days later. I
+won't be pushing this to mainline until someone else confirms it works,
+but I'm still happy with it because I proved (to myself, too) that in
+case of problems I am responsive and able to correct issues within a
+decent timeframe.&lt;/p&gt;
+&lt;p&gt;Meanwhile, I was also getting fidgety about #347 as without it, Pippy is
+impossible to use on my Eee and likely on other netbooks. Eventually I
+asked, still within the bug tracker, if people would mind if I pushed
+the current (working) patch to the mainline. Other unrelated
+requirements had come up in the bug report discussion, much less serious
+than does-not-work-at-all-unless-patch-is-applied so it felt fair to
+push the partial patch. Lots of people had popped up the first time
+around and subscribed to that bug, but there was no answer.&lt;/p&gt;
+&lt;p&gt;Not long after, someone submitted a duplicated patch to fix #347 as well
+as the other unaddressed aesthetic issues, using a new process still
+being defined. The patch got reviewed, no one mentioned the duplication
+(I didn't either) and soon after the patch was pushed to the mainline
+and the submitter became Pippy maintainer (yay! At least Pippy now has a
+more active maintainer, hopefully!)&lt;/p&gt;
+&lt;p&gt;It's great to see movement on the Pippy front but I felt so disheartened
+by the duplication of that patch that had been sitting there for 7
+months and that I had to install manually on every stick I made for the
+past 7 months. I invested so much energy running in circles like a
+headless chicken, trying to do things right with my shiny commit access
+and waiting for feedback. I was very discouraged, the basic lesson
+being: I shouldn't have cared so much, especially when I knew I hadn't
+fully groked all the processes yet. This only (mostly?) happened because
+I did not reach out to the community through other channels than the bug
+tracker.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-new-process"&gt;
+&lt;h2&gt;The new process&lt;/h2&gt;
+&lt;p&gt;While I'm at it, I'd like to mention what's going through my mind with
+regard to development process changes that SugarLabs has been setting up
+lately. Sugar is basically moving toward a mailing-list only style of
+communication to submit patches and I've been endlessly confused since
+this started. I'm not sure it's the most inclusive process either though
+I understand the problems it's trying to solve -- mostly lack of code
+reviews as illustrated by anecdote #2 :)&lt;/p&gt;
+&lt;p&gt;I think it's more confusing than it used to be and makes the barrier to
+entry higher because as far as I can tell, now if I or anyone want to
+fix a bug:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;I go browse trac and find something interesting/that I care about to
+work on&lt;/li&gt;
+&lt;li&gt;Now I also have to search through my inbox and patchwork (a new
+system I haven't totally figured out yet either, but it doesn't look
+any less confusing than my inbox with every patch/email thread thrown
+in there together) to see if the bug is already being worked on&lt;/li&gt;
+&lt;li&gt;I need to join the mailing list to submit my patch (I'm assuming, but
+it's probably necessary if you want to be sure to get the answers) --
+that's quite intimidating and a commitment for &amp;quot;just&amp;quot; a patch. The
+process should also be easy for passersby if you want people to stick
+around.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reading the mailing list and the patches as they get submitted is also
+confusing because it's difficult to link a patch to a bug and understand
+the background/context. In most cases you'd have to go and dig it back
+up from the bug tracker.&lt;/p&gt;
+&lt;p&gt;I know people are working on it at the moment, so I will wait for the
+wiki to be updated with clear instructions on how to effectively use the
+new process and systems, as the wiki still only describes how to work
+with trac. For now I'm watching perplexedly and wondering if really, the
+mailing list will be the only way for people to contribute in the
+future? I worry that the new process is inspired from projects that
+focus on hardcore technical people (Linux kernel) rather than others
+that also welcome passionate beginners
+(&lt;a class="reference external" href="http://denise.dreamwidth.org/23600.html"&gt;Dreamwidth&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Other valid solutions were proposed to fix the patch review problem and
+I wish I had found the bug on re-creating a &amp;quot;patch need review&amp;quot;
+automatic weekly email so I could have tried to do my bit to help. Great
+Sugar contributors believe in the new process though, enough to invest
+their time setting it up and setting up the tools to make it work more
+conveniently. Now that I've finally written this post and digested what
+happened and where I messed up, I should be able to focus on how I can
+help the project with other contributions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-now"&gt;
+&lt;h2&gt;What now?&lt;/h2&gt;
+&lt;p&gt;Step back, start from scratch with a clean state of mind. Probably stay
+away from code contributions for a bit. Talk with the community. Stop
+messing up brilliant opportunities when introduced to cool people by
+email ;) Be more pushy when it comes to asking for feedback.&lt;/p&gt;
+&lt;p&gt;Looking at the releases notes surrounding Fedora 13 and Mirabelle make
+me hopeful: the &lt;a class="reference external" href="http://wiki.sugarlabs.org/go/Sugar_on_a_Stick"&gt;Sugar on a Stick (Mirabelle) wiki
+pages&lt;/a&gt; are awesome,
+vibrant with optimism and that sub-community within the community sounds
+like a great way into main Sugar. Quote from their wiki I love: &amp;quot;When
+you're stuck, and have spent more than 15 minutes trying to figure out
+what to do next [, email the mailing list / ask on IRC].&amp;quot; The weekly
+meetings where newcomers are welcome sound like a good idea as well, it
+gives some structure rather than let new people break into the main
+group on their own (or so I imagine, I wasn't able to attend the first
+meeting last Monday.)&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="open-source"></category><category term="sugar"></category></entry><entry><title>Commit access | Contributing to Sugar</title><link href="https://www.jpichon.net/blog/2010/03/commit-access/" rel="alternate"></link><published>2010-03-16T22:56:00+00:00</published><updated>2010-03-16T22:56:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-03-16:/blog/2010/03/commit-access/</id><summary type="html">&lt;p&gt;Through a series of kinda mind boggling coincidences, meeting people and
+talking about what I have in mind and am passionate about, earlier this
+month I ended up with commit access to the Pippy activity (a
+&lt;a class="reference external" href="http://www.sugarlabs.org"&gt;Sugar&lt;/a&gt; application). Wow! Awesome. A few
+weeks back, I had decided to fix as …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Through a series of kinda mind boggling coincidences, meeting people and
+talking about what I have in mind and am passionate about, earlier this
+month I ended up with commit access to the Pippy activity (a
+&lt;a class="reference external" href="http://www.sugarlabs.org"&gt;Sugar&lt;/a&gt; application). Wow! Awesome. A few
+weeks back, I had decided to fix as many of the broken examples as I
+could after getting a bit embarrassed showing off Sugar to a teenager,
+last October. He was very interested but as we were using Pippy it felt
+like we were getting stack traces a bit too often (they weren't that
+many really, they just happen to be more memorable.)&lt;/p&gt;
+&lt;p&gt;So I fixed them and the patches sat there for weeks (I didn't set the
+&amp;quot;need review&amp;quot; flag to be fair, which I just discovered in a corner of
+the wiki last week), along with a patch not-from-me in #347 which I
+think should really-really make it into the next release because Pippy
+is completely unusable on my (all?) netbook without it.&lt;/p&gt;
+&lt;p&gt;Now, I've been granted the Power Of The Commit so it should all be fine,
+with me committing away and happily making the world a better place...
+but it's not so simple, because really, I'm still living too far away
+from the community to understand how they work and notably here, the
+interactions with and within the bug tracker. For instance, I didn't
+realise you were supposed to add the &amp;quot;r?&amp;quot; keyword when submitting a
+patch, I found it accidentally when looking for something else in the
+wiki. I'm not a maintainer either, so it's not entirely clear what I
+should be doing with the bug report after submitting a patch or the
+process to follow.&lt;/p&gt;
+&lt;p&gt;Although my patches are tested and too small (I believe!) to actually do
+great damage, I didn't commit them... which ended up being a good idea
+since one of them was incorrect :) Someone kindly commented on the bug
+report saying it didn't work, with details. Turns out I was so keen on
+removing the stack traces I didn't check if the error messages provided
+by other Pippy examples were actually correct (so I display &amp;quot;install
+this&amp;quot; instead of showing a stack trace, but the &amp;quot;install this&amp;quot; doesn't
+actually solve the issue for that example, nor for the example I took it
+from.) I've now attached a &lt;a class="reference external" href="http://bugs.sugarlabs.org/ticket/638"&gt;new, better
+patch&lt;/a&gt; to the report (...and
+set the proper review flag!)&lt;/p&gt;
+&lt;p&gt;It's probably a tad too early for me to have those commit rights, just
+yet. I need a mentor still, except individually everybody is incredibly
+busy being awesome already, which is fair. The truth is, I already have
+a mentor if I reach out to it: the community. So this is always
+something I will be working on in parallel, I really want to integrate
+with the community. It just takes time for someone not so comfortable
+with the &amp;quot;public speaking effect&amp;quot; of pouring thoughts, mistakes and
+ideas on public, sometimes archived mailing lists and channels. I'll
+figure it out, at my own pace. I have access to some pretty cool people
+individually in the meantime if I really need help. My first area of
+focus is grokking the bug tracker so I can contribute effectively there.&lt;/p&gt;
+&lt;div class="section" id="sugar-stuff-i-want-to-figure-out"&gt;
+&lt;h2&gt;Sugar stuff I want to figure out:&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;How to know when a patch is big enough to warrant the &amp;quot;r?&amp;quot; flag, or
+really should they all have it?&lt;/li&gt;
+&lt;li&gt;The complete process for submitting a patch. Right now, I think, a
+lot of the information I am looking for is under the &amp;quot;&lt;a class="reference external" href="http://wiki.sugarlabs.org/go/Development_Team/Code_Review"&gt;Code
+review&lt;/a&gt;&amp;quot;
+wiki page which makes it not obvious to find, and it's still not a
+clear step-by-step process. As I progressively get a better
+understanding of how things work I'd like to improve on it and/or
+eventually make a case for a &amp;quot;Submitting patches&amp;quot; page aimed at
+brand-new contributors, ideally &amp;quot;drive by&amp;quot; contributors too. I'm
+thinking of something along the lines of Gnome's &lt;a class="reference external" href="http://live.gnome.org/GnomeLove/SubmittingPatches"&gt;&amp;quot;Submitting
+patches&amp;quot; page&lt;/a&gt;,
+or Gnome's &lt;a class="reference external" href="http://live.gnome.org/Empathy/Git"&gt;project&lt;/a&gt;
+&lt;a class="reference external" href="http://live.gnome.org/Tomboy/HowToSubmitPatches"&gt;specific&lt;/a&gt;
+guidelines, which I found really useful when I was getting ready to
+make my first open-source contribution.&lt;/li&gt;
+&lt;li&gt;Find out what developers do with bug reports, the best practices. How
+keywords and the 5.000 status/milestones/etc fields are being used
+and who gets to set them. I suspect there's probably an established
+set of guidelines for Sugar core, and that activity maintainers kinda
+do their own things, but still, I'm sure a set of best practices has
+emerged, somehow, somewhere. Usually &lt;a class="reference external" href="http://wiki.sugarlabs.org/go/BugSquad/Triage_Guide"&gt;triaging
+guides&lt;/a&gt; are
+pretty good at indicating how the &lt;a class="reference external" href="http://wiki.sugarlabs.org/go/BugSquad/Status_Fields"&gt;status
+field&lt;/a&gt; should
+be used and what it means up to a certain point (usually, up to when
+the developer takes charge of the bug which is when I started getting
+stuck) but for Sugar, what I've seen so far doesn't seem to match the
+wiki (for instance there are a lot of bug marked assigned that aren't
+being worked on, and I suspect they just automatically get assigned
+to the maintainer or something like this. To be investigated
+further.) Also for the non-creator/non-main-maintainer of a
+component, is it ok to simply close off a bug after pushing a patch,
+even if no one else confirmed it worked? (I guess any problem will
+bubble back up to the bug tracker anyway, eventually...)&lt;/li&gt;
+&lt;li&gt;Code freezes. &lt;a class="reference external" href="http://wiki.sugarlabs.org/go/0.88/Roadmap"&gt;We're in one
+now&lt;/a&gt;, but I'm not sure
+how this impacts activities or if this is mostly about Sugar core,
+and when/which/how a version of an activity is selected to be shipped
+with the current release (and does that differ for &amp;quot;main&amp;quot;/fructose
+activities like Pippy?)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="open-source"></category><category term="sugar"></category></entry><entry><title>Contributing</title><link href="https://www.jpichon.net/blog/2010/01/contributing/" rel="alternate"></link><published>2010-01-31T00:22:00+00:00</published><updated>2010-01-31T00:22:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-01-31:/blog/2010/01/contributing/</id><summary type="html">&lt;p&gt;This article is about a year old, but it doesn't matter: &lt;a class="reference external" href="http://www.webchick.net/embrace-the-chaos"&gt;Diaries of a Core
+Maintainer #6:) A tale of two developers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Re-reading that story is always a bit scary and cause for
+self-reflection because my approach is so similar to Pat's, particularly
+when starting out with a new idea …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This article is about a year old, but it doesn't matter: &lt;a class="reference external" href="http://www.webchick.net/embrace-the-chaos"&gt;Diaries of a Core
+Maintainer #6:) A tale of two developers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Re-reading that story is always a bit scary and cause for
+self-reflection because my approach is so similar to Pat's, particularly
+when starting out with a new idea.&lt;/p&gt;
+&lt;p&gt;I could say I'm posting this now for people considering getting involved
+with an open-source project but afraid to jump in, or ask questions, or
+wondering if they're good enough, and that's usually what I send it to
+people for but... this time, what I really want if for more people to
+know about it, so they can send it back to me when I really need it!
+It's okay not to know everything or get things perfectly right the first
+time. It's ok to learn new things along the way.&lt;/p&gt;
+&lt;p&gt;For nearly two weeks, I've been sitting on a (tested!) Sugar patch
+because I don't fully understand the intricacies of &amp;quot;why it actually
+works&amp;quot; (xterm magic, there'll probably be a post about that soon!). I
+probably still would be digging into the entrails of xterm, tty and
+whatever other dead-ends I keep losing myself into for this bug, had
+someone not reminded me of this story. The patch is &lt;a class="reference external" href="http://dev.sugarlabs.org/ticket/843"&gt;now
+submitted&lt;/a&gt;, right beside a
+comment explaining where I'm stuck and asking for help. Looking forward
+to the next step :)&lt;/p&gt;
+&lt;p&gt;And if you know why a xterm control sequence documented since at least
+1994 could be sending back an abridged output on a different (but
+recent) hardware / software stack, please do let me know...&lt;/p&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="open-source"></category><category term="sugar"></category></entry></feed>

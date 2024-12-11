@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Moodle deprecation warnings -> navigation bar | build_navigation()</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Over the week-end I rediscovered Moodle's DEVELOPER debug setting which surfaced many unpleasant warnings. The first kind was removed by following..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/05/moodle-deprecation-warnings-navigation-bar/" rel="bookmark"
+           title="Permalink to Moodle deprecation warnings -> navigation bar | build_navigation()">Moodle deprecation warnings -&gt; navigation bar  | build_navigation()</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-05-17T20:32:00+01:00">
+                Published: Mon 17 May 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/moodle/">moodle</a> </p>
+</footer><!-- /.post-info -->      <p>Over the week-end I rediscovered <a class="reference external" href="http://moodle.org">Moodle</a>'s
+DEVELOPER <a class="reference external" href="http://docs.moodle.org/en/Debugging#How_to_turn_on_debugging">debug
+setting</a>
+which surfaced many unpleasant warnings. The first kind was removed by
+following proper programming practices (ahem), the second kind involved
+a couple of deprecation warnings that reminded me that Moodle is slowly
+and surely making its way toward 2.0. I <a class="reference external" href="http://github.com/jpichon/moodle-dvreport/issues/issue/8">filed a
+bug</a> about
+this against DVReport, I should be looking into that one over the summer
+(<a class="reference external" href="http://docs.moodle.org/en/Moodle_2.0_release_notes">Moodle 2.0 release
+date</a> is July
+20th! It's so strange to see an actual date, after years of reading
+about the preparations. Sounds awesome :))</p>
+<p>The old navigation bar, pre-1.9.8 I assume though I'm not sure when it
+was deprecated, used to look like this:</p>
+<pre class="literal-block">
+$navigation = '&lt;a href=&quot;$url&quot;&gt;$block_name&lt;/a&gt; -&gt; $action_name';
+</pre>
+<p>The &quot;-&gt;&quot; would indicate a separation between 2 links, and automatically
+generate a nice triangle picture in the breadcrumb.</p>
+<p><img alt="DVReport screenshot of the navigation bar" src="https://www.jpichon.net/site_media/images/2010/dvreport-navigation-bar.png" /></p>
+<p>With the new navigation style, you get to split up the different
+sections into different arrays. It might seem more cumbersome but I
+think in the end it's neater, because you get to make a distinction
+between every element of the navigation, as opposed to one long messy
+string where you can easily miss the arrows when reading. The visual
+output is the same.</p>
+<pre class="literal-block">
+$navigation = build_navigation(array(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array('name' =&gt; $block_name,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'link' =&gt; $url,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'type' =&gt; 'title'),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array('name' =&gt; $action_name,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'link' =&gt; '',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'type' =&gt; 'title')
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; )
+&nbsp;&nbsp;&nbsp; );
+</pre>
+<p>The only meh thing about this is that &quot;type&quot; isn't really documented.
+The phpdoc comment reads &quot;this really needs to be documented better&quot; and
+lists a few values. As usual, there isn't one that quite fits what
+DVReport does, because DVReport is a block, not an activity or course
+module. So I picked 'title', which seems innocent enough -- we'll see
+what future updates to the core navigation bar code make out of that!</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

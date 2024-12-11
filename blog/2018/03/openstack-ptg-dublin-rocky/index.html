@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>OpenStack PTG Dublin - Rocky</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="I was so excited when it was first hinted in Denver that the next OpenStack PTG would be in Dublin. In my town! Zero jet lag! Commuting from home!..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2018/03/openstack-ptg-dublin-rocky/" rel="bookmark"
+           title="Permalink to OpenStack PTG Dublin - Rocky">OpenStack PTG Dublin - Rocky</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-03-09T11:57:00+00:00">
+                Published: Fri 09 March 2018
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/openstack/">openstack</a> </p>
+</footer><!-- /.post-info -->      <p>I was so excited when it was first hinted in Denver that the next
+OpenStack PTG would be in Dublin. In my town! Zero jet lag! Commuting
+from home! Showing people around! Alas, it was not to be. Thanks,
+<a class="reference external" href="https://en.wikipedia.org/wiki/2018_Great_Britain_and_Ireland_cold_wave">Beast from the East</a>.
+Now everybody hates Ireland forever.</p>
+<p>The weather definitely had some impact on sessions and
+productivity. People were jokingly then worryingly checking on the
+news, dropping in and out of rooms as they tried to rebook their
+cancelled flights. Still we did what we could and had snow-related
+activities too - good for building team spirit, if nothing else!</p>
+<p>I mostly dropped in and out of rooms, here are some of my notes and
+sometimes highlights.</p>
+<div class="section" id="openstack-client">
+<h2>OpenStack Client</h2>
+<p>Like before, the first two days of the PTG were focused on
+cross-projects concerns. The OpenStack Client didn't have a room this
+time, which seems fair as it was sparsely attended the last couple of
+times - I would have thought there'd have been one helproom session at
+least but if there was I missed it.</p>
+<p>I regret missing the <a class="reference external" href="https://etherpad.openstack.org/p/api-sig-ptg-rocky">API Working Group</a> morning
+sessions on API discovery and micro-versions, which I think were
+relevant. The afternoon API sessions were more focused on services and
+less applicable for me. I need to be smarter about it next time.</p>
+</div>
+<div class="section" id="first-contact-sig">
+<h2>First Contact SIG</h2>
+<p>Instead, that morning I attended the <a class="reference external" href="https://etherpad.openstack.org/p/FC_SIG_Rocky_PTG">First Contact Special Interest
+Group</a> sessions,
+which aim to make OpenStack more accessible to newcomers. It was well
+attended, with even a few new and want-to-be contributors who were
+first-time PTG attendes - I think having the PTG in Europe really
+helped with that. The session focused on making sure everyone in the
+room/SIG is aware of the resources that are out there, to be able to
+help people looking to get started.</p>
+<p>The SIG is also looking for <a class="reference external" href="https://wiki.openstack.org/wiki/First_Contact_SIG#Project_Liaisons">points of contact for every project</a>,
+so that newcomers have someone to ask questions to directly (even
+better if there's a backup person too, but difficult enough to find one
+as it is!).</p>
+<p>Some of the questions that came up from people in the room related to being
+able to map projects to IRC channel (e.g. devstack questions go to
+#openstack-qa).</p>
+<p>Also, the OpenStack community has a ton of mentoring programs, both
+formal and informal and just going through the list to explain them
+took a while. Outreachy, Google Summer of Code, Upstream Institute,
+Women of OpenStack, First Contact Liaisons (see above). Didn't realise
+there were so many!</p>
+<p>I remember when a lot of the initiatives discussed were started. It was
+interesting to hear the perspectives from people who arrived later,
+especially the discussions around the ones that have become irrelevant.</p>
+</div>
+<div class="section" id="packaging-rpms">
+<h2>Packaging RPMs</h2>
+<p>On Tuesday I dropped by the <a class="reference external" href="https://etherpad.openstack.org/p/rpm-packaging-rocky-ptg">packaging RPMs Working Group</a>
+session. A small group made up of very focused RDO/Red Hat/SUSE
+people. The discussions were intense, with Python 2 going End Of Life
+in under 2 years now.</p>
+<p>The current consensus seems to be to create a RPM-based Python 3 gate
+based on 3.6. There's no supported distro that offers this at the
+moment, so we will create our own Fedora-based distro with only what we
+need at the versions we need it. Once RDO is ready with this, it could
+be moved upstream.</p>
+<p>There were some concerns about 3.5 vs 3.6 as the current gating is done
+on 3.5. Debian also appears to prefer 3.6. In general it was agreed
+there should not be major differences and generally ok.</p>
+<p>The clients must still support Python 2.</p>
+<p>There was a little bit of discussion about the stable policy and how it
+doesn't apply to the specs or the rpm-packaging project (I think the
+example was with Monasca and the default backend not working (?), so a
+spec change to modify the backend was backported - which could be
+considered a feature backport, but since the project isn't under the
+stable policy remit it could be done).</p>
+<p>There was a brief chat at the end about whether there is still interest in
+packaging services, as opposed to just shipping them as containers. There
+certainly still seems to be at this point.</p>
+</div>
+<div class="section" id="release-management">
+<h2>Release management</h2>
+<p>A much <a class="reference external" href="http://lists.openstack.org/pipermail/openstack-dev/2018-March/128005.html">more complete summary</a>
+has already been posted on the list, and I had to leave the session
+halfway to attend something else.</p>
+<p>There seems to be an agreement that it <em>is</em> getting easier to upgrade
+(although some people still don't want to do it, perhaps an education
+effort is needed to help with this). People do use the stable point
+release tags.</p>
+<p>The &quot;pressure to upgrade&quot;: would Long-Term Support release actually
+help? Probably it would make it worse. The pressure to upgrade will
+still be there except there won't be a need to work on it for another
+year, and it'll make life worse for operators/etc submitting back fixes
+because it'll take over a year for a patch to make it into their
+system.</p>
+<p>Fast-Forward Upgrade (which is <strong>not</strong> skip-level upgrades) may help with
+that pressure... Or not, maybe different problems will come up because
+of things like not restarting services in between upgrades. It batches
+things and helps to upgrade faster, but changes nothing.</p>
+<p>The conversation moved to one year release cycles just before I
+left. It seemed to be all concerns and I don't recall active support
+for the idea. Some of the concerns:</p>
+<ul class="simple">
+<li>Concerns about backports - so many changes</li>
+<li>Concerns about marketing - it's already hard to keep up with all
+that's going on, and it's good to show the community is active and
+stuff is happening more than once a year. It's not that closely tied
+to releases though, announces could still go out more regularly.</li>
+<li>Planning when something will land may become even harder as so much
+can happen in a year</li>
+<li>It's painful for both people who keep up <em>and</em> people who don't,
+because there is so much new stuff happening at once.</li>
+</ul>
+</div>
+<div class="section" id="tripleo">
+<h2>TripleO</h2>
+<p>The sessions began with a <a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky-retro">retrospective</a> on
+Wednesday. I was really excited to hear that tripleo-common was going
+to get unit tests for workflows. I still love the idea of workflows but
+I found them becoming more and more difficult to work with as they get
+larger, and difficult to review. Boilerplate gets copy-pasted, can't
+work without a few changes that are easy to miss unless manually tested
+and these get missed in reviews all the time.</p>
+<p>The next session was about <a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-ci">CI</a>. The focus during
+Queens was on reliability, which worked well although promotions
+suffered as a result. There were some questions as to whether we should
+try to prevent people from merging anything when the promotion pipeline
+is broken but no consensus was really reached.</p>
+<p>The <a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky-workflows-api">Workflows session</a>
+was really interesting, there's been a lot of Lessons Learnt from our
+initial attempt with Mistral this last couple of years and it looks
+like we're setting up for a v2 overhaul that'll get rid of many of the
+issues we found. Exciting! There was a brief moment of talk about
+ripping Mistral out and reimplementing everything in Ansible,
+conclusions unclear.</p>
+<p>I didn't take good notes during the other sessions and once the venue
+closed down (snow!) it became a bit difficult to find people in the
+hotel and then actually hear them. Most etherpads with the notes are
+linked from the <a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky">main TripleO etherpad</a>.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

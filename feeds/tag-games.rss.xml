@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>jpichon.net - games</title><link>https://www.jpichon.net/</link><description></description><lastBuildDate>Mon, 29 Oct 2018 20:16:00 +0000</lastBuildDate><item><title>Recettear on Proton</title><link>https://www.jpichon.net/blog/2018/10/recettear-on-proton/</link><description>&lt;p&gt;I was very excited to hear that many games formerly Windows-only are now
+playable on Linux, thanks to Steam Proton (based on Wine). Space is a bit too
+tight for Skyrim on my laptop, but surely it would be nice to see if playing
+&lt;a class="reference external" href="http://www.carpefulgur.com/recettear/about.htm"&gt;Recettear&lt;/a&gt; on Linux is now
+an option!&lt;/p&gt;
+&lt;div class="section" id="enable-proton-install-recettear"&gt;
+&lt;h2&gt;Enable Proton &amp;amp; install Recettear&lt;/h2&gt;
+&lt;p&gt;The steps for this are not too difficult, just follow the &lt;a class="reference external" href="https://steamcommunity.com/games/221410/announcements/detail/1696055855739350561"&gt;FAQ&lt;/a&gt;:
+enable Steam beta, enable Steam Play for all titles.&lt;/p&gt;
+&lt;p&gt;The install button is now available for Recettear! Woohoo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="alas-no-sound"&gt;
+&lt;h2&gt;Alas, no sound&lt;/h2&gt;
+&lt;p&gt;Thankfully help came through, thanks to the &lt;a class="reference external" href="https://www.protondb.com/app/70400"&gt;protondb entry for Recettear&lt;/a&gt; that helpfully links to this &lt;a class="reference external" href="https://github.com/ValveSoftware/Proton/issues/5#issuecomment-429343368"&gt;GitHub
+Issue&lt;/a&gt;. Thank
+you kind stranger! My path was somewhat different, possibly because I installed
+Steam with &lt;a class="reference external" href="https://www.flatpak.org/"&gt;flatpak&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ locate pfx
+...
+/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx/
+...
+$ WINEPREFIX=/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx winetricks directmusic sound=alsa
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unknown-arg-sound-alsa"&gt;
+&lt;h2&gt;Unknown arg sound=alsa&lt;/h2&gt;
+&lt;p&gt;Alas, now I get a black screen and a popping sound instead. Looking at the
+verbose output though, hidden toward the end I did notice &lt;tt class="docutils literal"&gt;Unknown arg
+sound=alsa&lt;/tt&gt;. Looks like my winetricks version may be a bit old.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo winetricks --self-update
+$ WINEPREFIX=/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx winetricks directmusic sound=alsa
+&lt;/pre&gt;
+&lt;p&gt;Success, this time! The game loads fine, and with music.&lt;/p&gt;
+&lt;p&gt;Capitalism, ho!&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Mon, 29 Oct 2018 20:16:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2018-10-29:/blog/2018/10/recettear-on-proton/</guid><category>Tech</category><category>linux</category><category>games</category></item><item><title>Adventures with Steam on Linux | Today: Mark of the Ninja doesn't start</title><link>https://www.jpichon.net/blog/2014/05/steam-on-linux/</link><description>&lt;p&gt;I've been getting back into PC gaming for the last couple of months, and
+that has involved a lot of checking out what Steam on Linux looks like
+nowadays (i.e. playing lots of games). Most of the time everything works
+just fine and smoothly, but sometimes there are hiccups and yesterday I
+was motivated to learn how to debug them. Our story begins: &lt;a class="reference external" href="http://store.steampowered.com/app/214560/"&gt;*Mark of
+the Ninja*&lt;/a&gt; wouldn't start
+when clicking on the &amp;quot;Play&amp;quot; button from within the Steam client.&lt;/p&gt;
+&lt;p&gt;For context I'm running Steam on Fedora 19, 64 bits. I have a separate
+&amp;quot;Library&amp;quot; folder on another partition on which I install the games
+instead of Steam's default location in &lt;em&gt;~/.local/share&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="section" id="running-the-game-from-the-command-line"&gt;
+&lt;h2&gt;Running the game from the command-line&lt;/h2&gt;
+&lt;p&gt;Launching from the Steam client gives me zero information, just a brief
+black screen, so I thought I would see what happens when attempting to
+launch the game from the command-line.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+jpichon&amp;#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ./ninja.sh
+dlopen failed trying to load:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.sowith error:
+libtier0_s.so: cannot open shared object file: No such file or directory
+[S_API FAIL] SteamAPI_Init() failed; Sys_LoadModule failed to load: /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+[S_API FAIL] SteamAPI_Init() failed; unable to locate a running instance of Steam, or a local steamclient.dll.
+./ninja.sh: line 3:&amp;nbsp; 6477 Segmentation fault&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (core dumped) ./ninja-bin32
+&lt;/pre&gt;
+&lt;p&gt;Note that the Steam client must be started in order to even get that
+far. That library does exist at that location, let's see what's
+preventing it from being loaded:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+&amp;nbsp;&amp;nbsp;&amp;nbsp; linux-gate.so.1 =&amp;gt;&amp;nbsp; (0xf77cb000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libtier0_s.so =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libvstdlib_s.so =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; librt.so.1 =&amp;gt; /lib/librt.so.1 (0xf67f4000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libX11.so.6 =&amp;gt; /lib/libX11.so.6 (0xf66ba000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libusb-1.0.so.0 =&amp;gt; /lib/libusb-1.0.so.0 (0xf66a1000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libopenal.so.1 =&amp;gt; /lib/libopenal.so.1 (0xf664a000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libpulse.so.0 =&amp;gt; /lib/libpulse.so.0 (0xf65fa000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libgobject-2.0.so.0 =&amp;gt; /lib/libgobject-2.0.so.0 (0xf65aa000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libglib-2.0.so.0 =&amp;gt; /lib/libglib-2.0.so.0 (0xf647b000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libdbus-glib-1.so.2 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libnm-glib.so.4 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libnm-util.so.2 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libudev.so.0 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libm.so.6 =&amp;gt; /lib/libm.so.6 (0xf6437000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libdl.so.2 =&amp;gt; /lib/libdl.so.2 (0xf6432000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; ...
+&lt;/pre&gt;
+&lt;p&gt;A number of these libraries already exist in Steam's &lt;em&gt;ubuntu12_32&lt;/em&gt;
+directory. Let's add it to our library path.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ export LD_LIBRARY_PATH=/home/jpichon/.local/share/Steam/ubuntu12_32:/home/jpichon/.local/share/Steam/linux32
+jpichon&amp;#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+&amp;nbsp;&amp;nbsp;&amp;nbsp; linux-gate.so.1 =&amp;gt;&amp;nbsp; (0xf7749000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libtier0_s.so =&amp;gt; /home/jpichon/.local/share/Steam/ubuntu12_32/libtier0_s.so (0xf676b000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libvstdlib_s.so =&amp;gt; /home/jpichon/.local/share/Steam/ubuntu12_32/libvstdlib_s.so (0xf6727000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; ...
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libdbus-glib-1.so.2 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libnm-glib.so.4 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libnm-util.so.2 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libudev.so.0 =&amp;gt; not found
+&lt;/pre&gt;
+&lt;p&gt;Yup, that does seem to help. Let's add the rest:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ export LD_LIBRARY_PATH=/home/jpichon/.local/share/Steam/ubuntu12_32:/home/jpichon/.local/share/Steam/linux32:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/usr/lib:/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/lib/i386-linux-gnu
+$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so | grep not
+$
+&lt;/pre&gt;
+&lt;p&gt;Excellent! Let's see if the game can run from the CLI now:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ./ninja-bin32
+[S_API FAIL] SteamAPI_Init() failed; no appID found.
+Either launch the game from Steam, or put the file steam_appid.txt containing the correct appID in your game folder.
+Segmentation fault (core dumped)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-to-find-a-steam-appid"&gt;
+&lt;h2&gt;How to find a Steam appID?&lt;/h2&gt;
+&lt;p&gt;That one's &lt;a class="reference external" href="http://gaming.stackexchange.com/questions/149837/how-do-i-find-the-id-for-a-game-on-steam"&gt;easy to find a solution
+for&lt;/a&gt;.
+One can either look at the ID in the store URL as linked earlier or
+check out &lt;a class="reference external" href="http://steamdb.info"&gt;steamdb&lt;/a&gt;. Let's create a file with
+the correct ID in that directory and try again.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ emacs -nw steam_appid.txt
+jpichon&amp;#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ./ninja-bin32
+Setting breakpad minidump AppID = 214560
+Steam_SetMinidumpSteamID:&amp;nbsp; Caching Steam ID:&amp;nbsp; 76561198074768941 [API loaded no]
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="missing-required-opengl-extensions"&gt;
+&lt;h2&gt;Missing required OpenGL extensions&lt;/h2&gt;
+&lt;p&gt;At first I thought that was it - my laptop simply wasn't powerful enough
+to play the game. But fear not, &lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=1324172#p1324172"&gt;ArchLinux came to the
+rescue&lt;/a&gt;
+and thanks to them I learnt about the handy &lt;em&gt;-enablelog&lt;/em&gt; flag for the
+game.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ./ninja-bin32 -enablelog
+...
+$ less ~/.klei/ninja/log/rendering.log
+...
+[16:34.09] (4144580416) EXT_texture_compression_s3tc required
+&lt;/pre&gt;
+&lt;p&gt;The solution is to install the &lt;strong&gt;libtxc_dxtn&lt;/strong&gt; package (available in
+&lt;em&gt;rpmfusion-free&lt;/em&gt;) and/or set &lt;em&gt;force_s3tc_enable=true&lt;/em&gt; as an
+environment variable (discovered in a cached version of the &lt;a class="reference external" href="http://forums.kleientertainment.com/topic/27805-cant-run-motn-64-bits-archlinux/"&gt;developer's
+official
+forum&lt;/a&gt;,
+as it's currently showing blank pages for me).&lt;/p&gt;
+&lt;p&gt;I think I had to restart X to make sure the new library was picked up
+correctly, and then success!&lt;/p&gt;
+&lt;p&gt;Additional notes: The game still requires the Steam client to be
+running, and the Steam overlay won't work. However your Steam status
+will be correctly shown as in-game and the time, etc, should update
+correctly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="starting-the-game-from-steam"&gt;
+&lt;h2&gt;Starting the game from Steam&lt;/h2&gt;
+&lt;p&gt;Unfortunately, starting the game from Steam still didn't work, and I
+also happen to quite like the overlay especially for games that don't
+react well to Alt-tabbing. I modified the &lt;em&gt;ninja.sh&lt;/em&gt; script to add the
+new paths and environment variables, with no luck.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To help with troubleshooting:&lt;/strong&gt; right-click on the game name then go
+to Properties, there is a &amp;quot;Set launch options&amp;quot; button. There we can add
+the friendly &lt;em&gt;-enablelog&lt;/em&gt; flag discovered earlier. Trying and failing to
+launch the game again gives us some helpful logs in the same location as
+before in &lt;em&gt;~/.klei&lt;/em&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+crash.log:
+[17:25.42] (4144023360) Failed to CreateDevice
+[17:25.42] (4144023360) KGraphics failed to initialize.
+
+rendering.log:
+[17:25.42] (4144023360) EXT_texture_compression_s3tc required
+&lt;/pre&gt;
+&lt;p&gt;Sadly, the same problem as before - it turns out &lt;em&gt;ninja.sh&lt;/em&gt; is likely
+not used at all when launching from Steam so the extra environment
+variables are not being picked up.&lt;/p&gt;
+&lt;p&gt;If Steam isn't using &lt;em&gt;ninja.sh&lt;/em&gt;, how can I find out what it is using and
+if I can change it?&lt;/p&gt;
+&lt;p&gt;In the end, installing &lt;strong&gt;libtxc_dxtn.i686&lt;/strong&gt; (in parallel to the
+.x86_64 version) resolved the problem. I'm not sure why the game
+insists on using 32 bits libraries when articles over the web make it
+clear it supports 64 bits, but either way that did the trick and the
+game now behaves correctly like any other Steam game.&lt;/p&gt;
+&lt;p&gt;I'm still somewhat unhappy about that last part because it was more
+guesswork than debugging, and I don't feel equipped to properly gather
+information next time a similar issue occurs. How can I know which
+binary / path / file Steam is trying to launch and with what flags?&lt;/p&gt;
+&lt;p&gt;Hopefully while I go on to continue my Steam journey, this will have
+been helpful to someone else. Happy gaming!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bonus-track-the-game-is-sloooow"&gt;
+&lt;h2&gt;Bonus track: the game is sloooow&lt;/h2&gt;
+&lt;p&gt;After all this, it turns out my laptop is indeed a bit underpowered to
+play this particular game. Deactivating blur, bloom and displacement in
+the options helped, and so did greatly lowering the resolution (windowed
+mode would help too but it became pretty much unreadable to me then, so
+I favoured the fullscreen 640x480 instead. Your tolerance levels may
+vary!)&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Mon, 19 May 2014 20:09:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2014-05-19:/blog/2014/05/steam-on-linux/</guid><category>Tech</category><category>games</category><category>linux</category></item></channel></rss>

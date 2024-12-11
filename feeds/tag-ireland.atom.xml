@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - ireland</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-ireland.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2024-08-30T21:58:00+01:00</updated><entry><title>ShipItCon 2024</title><link href="https://www.jpichon.net/blog/2024/08/shipitcon-2024/" rel="alternate"></link><published>2024-08-30T21:58:00+01:00</published><updated>2024-08-30T21:58:00+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2024-08-30:/blog/2024/08/shipitcon-2024/</id><summary type="html">&lt;p&gt;To avoid taking a year again to (fail to) put my notes together, I decide to do
+it quickly and stick to a few thoughts and highlights. The 2024 edition of
+&lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; happened today. This year's theme was "Flow." Many speakers
+mentioned ownership when talking about ways to reach flow …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To avoid taking a year again to (fail to) put my notes together, I decide to do
+it quickly and stick to a few thoughts and highlights. The 2024 edition of
+&lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; happened today. This year's theme was "Flow." Many speakers
+mentioned ownership when talking about ways to reach flow.&lt;/p&gt;
+&lt;p&gt;I haven't attended many conferences in the last couple of years, but maybe 90%
+of the people I talked to were also meeting their co-workers face-to-face for
+the first time at this event, despite working together for years. At least
+three different companies. I found it interesting. It doesn't look like there
+are many opportunities for teams to meet outside of conferences at the moment.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ShipItCon welcome slide" src="https://www.jpichon.net/site_media/images/2024/shipitcon2024.jpg"&gt;&lt;/p&gt;
+&lt;h1&gt;DevOps Topologies 10 years on: what have we learned about silos, collaboration, and flow? (Matthew Skelton)&lt;/h1&gt;
+&lt;p&gt;The speaker kindly summarised his findings both at the start and the end of the
+talk: decouple teams and tech (not just defining an org structure, something
+more dynamic), but diffuse learning across the company (that can take the form
+of Lunch and Learns, blogs, Communities of Practice, guides, etc...)&lt;/p&gt;
+&lt;p&gt;Reading recs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gene Kim's books (the Phoenix Project, Accelerate, ...)&lt;/li&gt;
+&lt;li&gt;SODOR, the State Of DevOps Reports&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Organisation, Flow, and Architecture (Sam Newman)&lt;/h1&gt;
+&lt;p&gt;What an incredibly dynamic and engaging speaker! The theme was generally how to
+reduce handoffs, which happens particularly when organisation are siloed.&lt;/p&gt;
+&lt;p&gt;Conway's law: An organisation design systems that replicate the communication
+structure of that organisation.&lt;/p&gt;
+&lt;p&gt;So if you have Taylorism-inspired silos with e.g. separate
+front-end/back-end/DB teams, the system will reproduce that.&lt;/p&gt;
+&lt;p&gt;The solution is feature-based teams (micro-services are good to enable full
+ownership). Durable as opposed to initiative-based teams are also better as
+long-lived teams make better decisions about trade-offs (e.g. incurred tech
+debt, etc).&lt;/p&gt;
+&lt;h1&gt;Data Driven Decisions to Improve Testing Flows (Heather Reid)&lt;/h1&gt;
+&lt;p&gt;Using data to take risks. Differentiating between reversible and not reversible
+risks. The speaker used various examples based on her own experiences to
+illustrate the principle.&lt;/p&gt;
+&lt;p&gt;For example: closing an old bug to remove noise is easily reversible if it
+turns out it shouldn't have been closed.&lt;/p&gt;
+&lt;p&gt;If 1000s of users report a problem, it can feel like millions/all of your users
+are hitting the problem. But maybe when you look at the data it's 0.6% of the
+userbase, which is still bad but not world-ending.&lt;/p&gt;
+&lt;p&gt;Or a really bad bug affecting 6 users using that phone model (out of millions)
+can probably be closed.&lt;/p&gt;
+&lt;p&gt;Prioritise accordingly.&lt;/p&gt;
+&lt;h1&gt;Observability 2.0 and other things (Charity Majors)&lt;/h1&gt;
+&lt;p&gt;(The title isn't on the agenda and I forgot to write it down!)&lt;/p&gt;
+&lt;p&gt;Tip for how to supercharge your career: join a high-performing team.&lt;/p&gt;
+&lt;p&gt;Engineering should own the code in production.&lt;/p&gt;
+&lt;p&gt;Observability is a property of complex systems.&lt;/p&gt;
+&lt;p&gt;Observability-driven development means looking at your dashboards (as opposed
+to waiting for alerts/paging to bring them up). It's a constant conversation
+with code (including unstructured logs, not just metrics, because they provide
+CONTEXT). (Higher level: structured logs with trace ids you can follow end to
+end.)&lt;/p&gt;
+&lt;h1&gt;Establishing a culture of ownership and observability at Phorest (Paweł Malon and Paul Dailly)&lt;/h1&gt;
+&lt;p&gt;Interestingly, the speakers use Honeycomb which is the observability platform
+of the previous speaker. It was like seeing practical examples of the concepts
+detailed in the previous talk.&lt;/p&gt;
+&lt;p&gt;The theme of engineering owning the code all the way to production came up
+again.&lt;/p&gt;
+&lt;p&gt;And also, of linking engineering workflows to observability: deploying a change
+and seeing what difference it makes, and conversely using the insights gained
+from observing software behaviour on prod to find new bugs/improvements.&lt;/p&gt;
+&lt;p&gt;Having a lot of metrics does create issues with the cost of storing all of that
+data, which is where sampling helps, although the speakers talked about the
+other problems you then have to deal with when sampling and how to manage them.&lt;/p&gt;
+&lt;h1&gt;Go With The Flow? (Vessy Tasheva)&lt;/h1&gt;
+&lt;p&gt;Play is a component of flow. Venn diagram of Play and Environment with Flow
+where the circles meet.&lt;/p&gt;
+&lt;p&gt;Environment: must be safe even if there are constraints/discomfort. E.g. a
+leader having your back when working on a challenging project.&lt;/p&gt;
+&lt;p&gt;Play is a way to be more authentic and creative. "Being" (which respects focus
+time) vs "Reacting" (which breaks flows and creates defensiveness).&lt;/p&gt;
+&lt;h1&gt;Flow-etry in Motion: Navigating Cascades of Threat Data (Claire Burn)&lt;/h1&gt;
+&lt;p&gt;Interesting twist to the talk! When the speaker submitted it, it was supposed
+to be about how their pivot to using Kubernetes and Google Cloud Platform
+enabled better flow in the team. But by the time the conference happened, they
+had reverted back to AWS and EC2!&lt;/p&gt;
+&lt;p&gt;There was no "peak flow" to be found because Kubernetes wasn't the right tool
+to solve their problems (they needed finer grained OS control).&lt;/p&gt;
+&lt;p&gt;Considerations around Learning Curve vs Velocity, especially when working as a
+smaller team (4 people). The management debt became too much.&lt;/p&gt;
+&lt;p&gt;They did end up keeping Kotlin from this experiment, good for integration with
+other Java projects in the company.&lt;/p&gt;
+&lt;h1&gt;The impact of Flow on various aspects of work (Panel discussion)&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Beat_Saber"&gt;Beat Saber&lt;/a&gt; as a way to get into flow 😂&lt;/p&gt;
+&lt;p&gt;Distributed teams are good for making the implicit explicit. Managing based on
+outcomes. The additional flexibility is good for everyone.&lt;/p&gt;
+&lt;p&gt;Honeycomb has a quarterly "everyone works from home" week, up to the CEO. It's
+good to get distance from processes, etc. (I thought that was a refreshing
+contrast to all the Return To Office talk from the last couple of years.)&lt;/p&gt;
+&lt;p&gt;Many problems are socio-technical: need a combination of tech and people
+solutions, not just one or the other.&lt;/p&gt;
+&lt;h1&gt;Harnessing Developer Insights to maximise flow (Mihai Paun and Alma Tarfa)&lt;/h1&gt;
+&lt;p&gt;Learned helplessness in companies: "we've always done it this way" "that's
+never going to work here."&lt;/p&gt;
+&lt;p&gt;I really liked the picture of the Iceberg of Ignorance, from &lt;a href="https://www.corporate-rebels.com/blog/iceberg-of-ignorance"&gt;Corporate
+Rebels&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Iceberg of Ignorance" src="https://www.jpichon.net/site_media/images/2024/iceberg-ignorance.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Papercuts affecting flow tend not to surface in retrospectives.&lt;/p&gt;
+&lt;p&gt;Solution: Plan - Do (gather data) - Check (target condition) - Act&lt;/p&gt;
+&lt;p&gt;For example, they found their dev team struggled to reach flow state because of
+the number of meetings, so they decided to try setting up two no-meetings day
+(Monday, Wednesday) then gather data to see if that helped. Everyone involved
+in the four steps.&lt;/p&gt;
+&lt;p&gt;Small changes toward reaching the bigger goal.&lt;/p&gt;
+&lt;p&gt;Leaders: be gardeners, not mechanics.&lt;/p&gt;
+&lt;h1&gt;From MLOps to AI Systems (Jim Dowling)&lt;/h1&gt;
+&lt;p&gt;Most AI systems don't ship. This hasn't changed in the last few years.&lt;/p&gt;
+&lt;p&gt;MLOps, LLMOps. He explained when he teaches a ML course, his students complete
+an AI project from scratch in 2 weeks. It doesn't need to be as complicated as
+30+ steps diagrams/consultants make it out to be.&lt;/p&gt;
+&lt;p&gt;While looking for a link to the course, I came across this &lt;a href="https://www.hopsworks.ai/post/mlops-to-ml-systems-with-fti-pipelines"&gt;detailed
+article&lt;/a&gt; that goes into the details of the talk if that is of interest. And
+includes a link to the students' projects.&lt;/p&gt;
+&lt;h1&gt;Finding personal flow (Patrick Kua)&lt;/h1&gt;
+&lt;p&gt;Personal flow usually comes from:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;adding value&lt;/li&gt;
+&lt;li&gt;learning&lt;/li&gt;
+&lt;li&gt;having a lot of ownership (with support)&lt;/li&gt;
+&lt;li&gt;a sense of progress&lt;/li&gt;
+&lt;li&gt;applying the team's strengths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The speaker used past experiences to illustrate various kind of very different
+environments that can lead to good flow. This actually linked back nicely to
+Vessy's earlier talk as well: challenging projects but in a safe
+environment/with support.&lt;/p&gt;
+&lt;p&gt;One of the anecdotes I liked was when he was trying to remove himself as a
+bottleneck in a large project, he broke down the features, and asked if anyone
+would step up as feature leads for each of those. People had no problem
+volunteering and that also links back to ownership again. And feature-based
+teams.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;The disadvantage of putting up notes early is that the recordings are not yet
+available!&lt;/p&gt;</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category></entry><entry><title>UXDX 2018</title><link href="https://www.jpichon.net/blog/2019/10/uxdx-2018/" rel="alternate"></link><published>2019-10-07T07:24:00+01:00</published><updated>2019-10-07T07:24:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2019-10-07:/blog/2019/10/uxdx-2018/</id><summary type="html">&lt;p&gt;Whoops! Clearly I'm never going to finish writing up my notes for the
+conference last year. Better post what I got even if incomplete, before the
+next one begins :-) I couldn't get a discounted ticket this year and won't be
+attending. Have fun, everyone there!&lt;/p&gt;
+&lt;p&gt;I was lucky enough to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Whoops! Clearly I'm never going to finish writing up my notes for the
+conference last year. Better post what I got even if incomplete, before the
+next one begins :-) I couldn't get a discounted ticket this year and won't be
+attending. Have fun, everyone there!&lt;/p&gt;
+&lt;p&gt;I was lucky enough to be able to attend &lt;a class="reference external" href="https://uxdxconf.com/"&gt;UXDX&lt;/a&gt; this
+year as well, thanks to a discounted ticket and my employer kindly allowing me
+the day off. The venue was again the RDS, with the lovely room that's lined up
+with actual real books.&lt;/p&gt;
+&lt;p&gt;UXDX is an interesting conferences, that aims to bring down barriers between
+User Experience and Developer Experience people. The conference has expanded
+this year, now covering two days. I was happy to see some issues I had with the
+conference last year resolved. For example, although the stated goal is to
+bring together UX and DX people, improve collaboration, etc, the tracks were
+completely separate. Worst for the DX-centred talks, the &amp;quot;room&amp;quot; was a stage at
+the back of the exhibition hall and all the noise that entails. This year, the
+separation between the two tracks was labelled &amp;quot;Vision&amp;quot; and &amp;quot;Execution&amp;quot; which
+made it easier to have talks mixing everything together, and also the Execution
+room had a proper room with doors that close. The room was larger than the
+section assigned last year too, and always full whenever I peeked in. Both
+tracks were always busy. The exhibition hall seemed pretty empty outside of the
+breaks, but there were plenty of those - staggered to lessen the lunch/coffee
+rush.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="51%" /&gt;
+&lt;col width="49%" /&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td rowspan="2"&gt;&lt;img alt="Library room" src="https://www.jpichon.net/site_media/images/2018/RDS.jpg" style="width: 330.0px; height: 247.50000000000003px;" /&gt;&lt;/td&gt;
+&lt;td rowspan="2"&gt;&lt;img alt="Books" src="https://www.jpichon.net/site_media/images/2018/RDS_books.jpg" style="width: 330.0px; height: 247.50000000000003px;" /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There was a handful of talks I was looking forward to, some met my expectations
+and others turned out different. Many other good surprises. I'll summarise some
+of the talks I enjoyed the most and only include my key takeaways for
+others. This doesn't mean any of it was the actual point or meat of the talk,
+more like the insights that were new to me personally and that I'll be
+ruminating on.&lt;/p&gt;
+&lt;div class="section" id="day-one"&gt;
+&lt;h2&gt;Day One&lt;/h2&gt;
+&lt;div class="section" id="micro-frontend-architecture-luca-mezzalira-dazn"&gt;
+&lt;h3&gt;Micro Frontend Architecture | Luca Mezzalira (DAZN)&lt;/h3&gt;
+&lt;p&gt;I started the day in the Execution room (it sounds a bit dramatic phrased like
+this) and didn't really know what to expect with this talk, but it may have
+ended up being my favourite one. The speaker stated his problem clearly - how
+to make it work with hundreds of distributed developers/teams - and also noted
+that the solution he came up with challenges common software development
+wisdom, but to keep an open mind.&lt;/p&gt;
+&lt;p&gt;The idea is to share absolutely nothing. Not even a button. &lt;strong&gt;Don't&lt;/strong&gt; create a
+library of shared components, like headers. Really, how often does your header
+change anyway? Trust your developers. They can duplicate and maintain this. The
+goal is to minimise dependencies. Don't centralise.&lt;/p&gt;
+&lt;p&gt;The rest is structured based on &amp;quot;Domain-Driven Development.&amp;quot; Each team has
+their own domain (e.g. Catalogue, Subscription, Payment, ...) and completely
+independent technology stack.&lt;/p&gt;
+&lt;p&gt;The benefits:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Quicker on-boarding, because you only need to understand your own domain
+deeply&lt;/li&gt;
+&lt;li&gt;Easier to scale teams&lt;/li&gt;
+&lt;li&gt;Freedom for developers to innovate and own something end-to-end&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;He also mentioned the positive impact on turnover. In London, it's apparently
+not uncommon for developers to change company every year, year and a half. This
+makes it easy to try new technology which is often the main reason to jump
+ship.&lt;/p&gt;
+&lt;p&gt;There are frameworks that enable this nowadays, like &lt;a class="reference external" href="http://single-spa.js.org"&gt;single-spa&lt;/a&gt; and &lt;a class="reference external" href="http://frint.js.org"&gt;frint&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="planning-your-agile-architecture-will-demaine-fat-llama"&gt;
+&lt;h3&gt;Planning your Agile Architecture | Will Demaine (Fat Llama)&lt;/h3&gt;
+&lt;p&gt;This was an excellent talk, and well delivered as well. The speaker described
+the steps you may want to follow to modernise your application and enable a
+more agile architecture, from lessons learnt first hand through different
+companies. If I had to undertake a project like this I think I'd find the
+slides or recording again to refresh my memory first, but for today my key
+takeaways would be that this is a long process that you want to tackle
+iteratively, so that you can continue to deliver &lt;strong&gt;business value&lt;/strong&gt; along the
+way. No one will let you just take off and deliver nothing new for 8 months
+while you rewrite the thing from scratch.&lt;/p&gt;
+&lt;p&gt;Have solid foundations in place (monitoring, feature flags, ...) before
+starting. Take your time and do it right the first time or they won't let you
+migrate more services!&lt;/p&gt;
+&lt;p&gt;Another point I found interesting: create a gateway for the clients, the things
+that you can't roll back like mobile apps. Even if it's just a proxy to start
+with.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="embracing-empathy-tim-hudson-adyen"&gt;
+&lt;h3&gt;Embracing empathy | Tim Hudson (Adyen)&lt;/h3&gt;
+&lt;p&gt;Pie charts bad. Bar charts good.&lt;/p&gt;
+&lt;p&gt;(Also, look into the Design Sprint / Design Sprint 2.0 books.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="solving-problems-to-build-a-compelling-product-deborah-clarke-cartrawler"&gt;
+&lt;h3&gt;Solving Problems to Build a Compelling Product | Deborah Clarke (Cartrawler)&lt;/h3&gt;
+&lt;p&gt;User research is vital but not the only important thing. Combining with other
+incentives can lead to better focus and great breakthroughs. Innocuous, small
+moments of delight can increase your conversion rate.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-journey-from-complexity-reducing-technical-debt-fabrizio-fortunato-ryanair"&gt;
+&lt;h3&gt;A Journey from Complexity: Reducing Technical Debt | Fabrizio Fortunato (Ryanair)&lt;/h3&gt;
+&lt;p&gt;Interesting to follow the evolution of the RyanAir front page over the decades!
+Some tidbits I found of interest:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Impact of page load. Any speed increase has a direct impact on revenue.&lt;/li&gt;
+&lt;li&gt;They use &amp;quot;micro-pages.&amp;quot; Concept similar to micro-frontend except it relates
+to full pages, each page is its own app. So everyone is only responsible for
+their own page independently, and loosely coupled. Single SPA per page, that
+can be released independently but still has shared components (interesting
+contrast with micro-frontend above).&lt;/li&gt;
+&lt;li&gt;They eventually wrote two different apps for mobile and web, as optimising
+for one over the other never quite worked and only served in increasing
+complexity. Now optimised for each flow. Still haven't decided whether to use
+mobile or web format on tablets.&lt;/li&gt;
+&lt;li&gt;They use GraphQL, serverless, Brotli.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="design-and-prototyping-david-hoang-one-medical"&gt;
+&lt;h3&gt;Design and prototyping | David Hoang (One Medical)&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Prototypes should be low cost and provide high insights. The goal is
+learning. Having a prototype together with a vision/roadmap is powerful.&lt;/li&gt;
+&lt;li&gt;&amp;quot;Validating&amp;quot; a prototype or design is about gaining insights. About
+learning. Not about proving something right or wrong.&lt;/li&gt;
+&lt;li&gt;Design is not magic, it's a rigorous process.&lt;/li&gt;
+&lt;li&gt;Include User Testing in every sprint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Prototyping is successful if you get &lt;strong&gt;insights&lt;/strong&gt; that provide &lt;strong&gt;value&lt;/strong&gt; to
+your user.&lt;/p&gt;
+&lt;p&gt;The examples related to medical applications were compelling. From paper
+(e.g. stuck onto a 3d printed watch model, to test for smart watches ahead of
+releases), to powerpoint, to node-based prototyping, to Figma.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-tools-we-use-challenging-dogma-in-the-design-process-emmet-connolly-intercom"&gt;
+&lt;h3&gt;The tools we use: Challenging dogma in the design process | Emmet Connolly (Intercom)&lt;/h3&gt;
+&lt;p&gt;Tools influence output, and can even generate trends.&lt;/p&gt;
+&lt;p&gt;Use these tools and remain sceptical, don't let the tools push you around and
+end up with a design monoculture (noticeable in the history of the web).&lt;/p&gt;
+&lt;p&gt;&amp;quot;Design Ops&amp;quot; - a concept I hadn't heard of.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ensuring-the-success-of-your-remote-engineering-team-panel"&gt;
+&lt;h3&gt;Ensuring the Success of your Remote Engineering Team | Panel&lt;/h3&gt;
+&lt;p&gt;I really liked that the conference kept the talks to 30 minutes, but I think
+that's one case where it would have been better to get an extended timeslot,
+maybe 45 minutes. As it stands even with only two panelists (+ one moderator)
+we barely had time to scratch beyond the surface.&lt;/p&gt;
+&lt;p&gt;Keeping a budget for internal face-to-face interactions, some kind of annual
+get-together has a great impact on morale and engagement and pays for itself.&lt;/p&gt;
+&lt;p&gt;The cost of saving on office space is not the point (numbers like
+€17,000/person in Dublin, €11,000/person in Sligo were mentioned). Talent is
+the point. Working remotely helps to attract and retain people.&lt;/p&gt;
+&lt;p&gt;Onboarding strategies were briefly touched on. One of the companies hires
+mainly senior people with 10y+ experience while the other also hires new grads
+so the strategies are different. It's great if you can get people to HQ for
+this, makes sure they understand the company's values and culture, and also the
+tools at their disposal.&lt;/p&gt;
+&lt;p&gt;To keep people connected, having non-work related communication channels like a
+#showyourdesk Slash channel or &amp;quot;whose view is better this week?&amp;quot; can help.&lt;/p&gt;
+&lt;p&gt;Time zones are a challenge for global meetings. Some expectation that you will
+go the extra mile for the business, since you are not tied to a regular 9 to 5.&lt;/p&gt;
+&lt;p&gt;There were concerns about working from home and whether people are really
+working. In general the opposite seemed to be a concern for the panelists: when
+people work from home you can't see the black bags under their eyes, or if
+people are stuck. People know working from home is a privilege and work hard to
+prove themselves. One of the companies measures employee productivity to make
+sure they don't burn out - though you have to be very careful about how you
+measure people.&lt;/p&gt;
+&lt;p&gt;The secret sauce is flexibility. Work is only one part of life.&lt;/p&gt;
+&lt;p&gt;How about accountability and self-determination? Decisions should be made by
+the person who needs to. Empower people. Get that right. Measure what you want
+success to look like.&lt;/p&gt;
+&lt;p&gt;With regard to people not contributing, teams are tight and it becomes obvious
+who is and who isn't. You do need to be more proactive in searching for
+information with remote teams. One-on-one meetings every two weeks to touch
+base. They are still refining the process. Seven seems to be a magic
+number, you can see if people are performing for any type of team.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="accessibility-brian-dalton-aer-lingus"&gt;
+&lt;h3&gt;Accessibility | Brian Dalton (Aer Lingus)&lt;/h3&gt;
+&lt;p&gt;I missed the beginning but seeing how a user who relies on accessibility
+features uses a computer and navigates the Internet is always powerful. Lots of
+work to be done still.&lt;/p&gt;
+&lt;p&gt;From keyboard to navigation to simple, silly things like &amp;quot;times shown in red
+are not available.&amp;quot; Label your fields.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="five-phrases-that-shout-your-agile-isn-t-scaling-tony-grout-atlassian"&gt;
+&lt;h3&gt;Five phrases that shout your agile isn't scaling | Tony Grout (Atlassian)&lt;/h3&gt;
+&lt;p&gt;The Agile manifesto 17 years ago didn't talk about how to scale it! From 17 to
+70000 people.&lt;/p&gt;
+&lt;p&gt;Some interesting suggestions that challenge conventional wisdom. My favourite:
+it's well-known that smaller teams are more productive. Studies have shown that
+teams of 9 to 16 people were 6% less productive than teams of 5 to 9. However,
+if you decide to make 2 teams instead you now have &lt;em&gt;twice&lt;/em&gt; the unpredictability
+because you've added a dependency on another team. Think carefully, run the
+experiment to see if bigger teams may be better.&lt;/p&gt;
+&lt;p&gt;Encourage people to think about &amp;quot;teams&amp;quot; over &amp;quot;team.&amp;quot; For example, if the UI
+team is currently the bottleneck, instead of engineering twiddling their thumbs
+or overengineering something while they wait, perhaps they could create tooling
+to help the team. That slows them down and helps the other team.&lt;/p&gt;
+&lt;p&gt;One team working faster can cause everyone else to go slower. For example, a UI
+team wanting to be pixel perfect.&lt;/p&gt;
+&lt;p&gt;Those closest to the problem should make the decisions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="kessel-run-a-digital-transformation-story-within-the-world-s-largest-bureaucracy-adam-furtado-kessel-run-u-s-air-force"&gt;
+&lt;h3&gt;Kessel Run: A Digital Transformation Story within the World's Largest Bureaucracy | Adam Furtado (Kessel Run / U.S. Air Force)&lt;/h3&gt;
+&lt;p&gt;An interesting choice for a closing keynote for day one.&lt;/p&gt;
+&lt;p&gt;The transformation described is absolutely incredible. The speaker spent a fair
+amount of time at the beginning to explain the current state of things,
+years/decades of risk aversion leading to becoming unable to adapt to change
+and thus less safe. Twelve to fifteen years to go from an idea to something in
+the users' hands, 96% of project behind schedule or over budget, 40% never
+delivered... They went to Pivotal, who helped them to learn about modern
+software development practices, devops, etc but more importantly how to change
+the culture. Now deploying is a non-event and they went from 10 years to 120
+days for delivering.&lt;/p&gt;
+&lt;p&gt;It's truly inspiring and the project they presented as an example showed the
+real-world benefits: allowing soldiers to stay safe at home and with their
+family rather than go on months-long refuelling missions around the world,
+thanks to streamlining the refuelling planning process with
+software. Definitely a worthy goal.&lt;/p&gt;
+&lt;p&gt;It was however a bit strange to hear about software described as a
+differentiator and weapon to cultivate on the battlefield, and how to improve
+warfare. I suppose keynotes are meant to make you think rather than just give
+you warm fuzzy feelings, and this talk sure fit the bill!&lt;/p&gt;
+&lt;img alt="Courtyard" class="align-center" src="https://www.jpichon.net/site_media/images/2018/RDS_courtyard.jpg" style="width: 600px; height: 450px;" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="day-two"&gt;
+&lt;h2&gt;Day Two&lt;/h2&gt;
+&lt;p&gt;Was just as interesting, too bad I left it too long to get the rest of my notes
+together.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="Ireland"></category></entry><entry><title>PyCon Ireland 2014</title><link href="https://www.jpichon.net/blog/2014/11/pycon-ireland-2014/" rel="alternate"></link><published>2014-11-20T08:56:00+00:00</published><updated>2014-11-20T08:56:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2014-11-20:/blog/2014/11/pycon-ireland-2014/</id><content type="html">&lt;p&gt;Together with a couple of colleagues, I wrote a &lt;a class="reference external" href="http://community.redhat.com/blog/2014/11/pycon-ireland-2014-report/"&gt;short report about
+PyCon Ireland
+2014&lt;/a&gt;.
+Once again the conference was a lot of fun and I'm looking forward to
+the 2015 edition! :)&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category><category term="python"></category></entry><entry><title>Evolving Open-Source Night | Open-Source Night - June</title><link href="https://www.jpichon.net/blog/2013/07/evolving-open-source-night/" rel="alternate"></link><published>2013-07-02T20:30:00+01:00</published><updated>2013-07-02T20:30:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2013-07-02:/blog/2013/07/evolving-open-source-night/</id><summary type="html">&lt;p&gt;The monthly Open-Source night experiment continues. On Wednesday, June
+19th we had the &lt;a class="reference external" href="http://www.tog.ie/2013/06/open-source-night-june/"&gt;June edition of Open-Source
+Night&lt;/a&gt;.
+&lt;a class="reference external" href="http://www.technomancy.org/"&gt;Rory&lt;/a&gt; gave us a
+slightly-longer-than-15-minutes talk on
+&lt;a class="reference external" href="http://www.openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt;, and the kind of
+contributions the project welcomes (data data data, really!). I was the
+only one to volunteer for a lightning talk, in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The monthly Open-Source night experiment continues. On Wednesday, June
+19th we had the &lt;a class="reference external" href="http://www.tog.ie/2013/06/open-source-night-june/"&gt;June edition of Open-Source
+Night&lt;/a&gt;.
+&lt;a class="reference external" href="http://www.technomancy.org/"&gt;Rory&lt;/a&gt; gave us a
+slightly-longer-than-15-minutes talk on
+&lt;a class="reference external" href="http://www.openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt;, and the kind of
+contributions the project welcomes (data data data, really!). I was the
+only one to volunteer for a lightning talk, in stark contrast with the
+last event where we had multiple ones both by people attending
+open-source night and network people who happened to be visiting the
+hackerspace at the time.&lt;/p&gt;
+&lt;p&gt;Rather than doing an on-topic talk about an open-source project, I did a
+meta-talk about Open-Source Night itself and different ways in which it
+could evolve.&lt;/p&gt;
+&lt;p&gt;I make no secret that I don't think open-source night works very well in
+its current format. My goal (and measure for success) is to help people
+actually get started contributing.&lt;/p&gt;
+&lt;p&gt;Note: if you were at my &lt;a class="reference external" href="http://thedotconf.wordpress.com/whos-speaking/julie-pichon/"&gt;deep dive on contributing to
+open-source&lt;/a&gt;
+and planning on attending the next open-source night, please do come!!
+This all just means that I think there are things that can be improved
+:)&lt;/p&gt;
+&lt;div class="section" id="reminder-the-current-format"&gt;
+&lt;h2&gt;Reminder: The current format&lt;/h2&gt;
+&lt;p&gt;We're currently meeting on the 3rd Wednesday of the month. The event
+usually starts with two 15 minutes talk, ideally one on the life of
+open-source (e.g. licences, version control, IRC, using the
+command-line...) and one on how to contribute to a specific project.
+Then there's a number of 5-minutes-long-or-less lightning talks where
+people can introduce the project they will be working on during the
+evening. Then people break into groups or independently work on an
+open-source project of their choice.&lt;/p&gt;
+&lt;p&gt;Or that's the idea anyway. The talks usually work well and are
+inspiring, though they tend to run overtime and then people have trouble
+sitting at a table and doing things.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-future"&gt;
+&lt;h2&gt;The future&lt;/h2&gt;
+&lt;p&gt;These are my thoughts and ideas as to where open-source night might go
+in the future. These are not plans. I would like to hear feedback from
+interested people - attendees, would-be attendees, other organisers and
+thoughtful passerbys.&lt;/p&gt;
+&lt;div class="section" id="topics-general-open-source-vs-project-specific"&gt;
+&lt;h3&gt;Topics: General open-source vs Project-specific&lt;/h3&gt;
+&lt;p&gt;I see value in both topics, but perhaps attendees and would-be attendees
+favour one or the other, both, or neither? I haven't really heard much
+on this, what people find most useful. I think the project specific
+talks at least are interesting for both newcomers and established
+contributors, to see how other projects do things.&lt;/p&gt;
+&lt;p&gt;I believe 15 minutes is a good amount of time to get an overview, get
+inspired and get ideas. And not get too bored if already familiar with
+the topic.&lt;/p&gt;
+&lt;p&gt;I could see the value and how efficient it would be to focus on one
+project for a full session and guide people through contributing to it.
+However I can also see how it could be offputting to people not
+particularly interested in the project (e.g. &amp;quot;I don't use that distro,
+why should I bother attending?&amp;quot;). Perhaps as separate, off-shoot events
+if people are interested in leading that kind of session (get in
+touch!).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="topics-all-kind-of-contributions-vs-focusing-on-code"&gt;
+&lt;h3&gt;Topics: All kind of contributions vs Focusing on code&lt;/h3&gt;
+&lt;p&gt;At the moment, I try really hard to emphasise (and encourage speakers to
+do the same) all the kinds of contributions that can be made - and are
+well needed! - even though my own experience lies in code-based
+contributions. Maybe I should give up on being inclusive and focus on
+what I know best, rather than try to be all things to all people?
+Code-focused open-source events could go from learning to program to
+fixing a bug.&lt;/p&gt;
+&lt;p&gt;Initially I was hoping people would step up to talk and encourage people
+to join their area of interest (I think we have e.g. experienced
+open-source translators around...) but that hasn't happened.&lt;/p&gt;
+&lt;p&gt;This is actually a point where someone came up to me after the talk and
+said straight off they really liked the breadth of contributions demoed
+during the talks, in particular mentioning &lt;a class="reference external" href="http://www.tog.ie/2013/05/open-source-night-may/"&gt;last month's
+talk&lt;/a&gt; by Guilherme
+on &lt;a class="reference external" href="http://openmandriva.org"&gt;OpenMandriva&lt;/a&gt; that did a great job
+showing how someone can help, in a multitude of ways, even if they're
+not all that confident in their coding skills.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="format-more-course-like"&gt;
+&lt;h3&gt;Format: More course-like?&lt;/h3&gt;
+&lt;p&gt;A couple of days before the June OSS Night I was pointed to &lt;a class="reference external" href="http://opensource.com/life/13/6/learning-program-open-source-way"&gt;this
+article on a really, really interesting summer course on learning to
+program the open-source
+way&lt;/a&gt;.
+That's a really cool concept. Should we entertain the thought of doing
+something similar during open-source night? e.g. A session on learning
+how to use version control with exercises, very workshop like, one
+month, some other topic the next one, etc.?&lt;/p&gt;
+&lt;p&gt;Probably not, but something to consider as a separate course with a
+shorter timeline. A course with one session a month will lose people and
+have little momentum. Is this the kind of things people have an interest
+in learning?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="format-doing-vs-listening-talking"&gt;
+&lt;h3&gt;Format: Doing vs Listening/Talking&lt;/h3&gt;
+&lt;p&gt;My goal with this event is still to get people started contributing. I'm
+not interested in organising a monthly night of talks. Finding speakers
+is stressful. If the talks aren't followed by some contributing action,
+to me the event is failing and I'm not interested in continuing to
+organise it. There are plenty of events around Dublin already where
+people can meet, talk tech and shoot the breeze.&lt;/p&gt;
+&lt;p&gt;With regard to open-source related talks, I think that's already handled
+well by the &lt;a class="reference external" href="http://www.linux.ie"&gt;ILUG&lt;/a&gt; folks, who are now keen to
+set them up regularly again under the new chairmanship :) And we can
+join forces if that's the most attractive part of the event to folks. If
+your main interest is in having a regular night of open-source talks,
+get in touch and I'll be happy to help you have this in Tog. I'd attend
+with pleasure anyway, I'm just not interested in organising it and go
+speaker-hunting every 3 weeks.&lt;/p&gt;
+&lt;p&gt;I still believe we can make something really cool happen by putting in
+the same room people experienced in open-source together with newcomers
+interested in contributing. So I'm not giving up yet!&lt;/p&gt;
+&lt;p&gt;There's of course also the timeframe issue: with or without talks, an
+evening of maybe 3 hours is not a lot of time to accomplish something.
+Maybe we could (also/instead?) have events on Saturdays? And/or week-end
+workshops, Friday eve to Sunday?&lt;/p&gt;
+&lt;p&gt;HOWEVER, in any case an evening is still enough time to accomplish
+&lt;em&gt;something&lt;/em&gt;, get started, get the momentum going, get unblocked and
+finish your contribution later at the week-end, in your own time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="you-why-are-you-here-anyway"&gt;
+&lt;h3&gt;You: Why are you here anyway*? ;)&lt;/h3&gt;
+&lt;p&gt;* Or why weren't you? :) I'm just as interested in the answer to that!&lt;/p&gt;
+&lt;p&gt;Are you interested in learning how to contribute? Interested in helping
+and mentoring newcomers? What were you hoping this evening would be
+about?&lt;/p&gt;
+&lt;p&gt;I then invited people to have a productive discussion with me about this
+should they wish to, somewhat contradicting my own doing vs talking rant
+:-)&lt;/p&gt;
+&lt;p&gt;Please feel free and welcome to continue the discussion in the comments
+or &lt;a class="reference external" href="https://www.jpichon.net/about/"&gt;by email&lt;/a&gt;, I would love to pick
+more brains and exchange ideas about this.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-challenge"&gt;
+&lt;h3&gt;Django challenge&lt;/h3&gt;
+&lt;p&gt;To avoid the talk being entirely meta (and in case people didn't care
+that much about all the blah blah blah and more about the doing!), I
+issued a challenge to attendees as well: this evening, run the
+&lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt; unit tests suite. If that's
+something you're set up for, it'll take 2 minutes. If you're familiar
+with the concept but don't have all the dependencies set up yet it'll
+take 20 minutes. If this is all new to you it might take 2 hours, but
+what you learn you'll be able to reuse when you start working on a
+project you care about in the future, and it means it'll take less long
+then.&lt;/p&gt;
+&lt;p&gt;One person took me up on it and it took them 10 minutes. This shows how
+possible it is to actually get the ball rolling during open-source
+night, get people to realise they're not that far away from a first
+contribution.&lt;/p&gt;
+&lt;p&gt;I feel I should give the disclaimer that since the last time I talked
+about how to contribute to Django, the Django folks added to their docs
+a &lt;a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/contributing/"&gt;tutorial on how to make your first
+contribution&lt;/a&gt;,
+which just makes the project that little bit more awesome (and this
+challenge, easier to solve!)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-open-source-night-july"&gt;
+&lt;h2&gt;Next Open-Source Night: July&lt;/h2&gt;
+&lt;p&gt;So next month. That'll be on the 17th of July. Are you interested in
+giving a talk? :)&lt;/p&gt;
+&lt;p&gt;If no one volunteers we'll have a session similar to the first event
+except with more lightning talks. Lightning talks don't have to be
+prepared, there's no need for slides or anything you don't fancy. It's
+as simple as chatting about what you plan on doing or would like to do
+during the evening, inviting others to join you if they'd like.&lt;/p&gt;
+&lt;p&gt;It can be like:&lt;/p&gt;
+&lt;p&gt;&amp;quot;Hello, I'm Chris, a contributor to AwesomeProject which is a project
+that does this and that and also that thing. At the moment we're looking
+for help in $area1, $area2, $area41, if you think that's cool and you'd
+like to help, I'll be sitting at that table over here, come and chat
+with me. Maybe I can help you find a good first task. Otherwise I'll be
+working on the defroglirnator for the project -- er if you have any
+experience in that area I'd love to chat to you too.&amp;quot;&lt;/p&gt;
+&lt;p&gt;or maybe&lt;/p&gt;
+&lt;p&gt;&amp;quot;Hey, I'm J. Bloggs, I've been using Wordpress for a few years, I think
+it's an awesome project and I'd like to start giving back. Tonight my
+plan is to figure out the new contributor process - if you're interested
+too, we can do this together. Come and chat with me.&amp;quot;&lt;/p&gt;
+&lt;p&gt;It doesn't matter if there is no existing contributor to the specific
+project in the room. Since there are people familiar with the way
+open-source projects and communities usually tick, they will be able to
+help you if you get stuck.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ok, that's it! I'm hoping to also have the time to find a few good first
+tasks in a new project, maybe
+&lt;a class="reference external" href="http://www.libreoffice.org/"&gt;LibreOffice&lt;/a&gt;. If not, then we can
+figure it out together on the day :)&lt;/p&gt;
+&lt;p&gt;I'm very much looking forward to hearing your thoughts, suggestions and
+ideas about all this, and perhaps also see you on the 17th.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="events"></category><category term="ireland"></category><category term="open-source"></category><category term="tog"></category></entry><entry><title>Open-Source Night #2: March 2013</title><link href="https://www.jpichon.net/blog/2013/03/open-source-night-2-march-2013/" rel="alternate"></link><published>2013-03-24T20:22:00+00:00</published><updated>2013-03-24T20:22:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2013-03-24:/blog/2013/03/open-source-night-2-march-2013/</id><summary type="html">&lt;p&gt;On Wednesday the 20th, we had the &lt;a class="reference external" href="http://www.tog.ie/2013/03/open-source-night-2/"&gt;2nd edition of Open-Source
+Night&lt;/a&gt; in
+&lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt;. I think it went well. Once again there was
+about a dozen attendees, many of whom have never contributed to
+open-source before. A third of them were also in Tog for the first time.
+It might …&lt;/p&gt;</summary><content type="html">&lt;p&gt;On Wednesday the 20th, we had the &lt;a class="reference external" href="http://www.tog.ie/2013/03/open-source-night-2/"&gt;2nd edition of Open-Source
+Night&lt;/a&gt; in
+&lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt;. I think it went well. Once again there was
+about a dozen attendees, many of whom have never contributed to
+open-source before. A third of them were also in Tog for the first time.
+It might be too early to matter but there was also very little overlap
+with the audience from last time.&lt;/p&gt;
+&lt;div class="section" id="talks"&gt;
+&lt;h2&gt;Talks&lt;/h2&gt;
+&lt;p&gt;We started the evening with 2 talks, meant to be about 15 minutes long
+each. &lt;a class="reference external" href="http://blogs.gnome.org/markmc/"&gt;Mark&lt;/a&gt; started the evening
+telling us about open-source licences and the philosophy they
+encapsulate/were born from. Then I walked through how one would go about
+contributing to &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;Django&lt;/a&gt;, basically
+clicking through the Django website and explaining different tasks the
+project needs help with, particularly for bug fixing contributions.&lt;/p&gt;
+&lt;p&gt;After this, we had 2 lightning talks that were meant to last 2 to 5
+minutes, to give people a chance to talk about a project they contribute
+to and get people to join in. This time the talks were more about ideas,
+which is fine, but both also ran overtime, which is less cool. I'm not
+sure if either found additional contributors/would-be contributors out
+of it for the evening.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hands-on"&gt;
+&lt;h2&gt;Hands-on&lt;/h2&gt;
+&lt;p&gt;The second part of the evening, the part that should be hands-on, didn't
+go so well. After the talks (which lasted for 1h30 instead of 45mins)
+and a tour of the hackerspace for the new people, most continued
+chatting instead of sitting down and getting things done. This
+especially saddened me for the ones who had never contributed before.
+The goal of the event is to help newcomers get started contributing,
+when they have experienced people at hand to ask questions to.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-time"&gt;
+&lt;h2&gt;Next time&lt;/h2&gt;
+&lt;p&gt;I'm not sure how to improve this next time and help attendees get
+started actually doing stuff. Running overtime for the talks really hurt
+for the rest of the evening, which is already such a short time to
+accomplish something. An idea: after my talk I was asked &amp;quot;How long would
+it take for someone to start from nothing to being able to run the
+Django unit test suite?&amp;quot; and maybe this kind of well-defined,
+self-contained task would be good to help people get started. It's not a
+contribution yet, but it's a first, necessary step toward it (for code
+contributions in any case), and it could be fun to try and mix this with
+some sort of &lt;a class="reference external" href="http://openbadges.org"&gt;open badge&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Somewhat related announcement: open-source night won't happen on April
+17th next month but probably on April 24th instead. Check the
+&lt;a class="reference external" href="http://www.tog.ie"&gt;tog.ie&lt;/a&gt; calendar for confirmation. If you're
+interested in speaking on a topic relating to the life of open-source or
+a project in particular, please get in touch :)&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="django"></category><category term="events"></category><category term="ireland"></category><category term="open-source"></category><category term="tog"></category></entry></feed>

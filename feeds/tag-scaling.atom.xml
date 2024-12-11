@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - scaling</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-scaling.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2011-07-10T16:48:00+01:00</updated><entry><title>EuroPython 2011: Mark Ramm on Relate or !Relate</title><link href="https://www.jpichon.net/blog/2011/07/europython-2011-relate-or-not-relate/" rel="alternate"></link><published>2011-07-10T16:48:00+01:00</published><updated>2011-07-10T16:48:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-07-10:/blog/2011/07/europython-2011-relate-or-not-relate/</id><summary type="html">&lt;p&gt;Link: &lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/relate-or-relate"&gt;Talk description and
+video&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This talk was about non-relational databases. I didn't take a lot of
+notes :o) The most important morale is probably: don't keep the mind
+altering substances and the tools in the same shed.&lt;/p&gt;
+&lt;p&gt;With 2 decades of relational databases, they are pretty robust by now …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Link: &lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/relate-or-relate"&gt;Talk description and
+video&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This talk was about non-relational databases. I didn't take a lot of
+notes :o) The most important morale is probably: don't keep the mind
+altering substances and the tools in the same shed.&lt;/p&gt;
+&lt;p&gt;With 2 decades of relational databases, they are pretty robust by now.
+They cover different spectrum of ACID compliance ; for instance MySQL is
+faster, Postgres is more reliable (though becoming faster... if you tick
+off the reliability options!). Relational databases are supposed to be
+normalised, except they are not really: there is also a spectrum here as
+databases tend to get denormalised for performance reasons.&lt;/p&gt;
+&lt;p&gt;Amazon uses an &amp;quot;eventually consistent&amp;quot; system, which they can pull off
+by charging at shipping time only. Conflicts are rare, if 2 orders are
+placed and there is only 1 item available, someone might get a gift
+certificate instead.&lt;/p&gt;
+&lt;p&gt;The NoSQL taxonomy includes wildly different tools that don't have much
+in common except for the fact that they don't use SQL: key-value stores,
+document stores, ....&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://en.wikipedia.org/wiki/CAP_theorem"&gt;CAP&lt;/a&gt;: Consistency,
+Availability, Partition tolerance. You can have 1 or 2, not all 3.
+(Brewer's Theorem)&lt;/p&gt;
+&lt;p&gt;There was only 1 Postgres database for all of SourceForge for a long
+time, while they were in the top 100 sites. Don't obsess about scale
+you'll never achieve.&lt;/p&gt;
+&lt;p&gt;One of the question was about how difficult it is to convert from a
+relational database to NoSQL. The answer is, from something like
+Postgres to MongoDB, it wouldn't be that much work (he did suggest 4
+people 6 weeks though, which doesn't sound that trivial to me). Changing
+to Cassandra on the other hand would be a huge effort.&lt;/p&gt;
+</content><category term="Tech"></category><category term="europython"></category><category term="python"></category><category term="scaling"></category></entry><entry><title>EuroPython 2011: Simon Willison on Challenges in developing a large Django site</title><link href="https://www.jpichon.net/blog/2011/06/europython-2011-challenges-developing-large-django-site/" rel="alternate"></link><published>2011-06-27T13:57:00+01:00</published><updated>2011-06-27T13:57:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-06-27:/blog/2011/06/europython-2011-challenges-developing-large-django-site/</id><summary type="html">&lt;p&gt;Links: &lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/challenges-building-large-django-site"&gt;talk description and
+video&lt;/a&gt;
+and
+&lt;a class="reference external" href="http://www.slideshare.net/simon/tricks-challenges-developing-a-large-django-application"&gt;slides&lt;/a&gt;.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Simon Willison is the co-founder &lt;a class="reference external" href="http://lanyrd.com/"&gt;lanyrd.com&lt;/a&gt;, a
+social website for conferences.&lt;/p&gt;
+&lt;div class="section" id="tips-and-tricks"&gt;
+&lt;h2&gt;Tips and tricks&lt;/h2&gt;
+&lt;div class="section" id="signing-from-1-4-currently-in-trunk"&gt;
+&lt;h3&gt;Signing (from 1.4, currently in trunk)&lt;/h3&gt;
+&lt;p&gt;Using cryptographic signing for various things can ensure that they
+haven't been tampered with, for instance a cookie or an unsubscribe …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Links: &lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/challenges-building-large-django-site"&gt;talk description and
+video&lt;/a&gt;
+and
+&lt;a class="reference external" href="http://www.slideshare.net/simon/tricks-challenges-developing-a-large-django-application"&gt;slides&lt;/a&gt;.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Simon Willison is the co-founder &lt;a class="reference external" href="http://lanyrd.com/"&gt;lanyrd.com&lt;/a&gt;, a
+social website for conferences.&lt;/p&gt;
+&lt;div class="section" id="tips-and-tricks"&gt;
+&lt;h2&gt;Tips and tricks&lt;/h2&gt;
+&lt;div class="section" id="signing-from-1-4-currently-in-trunk"&gt;
+&lt;h3&gt;Signing (from 1.4, currently in trunk)&lt;/h3&gt;
+&lt;p&gt;Using cryptographic signing for various things can ensure that they
+haven't been tampered with, for instance a cookie or an unsubscribe
+link. If you encrypt your session cookies you don't have to hit the
+database anymore, you just need to check the proper signed cookie.&lt;/p&gt;
+&lt;p&gt;The speaker showed a couple of short code examples to demonstrate how
+simple it is to use, and how the interface is consistent with the other
+serialisation interfaces.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from django.core import signing
+signing.dumps({&amp;quot;foo&amp;quot;: &amp;quot;bar&amp;quot;})&amp;nbsp; # url safe
+signing.loads(string)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cache-version"&gt;
+&lt;h3&gt;cache_version&lt;/h3&gt;
+&lt;p&gt;This is another way to do cache invalidation. You add a cache_version
+field to the model, that is incremented when calling the save() hook or
+a touch() method. In the template cache fragment, you use the primary
+key and the cache_version to invalidate.&lt;/p&gt;
+&lt;p&gt;You can also mass invalidate by updating the cache version of
+objects.all() using F() -- example from the slides:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+topic.conferences.all().update(
+&amp;nbsp;&amp;nbsp;&amp;nbsp; cache_version = F('cache_version') + 1
+)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="nosql-for-denormalisation"&gt;
+&lt;h3&gt;noSQL for denormalisation&lt;/h3&gt;
+&lt;p&gt;Use noSQL to denormalise and keep the database and the cache/nosql in
+sync. It's more work but it's worth it.&lt;/p&gt;
+&lt;p&gt;For instance they use Redis sets to maintain lists such as
+username-follows, europython-attendees and then they simply need to do a
+set intersection to get the information they want. These are only lists
+of ids so they don't take that much space.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hashed-static-asset-filenames-in-cloudfront"&gt;
+&lt;h3&gt;Hashed static asset filenames in CloudFront&lt;/h3&gt;
+&lt;p&gt;They created a management command to push static assets, that compresses
+Javascript, changes the names/urls, etc. This way they can publish them
+in advance, and also keep static files around if there's a need to
+rollback. The different names are also good to prevent Internet Explorer
+caching.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="challenges"&gt;
+&lt;h2&gt;Challenges&lt;/h2&gt;
+&lt;p&gt;This part of the talk is about things they don't really have answers
+for.&lt;/p&gt;
+&lt;div class="section" id="http-requests"&gt;
+&lt;h3&gt;HTTP Requests&lt;/h3&gt;
+&lt;p&gt;e.g. talking to an API: what if it fails or take 30 seconds? Do you use
+urllib? What if people enter private urls from within your Intranet? :O&lt;/p&gt;
+&lt;p&gt;You have to handle connection timeouts, logging and profiling, url
+validation, and http caching. All of these are a common set of problems
+that should be baked into the framework.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="profiling-and-debugging-production-problems"&gt;
+&lt;h3&gt;Profiling and debugging production problems&lt;/h3&gt;
+&lt;p&gt;Debugging in development rocks, with the django-debug-toolbar, the way
+error 500 are handled, pdb, etc.&lt;/p&gt;
+&lt;p&gt;Once you turn debug to False, you're blind. After a while, all the bugs,
+particularly performance bugs, only happen in production.&lt;/p&gt;
+&lt;p&gt;He showed us a code snippet for a UserBasedExceptionMiddleware, that if
+you access the page throwing a 500 error and is_superuser is True, you
+will see a traceback, not the default 500 error (so if one of your users
+reports a problem, you can go to the page straight off and see a
+traceback).&lt;/p&gt;
+&lt;p&gt;At the database level, there is a handy tool called &lt;strong&gt;mysql-proxy&lt;/strong&gt; that
+is customisable using Lua. Using a wonderful, horribly documented
+library called log.lua, you can for instance turn on logging for a
+couple of minutes when needed.&lt;/p&gt;
+&lt;p&gt;He created an app called django_instrumented (unreleased, until it's
+cleaned up) that collects statistics and sticks them into memcached. He
+has a special bookmark to access them, they are stored for 5 minutes
+only&amp;nbsp; -- so they waste neither space or time.&lt;/p&gt;
+&lt;p&gt;This actually helped improve the performance: if you measure something
+and make it visible, people will improve it over time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="downtime-deployments"&gt;
+&lt;h3&gt;0 downtime deployments&lt;/h3&gt;
+&lt;p&gt;Code-wise it's easy enough to do, but when there are database changes
+it's tougher. Ideally they try to make schema changes backwards
+compatible, then use ./manage.py migrate (using South) on another web
+server.&lt;/p&gt;
+&lt;p&gt;Having a read-only mode made a lot of problems easier! It's not 0
+downtime but the content is still readable. It can be a setting or a
+Redis key.&lt;/p&gt;
+&lt;p&gt;Feature flags work in the same way but at a more fine-grained level, for
+instance turning off search while you update your solr cluster. There's
+quite a bit more work involved.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="one-lesson-we-keep-on-learning-in-django"&gt;
+&lt;h2&gt;One lesson we keep on learning in Django&lt;/h2&gt;
+&lt;p&gt;We went from one database to multi-databases, from one cache to
+multi-caches, from one haystack backend to multiple backends.&lt;/p&gt;
+&lt;p&gt;Debug is one single setting, that affects a lot of things.&lt;/p&gt;
+&lt;p&gt;The timezone setting also affects Apache log files.&lt;/p&gt;
+&lt;p&gt;The middleware concept is very powerful, but is executed on every single
+request: if there's a conditional it has to be done within the
+middleware.&lt;/p&gt;
+&lt;p&gt;Really, global settings should be flushed out of the project! They are
+evil settings that cannot be changed at runtime.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="django"></category><category term="europython"></category><category term="python"></category><category term="scaling"></category></entry><entry><title>EuroPython 2011: David Cramer on building scalable websites</title><link href="https://www.jpichon.net/blog/2011/06/europython-2011-building-scalable-websites/" rel="alternate"></link><published>2011-06-24T22:22:00+01:00</published><updated>2011-06-24T22:22:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-06-24:/blog/2011/06/europython-2011-building-scalable-websites/</id><summary type="html">&lt;p&gt;&lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/building-scalable-web-apps"&gt;Link to talk description and
+video&lt;/a&gt;
+(videos should be public next week I believe)&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Performance (e.g. a request should return in less than 5 seconds) is not
+the same as scalability (e.g. a request should ALWAYS return in less
+than 5 seconds). Fortunately, it turns out that when …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/building-scalable-web-apps"&gt;Link to talk description and
+video&lt;/a&gt;
+(videos should be public next week I believe)&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Performance (e.g. a request should return in less than 5 seconds) is not
+the same as scalability (e.g. a request should ALWAYS return in less
+than 5 seconds). Fortunately, it turns out that when you start working
+on scalability you usually end up improving performance as well -- note
+that this doesn't work the other way around.&lt;/p&gt;
+&lt;div class="section" id="common-bottlenecks"&gt;
+&lt;h2&gt;Common bottlenecks&lt;/h2&gt;
+&lt;p&gt;The database is almost always an issue.&lt;/p&gt;
+&lt;p&gt;Caching and invalidation help.&lt;/p&gt;
+&lt;p&gt;They use Postgres for 98% of their data, it works great on good hardware
+with one master only (Disqus, his company, uses Django to serve 3
+billion page views a month)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="packaging-matters"&gt;
+&lt;h2&gt;Packaging matters&lt;/h2&gt;
+&lt;p&gt;Packaging is key: it lets you repeat your deployment, makes it
+repeatable which is incredibly useful even when you're working by
+yourself. Unfortunately there are too many ways to do packaging in
+Python, and none that solves all the problem. He uses setuptools,
+because it usually works.&lt;/p&gt;
+&lt;p&gt;Plenty of benefits to packaging:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The handy 'develop' command installs all the dependencies.&lt;/li&gt;
+&lt;li&gt;Dependencies are frozen.&lt;/li&gt;
+&lt;li&gt;It's a great way to get a new team member quickly set up.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, they use fabric to deploy consistently.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="database-s"&gt;
+&lt;h2&gt;Database(s)&lt;/h2&gt;
+&lt;p&gt;This applies to any kind of datastore, which are the usual bottleneck.
+It can become difficult to scale once there is more than one server.&lt;/p&gt;
+&lt;p&gt;The rest of the talk uses a Twitter clone as an example.&lt;/p&gt;
+&lt;p&gt;For the public timeline, you select everything and order it by date.
+It's ok if there is only 1 database server, otherwise you need to use
+some sort of map/reduce variant to get it working. The index on date
+will be fairly heavy though. It's quite easy to cache (add tweet to a
+queue whenever it's added), and invalidate.&lt;/p&gt;
+&lt;p&gt;For personal timelines, you can use &lt;strong&gt;vertical partitioning&lt;/strong&gt;, with the
+user and tweets on separate machines. Unfortunately this means a SQL
+JOIN is not possible. &lt;strong&gt;Materialised views&lt;/strong&gt; are a possible answer but
+there aren't supported by many databases (for instance it's not
+supported by MySQL. MySQL will generate a view by rerunning the query
+everytime, which means you can't index it).&lt;/p&gt;
+&lt;p&gt;Using Postgres and Redis, you can have a sorted set, using the tweet id
+with the timestamp as its weight (will become ordering). Note that you
+can't have a never ending long tail of data, data will be truncated
+after 30 days or whatever (remove the data from Redis).&lt;/p&gt;
+&lt;p&gt;Now the new problem is to scale Redis! You can partition per user, say
+if you keep 1000 tweets per user you can know how much space a user will
+take, and how many you can have per server.&lt;/p&gt;
+&lt;p&gt;See: &lt;a class="reference external" href="http://github.com/disqus/nydus"&gt;github.com/disqus/nydus&lt;/a&gt; to
+package cluster of connections to Redis, it can be used like (?) a
+Django database. They store 64 redis nodes on the same machine in
+virtual machines.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="vertical-vs-horizontal-partitioning"&gt;
+&lt;h2&gt;Vertical vs. Horizontal partitioning&lt;/h2&gt;
+&lt;p&gt;You can have:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Master database with no indexes, only primary keys&lt;/li&gt;
+&lt;li&gt;A database of users&lt;/li&gt;
+&lt;li&gt;A database of tweets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So far the hardware scales at the same time as their app. If you need
+more machines, more RAM, it's cheap enough, and when you need it again
+in a few years it will be the same price.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="asynchronous-tasks"&gt;
+&lt;h2&gt;Asynchronous tasks&lt;/h2&gt;
+&lt;p&gt;Using Rabbit and Celery, you can use application triggers to manage your
+data, e.g. a signal on a model save() hook that adds the new item to a
+queue after it's been added to the database. This way, when the worker
+starts on the task it can add the new tweet to all the caches without
+blocking (e.g. if someone has 7 million followers, their tweet needs to
+be added to 7 million streams)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="building-an-api"&gt;
+&lt;h2&gt;Building an API&lt;/h2&gt;
+&lt;p&gt;Having an API is important to scale your code and your architecture.
+Making sure that all the places in your code (the Django code, the Redis
+code, the REST part, whatever) all use the same API, or are refactored
+to use the same API so that you can change them all in one place.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="to-wrap-up"&gt;
+&lt;h2&gt;To wrap up&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Use a framework (like Django, to do some of the legwork for you),
+then iterate. Start with querying the database then scale.&lt;/li&gt;
+&lt;li&gt;Scaling can lead to performance but not the other way around.&lt;/li&gt;
+&lt;li&gt;When you have a large infrastructure, architecture it in terms of
+services, it's easier to scale&lt;/li&gt;
+&lt;li&gt;Consolidate the entry points, it becomes easier to optimise&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="lessons-learnt"&gt;
+&lt;h2&gt;Lessons learnt&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Have more upfront, for instance 64 VMs, so that you can scale up to
+64 machines if needed.&lt;/li&gt;
+&lt;li&gt;Redistributing/rebalancing shards is a nightmare, plan far ahead.&lt;/li&gt;
+&lt;li&gt;PUSH to the cache, don't PULL: otherwise if the data is not there,
+5000 users might request it at the same time and suddenly you have
+5000 hits to the database. Cache everything, it's easier to
+invalidate (everything is cached 5 minutes in memcached in their
+system)&lt;/li&gt;
+&lt;li&gt;Write counters to denormalise views (updated via queues, stored in
+Redis I think)&lt;/li&gt;
+&lt;li&gt;Push everything to a queue from the start, it will make processing
+faster -- there is no excuse, Celery is so easy to set up&lt;/li&gt;
+&lt;li&gt;Don't write database triggers, handle the trigger logic in your queue&lt;/li&gt;
+&lt;li&gt;Database pagination is slow and crappy: LIMIT 0, 1000 may be ok --
+LIMIT 1000, 2000 and suddenly the database has to count rows, it gets
+slower and consumes CPU and memory. There are easier ways to do
+pagination, he likes to do id chunks and select range of ids, it's
+very quick.&lt;/li&gt;
+&lt;li&gt;Build with future sharding in mind. Think massive, use Puppet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One of the questions was: does that mean there are 7 million cache
+misses if someone deletes a tweet? Answer: Yes indeed.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="django"></category><category term="europython"></category><category term="python"></category><category term="scaling"></category></entry></feed>

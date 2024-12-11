@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Bees with machine guns | Load testing</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Another interesting PyCon talk to watch was Best practices for impossible deadlines. One of the tools mentioned in the talk is Bees with machine..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/05/bees-machine-guns/" rel="bookmark"
+           title="Permalink to Bees with machine guns | Load testing">Bees with machine guns  | Load testing</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-05-29T22:36:00+01:00">
+                Published: Sun 29 May 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info -->      <p>Another interesting PyCon talk to watch was <a class="reference external" href="http://blip.tv/pycon-us-videos-2009-2010-2011/pycon-2011-best-practices-for-impossible-deadlines-4899490">Best practices for
+impossible
+deadlines</a>.
+One of the tools mentioned in the talk is <em>Bees with machine guns</em>, a
+load testing tool that uses the power of
+<a class="reference external" href="http://aws.amazon.com/ec2/">EC2</a> and with a name like that I was
+gleeful thinking about the day when I would have an opportunity to use
+it.</p>
+<p>This week the day came :D And despite the <a class="reference external" href="https://github.com/newsapps/beeswithmachineguns">useful
+README</a> I had to
+tweak a bit to get things working; here are my notes for later, and for
+anyone else who might ask themselves the same questions.</p>
+<div class="section" id="bringing-up-the-swarm">
+<h2>Bringing up the swarm</h2>
+<p>The documentation mentions some of the defaults you should override, but
+not all of them and you might find yourself scratching your head
+wondering why things are timing out.</p>
+<p>Pre-requisites:</p>
+<ul class="simple">
+<li>Creates a 'bees' (or whatever) security group, with SSH/port 22 open
+(<strong>-g</strong>)</li>
+<li>Make sure the AMI you're trying to find is available with that name
+in the zone you're in (<strong>-i</strong>)</li>
+<li>Make sure the region in your Boto config file matches the region
+you're trying to connect to (<strong>-z</strong>)</li>
+<li>Mind the default username! If you don't specify it, it will default
+to newsapp and the bees won't be able to connect (<strong>-l</strong>)</li>
+<li>For additional paranoia I also created a specific key pair just for
+the bees, to make sure there's no way in hell I can bring down an
+instance with something important on it (<strong>-k</strong>)</li>
+</ul>
+<pre class="literal-block">
+./bees up -s 4 -g bees -k bees -i ami-12345678 -z eu-west-1a -l root
+</pre>
+</div>
+<div class="section" id="still-timing-out">
+<h2>Still timing out!</h2>
+<p>Now... The bees use the apache benchmark tool to hammer your site. If
+the tool doesn't produce any output the script assumes there was a time
+out. Which means, if the tool isn't installed on the AMI the bees will
+always time out! Without an appropriate error message. There are a few
+options. You could create a custom AMI that has ab installed. This is a
+bit overkill. Or, if the AMI you're using supports it (not a given!) you
+can launch a user data script by tweaking the bees.py script around line
+100 and adding something like this to the run_instances call.
+(Debian-based system, use sudo if necessary.)</p>
+<pre class="literal-block">
+user_data = '#!bin/bash\napt-get -y install apache2-utils'
+</pre>
+<p>thus becoming:</p>
+<pre class="literal-block">
+reservation = ec2_connection.run_instances(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; image_id=image_id,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min_count=count,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max_count=count,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; key_name=key_name,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; security_groups=[group],
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instance_type=EC2_INSTANCE_TYPE,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; placement=zone,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; user_data = '#!bin/bash\napt-get -y install apache2-utils')
+</pre>
+</div>
+<div class="section" id="other-tips">
+<h2>Other tips</h2>
+<p>If testing say a Django-based site, don't forget to add the ending slash
+at the end of the URL. ab doesn't follow 301 codes.</p>
+<p>If changing regions to test from elsewhere:</p>
+<ul class="simple">
+<li>Find the new AMI id for the image. It has to be EBS backed.</li>
+<li>You may encounter errors if the zone doesn't offer t1.micro images,
+but the error message will clearly indicate so.</li>
+<li>~/.boto must be updated:</li>
+</ul>
+<pre class="literal-block">
+[Boto]
+#ec2_region_name = eu-west-1
+#ec2_region_endpoint = eu-west-1.ec2.amazonaws.com
+ec2_region_name = us-east-1
+ec2_region_endpoint = us-east-1.ec2.amazonaws.com
+
+[Credentials]
+aws_access_key_id = ......
+aws_secret_access_key = .....
+</pre>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

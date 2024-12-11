@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - Language_learning</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2018/12/anki-japanese-support-add-on-on-fedora-28-something-something-32-bit-support/">Anki &amp; Japanese Support Add-on on Fedora 28: &quot;Something something 32 bit support&quot;</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-12-26T22:57:00+00:00">
+                Published: Wed 26 December 2018
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/language_learning.html">Language_learning</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/japanese/">japanese</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info --><p>For a few months now, I've been having issues with the <a class="reference external" href="https://apps.ankiweb.net/">Anki</a> Japanese support
+add-on. Normally the add-on adds the readings automatically when creating new
+cards, but lately that was failing with:</p>
+<pre class="literal-block">
+An error occurred in an add-on.
+Please post on the add-on forum:
+https://anki.tenderapp.com/discussions/add-ons
+
+Traceback (most recent call last):
+  File &quot;/usr/share/anki/aqt/webview.py&quot;, line 18, in run
+    return unicode(self._bridge(unicode(str)))
+  File &quot;/usr/share/anki/aqt/editor.py&quot;, line 462, in bridge
+    &quot;editFocusLost&quot;, False, self.note, self.currentField):
+  File &quot;/usr/share/anki/anki/hooks.py&quot;, line 32, in runFilter
+    arg = func(arg, *args)
+  File &quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&quot;, line 209, in onFocusLost
+    n[dst] = mecab.reading(srcTxt)
+  File &quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&quot;, line 76, in reading
+    self.ensureOpen()
+  File &quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&quot;, line 73, in ensureOpen
+    raise Exception(&quot;Please ensure your Linux system has 32 bit binary support.&quot;)
+Exception: Please ensure your Linux system has 32 bit binary support.
+</pre>
+<p>At first I thought, meh, the rest works fine, and usually I don't need to add
+the readings for <em>every</em> word anyway, just the one that's new to me in the
+sentence so that shouldn't take too much time.</p>
+<p>It took me a few months to realise I wasn't creating new cards anymore, just
+plopping them into a list of &quot;cards to create when I have the time someday.&quot;
+Whoops.</p>
+<p>The solution, found via a <a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=1681613#p1681613">ArchLinux thread</a> is also dead simple:</p>
+<pre class="literal-block">
+$ sudo dnf install libstdc++.i686 # Note the i686, that's the important bit!
+</pre>
+<p>Better get on with that word list now.</p>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2015/04/japan/" rel="bookmark"
+                           title="Permalink to Japan">Japan</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-04-18T00:35:00+01:00">
+                Published: Sat 18 April 2015
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/language_learning.html">Language_learning</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/japanese/">japanese</a> </p>
+</footer><!-- /.post-info -->                <p>I'm taking a year out to travel in Japan on a working holiday visa,
+starting with a couple of months of studying the language some more. I
+landed about 2 weeks ago. The school put me at a slightly higher level
+than I had dared to hope and I am …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2015/04/japan/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2014/10/dk-house-sapporo/" rel="bookmark"
+                           title="Permalink to DK House Sapporo">DK House Sapporo</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-10-08T17:54:00+01:00">
+                Published: Wed 08 October 2014
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/language_learning.html">Language_learning</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/japanese/">japanese</a> </p>
+</footer><!-- /.post-info -->                <p>I wanted to take a few minutes to give a shout out to <a class="reference external" href="http://www.e-guesthouse.com/eng/sapporo/">DK House in
+Sapporo</a>, as a great option
+to get affordable housing for mediumish to longer stays in Japan. I
+spent a month there in September.</p>
+<p><img alt="DK house front" src="https://www.jpichon.net/site_media/images/2014/dk_house.jpg" /></p>
+<p>They specialise in short-term accommodations, normally starting from 3
+months but …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2014/10/dk-house-sapporo/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2012/06/adventures-in-japan/" rel="bookmark"
+                           title="Permalink to Adventures in Japan">Adventures in Japan</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-06-04T09:02:00+01:00">
+                Published: Mon 04 June 2012
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/language_learning.html">Language_learning</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/japanese/">japanese</a> </p>
+</footer><!-- /.post-info -->                <p>In the middle of May, I went away for a couple of weeks in lovely
+Fukuoka, Japan with the goal of expanding my knowledge of Japanese.</p>
+<p>Every weekday, I went to a language school,
+<a class="reference external" href="http://www.genkijacs.com">GenkiJACS</a>. On the first day, my level was
+accurately evaluated through a written test and interview …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2012/06/adventures-in-japan/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/10/learning-japanese/" rel="bookmark"
+                           title="Permalink to Learning Japanese | or, what to after the Michel Thomas Method">Learning Japanese  | or, what to after the Michel Thomas Method</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-10-24T20:19:00+01:00">
+                Published: Mon 24 October 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/language_learning.html">Language_learning</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/japanese/">japanese</a> </p>
+</footer><!-- /.post-info -->                <p>Since listening to the <a class="reference external" href="https://www.jpichon.net/blog/2011/09/michel-thomas-method/">Michel Thomas Foundation
+Course</a>,
+I've been intensifying my learning of Japanese. I'm not sure if I'm
+learning in a sustainable way, but I'm enjoying the journey and will
+ride the wave of motivation while it lasts :) In case I inadvertently
+take a break and later want …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/10/learning-japanese/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<nav>
+    Page 1 / 2
+        <a href="https://www.jpichon.net/category/language_learning2.html">&rang;</a>
+        <a href="https://www.jpichon.net/category/language_learning2.html">&Rang;</a>
+</nav>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

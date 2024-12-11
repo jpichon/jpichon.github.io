@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Testing in Horizon | Unit testing for the Openstack Dashboard</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Belatedly, here are the notes for the design session/tutorial I gave about testing in Horizon at the OpenStack Summit in Portland, back in April...." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2013/07/testing-in-horizon/" rel="bookmark"
+           title="Permalink to Testing in Horizon | Unit testing for the Openstack Dashboard">Testing in Horizon  | Unit testing for the Openstack Dashboard</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-07-05T13:43:00+01:00">
+                Published: Fri 05 July 2013
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/openstack/">openstack</a> </p>
+</footer><!-- /.post-info -->      <p>Belatedly, here are the notes for the design session/tutorial I gave
+about <a class="reference external" href="http://openstacksummitapril2013.sched.org/event/8fc010e344a9e24952c5d4aa119d5ed7">testing in
+Horizon</a>
+at the <a class="reference external" href="http://www.openstack.org/summit/portland-2013/">OpenStack Summit in
+Portland</a>, back in
+April. The etherpad is available <a class="reference external" href="https://etherpad.openstack.org/HavanaHorizonTesting">over
+there</a>. Session
+description:</p>
+<div class="line-block">
+<div class="line">The main aspect: the Horizon unit tests can be quite complex for new
+contributors and people extending Horizon to wrap their head around.
+Mocking with mox, the django unit testing framework,the openstack
+specific parts of the testing framework, selenium, fixtures/test data
+handling, qunit...This session could work as a tutorial/tips and
+tricks on the different testing components. Common errors being thrown
+and how to debug them. If people could bring up their pain points,
+that would also be useful.</div>
+<div class="line">If there is time, it would be interesting to also address the issue
+from another angle and think on how to improve what we have,
+particularly on the Selenium front which has been quite unstable.</div>
+</div>
+<div class="section" id="general-structure">
+<h2>General structure</h2>
+<p>There are 3 main parts to Horizon testing (4 if you include the bits
+that come from the Python unit testing framework, but we won't get into
+it here. If you've done unit testing before, it's the <a class="reference external" href="http://docs.python.org/3/library/unittest.html">usual set of
+assertions and
+scaffolding</a> that
+come with any unit testing framework).</p>
+<p>As an example to map to what this is all talking about, I recommend
+keeping
+<a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/dashboards/project/instances/tests.py#L43">InstancesTest.test_index</a>
+in the background.</p>
+<div class="section" id="django-unit-testing">
+<h3>Django unit testing</h3>
+<p>Docs: <a class="reference external" href="https://docs.djangoproject.com/en/1.4/topics/testing/">https://docs.djangoproject.com/en/1.4/topics/testing/</a></p>
+<p>At the moment Horizon is compatible with 1.4 onwards. The django
+documentation is excellent and I recommend having a look. Thanks to
+django we get a lot of goodies for free to help with testing a web
+application. Among other things:</p>
+<ul class="simple">
+<li>A test client, which mimics a very simple browser (no Javascript) to
+do GET and POST requests, and built-in tooling to have interesting
+interactions with the responses.</li>
+<li>A bunch of additional assertions, to check the HTML, templates, etc.,
+all documented in the link above.</li>
+</ul>
+<p>If you're familiar with django already, or while you're reading the
+django docs, there are a couple of things to watch out for:</p>
+<ul class="simple">
+<li>Horizon does not use models.py, and does not have a database</li>
+<li>Horizon doesn't use fixtures either (actually it does, but they're
+very different since they're not done the django way - cf. no models)</li>
+</ul>
+</div>
+<div class="section" id="horizon-unit-testing">
+<h3>Horizon unit testing</h3>
+<p>Docs: <a class="reference external" href="http://docs.openstack.org/developer/horizon/topics/testing.html">http://docs.openstack.org/developer/horizon/topics/testing.html</a></p>
+<p>Helper classes:
+<a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/horizon/test/helpers.py#L65">https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/horizon/test/helpers.py#L65</a></p>
+<p>There are some docs for testing in Horizon, which contain useful advice
+for writing good tests in general. A few sections only are specific to
+Horizon:</p>
+<ul class="simple">
+<li>A couple of <a class="reference external" href="http://docs.openstack.org/developer/horizon/topics/testing.html#assertions-and-verification">Horizon-specific
+assertions</a></li>
+<li>The <a class="reference external" href="http://docs.openstack.org/developer/horizon/topics/testing.html#debugging-unit-tests">debugging tips and common
+pitfalls</a>
+also contain useful, concrete tips</li>
+</ul>
+<p>Now let's have a look at
+<a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/horizon/test/helpers.py#L65">helpers.py</a>,
+where the TestCase classes we extend in Horizon tests are defined.</p>
+<p>The setUp() and tearDown() methods do the housekeeping for mox/mocking
+so that we don't have to worry about it when writing tests. The
+aforementioned Horizon-specific assertions are also defined in this
+class. It extends the django TestCase class thus all of the django unit
+test goodness is available.</p>
+<p>In general, this class is the best documentation available of what
+happens in the tests and how they are set up.</p>
+</div>
+<div class="section" id="openstack-dashboard-unit-testing">
+<h3>Openstack Dashboard unit testing</h3>
+<p>APIs:
+<a class="reference external" href="https://github.com/openstack/horizon/tree/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/api">https://github.com/openstack/horizon/tree/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/api</a></p>
+<p>Test data:
+<a class="reference external" href="https://github.com/openstack/horizon/tree/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/test/test_data">https://github.com/openstack/horizon/tree/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/test/test_data</a></p>
+<p>Helper classes:
+<a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/test/helpers.py#L98">https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/test/helpers.py#L98</a></p>
+<p>The <a class="reference external" href="http://docs.openstack.org/developer/horizon/topics/testing.html#debugging-unit-tests">Horizon tips and
+tricks</a>
+mentioned earlier also apply, but there are no specific documentation
+page about the topic.</p>
+<p>A quick overview of openstack_dashboard/ and the sections that matter
+to us in the context of unit testing:</p>
+<ul class="simple">
+<li>APIs</li>
+</ul>
+<p>The <a class="reference external" href="https://github.com/openstack/horizon/tree/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/api">API
+directory</a>
+is the only place that talks directly with the outside world, that is,
+the various openstack clients. This is why Horizon doesn't have a
+database, because it doesn't store any data itself.</p>
+<ul class="simple">
+<li>Test Data</li>
+</ul>
+<p>The <a class="reference external" href="https://github.com/openstack/horizon/tree/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/test/test_data">test
+data</a>
+is also stored in a single directory, and contains the fixtures, that
+are used to represent (mock) the data returned by the different clients.</p>
+<ul class="simple">
+<li>Helper classes</li>
+</ul>
+<p>Like in the &quot;framework&quot; part of Horizon, a
+<a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/test/helpers.py#L98">helpers.py</a>
+file defines the TestCases we extend later in the unit tests. This is
+where a lot of the magic happens: the TestCase extends the Horizon
+TestCase helper class described earlier, loads the test data, sets up
+mox, creates a fake user to log in. There's also a couple of useful
+assertions defined that are used all over the place.</p>
+<p>There are other TestCase classes in there, for tests that may require an
+Admin user, testing the APIs, or Selenium.</p>
+</div>
+<div class="section" id="a-quick-look-at-the-example">
+<h3>A quick look at the <a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/dashboards/project/instances/tests.py#L43">example</a></h3>
+<p>The flavours returned by self.flavors.list() come from the test data.</p>
+<p>We'll look at the mocking stuff in the Tools section. The APIs being
+mocked all live in the API directory, so this is the only place that
+needs to be mocked.</p>
+<p>self.client() is the default django client, reverse() and
+assertTemplateUsed() also come from django.</p>
+<p>self.assertItemsEquals() is a Python assertion.</p>
+</div>
+</div>
+<div class="section" id="tools">
+<h2>Tools</h2>
+<div class="section" id="mox">
+<h3>Mox</h3>
+<p>In Horizon, mocks are used a lot, everywhere or otherwise running the
+unit tests would require a fully set up, running Openstack environment.</p>
+<p>I found mox a bit difficult to get used to. There's a specific
+terminology, that translates to a different set of steps than is common
+in other mocking tools like
+<a class="reference external" href="http://www.voidspace.org.uk/python/mock/">mock</a>.</p>
+<p>First you <strong>record</strong>. That's the part in the tests where you create the
+stubs (in a decorator in the example) and &quot;record&quot; what you expect will
+happen (that's the place in the example that says: &quot;when
+api.nova.flavour_list() is called with these exact arguments as
+described, return self.flavors.list()&quot;).</p>
+<p>Then you <strong>replay</strong>, with self.mox.ReplayAll() which will make sure the
+rest of the test will get the data it expects, that you just mocked.</p>
+<p>Finally, the <strong>reverify</strong> step is done in the parent TestCase class'
+tearDown() function, which calls self.mox.VerifyAll() and ensures the
+functions recorded were all called, and in the order defined.</p>
+<p>There are lots of catches in mox, it's quite strict. Order matters. By
+default it assumes the mocked function will only be called once and
+fails otherwise (that's a big one that can be difficult to track down).
+MultipleTimes() will save you if a function needs to be called more than
+a couple of times.</p>
+<p>Stubbing can be done via a decorator (which is the favoured way going
+forward) or a StubOutWithMox function, which can still be found in
+<a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/dashboards/project/access_and_security/api_access/tests.py#L30">places</a>.</p>
+<p>Mox errors can be confusing and I recommend reading the Horizon docs
+about <a class="reference external" href="http://docs.openstack.org/developer/horizon/topics/testing.html#understanding-the-output-from-mox">understanding mox
+output</a>,
+which have a couple of paragraphs explaining different errors that may
+be encountered, the dreaded Expected and Unexpected calls.</p>
+</div>
+<div class="section" id="selenium">
+<h3>Selenium</h3>
+<p>Helper classes:
+<a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/test/helpers.py#L326">https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/openstack_dashboard/test/helpers.py#L326</a></p>
+<p>We use Selenium for testing Javascript interactions. It's a bit
+heavyweight since it requires starting a browser, so Python unit tests
+are preferred when possible.</p>
+<p>It's more stable now (thanks Kieran), so hopefully we can write a few
+more tests for the places where it's needed.</p>
+</div>
+<div class="section" id="qunit-briefly">
+<h3>qUnit (briefly)</h3>
+<p>qUnit is used for some of the <a class="reference external" href="https://github.com/openstack/horizon/blob/d4b0ab4aa395bf4df2964efcc358100117efdaa0/horizon/templates/horizon/qunit.html">pure Javascript
+tests</a>.</p>
+<p>It's not used a lot in Horizon. The handmade fixtures take a lot of
+effort to make so maybe it's better to use Selenium in most cases.</p>
+</div>
+</div>
+<div class="section" id="tips-and-tricks">
+<h2>Tips and tricks</h2>
+<ul class="simple">
+<li>See the <a class="reference external" href="http://docs.openstack.org/developer/horizon/topics/testing.html#debugging-unit-tests">Tips and
+tricks</a>
+from the Horizon testing topic</li>
+<li>Use pdb to check the environment status<ul>
+<li>&nbsp;I recommend Victoria's introduction to<a class="reference external" href="http://vmartinezdelacruz.com/logging-and-debugging-in-openstack/">debugging in
+OpenStack</a>
+if you're not familiar with pdb</li>
+</ul>
+</li>
+<li>Anything else? From the session:<ul>
+<li>Mock everything, and if it doesn't work mock it again.</li>
+<li>Selenium tests: having a flag to turn off/on mocking? So we can
+run them as integration tests when needed and make sure we still
+match the correct APIs - cf.
+<a class="reference external" href="https://blueprints.launchpad.net/horizon/+spec/selenium-integration-testing">blueprint</a></li>
+<li>Using Selenium tests as integration tests: build more tests (start
+a VM, ssh into it)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion</h2>
+<p>Unfortunately, the day was running late (and I was speaking at the very
+next session) therefore the discussion part didn't have time to happen.</p>
+<p>I'm disappointed about that and would welcome people discussing their
+experience and pain points, particular from a newcomer's perspective.</p>
+<p>Fortunately when it comes to discussing the Selenium issues, Kieran
+Spear had successfully fixed it right before the Summit :)</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

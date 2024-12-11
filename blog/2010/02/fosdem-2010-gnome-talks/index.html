@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>FOSDEM 2010: Gnome talks | Bug triaging, Plugin framework, A new kind of IDE</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="There were quite a few talks about Gnome, I'm going to highlight here 3 of them. Gnome Bugsquad The first talk was about bug triaging in Gnome. I..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/02/fosdem-2010-gnome-talks/" rel="bookmark"
+           title="Permalink to FOSDEM 2010: Gnome talks | Bug triaging, Plugin framework, A new kind of IDE">FOSDEM 2010: Gnome talks  | Bug triaging, Plugin framework, A new kind of IDE</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-02-10T22:41:00+00:00">
+                Published: Wed 10 February 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/fosdem/">fosdem</a> <a href="https://www.jpichon.net/tag/gnome/">gnome</a> </p>
+</footer><!-- /.post-info -->      <p>There were quite a few talks about Gnome, I'm going to highlight here 3
+of them.</p>
+<p><img alt="Gnome foot" src="https://www.jpichon.net/site_media/images/gnome.png" /></p>
+<div class="section" id="gnome-bugsquad">
+<h2>Gnome Bugsquad</h2>
+<p>The first talk was about <a class="reference external" href="http://fosdem.org/2010/schedule/events/gnome_bugsquad">bug triaging in
+Gnome</a>. I
+can't believe there are only 5 active bug triagers in the project (as
+in, people fully focused on cleaning up the bug database). Tobias
+Mueller, the happy and dynamic speaker, made a good job explaining why
+this is such an important task, as the bug tracker is basically a window
+to the world. This is what people will be confronted with when they try
+to interact with the project, and having unanswered bugs lingering
+around doesn't give a very good impression.</p>
+<p>In itself, bug triaging is a great entry point into the project because
+it doesn't require in-depth knowledge and it brings you closer to the
+community as you get to know the developers by name, so it's a good way
+to get involved, learn more about Gnome and help out.</p>
+<p>The way triaging work:</p>
+<ul class="simple">
+<li>There are bugs. People find them and complain about them in the bug
+tracker.</li>
+<li>We need to understand and get all the necessary information for the
+developer to be able to fix it.</li>
+<li>So the status of the bug needs to be kept accurate (more on that
+later)</li>
+<li>And bug triagers can identify severe issues, such as bugs that come
+back often or many times so we can inform the adequate people.</li>
+</ul>
+<p>I love that quote: <strong>&quot;Bug triaging is about making people happy.&quot;</strong> We
+want our users to be happy, Gnome is about the people in the end!</p>
+<p>Some other happy mottos:</p>
+<p>&quot;Be nice, be friendly, be happy.&quot;</p>
+<p>&quot;Answer early, answer often.&quot;</p>
+<p>There are several ways to get in touch, through IRC, the mailing list,
+they're trying to hold bug days but currently lack the manpower to do
+so. They have a triage guide that is apparently so awesome even the KDE
+guys use it! :D <a class="reference external" href="http://live.gnome.org/Bugsquad/TriageGuide">Here's a
+link</a>, I have to carve
+out time to read it.</p>
+<p>After showing us some tools to find duplicate bugs and what sort of
+information to ask for, Toby walked us through the different statuses
+and how to use them, like what to do if you can't get information from
+the bug reporter after 6 weeks (the assumption is that this is not a
+problem anymore so resolve the bug), or if you're triaging a bug from
+more than 2 releases ago (resolve it as obsolete). Some statuses are
+reserved for the module maintainers. It's all summarised in a <a class="reference external" href="http://live.gnome.org/Bugsquad/TriageGuide?action=AttachFile&amp;do=view&amp;target=Diagram_triagers.png">shiny
+diagram available on the
+wiki</a>.
+When you start out you actually can't modify the status yourself, so you
+should add a comment explaining why you think the status should be
+updated and someone with the Power on #bugs will change it for you.
+Quickly enough, once you've shown you understand how this works, you can
+ask for the ability to change statuses yourself.</p>
+<p>The final statement was that they need people and it's a good way to
+start if you want to get involved, it's not too hard for beginners and
+it doesn't cost too much time or requires that much knowledge. And you
+get to know the people and projects.</p>
+<p>To get started:</p>
+<ol class="arabic simple">
+<li>Create a Bugzilla account,</li>
+<li>Read the wiki,</li>
+<li>Ask questions on IRC,</li>
+<li>Get started. You can't do anything yet, so write it in the comments,</li>
+<li>If it all makes sense ask for access to do it yourself.</li>
+</ol>
+<p>At the end, he asked who he convinced, I think he should have asked who
+would consider contributing to bug triaging, that's less commitment
+while still showing interest :) I joined the ML while he was speaking
+but I didn't raise my hand when he asked, because my way of doing things
+is to lurk for a while and then see if/how I can fit something in my
+schedule, rather than making promises I will break. We'll see how that
+one goes! I'd love to get more involved with Gnome.</p>
+</div>
+<div class="section" id="adding-plugins-to-your-gnome-apps">
+<h2>Adding plugins to your Gnome apps</h2>
+<p>Steve Frécinaux <a class="reference external" href="http://fosdem.org/2010/schedule/events/gnome_apps_plugins">talked to
+us</a> about
+libpeas, a framework being developed to make plugin development within
+Gnome applications easier and more consistent across applications.</p>
+<p><img alt="Plate of peas" src="https://www.jpichon.net/site_media/images/fosdem2010/peas.png" /></p>
+<p>Building a plug-in API is very, very hard, and having dissimilar APIs
+makes it harder -- that is, if you write a plugin for Nautilus, you will
+have to relearn from scratch to build a plugin for gedit. There's a
+heavily duplicated code base as well, as most projects seem to have
+taken the gedit plugin framework as a basis, but it's all slightly
+different because of bug fixes and fitting their own special needs that
+are not transmitted upstream.</p>
+<p>Libpeas aims to fix all this. Plugins are good because they enable the
+main codebase to remain simple and clean while allowing for lots of
+additional functionality.</p>
+<p>The goals are:</p>
+<ul class="simple">
+<li>Ease of use: the framework should be minimalist with little
+boilerplate code</li>
+<li>Extensible: different applications have different needs, not every
+project is like gedit</li>
+<li>Lightweigth: it should only load what you use, e.g. not load python
+if it's not needed by any plugin</li>
+</ul>
+<p>Plugins can be written in C, Python, or Javascript.</p>
+<p>A plugin is what you install, which can consist of one or more
+extension. An extension is the implementation of an extension point
+(hooks). So plugins can register extensions with several extensions
+points within the application.</p>
+<p>The speaker walked us through the different principles of plugins vs
+extensions, and finally showed us the steps to follow to make your
+applicable extensible and create hooks.</p>
+<p>I can't find a page for the project on the Gnome wiki though, which is
+not cool :/</p>
+</div>
+<div class="section" id="gnome-development-tools-high-level-debugging-and-the-misha-research-ide">
+<h2>Gnome Development Tools: High-Level Debugging and the Misha Research IDE</h2>
+<p>To be honest I'm not sure this was particularly Gnome-specific, although
+it WAS written using Gtk tools :) <a class="reference external" href="http://fosdem.org/2010/schedule/events/gnome_devtools">Nick Papoylias introduced
+us</a> to a new
+genre of IDE, based on the premise that debugging hasn't really evolved
+in the past 20 years when really, there are many ways it could be used
+besides stepping line-by-line through a program after encountering a
+problem. Debuggers can be integrated to different phases of the
+development life cycle, and there are many ideas that academia has put
+forward that are slow to be adopted, if at all (reverse debugging just
+made it into the latest gdb for instance).</p>
+<p>He admitted that they didn't respect every Gnome UI guideline but as
+they were experimenting with a new approach to IDE and programming
+workflow, it made sense to experiment with a different UI as well to
+save space. The interface felt really busy but I'm not particularly
+worried about that, that's how IDE tend to be by nature.</p>
+<p>They are adding new things to rethink the debugging workflow, that work
+together with the symbol debugger (gdb).</p>
+<ul class="simple">
+<li>Syntax parser: Navigate code in terms of structures, loop iteration,
+functions -- not only line by line</li>
+<li>Data visualisation</li>
+<li>General purpose extension language: Python</li>
+<li>Reverse debugging</li>
+</ul>
+<p>It supports stepping through the syntactic structure while having a
+up-to-date data visualisation. This is a very nice way to see what is
+happening as we run through the code, he showed an example of variable
+insertion in a Binary Search Tree and it was amazing to see the tree be
+updated for every iteration of the loop. That'd be a much faster way to
+catch silly little bugs that tend to creep up as you develop (so you can
+catch them even before writing lengthy unit tests).</p>
+<p>The presentation ended by showing us what the extension language could
+do and wow. Was that impressive. You can use Python functions to call
+your C code, for both simple and elaborate calls. The Python code
+directly calls C functions with no intervention from the developer. And
+through the debugging console we can visualise what's going on (e.g. the
+tree that is created through Python).</p>
+<p>Additionally, if you create a main.py in your project, you can attach
+callbacks buttons to the IDE. This is <em>really cool</em>. He had it call a
+plotting application to display random results in a graph and check the
+distribution or whatever. It was really impressive.</p>
+<p>So Python can be used to make inter-language calls, import external
+libraries, add functionality to the IDE, and call C programs directly.
+Check out the <a class="reference external" href="http://www.softnet.tuc.gr/%7Ewhoneedselta/misha/">project
+website</a>.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

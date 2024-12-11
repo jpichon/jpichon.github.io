@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - testing</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2011/09/using-coverage-python/">Using Coverage to generate reports (Python)</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2011-09-07T21:17:00+01:00">
+                Published: Wed 07 September 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info --><p>A couple of tips so I don't have to look it up again. A few months back
+I wanted to generate coverage data for a stand-alone application, with a
+few tweaks.</p>
+<div class="section" id="combining-the-output-of-trial-and-python-unit-tests">
+<h2>Combining the output of Trial and Python unit tests</h2>
+<pre class="literal-block">
+$ coverage run -p tests/my_python_tests.py
+$ coverage run -p tests/my_trial_tests.py
+$ coverage combine
+$ coverage html -d tests/coverage_html  --include=./*py --omit='lib/*.py,tests/*.py'
+</pre>
+<p>Helpful resources to get used to <em>combine</em>:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://blogs.thescallop.com/zhouxiuhu/?p=52">coverage in python</a></li>
+<li><a class="reference external" href="http://nedbatchelder.com/code/coverage/cmd.html">Coverage command line
+usage</a> (Manual)</li>
+</ul>
+</div>
+<div class="section" id="getting-coverage-report-for-a-simple-project">
+<h2>Getting coverage report for a simple project</h2>
+<pre class="literal-block">
+$ coverage run tests/python_tests.py
+$ coverage report --include=./*py --omit='lib/*.py,tests/*.py' # For a text summary
+$ coverage html -d tests/reports&nbsp; --include=./*py --omit='lib/*.py,tests/*.py' # For a nice HTML report
+</pre>
+</div>
+<div class="section" id="installing-the-latest-version">
+<h2>Installing the latest version</h2>
+<p>To get access to the command line tools, I had to install Coverage in a
+virtualenv to get around some other constraints on the system. I thought
+I'd build it from master while I was at it :)</p>
+<pre class="literal-block">
+$ virtualenv coverage
+$ cd coverage
+$ source bin/activate
+$ pip install hg+http://bitbucket.org/ned/coveragepy
+</pre>
+<p>Coverage is a lovely library and a wonderful way to encourage yourself
+to think more about your unit tests -- give it a try if you haven't
+already. (PS: For Django, see
+<a class="reference external" href="http://pypi.python.org/pypi/django-coverage">django-coverage</a>)</p>
+</div>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/05/bees-machine-guns/" rel="bookmark"
+                           title="Permalink to Bees with machine guns | Load testing">Bees with machine guns  | Load testing</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-05-29T22:36:00+01:00">
+                Published: Sun 29 May 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info -->                <p>Another interesting PyCon talk to watch was <a class="reference external" href="http://blip.tv/pycon-us-videos-2009-2010-2011/pycon-2011-best-practices-for-impossible-deadlines-4899490">Best practices for
+impossible
+deadlines</a>.
+One of the tools mentioned in the talk is <em>Bees with machine guns</em>, a
+load testing tool that uses the power of
+<a class="reference external" href="http://aws.amazon.com/ec2/">EC2</a> and with a name like that I was
+gleeful thinking about the day when I …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/05/bees-machine-guns/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/04/quick-and-incomplete-intro-to-jasmine/" rel="bookmark"
+                           title="Permalink to A Quick and Incomplete Intro to Jasmine | Javascript unit testing">A Quick and Incomplete Intro to Jasmine  | Javascript unit testing</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-04-10T22:01:00+01:00">
+                Published: Sun 10 April 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info -->                <p>Recently I needed to find some sort of Javascript framework to start
+unit testing new code, some of which was using jQuery. I ended up
+deciding on <a class="reference external" href="http://pivotal.github.com/jasmine/">Jasmine</a>.</p>
+<div class="section" id="why-jasmine">
+<h2>Why Jasmine?</h2>
+<ul class="simple">
+<li>Primarily and essentially, it's maintained, it seems <a class="reference external" href="https://github.com/pivotal/jasmine">fairly
+active</a> and has a community
+around it: looking at the pull requests …</li></ul></div>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/04/quick-and-incomplete-intro-to-jasmine/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/03/testing-django-admin-customisations/" rel="bookmark"
+                           title="Permalink to Testing django admin customisations">Testing django admin customisations</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-03-17T10:05:00+00:00">
+                Published: Thu 17 March 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info -->                <p>In preparation for an upgrade, I've been writing unit tests for a Django
+app with the help of a fantastic book -- <a class="reference external" href="http://www.amazon.co.uk/Django-Testing-Debugging-Karen-Tracey/dp/1847197566/">Django 1.1 Testing and
+Debugging</a>
+by Karen M. Tracey, there'll be a review coming up when I finish it.</p>
+<p>I had some issues with the code to test …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/03/testing-django-admin-customisations/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/02/python-ireland-february-meetup/" rel="bookmark"
+                           title="Permalink to Python Ireland February meet-up | Introduction, unit testing">Python Ireland February meet-up  | Introduction, unit testing</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-02-15T20:36:00+00:00">
+                Published: Tue 15 February 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info -->                <p>A delayed summary of <a class="reference external" href="http://www.python.ie/meetup/2011/feb_2011_talks__science_gallery/">Python Ireland's February
+meet-up</a>
+last Wednesday -- another great event, after which I promptly fell sick
+(getting ready to kick ass again now though :)). In January, the group
+had a simple and nice &quot;pub meet-up&quot;, where a few Python beginners and
+novices turned up (including one who's …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/02/python-ireland-february-meetup/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

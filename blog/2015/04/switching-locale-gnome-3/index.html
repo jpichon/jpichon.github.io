@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Switching locale (Gnome 3, Fedora 20) | and making sure all the menus switch too</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="In the spirit of immersion, I switched the laptop's language to Japanese, however most of the Gnome menus remained in English even after switching..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2015/04/switching-locale-gnome-3/" rel="bookmark"
+           title="Permalink to Switching locale (Gnome 3, Fedora 20) | and making sure all the menus switch too">Switching locale (Gnome 3, Fedora 20)  | and making sure all the menus switch too</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-04-19T03:52:00+01:00">
+                Published: Sun 19 April 2015
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/gnome/">gnome</a> <a href="https://www.jpichon.net/tag/japanese/">japanese</a> <a href="https://www.jpichon.net/tag/linux/">linux</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->      <p>In the spirit of immersion, I switched the laptop's language to
+Japanese, however most of the Gnome menus remained in English even after
+switching the System Language altogether, logging out etc. Another
+profile on the laptop shows the menus for Activities, etc in Japanese
+just fine so it wasn't a missing package. I found the following in
+~/.profile, which seems a bit heavy-handed but does do the trick. For
+future reference:</p>
+<pre class="literal-block">
+LANG=&quot;ja_JP.UTF-8&quot;
+LANGUAGE=&quot;ja_JP.UTF-8&quot;
+LC_CTYPE=&quot;ja_JP.UTF-8&quot;
+LC_NUMERIC=&quot;ja_JP.UTF-8&quot;
+LC_TIME=&quot;ja_JP.UTF-8&quot;
+LC_COLLATE=&quot;ja_JP.UTF-8&quot;
+LC_MONETARY=&quot;ja_JP.UTF-8&quot;
+LC_MESSAGES=&quot;ja_JP.UTF-8&quot;
+LC_PAPER=&quot;ja_JP.UTF-8&quot;
+LC_NAME=&quot;ja_JP.UTF-8&quot;
+LC_ADDRESS=&quot;ja_JP.UTF-8&quot;
+LC_TELEPHONE=&quot;ja_JP.UTF-8&quot;
+LC_MEASUREMENT=&quot;ja_JP.UTF-8&quot;
+LC_IDENTIFICATION=&quot;ja_JP.UTF-8&quot;
+LC_ALL=
+</pre>
+<p>Note on restarting X one is asked if they want to change the names for
+the default folders like Documents, etc. Personally I find it makes
+using the CLI a pain and don't recommend it.</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

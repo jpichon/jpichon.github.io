@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - fosdem</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2017/02/fosdem-2017-event-report/">FOSDEM 2017  | From the community devroom</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2017-02-27T21:42:00+00:00">
+                Published: Mon 27 February 2017
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/contributing/">contributing</a> <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/fosdem/">fosdem</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info --><p>A few weeks ago I happily went off to <a class="reference external" href="https://fosdem.org/">FOSDEM</a>.
+Saturday I caught up with people, Sunday I spent most of the day in the
+incredibly busy <a class="reference external" href="https://fosdem.org/2017/schedule/track/community/">Community
+devroom</a> - right
+until I had to give up my seat for food. I really enjoyed the talks and
+hope the track manages to get a bigger devroom next year, dozens of
+people had to be kept out after every session ended (fire safety
+regulations).</p>
+<p>Most talks lasted about 30mn and the videos should be available on the
+FOSDEM website. Here are some of the highlights from my perspective and
+notes.</p>
+<div class="section" id="closing-loops-greg-sutcliffe">
+<h2>Closing Loops (Greg Sutcliffe)</h2>
+<p><a class="reference external" href="https://fosdem.org/2017/schedule/event/community_closing_loops/">Link to
+talk</a></p>
+<p>This talk was more about raising questions and figuring out best
+practices based on audience participation rather than offering The One
+Solution. In this context, a &quot;loop&quot; means an RFC still undecided, a
+discussion dying out, patches unreviewed. How do you decide when a topic
+has come to a conclusion?</p>
+<p>It's important to remember that everybody has the best interests of the
+project at heart, this is more about blaming the systems we use.</p>
+<p>Say, in a Request For Comments discussing significant changes on a
+mailing list, the discussion tends to peter out after a while, and it
+can be difficult to track how a proposal evolved. Foreman (Greg's
+project) decided to move the discussions to an RFC repository instead,
+but 6 months later it seems to have only moved the problem.</p>
+<p>From the audience:</p>
+<ul class="simple">
+<li>For Debian, the discussion ends &quot;when someone starts the work&quot; :)</li>
+<li>LibreOffice has a &quot;technical council&quot; type meeting/discussion with
+about 40 people, on the phone. A wiki documents the process to join.</li>
+<li>In the PHP world, the RFC author gets to choose when to call a vote
+and the deadline for it (at least 2 weeks ahead). Greg wondered if
+that might get divisive if there are too many 50/50 situations, but
+the audience member indicated that it wasn't the case, because most
+problems get solved during the discussions that precede the vote so
+they are usually overwhelmingly accepted. Every contributor gets a
+vote from a certain contribution threshold.</li>
+</ul>
+<p>The speaker seemed interested in trying out the technical council
+direction for his project.</p>
+</div>
+<div class="section" id="data-science-for-community-management-manrique-lopez">
+<h2>Data science for community management (Manrique Lopez)</h2>
+<p><a class="reference external" href="https://fosdem.org/2017/schedule/event/community_datascience_for_communitymanagement/">Link to
+talk</a></p>
+<p>Communities need to have a common vision and self-awareness to see if
+they are walking toward it: what kind of people are part of the
+community, what are they doing... This helps with governance and
+transparency (fairness, trust).</p>
+<p>What is the role of a community manager? Do communities even need to be
+managed? &quot;Manage&quot; is a strong word.</p>
+<p>A community manager is interested in keeping their community alive,
+active, and productive. Having visibility into community health is
+important. There are a lot of tools out there with data relevant to
+this: JIRA, git, IRC, slack, StackOverflow, ... A lot of places, which
+individually are only one part of the bigger picture.</p>
+<p>Rather than cobling a bunch of scripts together to get to all that data,
+GrimoireLab does all the work for you and presents it nicely using
+graphs. One example was the &quot;Pony Factor,&quot; which I hadn't heard of:
+who's doing 50% of the commits? For example in the kernel, the pony
+factor is about 200 people/10 companies. That's a lot of people!</p>
+<p>When you have that data you can see the evolution of the project over
+time: reviews, gender, demography, pony factor, etc, etc. Cauldron.io,
+in beta, lets you try it out for free for up to 5 Github organisations.</p>
+</div>
+<div class="section" id="getting-your-issues-fixed-tomer-brisker">
+<h2>Getting your issues fixed (Tomer Brisker)</h2>
+<p><a class="reference external" href="https://fosdem.org/2017/schedule/event/community_getting_your_issues_fixed/">Link to
+talk</a></p>
+<p>I think anyone trying to get help or start contributing as a user to an
+open-source project needs to watch this. Tomer summarised a ton of best
+practices that experienced open-source people &quot;just know&quot; and would
+likely never think to document.</p>
+<p>A super rough summary:</p>
+<ul class="simple">
+<li>Try to ask for help on IRC</li>
+<li>Try the mailing list. If no one replies and you solve it yourself or
+find a workaround later, please self-reply. (<a class="reference external" href="https://xkcd.com/979/">Mandatory xkcd
+link</a>)</li>
+<li>Search the bug tracker. If there is a bug, add your input, your use
+case. If there are none, create a new issue and include as much
+information as possible: traces, logs, version (including of the
+plugin if relevant), screenshots... Anything to help the developers
+reproduce the issue. If this is a feature request, explain your use
+case.</li>
+</ul>
+<p>Patches:</p>
+<ul class="simple">
+<li>Tabs vs spaces: follow the coding guidelines for the project. If
+there aren't any follow the standards and conventions of the existing
+code base.</li>
+<li>Make the commit message good. Explain &quot;why&quot; as completely as
+possible. Apparently Github even lets you include screenshots, so
+that the patch can be reviewed without having to pull the code. &quot;Why&quot;
+did you do it this way and not another way, explained in such a way
+people in the future can understand the decision.</li>
+<li>Include tests. This protects against regressions, so that you don't
+have to fix the same bug two releases later.</li>
+<li>Be kind. We're building a community. No one wants to be shouted at.
+Be patient.</li>
+</ul>
+</div>
+<div class="section" id="handle-conflict-like-a-boss-deb-nicholson">
+<h2>Handle conflict, like a boss! (Deb Nicholson)</h2>
+<p><a class="reference external" href="https://fosdem.org/2017/schedule/event/community_handle_conflict_like_a_boss/">Link to
+talk</a></p>
+<p>Conflicts often come from a piece of information that is missing.
+Conflict is natural. If you don't handle it, it will come back worse.</p>
+<p>How do we minimise it? Try to understand the other people, where they're
+coming from.</p>
+<p>For example:</p>
+<ul class="simple">
+<li>Passion. When people get so excited about something they forget why
+they're doing it. Mismatched goals.</li>
+<li>Identity. When someone's identity is linked to a task, not a goal.
+For example, the person known to be super helpful with wrangling the
+complex bug tracker, who'll end up sad when you finally upgrade to
+something better.</li>
+</ul>
+<p>Don't leave conflict unattended or you'll end up in a snake pit. You
+don't owe your mental health to any FOSS project.</p>
+<p>There are 3 styles of handling conflict. We tend to use them all,
+depending on the circumstances.</p>
+<ul class="simple">
+<li>Avoidance. This is not good in a project! It festers. It looks like
+you don't care, like you're not connected to the community and its
+concerns.</li>
+<li>Accommodation. Doing stuff you don't really want to in order to keep
+the group happy. For bigger issues it can make it look like you don't
+mind the way things are going. It works for small things.</li>
+<li>Assertion. Can also be called Aggression. Name calling, etc. Not a
+good strategy. It wears out other contributors.</li>
+</ul>
+<p>Conversations happen in many places. Document the decisions so that it
+doesn't feel like they're coming out of nowhere.</p>
+<p>If you notice in passing a problem in the community you're probably
+missing some information. Gather more info in order to understand the
+source of conflict: misunderstanding goals, stepping on toes (e.g. that
+person <em>always</em> writes the release notes but someone else went ahead and
+did it this time instead, without asking), ... Is it new members
+clashing with the old ones? Go back to the historical vision, step out
+of the tactical discussion. Are there sekrit goals underway? For example
+a motivation you're not aware of, someone with different goals for their
+participation like a new job or internal deadlines...</p>
+<p>If the conflict is based on fear, it can be harder to get at, e.g.
+someone afraid they can't learn a new skill if switching language.
+Create a back channel where it's safe to discuss, to try to deal with
+it.</p>
+<p>Planning for future conflict:</p>
+<ul class="simple">
+<li>Assume the best.</li>
+<li>Have a code of conduct. Set expectations.</li>
+<li>No name calling/ad hominem, only discuss technical merits.</li>
+<li>Set an example.</li>
+</ul>
+<p>We could do so much more in the FOSS world if we didn't spend so much
+time slagging each other :)</p>
+<p>Some references:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.goodreads.com/book/show/17568812-everything-is-workable">Everything is
+workable</a>
+- Diana Musko Hamilton.</li>
+<li><a class="reference external" href="http://blog.aurynn.com/contempt-culture">Contempt Culture</a> -
+Aurynn Shaw.</li>
+</ul>
+</div>
+<div class="section" id="mentoring-101-brian-proffitt">
+<h2>Mentoring 101 (Brian Proffitt)</h2>
+<p><a class="reference external" href="https://fosdem.org/2017/schedule/event/community_mentoring_101/">Link to
+talk</a></p>
+<p>This was a lively talk on both formal mentoring via programs such as
+the<a class="reference external" href="https://summerofcode.withgoogle.com/">Google Summer of Code</a> as
+well as daily mentoring.</p>
+<p>Onboarding is important. This is not just about keeping people in but
+helping people get in.</p>
+<p>As software project, should you want to participate in formal mentoring:
+have a plan. Formal programs have their own rules and structure.</p>
+<p>As a participant, be a member of the community, pick a project that
+interests you. Be ready to commit. Be flexible - it takes time but is
+rewarding. Be ready to ask for help.</p>
+<p><em>Undermentoring</em> is a problem. Have clear, set goals for the mentee.
+Keep an eye on them while also giving them space.</p>
+<p>Issue with mentees disappearing... They really should keep a line of
+communication open, even if only to say, &quot;sorry, I cant' participate
+anymore.&quot; (From personal experience mentoring, this is quite stressful
+and it was a relief when the mentee admitted they could no longer
+participate.) You need to proactively mentor to avoid this.</p>
+<ul class="simple">
+<li>Be consistent. E.g. your style may be authoritative (do it this way),
+democratic (collaboration) or coaching (guidance). Stick to one.
+(...with Brian noting that the last one is best for mentoring!)</li>
+<li>Set expectations. Make sure the goals are aligned, define the
+process, avoid confusion.</li>
+<li>Take an interest in the mentee. Listen actively. Build a
+relationship. Learn their style. Don't be a stalker though.</li>
+<li>Wait before giving advice. It's easy to try to fix things when
+someone comes at you with a problem. You might be able to solve it
+but that won't help them. Hit the pause button. Ask more question,
+get to the heart, guide them to the solution. It takes time. You may
+not solve the problem. As long as it's not time-sensitive that's ok.</li>
+<li>Don't assume anything. Avoid stereotypes. Learn the details of a
+situation. Emphasise communication.</li>
+</ul>
+<p>Remember this one thing: they aren't you!! Understand the mentee. This
+is not only about getting the project done.</p>
+<p>A question from the audience was, how can I help my mentor as a mentee?
+Once again it's about being proactive: this is what I want to do, how do
+you help me do this? If it isn't working, reconsider the relationship.</p>
+<p>How to recruit mentors? Some projects are easier to get in than others.
+In oVirt, there's a separate mailing list and no formal process. Spread
+the word, see who's interested. What about a project where there's a lot
+of mentees yet no one ever answers the call for mentors? If this is part
+of a corporate project, a solution could be to make it part of the job.</p>
+</div>
+<div class="section" id="impromptu-community-talk">
+<h2>Impromptu community talk</h2>
+<p>One of the talks was cancelled, so a couple of people started a
+conversation around community and community events (too many pizzas, too
+much alcohol is the feedback I remember from that part).</p>
+<p>The need for &quot;cruel empathy&quot; was brought up: sometimes meeting
+organisers should be jerks for good reasons. Loud, demeaning people are
+toxic and need to be called out. Tell them, in private: &quot;I appreciate
+that you're here, etc, but you're sucking air out of the community.&quot;
+They may not realise they are doing it, so be nice about it.</p>
+<p>The Shotwell community was brought up as one with great first contact.</p>
+</div>
+<div class="section" id="overcoming-culture-clash-dave-neary">
+<h2>Overcoming culture clash (Dave Neary)</h2>
+<p><a class="reference external" href="https://fosdem.org/2017/schedule/event/community_overcoming_culture_clash/">Link to
+talk</a></p>
+<p>This was a very interesting talk, mainly summarising information and
+graphs from books, which I'm going to list here. And hopefully read
+soon!</p>
+<p>Basically a lot of what we do and how we interpret things depends on our
+upbringing (country, culture, ...)</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.garretthardinsociety.org/articles_pdf/tragedy_of_the_commons.pdf">The Tragedy of the
+Commons</a>
+- Garret Hardin.</li>
+<li><a class="reference external" href="https://www.goodreads.com/book/show/17707599-moral-tribes">Moral
+Tribes</a>
+- Joshua Greene.</li>
+<li><a class="reference external" href="https://www.goodreads.com/book/show/466760.Cultures_and_Organizations">Culture and
+Organizations</a>
+- Geert Hofstede. That one brings up 6 dimensions of culture, for
+example tending to be uncomfortable with silence and filling it
+instantly, vs. leaving a couple seconds pause to make sure the person
+is finished.</li>
+<li><a class="reference external" href="https://www.goodreads.com/book/show/313605.Getting_to_Yes">Getting to
+Yes</a> -
+Roger Fish. This is more psychology-based than about hard
+negotiation.</li>
+</ul>
+<p>There are no easy solutions. Focus on the relationship. Take small
+steps: one conversation at a time. Encourage local user groups - though
+keep them connected e.g. via sending mentors/leaders to these meetups to
+avoid silos. Have short mentoring programs. Learn about the cultural
+norms and sensitivity of the community. Avoid real-time meetings.</p>
+</div>
+<div class="section" id="i-contributed-but-what-now-bee-padalkar">
+<h2>I contributed! But what now? (Bee Padalkar)</h2>
+<p><a class="reference external" href="https://fosdem.org/2017/schedule/event/community_contributed_now_what/">Link to
+talk</a></p>
+<p>Based on the Fedora community, this talk was about improving contributor
+retention rates by finding patterns about successful contributors.</p>
+<p>Why do people <em>stay</em>? According to a survey they ran, usually thanks to
+the strong, positive and inclusive community. Other reasons were
+identifying with the Fedora foundations (core values), giving back,
+constantly learning.</p>
+<p>No matter how interesting the project is, if the community is poor
+people don't stick around.</p>
+<ul class="simple">
+<li>Have a defined onboarding process.</li>
+<li>Encourage people to speak up.</li>
+<li>Assign action items early on, to create a sense of responsibility.</li>
+<li>Let people know they are doing good work, give feedback (e.g. IRC
+karma).</li>
+<li>Use inclusive and motivating language.</li>
+<li>Encourage attending events to meet people in person.</li>
+<li>Encourage consistency over activity. Let people contribute according
+to their own time.</li>
+<li>Inspire, interact, give feedback.</li>
+<li>Help people identify with your mission.</li>
+</ul>
+<p>~</p>
+<p>Looking forward to next year's event!</p>
+</div>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2015/02/fosdem-2015/" rel="bookmark"
+                           title="Permalink to FOSDEM 2015">FOSDEM 2015</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-02-04T17:43:00+00:00">
+                Published: Wed 04 February 2015
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/fosdem/">fosdem</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->                <p><img alt="FOSDEM logo" src="https://www.jpichon.net/site_media/images/fosdem.png" /></p>
+<p>Last week-end I attended <a class="reference external" href="http://fosdem.org">FOSDEM</a> for the 7th
+time. It's kinda strange to say and think - if someone tells me they've
+been going to this or that open-source conference for 7 years I tend to
+assume they're hardcore and totally know what they're doing. I go to
+hang out with …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2015/02/fosdem-2015/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/02/fosdem-over-and-out/" rel="bookmark"
+                           title="Permalink to FOSDEM, over and out">FOSDEM, over and out</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-02-06T23:16:00+00:00">
+                Published: Sun 06 February 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/linux/">linux</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/fosdem/">fosdem</a> </p>
+</footer><!-- /.post-info -->                <p>Another fantastic edition of FOSDEM is now finished. Many thanks to the
+organisers for another great job!</p>
+<p><a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2011/fosdem/welcome_talk.jpg"><img alt="Welcome talk, picture of the room" src="https://www.jpichon.net/site_media/images/2011/fosdem/welcome_talk_small.jpg" /></a></p>
+<p>Amazingly, the Welcome talk managed to top off last year's FOSDEM dance,
+this time by making the audience contribute the music. I hope they do it
+again next year, it was kind of …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/02/fosdem-over-and-out/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2010/02/fosdem-2010-gnome-talks/" rel="bookmark"
+                           title="Permalink to FOSDEM 2010: Gnome talks | Bug triaging, Plugin framework, A new kind of IDE">FOSDEM 2010: Gnome talks  | Bug triaging, Plugin framework, A new kind of IDE</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-02-10T22:41:00+00:00">
+                Published: Wed 10 February 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/fosdem/">fosdem</a> <a href="https://www.jpichon.net/tag/gnome/">gnome</a> </p>
+</footer><!-- /.post-info -->                <p>There were quite a few talks about Gnome, I'm going to highlight here 3
+of them.</p>
+<p><img alt="Gnome foot" src="https://www.jpichon.net/site_media/images/gnome.png" /></p>
+<div class="section" id="gnome-bugsquad">
+<h2>Gnome Bugsquad</h2>
+<p>The first talk was about <a class="reference external" href="http://fosdem.org/2010/schedule/events/gnome_bugsquad">bug triaging in
+Gnome</a>. I
+can't believe there are only 5 active bug triagers in the project (as
+in, people fully focused on cleaning up the bug …</p></div>
+                <a class="readmore" href="https://www.jpichon.net/blog/2010/02/fosdem-2010-gnome-talks/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2010/02/fosdem2010-saturday-morning-keynotes/" rel="bookmark"
+                           title="Permalink to FOSDEM 2010: Saturday morning keynotes | Welcome to FOSDEM, Promoting open-source methods in large companies, Evil on the Internet">FOSDEM 2010: Saturday morning keynotes  | Welcome to FOSDEM, Promoting open-source methods in large companies, Evil on the Internet</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-02-08T19:45:00+00:00">
+                Published: Mon 08 February 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/fosdem/">fosdem</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->                <p>I barely took any pictures at FOSDEM this year, so I'm going to steal
+(with credit!) pictures from various Flickr streams.</p>
+<p>Saturday morning began with the customary welcome keynote, with a little
+twist for the FOSDEM dance (heh!). Wireless was up and running well
+before 12.00, which was a …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2010/02/fosdem2010-saturday-morning-keynotes/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<nav>
+    Page 1 / 2
+        <a href="https://www.jpichon.net/tag/fosdem/index2.html">&rang;</a>
+        <a href="https://www.jpichon.net/tag/fosdem/index2.html">&Rang;</a>
+</nav>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

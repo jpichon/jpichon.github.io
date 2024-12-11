@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>StormMQ / AMQP evangelist night</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Last Tuesday I attended a talk/workshop organised by IrishDev.com about StormMQ and the Advanced Message Queuing Protocol (AMQP) standard that's..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/11/stormmq-amqp-evangelist-night/" rel="bookmark"
+           title="Permalink to StormMQ / AMQP evangelist night">StormMQ / AMQP evangelist night</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-11-18T22:08:00+00:00">
+                Published: Thu 18 November 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> </p>
+</footer><!-- /.post-info -->      <p>Last Tuesday I attended a
+<a class="reference external" href="http://irishdev.com/Home/Events/Article.html?id=466">talk/workshop</a>
+organised by IrishDev.com about <a class="reference external" href="http://stormmq.com/">StormMQ</a> and
+the <a class="reference external" href="http://www.amqp.org">Advanced Message Queuing Protocol</a> (AMQP)
+standard that's cooking up. I was very impressed by how polished and
+well prepared the presentation was, very enjoyable. Showing &quot;time
+slices&quot; beside each topic from the beginning, giving a rough idea of how
+long each section would last was great to keep things interesting and
+disarmed the 30 minutes attention span limit I often hit during meetings
+or long talks. Here are some incomplete notes from the evening.</p>
+<p>Raph Cohn started by giving us a history of message queuing, from the
+origins to the evolution to where we're at today. Message queuing has
+been very expensive, and very vendor specific/locked in so far. However
+over the last few years, various companies and bodies have been getting
+together to define an open standard, AMQP, and enable interoperable
+solutions.</p>
+<p>The presentation continued with a welcome refresher introduction to
+message queues. Message queuing works like glue and can be the solution
+to many integration problems, both within and between systems. It keeps
+interacting systems loosely coupled and thus avoid many pitfalls of
+other solutions (such as RPC, database sharing, file transfers...): it's
+still possible to automate, scale, deploy easily, keep configuration
+information isolated, and overall keep the administration burden lower.
+(Though to work best it should be designed in from the beginning.)</p>
+<p>This leaves us at a point where there are MQ solutions out there,
+however they are either proprietary, and/or platform specific, or come
+with other sorts of strings attached. Note the speaker included Redis in
+the proprietary systems which surprised me a little. Thinking about it
+though, the point is that once you develop your application to work with
+Redis, you can't easily switch Redis for another provider, you're tied
+to it.</p>
+<p>This is a problem. &lt;Cue slide covered in fake fire -- the animations
+were awesome! A video of the presentation should be posted sometime soon
+actually, I'll link to it. (Update:
+<a class="reference external" href="http://blog.stormmq.com/2010/10/28/amqp-training-session/">Here</a>)&gt;</p>
+<p>And the solution to this is AMQP, a lightweight protocol aiming to
+smooth or resolve these issues.</p>
+<p>Some common Message Queuing architectures:</p>
+<ul class="simple">
+<li>Store and forward, or buffering. If one system is down, the queue
+buffers the messages and the systems still up don't see any
+difference (as opposed to tightly coupled systems where everything
+would be brought down in parallel).</li>
+<li>Fire and forget. You send many messages, e.g. orders and don't think
+about them once they're sent away...</li>
+<li>One to many, or &quot;fan out&quot;. You publish a message that is broadcast to
+every interested system.</li>
+<li>Round robin. This is good for batch jobs and for scaling large jobs,
+you divide it into smaller tasks on the queue and a free system takes
+on the next task.</li>
+<li>Publisher/Subscriber, with &quot;Topics&quot;.&nbsp; Subscribers listens for
+specific messages on the queue, without the publisher having or
+needing any knowledge of their existence.</li>
+</ul>
+<p>A message queue is a basic FIFO queue of messages. A message consists of
+the environment, a header and a payload. The payload is defined in AMQP
+and can be binary, text or anything.</p>
+<p>AMQP works with connections and channels. Every channel is independent,
+logically partitioned and TLS protected. First you open a connection,
+then a channel to send and receive. You close the channel after sending,
+and close the connection if you're completely done.</p>
+<p>AMQP is an ACK-less protocol, and therefore very efficient: it will only
+tell you when things go wrong.</p>
+<p>AMQP uses 'exchanges' for the routing and binding. Exchanges can be
+direct (either with the specific routing key, or ideally more general to
+avoid needing special knowledge), fan out (any key bound to X will get
+the message, good for debugging), topics. Any MQ only receives a message
+once. It's in spec to use the the default definitions for the exchanges.</p>
+<p>The night ended with a demo of using StormMQ with Java. I found it more
+confusing than helpful (for instance we went through sending back
+acknowledgements, but I thought one of the main points of the
+presentation was that AMQP was a ACK-less protocol?), though it could be
+that it was getting late and I was too tired.</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

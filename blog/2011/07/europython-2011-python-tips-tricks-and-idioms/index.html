@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>EuroPython 2011: Raymond Hettinger on Python Tips, Tricks and Idioms</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Link: Talk description and video I couldn't find the slides online but please do link me if you find them, they were a treasure trove of awesome..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/07/europython-2011-python-tips-tricks-and-idioms/" rel="bookmark"
+           title="Permalink to EuroPython 2011: Raymond Hettinger on Python Tips, Tricks and Idioms">EuroPython 2011: Raymond Hettinger on Python Tips, Tricks and Idioms</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-07-07T20:37:00+01:00">
+                Published: Thu 07 July 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>Link: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/python-tips-tricks-and-idioms">Talk description and
+video</a></p>
+<p>I couldn't find the slides online but please do link me if you find
+them, they were a treasure trove of awesome tips and very well laid out!</p>
+<p>The talk touched on many things, the following tips are unrelated to
+each other and in no particular order.</p>
+<hr class="docutils" />
+<p>Beware the corner cases of negative slicing -- if you use a variable for
+slicing there's likely a bug lurking in your code!</p>
+<pre class="literal-block">
+mytuple = 1, 2, 3 # Tuple declaration also works without parenthesis
+</pre>
+<p>Learn Python the way Guido intended it and indented it :P</p>
+<pre class="literal-block">
+for x in reversed(seq): # Better than negative slicing because it's clearer, there's no need to do a double take
+
+for i, x in enumerate(seq): # That's Pythonic! Forget about i in range, seq[i]
+
+for x, y in zip(seqx, seqy)
+</pre>
+<p>for/else: a for loop with an else, the else executes if there was no
+break in the loop, that is, when the loop runs to completion. It's only
+useful when there is a break (the searching use case).</p>
+<p>None is always smaller than everything else, in comparisons.</p>
+<p>Sets aren't guaranteed order after being sorted, because __lt__ has
+been overridden to indicate subsets and supersets.</p>
+<p>If you intend to define __lt__ you must also implement the 6
+ordering functions.</p>
+<pre class="literal-block">
+# Key function:
+sorted(s, key=str.lower) # (awesome!)
+</pre>
+<p>If a class takes in an iterable, and emits iterables lots of awesome may
+occur, with the prebuilt tools and other surprising uses (kind of works
+like pipes and filters).</p>
+<pre class="literal-block">
+d = defaultdict(dict)
+d[stuff][otherstuff] = &quot;blah&quot;
+# as opposed to
+d = dict()
+d[stuff] = dict()
+# etc...
+
+d.update(dict(d))
+</pre>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

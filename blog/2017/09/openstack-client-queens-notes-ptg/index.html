@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>OpenStack Client in Queens - Notes from the PTG</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Here are a couple of notes about the OpenStack Client, taken while dropping in and out of the room during the OpenStack PTG in Denver, a couple of..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2017/09/openstack-client-queens-notes-ptg/" rel="bookmark"
+           title="Permalink to OpenStack Client in Queens - Notes from the PTG">OpenStack Client in Queens - Notes from the PTG</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-09-27T08:40:00+01:00">
+                Published: Wed 27 September 2017
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/openstack/">openstack</a> </p>
+</footer><!-- /.post-info -->      <p>Here are a couple of notes about the <a class="reference external" href="https://docs.openstack.org/python-openstackclient">OpenStack
+Client</a>, taken
+while dropping in and out of the room during the <a class="reference external" href="https://www.openstack.org/ptg/">OpenStack
+PTG</a> in Denver, a couple of weeks
+ago.</p>
+<div class="section" id="osc-4">
+<h2>OSC 4</h2>
+<p>The original plan was to simply get rid of deprecated stuff, change a
+few names here and there and have few compatibility breaking changes.</p>
+<p>However, now <a class="reference external" href="https://docs.openstack.org/shade">shade</a> may adopt the
+<a class="reference external" href="https://developer.openstack.org/sdks/python/openstacksdk/">SDK</a> and
+move some of its contents into it. Then shade would consume the SDK, and
+OSC would consume it as well. It would be pretty clean and easy to use,
+but would mean major breaking changes for OSC4. OSC would become a shim
+layer over <a class="reference external" href="https://docs.openstack.org/developer/osc-lib/">osc-lib</a>.
+The plugin interface is going to change, as the loading time is long -
+every command requires loading all of the plugins which takes over half
+of the loading time even though the commands themselves load quickly.
+(There will be more communication once we understand what the new plugin
+interface will look like.) OSC4 would rip out global argument processing
+and adopt
+<a class="reference external" href="https://docs.openstack.org/os-client-config">os-client-config</a>(breaking
+change). It would adopt the SDK and stop using the client libraries.</p>
+<p>Note that this may all change depending on how the SDK situation
+evolves.</p>
+<p>From the end-user perspective, some option names will change. There is
+some old cruft left around for compatibility reasons that will disappear
+(e.g. &quot;ip floating&quot; will be gone, it changed a year ago to &quot;floating
+ip&quot;). The column output will handle structured data better and some of
+this is already commited to the osc4 feature branch.</p>
+<p>The order of commands will not be changed.</p>
+<p>For authentication, the bevahiour may change a bit between the CLI
+behaviour or clouds.yaml. os-client-config came along and changed a few
+things, notably with regard to precedence. The OSC way of doing will be
+removed and replaced with OCC.</p>
+<p>Best effort will be made not to break scripts. The &quot;configuration show&quot;
+command shows your current configuration but not where it comes from -
+it's a bit hard to do because of all the merging of parameters going on.</p>
+<p>The conversation continued about auth, how shade uses adapters and may
+change the SDK to use them as well: would sessions or adapters make the
+most sense? I had to attend another session and missed the discussion
+and conclusions.</p>
+</div>
+<div class="section" id="command-aliases">
+<h2>Command aliases</h2>
+<p>There was a long discussion around command aliases, as some commands are
+very long to type (e.g. healthmonitor). It was very clear it's not
+something OSC wants to get into the business of managing itself (master
+list of collisions, etc) so it would be up to individual plugins. There
+could be individual .osc config file that would do the short to long
+name mapping, similar to a shell alias. It shouldn't be part of the
+official plugin (otherwise, &quot;why don't we just use those names to begin
+with?&quot;) but it could be another pluging that sets up alias mappings to
+the short name or a second set of entry points, or include a &quot;list of
+shortcuts we found handy&quot; in the documentation. Perhaps there should be
+a community-wide discussion about this.</p>
+<p>Collisions are to be managed by users, not by OSC. Having one master
+list to manage the initial set of keywords is already an unfortunate
+compromise.</p>
+</div>
+<div class="section" id="filtering-and-others">
+<h2>Filtering and others</h2>
+<p>It's not possible to do filtering on lists or any kind of complex
+filtering at the moment. The recommendation, or what people currently
+do, is to output to --json and pipe the output to
+<a class="reference external" href="https://stedolan.github.io/jq/manual/">jq</a> to do what they need. The
+documentation should be extended to show how to do this.</p>
+<p>At the moment filtering varies wildly between APIs and none of them are
+very expressive, so there isn't a lot OSC can do.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - europython</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2014/08/training-europython-2014/">Training at EuroPython 2014  | Making your first contribution to OpenStack</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-08-01T11:18:00+01:00">
+                Published: Fri 01 August 2014
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/contributing/">contributing</a> <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/openstack/">openstack</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/teaching/">teaching</a> <a href="https://www.jpichon.net/tag/tog/">tog</a> </p>
+</footer><!-- /.post-info --><p><img alt="OpenStack logo" src="http://www.openstack.org/assets/openstack-logo/openstack-cloud-software-vertical-small.png" /></p>
+<p>Last week I ran a 3-hour training on how to <a class="reference external" href="https://ep2014.europython.eu/en/schedule/sessions/76/">get started contributing to
+OpenStack</a> at
+<a class="reference external" href="https://ep2014.europython.eu/en/">EuroPython</a>. The aim was to give a
+high-level overview of how the contribution process works in the project
+and guide people through making their first contribution, from account
+creation to submitting a patch.</p>
+<div class="section" id="overview">
+<h2>Overview</h2>
+<p>The session starts with an extremely fast overview of OpenStack, geared
+toward giving the participants an idea of the different components and
+possible areas for contribution. We then go through creating the
+accounts, why they're all needed, and how to work with DevStack for the
+people who have installed it. From there we finally start talking about
+the contribution process itself, some general points on open-source and
+OpenStack culture then go through a number of ideas for small tasks
+suitable for a first contribution. After that it's down to the
+participants to work on something and prepare a patch. Some people chose
+to file and triage/confirm bugs. The last part is about making sure the
+patch matches the community standards, submitting it, and talking about
+what happens next both to the patch and to the participant as a new
+member of the community.</p>
+</div>
+<div class="section" id="preparing">
+<h2>Preparing</h2>
+<p>During the weeks preceding the event, I ran two pilot workshops with
+small groups (less than 10 people) in <a class="reference external" href="http://www.tog.ie/">my local
+hackerspace</a>, in preparation for the big one in
+Berlin. That was absolutely invaluable in terms of making the material
+more understandable and refining the content for items I didn't think of
+covering initially (e.g. screen, openrc files) and topics that could use
+more in-depth explanations (e.g. how to find your first task), timings,
+and generally getting a feel for what's reasonably achievable within a
+3-hour intro workshop.</p>
+</div>
+<div class="section" id="delivering">
+<h2>Delivering</h2>
+<p>I think it went well, despite some issues at the beginning due to lack
+of Internet connectivity (always a problem during hands-on workshops!).
+About 70 people had signed up to attend (a.k.a. about 7 times too many),
+thankfully other members of the OpenStack community stepped up and
+offered their help as mentors - thanks again everyone! In the end, about
+half the participants showed up in the morning, and we lost another
+dozen to the Internet woes. The people who stayed were mostly
+enthusiastic and seemed happy with the experience. According to the
+<a class="reference external" href="https://etherpad.openstack.org/p/ep-openstack">session etherpad</a>, at
+least 5 new contributors uploaded a first patch :) Three are merged so
+far.</p>
+<p>Distributing the slides early proved popular and useful. For an
+interactive workshop with lots of links and references it's really
+helpful for people to go back on something they missed or want to check
+again.</p>
+</div>
+<div class="section" id="issues">
+<h2>Issues</h2>
+<p>The start of the workshop is a bit lecture-heavy and could be titled
+&quot;Things I Desperately Wish I Knew When Starting Out,&quot; and although
+there's some quizzes/discussions/demoing I'd love to make it more
+interactive in the future.</p>
+<p>The information requested in order to join the Foundation tends to
+surprise people, I think because people come at it from the perspective
+of &quot;I want to submit a patch&quot; rather than &quot;I am preparing to join a
+Foundation.&quot; At the hackerspace sessions in particular (maybe because it
+was easier to have candid discussions in such a small group), people
+weren't impressed with being forced to state an affiliation. The lack of
+obvious answer for volunteers gave the impression that the project cares
+more about contributions from companies. &quot;<a class="reference external" href="http://www.tog.ie/">Tog</a>&quot;
+might make an appearance in the company stats in the future :-)</p>
+<p>On the sign-up form, the &quot;Statement of Interest&quot; is intimidating and
+confusing for some people (I certainly remember being uncertain over
+mine and what was appropriate, back when I was new and joining the
+Foundation was optional!). I worked around this after the initial
+session by offering suggestions/tips for both these fields, and spoke a
+bit more about their purpose.</p>
+<p>A few people suggested I simply tell people to sign up for all these
+accounts in advance so there's more time during the workshop to work on
+the contribution itself. It's an option, though a number of people still
+hit non-obvious issues with Gerrit that are difficult to debug (some we
+<a class="reference external" href="https://bugs.launchpad.net/openstack-ci/+bug/1346833">opened bugs</a>
+for, others we added to the etherpad). During one of the pilot sessions
+at the hackerspace, 6 of the 7 participants had errors when running git
+review -s&nbsp; - I'm still not sure why, as it Worked On My Machine (tm)
+just fine at the same time.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>Overall, I'm glad I did this! It was interesting to extract all this
+information from my brain, wiki pages and docs and attempt to make it as
+consumable as possible. It's really exciting when people come back later
+to say they've made a contribution and that the session helped to make
+the process less scary and more comprehensible. Thanks to all the
+participants who took the time to offer feedback as well! I hope I can
+continue to improve on this.</p>
+</div>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2012/07/wvdial-stackmaster-assertion-failure-europython/" rel="bookmark"
+                           title="Permalink to wvdial: stackmaster assertion failure & EuroPython">wvdial: stackmaster assertion failure &amp; EuroPython</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-07-02T21:21:00+01:00">
+                Published: Mon 02 July 2012
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/linux/">linux</a> </p>
+</footer><!-- /.post-info -->                <p>At EuroPython, I happily took advantage of the prepaid SIM card that you
+could order together with your ticket. However tethering with Wind
+(Italy) was not to work that simply. On Debian Wheezy I ended up with
+the following error:</p>
+<pre class="literal-block">
+[...]
+--&gt; Modem initialized.
+wvdial: utils/wvtask.cc:409: static void WvTaskMan …</pre>
+                <a class="readmore" href="https://www.jpichon.net/blog/2012/07/wvdial-stackmaster-assertion-failure-europython/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2012/06/europython-2012/" rel="bookmark"
+                           title="Permalink to EuroPython 2012 | Let's go">EuroPython 2012  | Let's go</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2012-06-30T20:55:00+01:00">
+                Published: Sat 30 June 2012
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->                <p>I'm very happy to be going to EuroPython again this year :) Once more
+the talks I'm most looking forward to are mainly related to scalability,
+perhaps with a dash of internationalisation/encoding on the side. The
+tutorial on Django testing with Selenium should be interesting too.</p>
+<p>Say hi if you …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2012/06/europython-2012/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/07/europython-2011-london-python-code-dojo/" rel="bookmark"
+                           title="Permalink to EuroPython 2011: Nicholas Tollervey on the London Python Code Dojo">EuroPython 2011: Nicholas Tollervey on the London Python Code Dojo</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-07-12T22:02:00+01:00">
+                Published: Tue 12 July 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/education/">education</a> <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->                <p>Link: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/the-london-python-code-dojo-an-education-in-education">Talk description and
+video</a></p>
+<p>The Python Code Dojo is a community organised monthly meeting.</p>
+<div class="section" id="dojo">
+<h2>Dojo</h2>
+<p>A dojo is a place where you go to practice stuff, learning is a
+continuous process. It's based on the idea of deliberate practice.</p>
+<div class="section" id="paris">
+<h3>Paris</h3>
+<p><a class="reference external" href="http://codingdojo.org/">Codingdojo.org</a> was started in Paris, where
+it follows …</p></div></div>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/07/europython-2011-london-python-code-dojo/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/07/europython-2011-lightning-talks/" rel="bookmark"
+                           title="Permalink to EuroPython 2011: Lightning Talks">EuroPython 2011: Lightning Talks</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-07-12T21:37:00+01:00">
+                Published: Tue 12 July 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->                <p>The lightning talks were very fast paced (5 minutes) so I only jolted
+down some project names I want to check out and interesting tidbits, and
+missed speaker names just about all the time. Sorry!</p>
+<p>To easily create diagrams, check out
+<a class="reference external" href="http://tk0miya.bitbucket.org/blockdiag/build/html/">blockdiag</a>. It
+includes <a class="reference external" href="http://tk0miya.bitbucket.org/blockdiag/build/html/examples.html#shape-of-nodes">different
+shapes</a>
+that make me hopeful …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/07/europython-2011-lightning-talks/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<nav>
+    Page 1 / 4
+        <a href="https://www.jpichon.net/tag/europython/index2.html">&rang;</a>
+        <a href="https://www.jpichon.net/tag/europython/index4.html">&Rang;</a>
+</nav>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

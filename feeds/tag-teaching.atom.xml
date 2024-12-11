@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - teaching</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-teaching.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2014-08-01T11:18:00+01:00</updated><entry><title>Training at EuroPython 2014 | Making your first contribution to OpenStack</title><link href="https://www.jpichon.net/blog/2014/08/training-europython-2014/" rel="alternate"></link><published>2014-08-01T11:18:00+01:00</published><updated>2014-08-01T11:18:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2014-08-01:/blog/2014/08/training-europython-2014/</id><summary type="html">&lt;p&gt;&lt;img alt="OpenStack logo" src="http://www.openstack.org/assets/openstack-logo/openstack-cloud-software-vertical-small.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Last week I ran a 3-hour training on how to &lt;a class="reference external" href="https://ep2014.europython.eu/en/schedule/sessions/76/"&gt;get started contributing to
+OpenStack&lt;/a&gt; at
+&lt;a class="reference external" href="https://ep2014.europython.eu/en/"&gt;EuroPython&lt;/a&gt;. The aim was to give a
+high-level overview of how the contribution process works in the project
+and guide people through making their first contribution, from account
+creation to submitting a patch.&lt;/p&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="OpenStack logo" src="http://www.openstack.org/assets/openstack-logo/openstack-cloud-software-vertical-small.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Last week I ran a 3-hour training on how to &lt;a class="reference external" href="https://ep2014.europython.eu/en/schedule/sessions/76/"&gt;get started contributing to
+OpenStack&lt;/a&gt; at
+&lt;a class="reference external" href="https://ep2014.europython.eu/en/"&gt;EuroPython&lt;/a&gt;. The aim was to give a
+high-level overview of how the contribution process works in the project
+and guide people through making their first contribution, from account
+creation to submitting a patch.&lt;/p&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The session starts with an extremely fast overview of OpenStack, geared
+toward giving the participants an idea of the different components and
+possible areas for contribution. We then go through creating the
+accounts, why they're all needed, and how to work with DevStack for the
+people who have installed it. From there we finally start talking about
+the contribution process itself, some general points on open-source and
+OpenStack culture then go through a number of ideas for small tasks
+suitable for a first contribution. After that it's down to the
+participants to work on something and prepare a patch. Some people chose
+to file and triage/confirm bugs. The last part is about making sure the
+patch matches the community standards, submitting it, and talking about
+what happens next both to the patch and to the participant as a new
+member of the community.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="preparing"&gt;
+&lt;h2&gt;Preparing&lt;/h2&gt;
+&lt;p&gt;During the weeks preceding the event, I ran two pilot workshops with
+small groups (less than 10 people) in &lt;a class="reference external" href="http://www.tog.ie/"&gt;my local
+hackerspace&lt;/a&gt;, in preparation for the big one in
+Berlin. That was absolutely invaluable in terms of making the material
+more understandable and refining the content for items I didn't think of
+covering initially (e.g. screen, openrc files) and topics that could use
+more in-depth explanations (e.g. how to find your first task), timings,
+and generally getting a feel for what's reasonably achievable within a
+3-hour intro workshop.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="delivering"&gt;
+&lt;h2&gt;Delivering&lt;/h2&gt;
+&lt;p&gt;I think it went well, despite some issues at the beginning due to lack
+of Internet connectivity (always a problem during hands-on workshops!).
+About 70 people had signed up to attend (a.k.a. about 7 times too many),
+thankfully other members of the OpenStack community stepped up and
+offered their help as mentors - thanks again everyone! In the end, about
+half the participants showed up in the morning, and we lost another
+dozen to the Internet woes. The people who stayed were mostly
+enthusiastic and seemed happy with the experience. According to the
+&lt;a class="reference external" href="https://etherpad.openstack.org/p/ep-openstack"&gt;session etherpad&lt;/a&gt;, at
+least 5 new contributors uploaded a first patch :) Three are merged so
+far.&lt;/p&gt;
+&lt;p&gt;Distributing the slides early proved popular and useful. For an
+interactive workshop with lots of links and references it's really
+helpful for people to go back on something they missed or want to check
+again.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="issues"&gt;
+&lt;h2&gt;Issues&lt;/h2&gt;
+&lt;p&gt;The start of the workshop is a bit lecture-heavy and could be titled
+&amp;quot;Things I Desperately Wish I Knew When Starting Out,&amp;quot; and although
+there's some quizzes/discussions/demoing I'd love to make it more
+interactive in the future.&lt;/p&gt;
+&lt;p&gt;The information requested in order to join the Foundation tends to
+surprise people, I think because people come at it from the perspective
+of &amp;quot;I want to submit a patch&amp;quot; rather than &amp;quot;I am preparing to join a
+Foundation.&amp;quot; At the hackerspace sessions in particular (maybe because it
+was easier to have candid discussions in such a small group), people
+weren't impressed with being forced to state an affiliation. The lack of
+obvious answer for volunteers gave the impression that the project cares
+more about contributions from companies. &amp;quot;&lt;a class="reference external" href="http://www.tog.ie/"&gt;Tog&lt;/a&gt;&amp;quot;
+might make an appearance in the company stats in the future :-)&lt;/p&gt;
+&lt;p&gt;On the sign-up form, the &amp;quot;Statement of Interest&amp;quot; is intimidating and
+confusing for some people (I certainly remember being uncertain over
+mine and what was appropriate, back when I was new and joining the
+Foundation was optional!). I worked around this after the initial
+session by offering suggestions/tips for both these fields, and spoke a
+bit more about their purpose.&lt;/p&gt;
+&lt;p&gt;A few people suggested I simply tell people to sign up for all these
+accounts in advance so there's more time during the workshop to work on
+the contribution itself. It's an option, though a number of people still
+hit non-obvious issues with Gerrit that are difficult to debug (some we
+&lt;a class="reference external" href="https://bugs.launchpad.net/openstack-ci/+bug/1346833"&gt;opened bugs&lt;/a&gt;
+for, others we added to the etherpad). During one of the pilot sessions
+at the hackerspace, 6 of the 7 participants had errors when running git
+review -s&amp;nbsp; - I'm still not sure why, as it Worked On My Machine (tm)
+just fine at the same time.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Overall, I'm glad I did this! It was interesting to extract all this
+information from my brain, wiki pages and docs and attempt to make it as
+consumable as possible. It's really exciting when people come back later
+to say they've made a contribution and that the session helped to make
+the process less scary and more comprehensible. Thanks to all the
+participants who took the time to offer feedback as well! I hope I can
+continue to improve on this.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="europython"></category><category term="open-source"></category><category term="openstack"></category><category term="python"></category><category term="teaching"></category><category term="tog"></category></entry><entry><title>Train the Trainer course | FETAC Level 6</title><link href="https://www.jpichon.net/blog/2014/01/train-trainer-course/" rel="alternate"></link><published>2014-01-22T19:15:00+00:00</published><updated>2014-01-22T19:15:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2014-01-22:/blog/2014/01/train-trainer-course/</id><summary type="html">&lt;p&gt;Last week I participated in a 3 day-long &amp;quot;&lt;a class="reference external" href="http://hiberniantrainingcourses.ie/index.php/courses/train-the-trainer"&gt;Train the
+Trainer&lt;/a&gt;&amp;quot;
+course at &lt;a class="reference external" href="http://hiberniantrainingcourses.ie/"&gt;Hibernian College&lt;/a&gt; in
+Dublin. My goals were to get a better understanding of how to teach to
+adults and learn how to design and deliver effective training sessions,
+in order to improve my technical courses and workshops …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Last week I participated in a 3 day-long &amp;quot;&lt;a class="reference external" href="http://hiberniantrainingcourses.ie/index.php/courses/train-the-trainer"&gt;Train the
+Trainer&lt;/a&gt;&amp;quot;
+course at &lt;a class="reference external" href="http://hiberniantrainingcourses.ie/"&gt;Hibernian College&lt;/a&gt; in
+Dublin. My goals were to get a better understanding of how to teach to
+adults and learn how to design and deliver effective training sessions,
+in order to improve my technical courses and workshops, and teach
+better. It's something I had wanted to do for a couple of years and I'm
+glad I finally jumped and did it! I found the course both very enjoyable
+and very useful.&lt;/p&gt;
+&lt;div class="section" id="choosing-the-course"&gt;
+&lt;h2&gt;Choosing the course&lt;/h2&gt;
+&lt;p&gt;Originally I was waiting for &lt;a class="reference external" href="http://www.engineersireland.ie"&gt;Engineers
+Ireland&lt;/a&gt; to put their 5-day &amp;quot;Train
+the Trainer&amp;quot; course back on their CPD calendar but after contacting
+them, it turns out they are not planning on running it again in the
+short term.&lt;/p&gt;
+&lt;p&gt;Trawling the interwebs, there are a lot of training providers out there
+and it can be difficult to figure out which ones are legit (perhaps I
+was lucky!). I decided to go with a FETAC approved course even though I
+don't truly need the certification at this stage, because I figured if a
+course is approved to offer a government backed certification it'll be
+somewhat serious. After that, it was down to the luck of SEO and how
+helpful people were when I requested information. The Hibernian folks
+answered all my questions promptly and are lovely to deal with, both by
+email and face-to-face.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-course"&gt;
+&lt;h2&gt;The course&lt;/h2&gt;
+&lt;p&gt;The advantage of a 3-day course is that you don't need to take so much
+time off work. The disadvantage is that it is pretty intense! I would
+recommend having a couple of hours available in the evening for
+homework, particularly on day 2. The course I did was instructed by
+Maura O'Toole, who also happens to have some background in computing
+from early in her career which made for a few funny stories. Otherwise
+as a professional trainer with a couple decades of experience, she had a
+lot of anecdotes to illustrate her content and advice and make them
+memorable. I also liked that although we did go through all the FETAC
+material, she made sure to contrast it with how the real world works
+whenever relevant, based on her own knowledge and experience.&lt;/p&gt;
+&lt;p&gt;It must be a somewhat stressful course to teach because as you explain
+how to do things, people are analysing what you're doing and checking
+how it matches against what you are saying - and will call you out on
+any discrepancy!&lt;/p&gt;
+&lt;p&gt;The first day is the most intense, I think, which is probably just as
+well since people come in full of energy and expectations. I learnt a
+ton right from the icebreaker and icebreaker analysis - not only about
+training in general but also things I specifically want to try in my
+next course. That got me enthused for the day! By day 3 it was more
+difficult to keep the energy levels very high, despite the interest
+still being there.&lt;/p&gt;
+&lt;p&gt;The class size is kept small, which is actually a FETAC requirement (max
+8 people) and makes for a nice environment, particularly as people need
+to get up and present quite regularly. The participants' backgrounds
+were quite varied and we all heard presentations about horticulture,
+clinical trials, powerboat exams, TV production, programming...&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="assessment"&gt;
+&lt;h2&gt;Assessment&lt;/h2&gt;
+&lt;p&gt;The assessment is in two parts: a &amp;quot;skills demonstration&amp;quot; video where you
+spend 10 minutes - &lt;em&gt;exactly&lt;/em&gt; 10 minutes - showing off your mad
+training/presentation skills, and a ~2600 words written assignment
+showing how you would prepare, design and deliver (or have already) a
+particular training session, to return within 4 weeks of completing the
+course. You need a pass mark (40%) in each component to get the
+certificate.&lt;/p&gt;
+&lt;p&gt;The requirements for the video are such that it contradicts a lot of
+what is learnt during the course. You shouldn't really be interacting
+with your students on the video (it's about showing &lt;em&gt;your&lt;/em&gt; skills) - and
+it would probably be quite fake anyway. It's important to stick closely
+to the time. It was strange to pretend to teach programming with slides.&lt;/p&gt;
+&lt;p&gt;I still did my best though, I couldn't help wanting to try and plant the
+idea of maybe learning programming, in the head of my fellow trainees
+:-) They kindly indulged me. No one was particularly fond of the camera
+and the atmosphere was really supportive during the day, no matter the
+number of retakes.&lt;/p&gt;
+&lt;p&gt;According to the instructor, we all passed the skills demonstration
+(yay!), although the videos still need to go to the external FETAC
+examiner to confirm the final grades.&lt;/p&gt;
+&lt;p&gt;It was strange for me to go from nothing to doing a graded presentation
+on camera within 3 days. I'm used to preparing and rehearsing and
+rererererehearsing a lot more than that. It's probably good to just get
+it out of the way quickly, though perfectionists who want to shoot for
+the highest grades (ahem) will find it weird. I thought it was good.&lt;/p&gt;
+&lt;p&gt;Material-wise I was able to reuse content from my previous courses so
+that was one less concern in terms of preparation, I only had to adapt a
+little. People who never taught or trained before maybe have a bit of a
+rougher time (then again if they're deeply knowledgeable on a topic,
+maybe not). Likewise if you're not comfortable with public speaking (as
+in, at the level of standing up and introducing yourself/talking shite
+with a handful of supportive people in the room, without having a panic
+attack) I would carefully consider whether to attend such a fast-paced
+course.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-few-things-i-learnt"&gt;
+&lt;h2&gt;A few things I learnt&lt;/h2&gt;
+&lt;p&gt;It's comforting when best practices are described and this happens to
+match how I've been doing things :-) (For instance my way of doing
+training evaluation is probably not too crap).&lt;/p&gt;
+&lt;p&gt;It dawned on me at some point during day 2 that what I was trying to fix
+- the ways my sessions are designed - is not my main problem. My main
+issue is that the objectives for my courses are not defined clearly - I
+kinda try to fit as much as I can without overwhelming within the time I
+have available. Working from the results I want (using the useful
+&amp;quot;Training Analysis Framework&amp;quot; I now possess!) would allow me to clarify
+exactly what I want to achieve, which will then help me organise and
+(re)arrange my sessions as needed, rather than follow the chronological
+order. As a very important bonus point, it will help me write course
+descriptions that are more specific and should help &amp;quot;weed out&amp;quot; the
+people that the course is not designed for (i.e. non-beginners). I am
+really happy about this, this is a big problem each time.&lt;/p&gt;
+&lt;p&gt;I also learnt what I thought was my &amp;quot;happy smiley presentation face&amp;quot; is
+actually &amp;quot;my serious face.&amp;quot; Must calibrate better! :-)&lt;/p&gt;
+&lt;p&gt;There'll be a lot more once I got through my notes again, but the fact
+that I was trying to fix the wrong thing was a huge revelation and I'm
+really happy I figured this out. Sadly I got sick right after the course
+(better than being sick for the filming, I guess!) and I haven't had a
+chance to sort out the rest of my notes - or, er, start on the
+assignment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next"&gt;
+&lt;h2&gt;Next&lt;/h2&gt;
+&lt;p&gt;I have a couple of weeks to complete the assessment. Hopefully I can get
+a big chunk of it done over the week-end, once the cold is gone. From
+what I understand, it is quite time-consuming and the instructor
+suggested doing it for a course we're actually planning on teaching so
+that the output is useful and usable, rather than a simple academic
+exercise. I plan to use my intro to programming course for this, except
+on a different timeline (I'll imagine it's taught over a couple of days
+rather than in the evening - and who knows, if I'm inspired I might just
+go and try teaching it in that format too!)&lt;/p&gt;
+&lt;p&gt;After that, I want to schedule the course and teach again in
+&lt;a class="reference external" href="http://www.tog.ie/"&gt;Tog&lt;/a&gt;. I &amp;quot;paused&amp;quot; teaching because I felt my
+course wasn't good enough and I wanted to overhaul it first. As with
+many &amp;quot;let's redo it from scratch!&amp;quot; projects, it's just meant I haven't
+taught in over a year now... So, time to fix this, and as I
+refamiliarise myself with the course first time around, the only major
+change I'll make will be to update the examples to Python 3. It's time!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Updated in May to add: I passed! :) Let's go and teach all the things!&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="teaching"></category></entry><entry><title>Teaching Webcraft / Audience | Who are your learners?</title><link href="https://www.jpichon.net/blog/2012/01/teaching-webcraft-audience/" rel="alternate"></link><published>2012-01-30T21:19:00+00:00</published><updated>2012-01-30T21:19:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2012-01-30:/blog/2012/01/teaching-webcraft-audience/</id><summary type="html">&lt;p&gt;The &lt;a class="reference external" href="http://p2pu.org/en/groups/how-to-teach-webcraft-and-programming-to-free-range-students/content/what-do-you-want-your-learners-to-learn/"&gt;second
+task&lt;/a&gt;
+for the &lt;a class="reference external" href="http://p2pu.org/en/groups/how-to-teach-webcraft-and-programming-to-free-range-students/"&gt;Teaching
+webcraft&lt;/a&gt;
+course is about making up profiles for people we're hoping to help. The
+couple of biographies that follow do not cover it all, but should still
+be a fair sample :-)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;* * *&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jessie&lt;/strong&gt; is a high school student, and although she thinks about it
+often …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a class="reference external" href="http://p2pu.org/en/groups/how-to-teach-webcraft-and-programming-to-free-range-students/content/what-do-you-want-your-learners-to-learn/"&gt;second
+task&lt;/a&gt;
+for the &lt;a class="reference external" href="http://p2pu.org/en/groups/how-to-teach-webcraft-and-programming-to-free-range-students/"&gt;Teaching
+webcraft&lt;/a&gt;
+course is about making up profiles for people we're hoping to help. The
+couple of biographies that follow do not cover it all, but should still
+be a fair sample :-)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;* * *&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jessie&lt;/strong&gt; is a high school student, and although she thinks about it
+often, what she wants to do after her final year still very much depends
+on what catches her interest the most any given week. She navigates the
+web effortlessly, and hangs out online in all the social networks her
+friends are into. She never really considered programming as something
+she could learn, but when presented with the opportunity to join an
+intro course she thinks maybe there she'll learn enough code to be able
+to personalise her blog, and make it look unique and more interactive.&lt;/p&gt;
+&lt;p&gt;This course will teach Jessie how to create her first program, and that
+programming is more similar to puzzle solving than inputting number in
+Excel to do sums like in the ICT class. Perhaps something worth
+exploring further...&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;*&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Jon&lt;/strong&gt; is working hard at his PhD thesis in social sciences. He has a
+lot of statistics to parse and go through every day, results of
+experiments to reproduce before building on them and so on. He has a
+dozen of Excel spreadsheets set up with insane macros that save him a
+lot of time, but still wastes many hours manually inputting data taken
+from websites or articles. He's hoping learning to program will enable
+him to spend less time on drudge work and more time exploring the
+interesting questions.&lt;/p&gt;
+&lt;p&gt;This course will teach Jon how to automate more of his experimental
+work, and in the process make him realise there are other areas where
+some scripting would make writing his dissertation more efficient.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;*&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Paula&lt;/strong&gt; doesn't consider herself a power user, but she knows the
+keyboard shortcuts for every application she uses, is familiar with the
+file system layout of her computer (and learnt what a file system is)
+thanks to a couple of misadventures clicking on interesting looking
+icons, and is known to her friends and colleagues as the go-to person
+whenever a computer misbehaves. Though she doesn't plan on making a
+career out of it, she is curious to gain an understanding of what's
+under the hood of all these applications she uses.&lt;/p&gt;
+&lt;p&gt;This course will teach Paula the fundamental steps and &amp;quot;bricks&amp;quot; that
+every program is made of, and help her understand why bugs happen and
+what makes them difficult to eradicate. Maybe putting together a short
+script to randomly assign secret Santas for the next Christ Kindle
+wouldn't be too hard, though...&lt;/p&gt;
+</content><category term="Tech"></category><category term="education"></category><category term="P2PU: Teaching webcraft"></category><category term="teaching"></category></entry><entry><title>Teaching Webcraft / Compare your practices to IES report's recommendations</title><link href="https://www.jpichon.net/blog/2012/01/teaching-webcraft-ies-reports-recommendations/" rel="alternate"></link><published>2012-01-15T18:52:00+00:00</published><updated>2012-01-15T18:52:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2012-01-15:/blog/2012/01/teaching-webcraft-ies-reports-recommendations/</id><summary type="html">&lt;p&gt;I'm taking an online course at the &lt;a class="reference external" href="http://p2pu.org"&gt;P2P University&lt;/a&gt;,
+on &amp;quot;&lt;a class="reference external" href="http://p2pu.org/en/groups/how-to-teach-webcraft-and-programming-to-free-range-students/"&gt;How to teach webcraft and programming to free-range
+students&lt;/a&gt;&amp;quot;
+taught by Greg Wilson.&lt;/p&gt;
+&lt;p&gt;Looking at the initial comments on the course it's possible I
+misunderstood what &amp;quot;free-range students&amp;quot; means ; from the course
+description I took it to mean teaching in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm taking an online course at the &lt;a class="reference external" href="http://p2pu.org"&gt;P2P University&lt;/a&gt;,
+on &amp;quot;&lt;a class="reference external" href="http://p2pu.org/en/groups/how-to-teach-webcraft-and-programming-to-free-range-students/"&gt;How to teach webcraft and programming to free-range
+students&lt;/a&gt;&amp;quot;
+taught by Greg Wilson.&lt;/p&gt;
+&lt;p&gt;Looking at the initial comments on the course it's possible I
+misunderstood what &amp;quot;free-range students&amp;quot; means ; from the course
+description I took it to mean teaching in various non-traditional
+settings, but it might actually be specifically about online learning
+(?). It's fine, the general concepts of &amp;quot;what is good teaching&amp;quot;, &amp;quot;how
+people learn&amp;quot; and how to encourage independent learning will be helpful
+anyway. :)&lt;/p&gt;
+&lt;div class="section" id="first-task"&gt;
+&lt;h2&gt;First task&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://p2pu.org/en/groups/how-to-teach-webcraft-and-programming-to-free-range-students/content/getting-started-some-things-to-read-some-things-to-think-about/"&gt;Our first
+task&lt;/a&gt;
+is to take a look at the IES (Institution of Educational Sciences)
+report on &amp;quot;&lt;a class="reference external" href="http://ies.ed.gov/ncee/wwc/practiceguide.aspx?sid=1"&gt;Organizing Instruction and Study to Improve Student
+Learning&lt;/a&gt;&amp;quot;
+(summarised in &lt;a class="reference external" href="http://software-carpentry.org/2011/12/organizing-instruction-and-study-to-improve-student-learning/"&gt;Greg's post
+here&lt;/a&gt;)
+and compare their recommendations to our own approach to teaching
+programming.&lt;/p&gt;
+&lt;p&gt;For the record, I teach sporadically in my own time, to small groups of
+6 to 10 complete beginners, usually-but-not-always adults, in the &lt;a class="reference external" href="http://www.tog.ie"&gt;local
+hackerspace&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recommendation-1-space-learning-over-time"&gt;
+&lt;h2&gt;Recommendation 1: Space learning over time.&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Arrange to review key elements of course content after a delay of
+several weeks to several months after initial presentation.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;In a 5 or 6 weeks-long course, this can be difficult. However, most
+concepts do build on top on each other: once learnt, they will be used
+every week from then on. The later concepts could benefit from regular
+review, but by then the course is about finished unfortunately.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recommendation-2-interleave-worked-example-solutions-with-problem-solving-exercises"&gt;
+&lt;h2&gt;Recommendation 2: Interleave worked example solutions with problem-solving exercises.&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Have students alternate between reading already worked solutions and
+trying to solve problems on their own.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;From the 2nd session of the course, I start by showing a short, working
+program to the class and ask them to think about what it could be doing,
+(trying to) figure out as a group what could be its purpose. This sounds
+more like review though, as it reuses the previous concepts. The report
+also reads that &lt;strong&gt;alternating&lt;/strong&gt; working examples + exercises is hugely
+important. &amp;quot;Worked example solutions&amp;quot; should go into much more details
+than what I've been doing as well (showing intermediate steps, rather
+than only the final solution).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recommendation-3-combine-graphics-with-verbal-descriptions"&gt;
+&lt;h2&gt;Recommendation 3: Combine graphics with verbal descriptions.&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Combine graphical presentations (e.g., graphs, figures) that illustrate
+key processes and procedures with verbal descriptions.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I can't say that I'm really doing this. I'm projecting code, sometimes
+working out solutions in front of the class but this isn't particularly
+graphical. I'm not sure how to do this either. It actually reminds me of
+the approach to learning that Sean O'Leary mentioned in his talk on
+&lt;a class="reference external" href="http://sess.ie/resources/science-differentiation-action"&gt;differentiated
+learning&lt;/a&gt; at
+the &lt;a class="reference external" href="https://www.jpichon.net/blog/2011/05/reimaging-learning/"&gt;Reimagining Learning
+conference&lt;/a&gt;,
+where he told us about adding visual cues to quizzes and concepts to
+help dyslexic learners and students with a more visual approach.
+Although useful, this doesn't exactly match the IES report
+recommendation which advocates making sure the graphical element is
+directly relevant to the concept being taught.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recommendation-4-connect-and-integrate-abstract-and-concrete-representations-of-concepts"&gt;
+&lt;h2&gt;Recommendation 4: Connect and integrate abstract and concrete representations of concepts.&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Connect and integrate abstract representations of a concept with
+concrete representations of the same concept.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The report explains that students gain an understanding faster when
+using concrete examples, but then don't know how to transfer the
+knowledge to new problems ; while students who learn the concept
+abstractly struggle more initially but are then more flexible with the
+knowledge. The report advocates mixing up both, which I'm not doing or
+not doing well as my students tend to have trouble reusing previous
+concepts to break down more intricate problems on their own.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recommendation-5-use-quizzing-to-promote-learning"&gt;
+&lt;h2&gt;Recommendation 5: Use quizzing to promote learning.&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Use quizzing with active retrieval of information at all phases of the
+learning process to exploit the ability of retrieval directly to
+facilitate long-lasting memory traces.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5a. Use pre-questions to introduce a new topic.&lt;/strong&gt; I don't do this. I
+wonder if &amp;quot;previewing&amp;quot; an unknown programming concept would help
+learning, or increase confusion. It'd definitely need to solve a
+concrete problem, ideally that we encountered in the previous session.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;5b. Use quizzes to re-expose students to key content.&lt;/strong&gt; I don't do
+this either. (Actually, reading on the report, presenting small programs
+and asking students to figure out what it does may be considered a quiz,
+as it encourages them to retrieve previously learnt material). It's
+interesting, and I wonder how to apply it to teaching practical
+programming while keeping the questions short and meaningful (maybe tiny
+programs with missing bits, with a multiple choice as to what to fill
+the blank with?)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recommendation-6-help-students-allocate-study-time-efficiently"&gt;
+&lt;h2&gt;Recommendation 6: Help students allocate study time efficiently.&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Assist students in identifying what material they know well, and what
+needs further study, by teaching children how to judge what they have
+learned.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6a. Teach students how to use delayed judgements of learning to
+identify content that needs further study.&lt;/strong&gt; I'm not doing this, except
+perhaps brutally when giving exercises that a student doesn't know how
+to solve.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;6b. Use tests and quizzes to identify content that needs to be
+learned.&lt;/strong&gt; This advises giving a quiz, written or oral, could be done as
+a game, right after presenting new material, so students can assess what
+they actually do remember. I don't do this. Considering most of my
+students don't make the time for homework or studying at home, I don't
+know if this would be very effective on its own. Or perhaps it would
+highlight that they do need to study outside of the class and encourage
+them to do so...&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="recommendation-7-ask-deep-explanatory-questions"&gt;
+&lt;h2&gt;Recommendation 7: Ask deep explanatory questions.&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Use instructional prompts that encourage students to pose and answer
+“deep-level” questions on course material. These questions enable
+students to respond with explanations and supports deep understanding of
+taught material.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I do a tiny bit of this when I introduce a new concept or explain what
+an existing program does, but not very deeply, nor involving the class
+enough (it can be tough generating discussion!). Some of the suggestions
+include having students think aloud, then comment and build on each
+other's understanding.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="education"></category><category term="P2PU: Teaching webcraft"></category><category term="teaching"></category></entry><entry><title>Teaching programming to beginners | Latest roundup</title><link href="https://www.jpichon.net/blog/2011/12/teaching-programming-to-beginners/" rel="alternate"></link><published>2011-12-02T18:19:00+00:00</published><updated>2011-12-02T18:19:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-12-02:/blog/2011/12/teaching-programming-to-beginners/</id><summary type="html">&lt;p&gt;An overdue post on the &lt;a class="reference external" href="https://www.jpichon.net/blog/2011/10/teaching-take-4/"&gt;latest
+course&lt;/a&gt; I
+taught, which ended about 2 weeks ago. I taught a group of 9 people (8
+adults, 1 teenager) of various backgrounds the basics of programming,
+using Python. It went well overall, and the class atmosphere was
+enjoyable.&lt;/p&gt;
+&lt;div class="section" id="for"&gt;
+&lt;h2&gt;For...&lt;/h2&gt;
+&lt;p&gt;Unfortunately I still fail …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;An overdue post on the &lt;a class="reference external" href="https://www.jpichon.net/blog/2011/10/teaching-take-4/"&gt;latest
+course&lt;/a&gt; I
+taught, which ended about 2 weeks ago. I taught a group of 9 people (8
+adults, 1 teenager) of various backgrounds the basics of programming,
+using Python. It went well overall, and the class atmosphere was
+enjoyable.&lt;/p&gt;
+&lt;div class="section" id="for"&gt;
+&lt;h2&gt;For...&lt;/h2&gt;
+&lt;p&gt;Unfortunately I still fail to explain some concepts clearly -- namely
+the dreaded for loop. I kept telling myself I needed to change the way I
+introduce it and finally did so, and wow. It went even worse than
+before. I could see in my student's eyes how they were trying to
+understand, until eventually shrugging it off when I couldn't find any
+different way to explain it. It may have come across a bit better
+eventually when we started working with files and used for loops to go
+through every line, but introducing the concept went very blergh.
+Definitely need to do it differently next time. I think I will try to
+introduce the for loop over 2 sessions: one where we only see and do
+exercises related to &amp;quot;for i in range(0, x)&amp;quot; and separately introduce
+&amp;quot;for item in my_list&amp;quot;.&lt;/p&gt;
+&lt;p&gt;I don't know if I just forgot before, but failing to get a concept
+across is really, really depressing. I was bummed out for a while
+afterwards, wondering if I'm just making more damage than good and
+messing up my goal of making programming less intimidating.&lt;/p&gt;
+&lt;p&gt;...Yet another reason to do better next time!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="exercises"&gt;
+&lt;h2&gt;Exercises&lt;/h2&gt;
+&lt;p&gt;I should make sure to have at least one &amp;quot;Fill in the blanks&amp;quot; and &amp;quot;Change
+this existing program so that...&amp;quot; type of exercises for every concept. I
+think they encourage students to read and try to understand existing
+code -- an important skill to develop, and it also makes the first
+attempt at using a new structure more manageable.&lt;/p&gt;
+&lt;p&gt;In general, I'd really like if I could find a neat program that could be
+cut down into exercises relating to each concept, that'd build up to
+something cool and awesome as the course goes on. It would help get
+across that complex programs are really made up of simpler pieces ; if
+you can't figure out how to do something, break it down further. I
+haven't really figured out a program that fits the bill yet.&lt;/p&gt;
+&lt;p&gt;Overall, material-wise I'm getting there (except for For :|), it'd be
+worthwhile focusing on improving the exercises for the next course.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="homework"&gt;
+&lt;h2&gt;Homework&lt;/h2&gt;
+&lt;p&gt;OMG some people actually did the exercises as homework this time :O Wow.
+I tip my hat to them, it's great and it paid dividends for them.
+Unfortunately it also meant they had nothing to do while the others were
+catching up, so... I should probably give away only a portion of the
+exercises as homework, and save a few for the actual session. (The idea
+with the exercises is that everybody should get at least 1 done before
+we move on ; having many gives the faster students something to do while
+others don't feel too rushed.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="duration"&gt;
+&lt;h2&gt;Duration&lt;/h2&gt;
+&lt;p&gt;I taught over 5 weeks this time (2h30 in the evening with a 20-30mins
+break), and I will do 6 weeks next time. For real beginners it's still
+reasonable and it will let me take more time on concepts like For, and
+maybe an opportunity to show at the end what else there is to
+programming, and give ideas on which direction they could go on from
+here (GUIs, web development, robots...).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="speaking-of-robots"&gt;
+&lt;h2&gt;Speaking of robots&lt;/h2&gt;
+&lt;p&gt;At the last session I brought a &lt;a class="reference external" href="http://www.finchrobot.com/"&gt;Finch&lt;/a&gt;,
+which I still haven't had much time to play with :') But with the Jython
+bindings it was possible to show a 5 lines Python program that has an
+effect in the real world. The Finch was very popular!&lt;/p&gt;
+&lt;p&gt;I want to play with the robot more, and see if perhaps it would make
+sense to use it to teach the whole beginner course at some point in the
+future (which would bring its own set of issues, $$$-wise).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="student-feedback"&gt;
+&lt;h2&gt;Student feedback&lt;/h2&gt;
+&lt;p&gt;As usual I asked if students could fill in a feedback form.&lt;/p&gt;
+&lt;p&gt;Everybody agreed they learnt a lot. &amp;quot;Fun&amp;quot; and &amp;quot;interesting&amp;quot; were in
+about everyone's &amp;quot;3 words to describe the course&amp;quot;, with&amp;quot;hard&amp;quot; and
+&amp;quot;challenging&amp;quot; occasionally thrown in there :) &amp;quot;Useful&amp;quot; came up in half
+the forms too, which makes me happy.&lt;/p&gt;
+&lt;p&gt;The projector wasn't great with yellow which unfortunately was the
+default colour for strings in the IDE. It would have been worthwhile
+spending the time on fixing that rather than let people squint (sorry
+:().&lt;/p&gt;
+&lt;p&gt;A couple of requests to link more clearly exercises with the real world.
+So very difficult when we're still introducing new concepts! But
+definitely something to strive for.&lt;/p&gt;
+&lt;p&gt;Someone suggested writing a sample program where every line is explained
+(e.g. if x:&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;lt;-- this will do...). I think it's a good idea, I will
+try for next time. It would be useful as a reference.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;I should be teaching this course again around March. Any pointers to
+beginner exercises, general comments, teaching advice, teaching
+&lt;em&gt;programming&lt;/em&gt; tips all very much welcome!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="python"></category><category term="teaching"></category></entry></feed>

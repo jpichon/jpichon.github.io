@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - contributing</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-contributing.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2017-02-27T21:42:00+00:00</updated><entry><title>FOSDEM 2017 | From the community devroom</title><link href="https://www.jpichon.net/blog/2017/02/fosdem-2017-event-report/" rel="alternate"></link><published>2017-02-27T21:42:00+00:00</published><updated>2017-02-27T21:42:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2017-02-27:/blog/2017/02/fosdem-2017-event-report/</id><summary type="html">&lt;p&gt;A few weeks ago I happily went off to &lt;a class="reference external" href="https://fosdem.org/"&gt;FOSDEM&lt;/a&gt;.
+Saturday I caught up with people, Sunday I spent most of the day in the
+incredibly busy &lt;a class="reference external" href="https://fosdem.org/2017/schedule/track/community/"&gt;Community
+devroom&lt;/a&gt; - right
+until I had to give up my seat for food. I really enjoyed the talks and
+hope the track manages …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A few weeks ago I happily went off to &lt;a class="reference external" href="https://fosdem.org/"&gt;FOSDEM&lt;/a&gt;.
+Saturday I caught up with people, Sunday I spent most of the day in the
+incredibly busy &lt;a class="reference external" href="https://fosdem.org/2017/schedule/track/community/"&gt;Community
+devroom&lt;/a&gt; - right
+until I had to give up my seat for food. I really enjoyed the talks and
+hope the track manages to get a bigger devroom next year, dozens of
+people had to be kept out after every session ended (fire safety
+regulations).&lt;/p&gt;
+&lt;p&gt;Most talks lasted about 30mn and the videos should be available on the
+FOSDEM website. Here are some of the highlights from my perspective and
+notes.&lt;/p&gt;
+&lt;div class="section" id="closing-loops-greg-sutcliffe"&gt;
+&lt;h2&gt;Closing Loops (Greg Sutcliffe)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_closing_loops/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This talk was more about raising questions and figuring out best
+practices based on audience participation rather than offering The One
+Solution. In this context, a &amp;quot;loop&amp;quot; means an RFC still undecided, a
+discussion dying out, patches unreviewed. How do you decide when a topic
+has come to a conclusion?&lt;/p&gt;
+&lt;p&gt;It's important to remember that everybody has the best interests of the
+project at heart, this is more about blaming the systems we use.&lt;/p&gt;
+&lt;p&gt;Say, in a Request For Comments discussing significant changes on a
+mailing list, the discussion tends to peter out after a while, and it
+can be difficult to track how a proposal evolved. Foreman (Greg's
+project) decided to move the discussions to an RFC repository instead,
+but 6 months later it seems to have only moved the problem.&lt;/p&gt;
+&lt;p&gt;From the audience:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;For Debian, the discussion ends &amp;quot;when someone starts the work&amp;quot; :)&lt;/li&gt;
+&lt;li&gt;LibreOffice has a &amp;quot;technical council&amp;quot; type meeting/discussion with
+about 40 people, on the phone. A wiki documents the process to join.&lt;/li&gt;
+&lt;li&gt;In the PHP world, the RFC author gets to choose when to call a vote
+and the deadline for it (at least 2 weeks ahead). Greg wondered if
+that might get divisive if there are too many 50/50 situations, but
+the audience member indicated that it wasn't the case, because most
+problems get solved during the discussions that precede the vote so
+they are usually overwhelmingly accepted. Every contributor gets a
+vote from a certain contribution threshold.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The speaker seemed interested in trying out the technical council
+direction for his project.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="data-science-for-community-management-manrique-lopez"&gt;
+&lt;h2&gt;Data science for community management (Manrique Lopez)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_datascience_for_communitymanagement/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Communities need to have a common vision and self-awareness to see if
+they are walking toward it: what kind of people are part of the
+community, what are they doing... This helps with governance and
+transparency (fairness, trust).&lt;/p&gt;
+&lt;p&gt;What is the role of a community manager? Do communities even need to be
+managed? &amp;quot;Manage&amp;quot; is a strong word.&lt;/p&gt;
+&lt;p&gt;A community manager is interested in keeping their community alive,
+active, and productive. Having visibility into community health is
+important. There are a lot of tools out there with data relevant to
+this: JIRA, git, IRC, slack, StackOverflow, ... A lot of places, which
+individually are only one part of the bigger picture.&lt;/p&gt;
+&lt;p&gt;Rather than cobling a bunch of scripts together to get to all that data,
+GrimoireLab does all the work for you and presents it nicely using
+graphs. One example was the &amp;quot;Pony Factor,&amp;quot; which I hadn't heard of:
+who's doing 50% of the commits? For example in the kernel, the pony
+factor is about 200 people/10 companies. That's a lot of people!&lt;/p&gt;
+&lt;p&gt;When you have that data you can see the evolution of the project over
+time: reviews, gender, demography, pony factor, etc, etc. Cauldron.io,
+in beta, lets you try it out for free for up to 5 Github organisations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="getting-your-issues-fixed-tomer-brisker"&gt;
+&lt;h2&gt;Getting your issues fixed (Tomer Brisker)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_getting_your_issues_fixed/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I think anyone trying to get help or start contributing as a user to an
+open-source project needs to watch this. Tomer summarised a ton of best
+practices that experienced open-source people &amp;quot;just know&amp;quot; and would
+likely never think to document.&lt;/p&gt;
+&lt;p&gt;A super rough summary:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Try to ask for help on IRC&lt;/li&gt;
+&lt;li&gt;Try the mailing list. If no one replies and you solve it yourself or
+find a workaround later, please self-reply. (&lt;a class="reference external" href="https://xkcd.com/979/"&gt;Mandatory xkcd
+link&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Search the bug tracker. If there is a bug, add your input, your use
+case. If there are none, create a new issue and include as much
+information as possible: traces, logs, version (including of the
+plugin if relevant), screenshots... Anything to help the developers
+reproduce the issue. If this is a feature request, explain your use
+case.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Patches:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Tabs vs spaces: follow the coding guidelines for the project. If
+there aren't any follow the standards and conventions of the existing
+code base.&lt;/li&gt;
+&lt;li&gt;Make the commit message good. Explain &amp;quot;why&amp;quot; as completely as
+possible. Apparently Github even lets you include screenshots, so
+that the patch can be reviewed without having to pull the code. &amp;quot;Why&amp;quot;
+did you do it this way and not another way, explained in such a way
+people in the future can understand the decision.&lt;/li&gt;
+&lt;li&gt;Include tests. This protects against regressions, so that you don't
+have to fix the same bug two releases later.&lt;/li&gt;
+&lt;li&gt;Be kind. We're building a community. No one wants to be shouted at.
+Be patient.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="handle-conflict-like-a-boss-deb-nicholson"&gt;
+&lt;h2&gt;Handle conflict, like a boss! (Deb Nicholson)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_handle_conflict_like_a_boss/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Conflicts often come from a piece of information that is missing.
+Conflict is natural. If you don't handle it, it will come back worse.&lt;/p&gt;
+&lt;p&gt;How do we minimise it? Try to understand the other people, where they're
+coming from.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Passion. When people get so excited about something they forget why
+they're doing it. Mismatched goals.&lt;/li&gt;
+&lt;li&gt;Identity. When someone's identity is linked to a task, not a goal.
+For example, the person known to be super helpful with wrangling the
+complex bug tracker, who'll end up sad when you finally upgrade to
+something better.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Don't leave conflict unattended or you'll end up in a snake pit. You
+don't owe your mental health to any FOSS project.&lt;/p&gt;
+&lt;p&gt;There are 3 styles of handling conflict. We tend to use them all,
+depending on the circumstances.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Avoidance. This is not good in a project! It festers. It looks like
+you don't care, like you're not connected to the community and its
+concerns.&lt;/li&gt;
+&lt;li&gt;Accommodation. Doing stuff you don't really want to in order to keep
+the group happy. For bigger issues it can make it look like you don't
+mind the way things are going. It works for small things.&lt;/li&gt;
+&lt;li&gt;Assertion. Can also be called Aggression. Name calling, etc. Not a
+good strategy. It wears out other contributors.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Conversations happen in many places. Document the decisions so that it
+doesn't feel like they're coming out of nowhere.&lt;/p&gt;
+&lt;p&gt;If you notice in passing a problem in the community you're probably
+missing some information. Gather more info in order to understand the
+source of conflict: misunderstanding goals, stepping on toes (e.g. that
+person &lt;em&gt;always&lt;/em&gt; writes the release notes but someone else went ahead and
+did it this time instead, without asking), ... Is it new members
+clashing with the old ones? Go back to the historical vision, step out
+of the tactical discussion. Are there sekrit goals underway? For example
+a motivation you're not aware of, someone with different goals for their
+participation like a new job or internal deadlines...&lt;/p&gt;
+&lt;p&gt;If the conflict is based on fear, it can be harder to get at, e.g.
+someone afraid they can't learn a new skill if switching language.
+Create a back channel where it's safe to discuss, to try to deal with
+it.&lt;/p&gt;
+&lt;p&gt;Planning for future conflict:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Assume the best.&lt;/li&gt;
+&lt;li&gt;Have a code of conduct. Set expectations.&lt;/li&gt;
+&lt;li&gt;No name calling/ad hominem, only discuss technical merits.&lt;/li&gt;
+&lt;li&gt;Set an example.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We could do so much more in the FOSS world if we didn't spend so much
+time slagging each other :)&lt;/p&gt;
+&lt;p&gt;Some references:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.goodreads.com/book/show/17568812-everything-is-workable"&gt;Everything is
+workable&lt;/a&gt;
+- Diana Musko Hamilton.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://blog.aurynn.com/contempt-culture"&gt;Contempt Culture&lt;/a&gt; -
+Aurynn Shaw.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="mentoring-101-brian-proffitt"&gt;
+&lt;h2&gt;Mentoring 101 (Brian Proffitt)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_mentoring_101/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This was a lively talk on both formal mentoring via programs such as
+the&lt;a class="reference external" href="https://summerofcode.withgoogle.com/"&gt;Google Summer of Code&lt;/a&gt; as
+well as daily mentoring.&lt;/p&gt;
+&lt;p&gt;Onboarding is important. This is not just about keeping people in but
+helping people get in.&lt;/p&gt;
+&lt;p&gt;As software project, should you want to participate in formal mentoring:
+have a plan. Formal programs have their own rules and structure.&lt;/p&gt;
+&lt;p&gt;As a participant, be a member of the community, pick a project that
+interests you. Be ready to commit. Be flexible - it takes time but is
+rewarding. Be ready to ask for help.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Undermentoring&lt;/em&gt; is a problem. Have clear, set goals for the mentee.
+Keep an eye on them while also giving them space.&lt;/p&gt;
+&lt;p&gt;Issue with mentees disappearing... They really should keep a line of
+communication open, even if only to say, &amp;quot;sorry, I cant' participate
+anymore.&amp;quot; (From personal experience mentoring, this is quite stressful
+and it was a relief when the mentee admitted they could no longer
+participate.) You need to proactively mentor to avoid this.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Be consistent. E.g. your style may be authoritative (do it this way),
+democratic (collaboration) or coaching (guidance). Stick to one.
+(...with Brian noting that the last one is best for mentoring!)&lt;/li&gt;
+&lt;li&gt;Set expectations. Make sure the goals are aligned, define the
+process, avoid confusion.&lt;/li&gt;
+&lt;li&gt;Take an interest in the mentee. Listen actively. Build a
+relationship. Learn their style. Don't be a stalker though.&lt;/li&gt;
+&lt;li&gt;Wait before giving advice. It's easy to try to fix things when
+someone comes at you with a problem. You might be able to solve it
+but that won't help them. Hit the pause button. Ask more question,
+get to the heart, guide them to the solution. It takes time. You may
+not solve the problem. As long as it's not time-sensitive that's ok.&lt;/li&gt;
+&lt;li&gt;Don't assume anything. Avoid stereotypes. Learn the details of a
+situation. Emphasise communication.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Remember this one thing: they aren't you!! Understand the mentee. This
+is not only about getting the project done.&lt;/p&gt;
+&lt;p&gt;A question from the audience was, how can I help my mentor as a mentee?
+Once again it's about being proactive: this is what I want to do, how do
+you help me do this? If it isn't working, reconsider the relationship.&lt;/p&gt;
+&lt;p&gt;How to recruit mentors? Some projects are easier to get in than others.
+In oVirt, there's a separate mailing list and no formal process. Spread
+the word, see who's interested. What about a project where there's a lot
+of mentees yet no one ever answers the call for mentors? If this is part
+of a corporate project, a solution could be to make it part of the job.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="impromptu-community-talk"&gt;
+&lt;h2&gt;Impromptu community talk&lt;/h2&gt;
+&lt;p&gt;One of the talks was cancelled, so a couple of people started a
+conversation around community and community events (too many pizzas, too
+much alcohol is the feedback I remember from that part).&lt;/p&gt;
+&lt;p&gt;The need for &amp;quot;cruel empathy&amp;quot; was brought up: sometimes meeting
+organisers should be jerks for good reasons. Loud, demeaning people are
+toxic and need to be called out. Tell them, in private: &amp;quot;I appreciate
+that you're here, etc, but you're sucking air out of the community.&amp;quot;
+They may not realise they are doing it, so be nice about it.&lt;/p&gt;
+&lt;p&gt;The Shotwell community was brought up as one with great first contact.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="overcoming-culture-clash-dave-neary"&gt;
+&lt;h2&gt;Overcoming culture clash (Dave Neary)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_overcoming_culture_clash/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This was a very interesting talk, mainly summarising information and
+graphs from books, which I'm going to list here. And hopefully read
+soon!&lt;/p&gt;
+&lt;p&gt;Basically a lot of what we do and how we interpret things depends on our
+upbringing (country, culture, ...)&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.garretthardinsociety.org/articles_pdf/tragedy_of_the_commons.pdf"&gt;The Tragedy of the
+Commons&lt;/a&gt;
+- Garret Hardin.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.goodreads.com/book/show/17707599-moral-tribes"&gt;Moral
+Tribes&lt;/a&gt;
+- Joshua Greene.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.goodreads.com/book/show/466760.Cultures_and_Organizations"&gt;Culture and
+Organizations&lt;/a&gt;
+- Geert Hofstede. That one brings up 6 dimensions of culture, for
+example tending to be uncomfortable with silence and filling it
+instantly, vs. leaving a couple seconds pause to make sure the person
+is finished.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://www.goodreads.com/book/show/313605.Getting_to_Yes"&gt;Getting to
+Yes&lt;/a&gt; -
+Roger Fish. This is more psychology-based than about hard
+negotiation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are no easy solutions. Focus on the relationship. Take small
+steps: one conversation at a time. Encourage local user groups - though
+keep them connected e.g. via sending mentors/leaders to these meetups to
+avoid silos. Have short mentoring programs. Learn about the cultural
+norms and sensitivity of the community. Avoid real-time meetings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="i-contributed-but-what-now-bee-padalkar"&gt;
+&lt;h2&gt;I contributed! But what now? (Bee Padalkar)&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="https://fosdem.org/2017/schedule/event/community_contributed_now_what/"&gt;Link to
+talk&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Based on the Fedora community, this talk was about improving contributor
+retention rates by finding patterns about successful contributors.&lt;/p&gt;
+&lt;p&gt;Why do people &lt;em&gt;stay&lt;/em&gt;? According to a survey they ran, usually thanks to
+the strong, positive and inclusive community. Other reasons were
+identifying with the Fedora foundations (core values), giving back,
+constantly learning.&lt;/p&gt;
+&lt;p&gt;No matter how interesting the project is, if the community is poor
+people don't stick around.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Have a defined onboarding process.&lt;/li&gt;
+&lt;li&gt;Encourage people to speak up.&lt;/li&gt;
+&lt;li&gt;Assign action items early on, to create a sense of responsibility.&lt;/li&gt;
+&lt;li&gt;Let people know they are doing good work, give feedback (e.g. IRC
+karma).&lt;/li&gt;
+&lt;li&gt;Use inclusive and motivating language.&lt;/li&gt;
+&lt;li&gt;Encourage attending events to meet people in person.&lt;/li&gt;
+&lt;li&gt;Encourage consistency over activity. Let people contribute according
+to their own time.&lt;/li&gt;
+&lt;li&gt;Inspire, interact, give feedback.&lt;/li&gt;
+&lt;li&gt;Help people identify with your mission.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;~&lt;/p&gt;
+&lt;p&gt;Looking forward to next year's event!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="events"></category><category term="fosdem"></category><category term="open-source"></category></entry><entry><title>Training at EuroPython 2014 | Making your first contribution to OpenStack</title><link href="https://www.jpichon.net/blog/2014/08/training-europython-2014/" rel="alternate"></link><published>2014-08-01T11:18:00+01:00</published><updated>2014-08-01T11:18:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2014-08-01:/blog/2014/08/training-europython-2014/</id><summary type="html">&lt;p&gt;&lt;img alt="OpenStack logo" src="http://www.openstack.org/assets/openstack-logo/openstack-cloud-software-vertical-small.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Last week I ran a 3-hour training on how to &lt;a class="reference external" href="https://ep2014.europython.eu/en/schedule/sessions/76/"&gt;get started contributing to
+OpenStack&lt;/a&gt; at
+&lt;a class="reference external" href="https://ep2014.europython.eu/en/"&gt;EuroPython&lt;/a&gt;. The aim was to give a
+high-level overview of how the contribution process works in the project
+and guide people through making their first contribution, from account
+creation to submitting a patch.&lt;/p&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="OpenStack logo" src="http://www.openstack.org/assets/openstack-logo/openstack-cloud-software-vertical-small.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Last week I ran a 3-hour training on how to &lt;a class="reference external" href="https://ep2014.europython.eu/en/schedule/sessions/76/"&gt;get started contributing to
+OpenStack&lt;/a&gt; at
+&lt;a class="reference external" href="https://ep2014.europython.eu/en/"&gt;EuroPython&lt;/a&gt;. The aim was to give a
+high-level overview of how the contribution process works in the project
+and guide people through making their first contribution, from account
+creation to submitting a patch.&lt;/p&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The session starts with an extremely fast overview of OpenStack, geared
+toward giving the participants an idea of the different components and
+possible areas for contribution. We then go through creating the
+accounts, why they're all needed, and how to work with DevStack for the
+people who have installed it. From there we finally start talking about
+the contribution process itself, some general points on open-source and
+OpenStack culture then go through a number of ideas for small tasks
+suitable for a first contribution. After that it's down to the
+participants to work on something and prepare a patch. Some people chose
+to file and triage/confirm bugs. The last part is about making sure the
+patch matches the community standards, submitting it, and talking about
+what happens next both to the patch and to the participant as a new
+member of the community.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="preparing"&gt;
+&lt;h2&gt;Preparing&lt;/h2&gt;
+&lt;p&gt;During the weeks preceding the event, I ran two pilot workshops with
+small groups (less than 10 people) in &lt;a class="reference external" href="http://www.tog.ie/"&gt;my local
+hackerspace&lt;/a&gt;, in preparation for the big one in
+Berlin. That was absolutely invaluable in terms of making the material
+more understandable and refining the content for items I didn't think of
+covering initially (e.g. screen, openrc files) and topics that could use
+more in-depth explanations (e.g. how to find your first task), timings,
+and generally getting a feel for what's reasonably achievable within a
+3-hour intro workshop.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="delivering"&gt;
+&lt;h2&gt;Delivering&lt;/h2&gt;
+&lt;p&gt;I think it went well, despite some issues at the beginning due to lack
+of Internet connectivity (always a problem during hands-on workshops!).
+About 70 people had signed up to attend (a.k.a. about 7 times too many),
+thankfully other members of the OpenStack community stepped up and
+offered their help as mentors - thanks again everyone! In the end, about
+half the participants showed up in the morning, and we lost another
+dozen to the Internet woes. The people who stayed were mostly
+enthusiastic and seemed happy with the experience. According to the
+&lt;a class="reference external" href="https://etherpad.openstack.org/p/ep-openstack"&gt;session etherpad&lt;/a&gt;, at
+least 5 new contributors uploaded a first patch :) Three are merged so
+far.&lt;/p&gt;
+&lt;p&gt;Distributing the slides early proved popular and useful. For an
+interactive workshop with lots of links and references it's really
+helpful for people to go back on something they missed or want to check
+again.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="issues"&gt;
+&lt;h2&gt;Issues&lt;/h2&gt;
+&lt;p&gt;The start of the workshop is a bit lecture-heavy and could be titled
+&amp;quot;Things I Desperately Wish I Knew When Starting Out,&amp;quot; and although
+there's some quizzes/discussions/demoing I'd love to make it more
+interactive in the future.&lt;/p&gt;
+&lt;p&gt;The information requested in order to join the Foundation tends to
+surprise people, I think because people come at it from the perspective
+of &amp;quot;I want to submit a patch&amp;quot; rather than &amp;quot;I am preparing to join a
+Foundation.&amp;quot; At the hackerspace sessions in particular (maybe because it
+was easier to have candid discussions in such a small group), people
+weren't impressed with being forced to state an affiliation. The lack of
+obvious answer for volunteers gave the impression that the project cares
+more about contributions from companies. &amp;quot;&lt;a class="reference external" href="http://www.tog.ie/"&gt;Tog&lt;/a&gt;&amp;quot;
+might make an appearance in the company stats in the future :-)&lt;/p&gt;
+&lt;p&gt;On the sign-up form, the &amp;quot;Statement of Interest&amp;quot; is intimidating and
+confusing for some people (I certainly remember being uncertain over
+mine and what was appropriate, back when I was new and joining the
+Foundation was optional!). I worked around this after the initial
+session by offering suggestions/tips for both these fields, and spoke a
+bit more about their purpose.&lt;/p&gt;
+&lt;p&gt;A few people suggested I simply tell people to sign up for all these
+accounts in advance so there's more time during the workshop to work on
+the contribution itself. It's an option, though a number of people still
+hit non-obvious issues with Gerrit that are difficult to debug (some we
+&lt;a class="reference external" href="https://bugs.launchpad.net/openstack-ci/+bug/1346833"&gt;opened bugs&lt;/a&gt;
+for, others we added to the etherpad). During one of the pilot sessions
+at the hackerspace, 6 of the 7 participants had errors when running git
+review -s&amp;nbsp; - I'm still not sure why, as it Worked On My Machine (tm)
+just fine at the same time.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Overall, I'm glad I did this! It was interesting to extract all this
+information from my brain, wiki pages and docs and attempt to make it as
+consumable as possible. It's really exciting when people come back later
+to say they've made a contribution and that the session helped to make
+the process less scary and more comprehensible. Thanks to all the
+participants who took the time to offer feedback as well! I hope I can
+continue to improve on this.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="europython"></category><category term="open-source"></category><category term="openstack"></category><category term="python"></category><category term="teaching"></category><category term="tog"></category></entry><entry><title>Evolving Open-Source Night | Open-Source Night - June</title><link href="https://www.jpichon.net/blog/2013/07/evolving-open-source-night/" rel="alternate"></link><published>2013-07-02T20:30:00+01:00</published><updated>2013-07-02T20:30:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2013-07-02:/blog/2013/07/evolving-open-source-night/</id><summary type="html">&lt;p&gt;The monthly Open-Source night experiment continues. On Wednesday, June
+19th we had the &lt;a class="reference external" href="http://www.tog.ie/2013/06/open-source-night-june/"&gt;June edition of Open-Source
+Night&lt;/a&gt;.
+&lt;a class="reference external" href="http://www.technomancy.org/"&gt;Rory&lt;/a&gt; gave us a
+slightly-longer-than-15-minutes talk on
+&lt;a class="reference external" href="http://www.openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt;, and the kind of
+contributions the project welcomes (data data data, really!). I was the
+only one to volunteer for a lightning talk, in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The monthly Open-Source night experiment continues. On Wednesday, June
+19th we had the &lt;a class="reference external" href="http://www.tog.ie/2013/06/open-source-night-june/"&gt;June edition of Open-Source
+Night&lt;/a&gt;.
+&lt;a class="reference external" href="http://www.technomancy.org/"&gt;Rory&lt;/a&gt; gave us a
+slightly-longer-than-15-minutes talk on
+&lt;a class="reference external" href="http://www.openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt;, and the kind of
+contributions the project welcomes (data data data, really!). I was the
+only one to volunteer for a lightning talk, in stark contrast with the
+last event where we had multiple ones both by people attending
+open-source night and network people who happened to be visiting the
+hackerspace at the time.&lt;/p&gt;
+&lt;p&gt;Rather than doing an on-topic talk about an open-source project, I did a
+meta-talk about Open-Source Night itself and different ways in which it
+could evolve.&lt;/p&gt;
+&lt;p&gt;I make no secret that I don't think open-source night works very well in
+its current format. My goal (and measure for success) is to help people
+actually get started contributing.&lt;/p&gt;
+&lt;p&gt;Note: if you were at my &lt;a class="reference external" href="http://thedotconf.wordpress.com/whos-speaking/julie-pichon/"&gt;deep dive on contributing to
+open-source&lt;/a&gt;
+and planning on attending the next open-source night, please do come!!
+This all just means that I think there are things that can be improved
+:)&lt;/p&gt;
+&lt;div class="section" id="reminder-the-current-format"&gt;
+&lt;h2&gt;Reminder: The current format&lt;/h2&gt;
+&lt;p&gt;We're currently meeting on the 3rd Wednesday of the month. The event
+usually starts with two 15 minutes talk, ideally one on the life of
+open-source (e.g. licences, version control, IRC, using the
+command-line...) and one on how to contribute to a specific project.
+Then there's a number of 5-minutes-long-or-less lightning talks where
+people can introduce the project they will be working on during the
+evening. Then people break into groups or independently work on an
+open-source project of their choice.&lt;/p&gt;
+&lt;p&gt;Or that's the idea anyway. The talks usually work well and are
+inspiring, though they tend to run overtime and then people have trouble
+sitting at a table and doing things.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-future"&gt;
+&lt;h2&gt;The future&lt;/h2&gt;
+&lt;p&gt;These are my thoughts and ideas as to where open-source night might go
+in the future. These are not plans. I would like to hear feedback from
+interested people - attendees, would-be attendees, other organisers and
+thoughtful passerbys.&lt;/p&gt;
+&lt;div class="section" id="topics-general-open-source-vs-project-specific"&gt;
+&lt;h3&gt;Topics: General open-source vs Project-specific&lt;/h3&gt;
+&lt;p&gt;I see value in both topics, but perhaps attendees and would-be attendees
+favour one or the other, both, or neither? I haven't really heard much
+on this, what people find most useful. I think the project specific
+talks at least are interesting for both newcomers and established
+contributors, to see how other projects do things.&lt;/p&gt;
+&lt;p&gt;I believe 15 minutes is a good amount of time to get an overview, get
+inspired and get ideas. And not get too bored if already familiar with
+the topic.&lt;/p&gt;
+&lt;p&gt;I could see the value and how efficient it would be to focus on one
+project for a full session and guide people through contributing to it.
+However I can also see how it could be offputting to people not
+particularly interested in the project (e.g. &amp;quot;I don't use that distro,
+why should I bother attending?&amp;quot;). Perhaps as separate, off-shoot events
+if people are interested in leading that kind of session (get in
+touch!).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="topics-all-kind-of-contributions-vs-focusing-on-code"&gt;
+&lt;h3&gt;Topics: All kind of contributions vs Focusing on code&lt;/h3&gt;
+&lt;p&gt;At the moment, I try really hard to emphasise (and encourage speakers to
+do the same) all the kinds of contributions that can be made - and are
+well needed! - even though my own experience lies in code-based
+contributions. Maybe I should give up on being inclusive and focus on
+what I know best, rather than try to be all things to all people?
+Code-focused open-source events could go from learning to program to
+fixing a bug.&lt;/p&gt;
+&lt;p&gt;Initially I was hoping people would step up to talk and encourage people
+to join their area of interest (I think we have e.g. experienced
+open-source translators around...) but that hasn't happened.&lt;/p&gt;
+&lt;p&gt;This is actually a point where someone came up to me after the talk and
+said straight off they really liked the breadth of contributions demoed
+during the talks, in particular mentioning &lt;a class="reference external" href="http://www.tog.ie/2013/05/open-source-night-may/"&gt;last month's
+talk&lt;/a&gt; by Guilherme
+on &lt;a class="reference external" href="http://openmandriva.org"&gt;OpenMandriva&lt;/a&gt; that did a great job
+showing how someone can help, in a multitude of ways, even if they're
+not all that confident in their coding skills.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="format-more-course-like"&gt;
+&lt;h3&gt;Format: More course-like?&lt;/h3&gt;
+&lt;p&gt;A couple of days before the June OSS Night I was pointed to &lt;a class="reference external" href="http://opensource.com/life/13/6/learning-program-open-source-way"&gt;this
+article on a really, really interesting summer course on learning to
+program the open-source
+way&lt;/a&gt;.
+That's a really cool concept. Should we entertain the thought of doing
+something similar during open-source night? e.g. A session on learning
+how to use version control with exercises, very workshop like, one
+month, some other topic the next one, etc.?&lt;/p&gt;
+&lt;p&gt;Probably not, but something to consider as a separate course with a
+shorter timeline. A course with one session a month will lose people and
+have little momentum. Is this the kind of things people have an interest
+in learning?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="format-doing-vs-listening-talking"&gt;
+&lt;h3&gt;Format: Doing vs Listening/Talking&lt;/h3&gt;
+&lt;p&gt;My goal with this event is still to get people started contributing. I'm
+not interested in organising a monthly night of talks. Finding speakers
+is stressful. If the talks aren't followed by some contributing action,
+to me the event is failing and I'm not interested in continuing to
+organise it. There are plenty of events around Dublin already where
+people can meet, talk tech and shoot the breeze.&lt;/p&gt;
+&lt;p&gt;With regard to open-source related talks, I think that's already handled
+well by the &lt;a class="reference external" href="http://www.linux.ie"&gt;ILUG&lt;/a&gt; folks, who are now keen to
+set them up regularly again under the new chairmanship :) And we can
+join forces if that's the most attractive part of the event to folks. If
+your main interest is in having a regular night of open-source talks,
+get in touch and I'll be happy to help you have this in Tog. I'd attend
+with pleasure anyway, I'm just not interested in organising it and go
+speaker-hunting every 3 weeks.&lt;/p&gt;
+&lt;p&gt;I still believe we can make something really cool happen by putting in
+the same room people experienced in open-source together with newcomers
+interested in contributing. So I'm not giving up yet!&lt;/p&gt;
+&lt;p&gt;There's of course also the timeframe issue: with or without talks, an
+evening of maybe 3 hours is not a lot of time to accomplish something.
+Maybe we could (also/instead?) have events on Saturdays? And/or week-end
+workshops, Friday eve to Sunday?&lt;/p&gt;
+&lt;p&gt;HOWEVER, in any case an evening is still enough time to accomplish
+&lt;em&gt;something&lt;/em&gt;, get started, get the momentum going, get unblocked and
+finish your contribution later at the week-end, in your own time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="you-why-are-you-here-anyway"&gt;
+&lt;h3&gt;You: Why are you here anyway*? ;)&lt;/h3&gt;
+&lt;p&gt;* Or why weren't you? :) I'm just as interested in the answer to that!&lt;/p&gt;
+&lt;p&gt;Are you interested in learning how to contribute? Interested in helping
+and mentoring newcomers? What were you hoping this evening would be
+about?&lt;/p&gt;
+&lt;p&gt;I then invited people to have a productive discussion with me about this
+should they wish to, somewhat contradicting my own doing vs talking rant
+:-)&lt;/p&gt;
+&lt;p&gt;Please feel free and welcome to continue the discussion in the comments
+or &lt;a class="reference external" href="https://www.jpichon.net/about/"&gt;by email&lt;/a&gt;, I would love to pick
+more brains and exchange ideas about this.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="django-challenge"&gt;
+&lt;h3&gt;Django challenge&lt;/h3&gt;
+&lt;p&gt;To avoid the talk being entirely meta (and in case people didn't care
+that much about all the blah blah blah and more about the doing!), I
+issued a challenge to attendees as well: this evening, run the
+&lt;a class="reference external" href="http://www.djangoproject.com"&gt;Django&lt;/a&gt; unit tests suite. If that's
+something you're set up for, it'll take 2 minutes. If you're familiar
+with the concept but don't have all the dependencies set up yet it'll
+take 20 minutes. If this is all new to you it might take 2 hours, but
+what you learn you'll be able to reuse when you start working on a
+project you care about in the future, and it means it'll take less long
+then.&lt;/p&gt;
+&lt;p&gt;One person took me up on it and it took them 10 minutes. This shows how
+possible it is to actually get the ball rolling during open-source
+night, get people to realise they're not that far away from a first
+contribution.&lt;/p&gt;
+&lt;p&gt;I feel I should give the disclaimer that since the last time I talked
+about how to contribute to Django, the Django folks added to their docs
+a &lt;a class="reference external" href="https://docs.djangoproject.com/en/1.5/intro/contributing/"&gt;tutorial on how to make your first
+contribution&lt;/a&gt;,
+which just makes the project that little bit more awesome (and this
+challenge, easier to solve!)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-open-source-night-july"&gt;
+&lt;h2&gt;Next Open-Source Night: July&lt;/h2&gt;
+&lt;p&gt;So next month. That'll be on the 17th of July. Are you interested in
+giving a talk? :)&lt;/p&gt;
+&lt;p&gt;If no one volunteers we'll have a session similar to the first event
+except with more lightning talks. Lightning talks don't have to be
+prepared, there's no need for slides or anything you don't fancy. It's
+as simple as chatting about what you plan on doing or would like to do
+during the evening, inviting others to join you if they'd like.&lt;/p&gt;
+&lt;p&gt;It can be like:&lt;/p&gt;
+&lt;p&gt;&amp;quot;Hello, I'm Chris, a contributor to AwesomeProject which is a project
+that does this and that and also that thing. At the moment we're looking
+for help in $area1, $area2, $area41, if you think that's cool and you'd
+like to help, I'll be sitting at that table over here, come and chat
+with me. Maybe I can help you find a good first task. Otherwise I'll be
+working on the defroglirnator for the project -- er if you have any
+experience in that area I'd love to chat to you too.&amp;quot;&lt;/p&gt;
+&lt;p&gt;or maybe&lt;/p&gt;
+&lt;p&gt;&amp;quot;Hey, I'm J. Bloggs, I've been using Wordpress for a few years, I think
+it's an awesome project and I'd like to start giving back. Tonight my
+plan is to figure out the new contributor process - if you're interested
+too, we can do this together. Come and chat with me.&amp;quot;&lt;/p&gt;
+&lt;p&gt;It doesn't matter if there is no existing contributor to the specific
+project in the room. Since there are people familiar with the way
+open-source projects and communities usually tick, they will be able to
+help you if you get stuck.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Ok, that's it! I'm hoping to also have the time to find a few good first
+tasks in a new project, maybe
+&lt;a class="reference external" href="http://www.libreoffice.org/"&gt;LibreOffice&lt;/a&gt;. If not, then we can
+figure it out together on the day :)&lt;/p&gt;
+&lt;p&gt;I'm very much looking forward to hearing your thoughts, suggestions and
+ideas about all this, and perhaps also see you on the 17th.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="events"></category><category term="ireland"></category><category term="open-source"></category><category term="tog"></category></entry><entry><title>Open-Source Night #2: March 2013</title><link href="https://www.jpichon.net/blog/2013/03/open-source-night-2-march-2013/" rel="alternate"></link><published>2013-03-24T20:22:00+00:00</published><updated>2013-03-24T20:22:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2013-03-24:/blog/2013/03/open-source-night-2-march-2013/</id><summary type="html">&lt;p&gt;On Wednesday the 20th, we had the &lt;a class="reference external" href="http://www.tog.ie/2013/03/open-source-night-2/"&gt;2nd edition of Open-Source
+Night&lt;/a&gt; in
+&lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt;. I think it went well. Once again there was
+about a dozen attendees, many of whom have never contributed to
+open-source before. A third of them were also in Tog for the first time.
+It might …&lt;/p&gt;</summary><content type="html">&lt;p&gt;On Wednesday the 20th, we had the &lt;a class="reference external" href="http://www.tog.ie/2013/03/open-source-night-2/"&gt;2nd edition of Open-Source
+Night&lt;/a&gt; in
+&lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt;. I think it went well. Once again there was
+about a dozen attendees, many of whom have never contributed to
+open-source before. A third of them were also in Tog for the first time.
+It might be too early to matter but there was also very little overlap
+with the audience from last time.&lt;/p&gt;
+&lt;div class="section" id="talks"&gt;
+&lt;h2&gt;Talks&lt;/h2&gt;
+&lt;p&gt;We started the evening with 2 talks, meant to be about 15 minutes long
+each. &lt;a class="reference external" href="http://blogs.gnome.org/markmc/"&gt;Mark&lt;/a&gt; started the evening
+telling us about open-source licences and the philosophy they
+encapsulate/were born from. Then I walked through how one would go about
+contributing to &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;Django&lt;/a&gt;, basically
+clicking through the Django website and explaining different tasks the
+project needs help with, particularly for bug fixing contributions.&lt;/p&gt;
+&lt;p&gt;After this, we had 2 lightning talks that were meant to last 2 to 5
+minutes, to give people a chance to talk about a project they contribute
+to and get people to join in. This time the talks were more about ideas,
+which is fine, but both also ran overtime, which is less cool. I'm not
+sure if either found additional contributors/would-be contributors out
+of it for the evening.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hands-on"&gt;
+&lt;h2&gt;Hands-on&lt;/h2&gt;
+&lt;p&gt;The second part of the evening, the part that should be hands-on, didn't
+go so well. After the talks (which lasted for 1h30 instead of 45mins)
+and a tour of the hackerspace for the new people, most continued
+chatting instead of sitting down and getting things done. This
+especially saddened me for the ones who had never contributed before.
+The goal of the event is to help newcomers get started contributing,
+when they have experienced people at hand to ask questions to.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-time"&gt;
+&lt;h2&gt;Next time&lt;/h2&gt;
+&lt;p&gt;I'm not sure how to improve this next time and help attendees get
+started actually doing stuff. Running overtime for the talks really hurt
+for the rest of the evening, which is already such a short time to
+accomplish something. An idea: after my talk I was asked &amp;quot;How long would
+it take for someone to start from nothing to being able to run the
+Django unit test suite?&amp;quot; and maybe this kind of well-defined,
+self-contained task would be good to help people get started. It's not a
+contribution yet, but it's a first, necessary step toward it (for code
+contributions in any case), and it could be fun to try and mix this with
+some sort of &lt;a class="reference external" href="http://openbadges.org"&gt;open badge&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Somewhat related announcement: open-source night won't happen on April
+17th next month but probably on April 24th instead. Check the
+&lt;a class="reference external" href="http://www.tog.ie"&gt;tog.ie&lt;/a&gt; calendar for confirmation. If you're
+interested in speaking on a topic relating to the life of open-source or
+a project in particular, please get in touch :)&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="django"></category><category term="events"></category><category term="ireland"></category><category term="open-source"></category><category term="tog"></category></entry><entry><title>Open-Source Night: Event #1 | February 20th</title><link href="https://www.jpichon.net/blog/2013/02/open-source-night-event-1/" rel="alternate"></link><published>2013-02-23T08:00:00+00:00</published><updated>2013-02-23T08:00:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2013-02-23:/blog/2013/02/open-source-night-event-1/</id><summary type="html">&lt;p&gt;On Wednesday, &lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt; hosted the first monthly
+&lt;a class="reference external" href="http://www.tog.ie/2013/01/one-small-step-open-source-night/"&gt;Open-Source
+Night&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's an event I'd been wanting to organise for a while, with an eye on
+it being hands-on and slanted toward helping interested people get
+started in open-source, but I wasn't sure what format would work best.
+I'm still not sure …&lt;/p&gt;</summary><content type="html">&lt;p&gt;On Wednesday, &lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt; hosted the first monthly
+&lt;a class="reference external" href="http://www.tog.ie/2013/01/one-small-step-open-source-night/"&gt;Open-Source
+Night&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It's an event I'd been wanting to organise for a while, with an eye on
+it being hands-on and slanted toward helping interested people get
+started in open-source, but I wasn't sure what format would work best.
+I'm still not sure, but in the spirit of release early, release often, I
+thought I'd give it a shot for a few months and iterate.&lt;/p&gt;
+&lt;p&gt;For the first event, about a dozen people showed up. About 7-9 of them
+had already made some kind of contribution, most people had a clear idea
+of the project they wanted to contribute to for the evening, and 3 were
+hesitant and not sure what they wanted to do.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2013/opensourcenight_blackboard.jpg"&gt;&lt;img alt="Blackboard with project names" src="https://www.jpichon.net/site_media/images/2013/opensourcenight_blackboard-small.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We started with 2 super short talks, an ill-prepared one from myself
+about what to do tonight: basically find the contributor's guidelines
+for the project you're interested in and speak to the person next to you
+for help, since we had such a skewed ratio of experienced contributors.
+&lt;a class="reference external" href="http://scienceisdelicious.com/"&gt;Triona&lt;/a&gt; followed with a talk on what
+she planned to do in the evening with &lt;a class="reference external" href="http://free-penguin.org/"&gt;Free
+Penguin&lt;/a&gt;, an open-source sewing pattern for
+Tux plushes. The maintainer hasn't updated nor responded to emails in
+years, so it seems it will need to be forked in order to start improving
+the documentation. Open-source projects aren't all about code! :)&lt;/p&gt;
+&lt;p&gt;I directed the hesitant project-less people toward
+&lt;a class="reference external" href="http://chebe.dreamwidth.org/"&gt;Cheryl&lt;/a&gt; and the
+&lt;a class="reference external" href="http://www.dreamwidth.org/"&gt;Dreamwidth&lt;/a&gt; project, which has an
+excellent reputation for &lt;a class="reference external" href="http://www.linuxplanet.com/linuxplanet/reports/6939/1"&gt;being friendly to
+newcomers&lt;/a&gt;.
+Even without an experienced contributor around, I thought figuring
+things out together would be a fun learning experience. It may not have
+been that effective though, people were interested and looked around but
+nothing got accomplished (perhaps that is to be expected for a first
+couple of hours getting acquainted with a project and open-source?).
+Then further efforts were thwarted by technical problems (bugzilla
+down). Cheryl's thoughts abut this is that it's difficult to get into a
+project one doesn't feel strongly about (a similar downside applies to
+projects discovered via &lt;a class="reference external" href="http://openhatch.org"&gt;OpenHatch&lt;/a&gt;, as someone
+else mentioned to me).&lt;/p&gt;
+&lt;p&gt;There were a couple of serendipitous meetings, like the person wanting
+to get started with Debian packaging who happened to be sitting besides
+a Debian Developer.&lt;/p&gt;
+&lt;p&gt;But overall, I think having encouraged people to come along already
+having a project in mind made it difficult to form groups and encourage
+collaboration, because people ended up working on the project they had
+planned to alone. It may not have been a great experience, particularly
+for people who didn't know anyone or hadn't been in Tog before.&lt;/p&gt;
+&lt;p&gt;I also need to become more familiar with projects who have good,
+specific non-programming-related tasks for newcomers. I had a general
+idea but wasted time trying to find the details. We had a graphic
+designer interested in either contributing his design skills,
+translating or participating in testing efforts but I wasn't able to
+quickly find a good &amp;quot;Here's a concrete task you can do now&amp;quot; for some of
+the better known projects. He did discover InkScape and became eager to
+learn it, so I hope to see him again in Tog in a few weeks for teaching
+an intro workshop to InkScape :-) (Thanks Borud!!)&lt;/p&gt;
+&lt;div class="section" id="ideas-on-how-to-evolve-the-format-for-next-time"&gt;
+&lt;h2&gt;Ideas on how to evolve the format for next time:&lt;/h2&gt;
+&lt;p&gt;Choose one project and make it the main focus of the evening, at least
+at the start. Meaning only one presentation, that is a bit longer
+(ideally 20 minutes, max 30 -- we still need time to actually do stuff!)
+and give specific, step-by-step instructions on &amp;quot;this is where you go to
+find something to work on, this is how you choose a task&amp;quot; and afterwards
+have the people interested in working on the project do so together -
+several people to one task can work, to encourage learning together and
+avoid getting stuck. People are still welcome to work on whatever else
+they want to of course. This was suggested by
+&lt;a class="reference external" href="http://spamt.net/"&gt;Ulrich&lt;/a&gt; based on the recent Debian Bug Squashing
+Parties he attended.&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://eirebecky.wordpress.com/"&gt;Becky&lt;/a&gt; said there was an interest
+in a GitHub pair programming type of exercise. People upload code on
+GitHub they never touch again. Working on someone else's code with the
+help of the author could turn into an instructive experience. It would
+also be cool to see what a pull request looks like from both sides.&lt;/p&gt;
+&lt;p&gt;I think we can try both these things for next time, the GitHub pair
+programming could start after the presentation for people not interested
+in working on the highlighted project.&lt;/p&gt;
+&lt;p&gt;Now. The next step is to find a project to highlight and a willing
+contributor who'd like to present and guide, for the next session on
+March 20th. Ideas, volunteers? :)&lt;/p&gt;
+&lt;p&gt;Feedback and general thoughts on evolving the format are warmly welcome
+as well.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="events"></category><category term="ireland"></category><category term="open-source"></category><category term="tog"></category></entry></feed>

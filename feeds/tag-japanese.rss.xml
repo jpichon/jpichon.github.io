@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>jpichon.net - japanese</title><link>https://www.jpichon.net/</link><description></description><lastBuildDate>Wed, 26 Dec 2018 22:57:00 +0000</lastBuildDate><item><title>Anki &amp; Japanese Support Add-on on Fedora 28: "Something something 32 bit support"</title><link>https://www.jpichon.net/blog/2018/12/anki-japanese-support-add-on-on-fedora-28-something-something-32-bit-support/</link><description>&lt;p&gt;For a few months now, I've been having issues with the &lt;a class="reference external" href="https://apps.ankiweb.net/"&gt;Anki&lt;/a&gt; Japanese support
+add-on. Normally the add-on adds the readings automatically when creating new
+cards, but lately that was failing with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+An error occurred in an add-on.
+Please post on the add-on forum:
+https://anki.tenderapp.com/discussions/add-ons
+
+Traceback (most recent call last):
+  File &amp;quot;/usr/share/anki/aqt/webview.py&amp;quot;, line 18, in run
+    return unicode(self._bridge(unicode(str)))
+  File &amp;quot;/usr/share/anki/aqt/editor.py&amp;quot;, line 462, in bridge
+    &amp;quot;editFocusLost&amp;quot;, False, self.note, self.currentField):
+  File &amp;quot;/usr/share/anki/anki/hooks.py&amp;quot;, line 32, in runFilter
+    arg = func(arg, *args)
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 209, in onFocusLost
+    n[dst] = mecab.reading(srcTxt)
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 76, in reading
+    self.ensureOpen()
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 73, in ensureOpen
+    raise Exception(&amp;quot;Please ensure your Linux system has 32 bit binary support.&amp;quot;)
+Exception: Please ensure your Linux system has 32 bit binary support.
+&lt;/pre&gt;
+&lt;p&gt;At first I thought, meh, the rest works fine, and usually I don't need to add
+the readings for &lt;em&gt;every&lt;/em&gt; word anyway, just the one that's new to me in the
+sentence so that shouldn't take too much time.&lt;/p&gt;
+&lt;p&gt;It took me a few months to realise I wasn't creating new cards anymore, just
+plopping them into a list of &amp;quot;cards to create when I have the time someday.&amp;quot;
+Whoops.&lt;/p&gt;
+&lt;p&gt;The solution, found via a &lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=1681613#p1681613"&gt;ArchLinux thread&lt;/a&gt; is also dead simple:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo dnf install libstdc++.i686 # Note the i686, that's the important bit!
+&lt;/pre&gt;
+&lt;p&gt;Better get on with that word list now.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Wed, 26 Dec 2018 22:57:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2018-12-26:/blog/2018/12/anki-japanese-support-add-on-on-fedora-28-something-something-32-bit-support/</guid><category>Language_learning</category><category>japanese</category><category>open-source</category></item><item><title>Switching locale (Gnome 3, Fedora 20) | and making sure all the menus switch too</title><link>https://www.jpichon.net/blog/2015/04/switching-locale-gnome-3/</link><description>&lt;p&gt;In the spirit of immersion, I switched the laptop's language to
+Japanese, however most of the Gnome menus remained in English even after
+switching the System Language altogether, logging out etc. Another
+profile on the laptop shows the menus for Activities, etc in Japanese
+just fine so it wasn't a missing package. I found the following in
+~/.profile, which seems a bit heavy-handed but does do the trick. For
+future reference:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+LANG=&amp;quot;ja_JP.UTF-8&amp;quot;
+LANGUAGE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_CTYPE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_NUMERIC=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_TIME=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_COLLATE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MONETARY=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MESSAGES=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_PAPER=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_NAME=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_ADDRESS=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_TELEPHONE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MEASUREMENT=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_IDENTIFICATION=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_ALL=
+&lt;/pre&gt;
+&lt;p&gt;Note on restarting X one is asked if they want to change the names for
+the default folders like Documents, etc. Personally I find it makes
+using the CLI a pain and don't recommend it.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Sun, 19 Apr 2015 03:52:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2015-04-19:/blog/2015/04/switching-locale-gnome-3/</guid><category>Tech</category><category>gnome</category><category>japanese</category><category>linux</category><category>open-source</category></item><item><title>Japan</title><link>https://www.jpichon.net/blog/2015/04/japan/</link><description>&lt;p&gt;I'm taking a year out to travel in Japan on a working holiday visa,
+starting with a couple of months of studying the language some more. I
+landed about 2 weeks ago. The school put me at a slightly higher level
+than I had dared to hope and I am now learning new words, new
+expressions, new nuances every day and generally having a tremendous
+time :) I'm exactly where I want to be, doing and learning what I want
+to.&lt;/p&gt;
+&lt;p&gt;I'm experimenting with &lt;a class="reference external" href="https://www.flickr.com/photos/132254976&amp;#64;N03/"&gt;posting pictures on
+Flickr&lt;/a&gt; as I go, we'll
+see how that works out!&lt;/p&gt;
+&lt;p&gt;Also, note for future-self and other folks who are about to travel with
+a cold: the so-called &amp;quot;ear planes&amp;quot; work great to avoid painful ear pain
+on descent. I put them about 1h30 before landing on the second flight
+and it was painless, quite a contrast with the previous flight 10 hours
+earlier. Nasal spray helps a bit for comfort too.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Sat, 18 Apr 2015 00:35:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2015-04-18:/blog/2015/04/japan/</guid><category>Language_learning</category><category>japanese</category></item><item><title>DK House Sapporo</title><link>https://www.jpichon.net/blog/2014/10/dk-house-sapporo/</link><description>&lt;p&gt;I wanted to take a few minutes to give a shout out to &lt;a class="reference external" href="http://www.e-guesthouse.com/eng/sapporo/"&gt;DK House in
+Sapporo&lt;/a&gt;, as a great option
+to get affordable housing for mediumish to longer stays in Japan. I
+spent a month there in September.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DK house front" src="https://www.jpichon.net/site_media/images/2014/dk_house.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;They specialise in short-term accommodations, normally starting from 3
+months but if you want to stay for a shorter time like I did, you can
+get in touch with them in advance and ask if it's ok. Despite sending my
+queries in both Japanese and English, they replied in English only so
+you don't need to be overly concerned about the language if your
+Japanese isn't up to snuff yet :-)&lt;/p&gt;
+&lt;p&gt;The facilities are clean and the staff is always really helpful. As I
+was staying only a few weeks I couldn't get a room with a private
+bathroom, but it didn't turn out to be a problem. I never had to queue
+for a shower. There's also a shared kitchen and a convenient laundry
+room.&lt;/p&gt;
+&lt;p&gt;The rooms have a desk and a LAN port and I didn't have any major issues
+with the Internet. As a backup I'd rented a &amp;quot;&lt;a class="reference external" href="http://www.globaladvancedcomm.com/pocketwifi.html"&gt;pocket
+wifi&lt;/a&gt;&amp;quot; and I was
+glad to have it for network-intensive operations (ahem, devstack) or
+when there was a bit too much contention. Also, there is no wireless in
+the rooms. (If you're planning to spend a lot of time at that desk, you
+may want to mentally prepare yourself for the fact that the chair was
+not picked for its ergonomic qualities!).&lt;/p&gt;
+&lt;p&gt;There's some totally optional activities from time to time in the common
+room, if you want to meet with the other residents. You're a few minutes
+away from the tramway (市電) which leads you straight to the city centre
+in 15 minutes, 3 konbinis (Lawson, Seven Eleven) and a super tasty ramen
+place (てつや - I recommend the しょうゆ).&lt;/p&gt;
+&lt;p&gt;Now if you're used to luxurious super comfortable hotel mattresses and
+spacious rooms I suppose you may be disappointed.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DK House - Room" src="https://www.jpichon.net/site_media/images/2014/dk_house_room.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Personally I'm really happy with my experience and heartily recommend
+the place :)&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Wed, 08 Oct 2014 17:54:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2014-10-08:/blog/2014/10/dk-house-sapporo/</guid><category>Language_learning</category><category>japanese</category></item><item><title>Adventures in Japan</title><link>https://www.jpichon.net/blog/2012/06/adventures-in-japan/</link><description>&lt;p&gt;In the middle of May, I went away for a couple of weeks in lovely
+Fukuoka, Japan with the goal of expanding my knowledge of Japanese.&lt;/p&gt;
+&lt;p&gt;Every weekday, I went to a language school,
+&lt;a class="reference external" href="http://www.genkijacs.com"&gt;GenkiJACS&lt;/a&gt;. On the first day, my level was
+accurately evaluated through a written test and interview, and on the
+same afternoon I was put into a small class (5 people, myself included)
+with students at a similar level from all over the world. The lessons
+were held entirely in Japanese, with students' chitchat also happening
+in Japanese -- a lovely atmosphere :)&lt;/p&gt;
+&lt;p&gt;Support from the staff, both by email during the preceding months and
+during my stay, was top notch. The school also offers all sorts of
+native language materials for students to borrow, though considering the
+building was right above Mandarake, a manga/video games/DVD/etc shop, I
+must say I mostly bought my own... :)&lt;/p&gt;
+&lt;p&gt;I stayed with a host family for the whole time, which was wonderful in
+terms of language practice, making friends and experiencing varied
+aspects of Japanese daily life. The perceived lack of independence made
+me a bit twitchy at times though.&lt;/p&gt;
+&lt;p&gt;The concepts and vocabulary I learnt in and out of class have stuck well
+so far -- the class format is very good, with lots of reviewing after a
+new concept is introduced. In the end though, 2 weeks isn't enough time
+to acquire that much new knowledge and I mostly treat the experience as
+a very thorough level check. There are lots of conversations I had I
+didn't realise were within my grasp. Because Japanese people are often
+reluctant or unable to speak English (but always so nice and helpful!),
+I had plenty of opportunities to practice in varied contexts and I'm now
+a lot less shy about speaking in Japanese.&lt;/p&gt;
+&lt;p&gt;With only 2 weeks, unfortunately there was little time for tourism,
+though what I saw of Fukuoka City (Canal City, Kushida shrine and many
+other temples, Oohori Park, my local yakitori izakaya and kappazushi...)
+and the Fukuoka Prefecture (Dazaifu, Abura yama...) was delightful.&lt;/p&gt;
+&lt;p&gt;Definitely a wonderful experience. Study-wise, it was good for building
+confidence and boosting motivation. It was also good for cheaply
+acquiring plenty of contents in the language for practice... and making
+new friends! :)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Wooden staircase in the forest" src="https://www.jpichon.net/site_media/images/2012/stairs.jpg" /&gt;&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Mon, 04 Jun 2012 09:02:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2012-06-04:/blog/2012/06/adventures-in-japan/</guid><category>Language_learning</category><category>japanese</category></item></channel></rss>

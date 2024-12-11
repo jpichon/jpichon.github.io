@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Talk transcript: Making your first open-source contribution</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Slides available on SlideShare (I need to fix an embedding bug on the blog, oops). Most of you know what Open Source Software is and hopefully..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2013/02/talk-transcript-first-open-source-contribution/" rel="bookmark"
+           title="Permalink to Talk transcript: Making your first open-source contribution">Talk transcript: Making your first open-source contribution</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-02-22T19:53:00+00:00">
+                Published: Fri 22 February 2013
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/contributing/">contributing</a> <a href="https://www.jpichon.net/tag/talk-transcript/">talk-transcript</a> </p>
+</footer><!-- /.post-info -->      <p><a class="reference external" href="http://www.slideshare.net/jpichon/making-your-first-opensource-contribution">Slides available on
+SlideShare</a>
+(I need to fix an embedding bug on the blog, oops).</p>
+<p><img alt="image0" src="https://www.jpichon.net/site_media/images/2011/contributing_to_open-source.jpg" /></p>
+<p>Most of you know what Open Source Software is and hopefully think it's
+awesome. Have you ever contributed a patch? A translation? A bug report?
+Would you like to do any of this?</p>
+<p>(If this is the first time you hear the term, roughly open-source is
+software for which the source code is freely available, that can be
+redistributed and modified.)</p>
+<p>This talk is for people who like open-source and would like to give
+back, but are not sure where to start, or if they're smart enough or if
+their skills would be valued.</p>
+<p>And my goal is to encourage you to make the jump from 0 to 1
+contribution (or one more!) :)</p>
+<p>Because I'm a software developer, this talk focuses a bit more on code
+contributions. (Don't think this means other types of contributions
+aren't needed, help is always welcome everywhere!) For many years, I
+wasn't strongly attached to any particular project but got patches in
+here and there (<a class="reference external" href="http://sugarlabs.org/">Sugar</a>,
+<a class="reference external" href="http://www.gnome.org/">Gnome</a>,
+<a class="reference external" href="http://www.djangoproject.com/">Django</a>...) Nowadays you're more
+likely to find me in the land of
+<a class="reference external" href="http://www.openstack.org">OpenStack</a>.</p>
+<p>First, let's clarify something important: you don't need to be a genius
+to contribute. It's not as difficult as it may initially appear. All
+skill levels and all types of skills are needed and appreciated.</p>
+<p>As to where to start, first I'm going to tell you about a wonderful
+shortcut, and then I'll go through how it usually works.</p>
+<p><a class="reference external" href="http://www.openhatch.org">OpenHatch</a> is an organisation whose
+mission statement is: &quot;helping newcomers find their way into free
+software projects.&quot; They aim to bring together all the simple bugs, help
+requests and help wanted, documentation, all sorted by project and by
+language. It's a great way to get started.</p>
+<p>Now, the way it usually works. When you're looking to contribute to a
+project, you should first look around for contributor guidelines. If a
+project has contributor guidelines, it's an excellent sign. It means
+that they care and that they've thought about it, which is very
+important when it comes to first contributions.</p>
+<p>Read them! You don't have to remember it all. It will give you a sense
+of direction and an idea of what matters for the project, what to watch
+out for too (patch format, coding conventions, where/who to talk to,
+etc.)</p>
+<p>As an example, here's a screenshot of the <a class="reference external" href="https://live.gnome.org/GnomeLove">Gnome documentation for new
+contributors</a>. There's a lot in
+there! They care a lot about welcoming new people.</p>
+<p>In any case, whether a project has contributor guidelines or not, the
+workflow tends to be the same. Read the guidelines if they exist :) From
+then on, look at the bug tracker to find something that you'd be
+interested in working on. Now that you know which part of the project
+you will be working on, build it. Find the bug, fix it and submit your
+patch!</p>
+<p>I'm going to be using the first contribution I made to Gnome as an
+example throughout this presentation. The Gnome folks are a very
+friendly community, and have a special tags for bugs that are good for
+newcomers called &quot;gnome-love&quot;. In other projects this may be called
+&quot;easy picking&quot;, &quot;bite-sized&quot;, &quot;low hanging fruit&quot;, etc... It should be
+mentioned in the contributor guidelines.</p>
+<p>Look at the list of bugs tagged with that keyword and find one you like
+that is easy. (Avoid choosing a big feature as a first contribution. You
+need to earn some trust first, as well as pick up the project technical
+and cultural conventions.)</p>
+<p>Once you know what you will be working on, it's time to build the
+software. This is very important, you will be learning new tools,
+perhaps even new languages. For instance I chose a bug from
+gnome-terminal which is written in C and uses autotools, which I wasn't
+very familiar with. This is why it's important to select a small first
+bug, because you have a lot more to learn to get there.</p>
+<p>If you can't find instructions to build the software, you have a couple
+of solutions. Sometimes a mentor comes together with the &quot;easy pickings&quot;
+tag, or the community has its own mentorship program. You can also go
+back to the magical portal mentioned earlier, OpenHatch, where &quot;training
+missions&quot; are available to get people up to speed with some of tools
+commonly used in open-source.</p>
+<p>People forget they had to learn all this in the first place. Don't sweat
+it. This is a stepping stone.</p>
+<p>Once you have a working build, it's time to reproduce the bug, find it
+and fix it! If you're lucky, the location of the bug may have been
+mentioned in the bug report. As said earlier, the person who marked the
+bug as an easy task may be willing to help mentor you through it. It's
+ok to ask for help if you're having trouble.</p>
+<p>As an example of a first task, I was lucky, and I indeed picked a very
+simple one - changing a colour in the gnome terminal!</p>
+<p>Once your fix is ready and tested (you have rebuilt the software with
+your fix in it), it's time to submit the patch. Now is a good time to
+refer yourselves to the contributor guidelines once again, it will be
+useful to find out what your patch should look like (coding guidelines),
+what command you should use to create the patch, and where you should
+send it. If there are no such instructions, the safest path is to attach
+the patch to the bug report in the tracker.</p>
+<p>And... congratulations! You've made your first contribution to
+open-source. Take the time to pat yourself in the back and be proud, you
+deserve it.</p>
+<p>The process isn't quite finished yet: the next step is to wait. Perhaps
+your patch will be accepted since it's a small contribution. It's just
+as likely you might get some feedback on how to improve it - everybody
+wants to make their project better so don't take it personally, take the
+feedback on-board and resubmit the patch. If your patch gets lost in the
+ether, you should consider pinging the component or project maintainer.</p>
+<p>In my case... I was lucky :) The patch was accepted and merged in the
+main codebase about an hour later!</p>
+<p>If the only answer you get is silence - don't take it personally,
+really. People want you to stay, a healthy project know they need new
+people in order to stay alive. Open-source projects are always short in
+resources.</p>
+<p>If the people involved in the project you contributed to have a bad
+attitude, don't be discouraged. And don't stick around either, there are
+a ton of cool, useful projects with friendly communities who could use
+your contributions. Life's too short.</p>
+<p>If you've done your research, read the guidelines, there won't be any
+dragons. Most people are very nice! It's great to become part of a
+community that cares about creating the most awesome project they can.</p>
+<p>And as a closing word before opening for questions: remember
+OpenHatch.org. They are people dedicated to helping newcomers find their
+way.</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

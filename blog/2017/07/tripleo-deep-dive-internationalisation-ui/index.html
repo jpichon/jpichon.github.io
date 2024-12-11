@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>TripleO Deep Dive: Internationalisation in the UI</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Yesterday, as part of the TripleO Deep Dives series I gave a short introduction to internationalisation in TripleO UI: the technical aspects of..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2017/07/tripleo-deep-dive-internationalisation-ui/" rel="bookmark"
+           title="Permalink to TripleO Deep Dive: Internationalisation in the UI">TripleO Deep Dive: Internationalisation in the UI</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-07-07T12:45:00+01:00">
+                Published: Fri 07 July 2017
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/openstack/">openstack</a> <a href="https://www.jpichon.net/tag/talk-transcript/">talk-transcript</a> <a href="https://www.jpichon.net/tag/tripleo/">tripleo</a> </p>
+</footer><!-- /.post-info -->      <p>Yesterday, as part of the <a class="reference external" href="https://etherpad.openstack.org/p/tripleo-deep-dive-topics">TripleO Deep
+Dives</a>
+series I gave a short introduction to internationalisation in <a class="reference external" href="https://github.com/openstack/tripleo-ui">TripleO
+UI</a>: the technical aspects
+of it, as well as a quick overview of how we work with the I18n team.</p>
+<p>You can catch the recording on
+<a class="reference external" href="https://bluejeans.com/s/XmuHa">BlueJeans</a> or
+<a class="reference external" href="https://www.youtube.com/watch?v=dmAw7b2yUEo">YouTube</a>, and below's a
+transcript.</p>
+<p>~</p>
+<div class="section" id="life-and-journey-of-a-string">
+<h2>Life and Journey of a String</h2>
+<p>Internationalisation was added to the UI during Ocata - just a release
+ago. <a class="reference external" href="https://twitter.com/florianfuchs">Florian</a> implemented most of
+it and did the lion's share of the work, as can be seen <a class="reference external" href="https://blueprints.launchpad.net/tripleo/+spec/tripleo-ui-i18n-support-for-js">on the
+blueprint</a>
+if you're curious about the nitty-gritty details.</p>
+<div class="section" id="addition-to-the-codebase">
+<h3>Addition to the codebase</h3>
+<p>Here's <a class="reference external" href="https://review.openstack.org/#/c/416564/3/src/js/components/plan/NewPlan.js">an example
+patch</a>
+from during the transition. On the left you can see how things were
+hard-coded, and on the right you can see the new defineMessages()
+interface we now use. Obviously new patches should directly look like on
+the right hand-side nowadays.</p>
+<p>The defineMessages() dictionary requires a unique id and default English
+string for every message. Optionally, you can also provide a description
+if you think there could be confusion or to clarify the meaning. The
+description will be shown in Zanata to the translators - remember they
+see no other context, only the string itself.</p>
+<p>For example, <a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/src/js/components/plan/PlanFormTabs.js#L29-L33">a string might sound active like if it were related to an
+action/button but actually be a descriptive help
+string</a>.
+Or some expressions are known to be confusing in English - &quot;provide a
+node&quot; has been the source of multiple <a class="reference external" href="http://lists.openstack.org/pipermail/openstack-dev/2016-July/098746.html">discussions on
+list</a>
+and live so might as well pre-empt questions and <a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/src/js/components/nodes/NodesTableView.js#L31-L36">offer additional
+context to help the translators decide on an appropriate
+translation</a>.</p>
+</div>
+<div class="section" id="extraction-conversion">
+<h3>Extraction &amp; conversion</h3>
+<p>Now we know how to add an internationalised string to the codebase - how
+do these get extracted into a file that will be uploaded to Zanata?</p>
+<p>All of the following steps are described in the <a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/docs/translation.rst">translation
+documentation</a>
+in the tripleo-ui repository. Assuming you've already run the
+installation steps (basically, <em>npm install</em>):</p>
+<pre class="literal-block">
+$ npm run build
+</pre>
+<p>This does a lot more than just extracting strings - it prepares the code
+for being deployed in production. Once this ends you'll be able to find
+your newly extracted messages under the <em>i18n</em> directory:</p>
+<pre class="literal-block">
+$ ls i18n/extracted-messages/src/js/components
+</pre>
+<p>You can see the directory structure is kept the same as the source code.
+And if you peek into one of the files, you'll note the content is
+basically the same as what we had in our defineMessages() dictionary:</p>
+<pre class="literal-block">
+$ cat i18n/extracted-messages/src/js/components/Login.json
+[
+  {
+    &quot;id&quot;: &quot;UserAuthenticator.authenticating&quot;,
+    &quot;defaultMessage&quot;: &quot;Authenticating...&quot;
+  },
+  {
+    &quot;id&quot;: &quot;Login.username&quot;,
+    &quot;defaultMessage&quot;: &quot;Username&quot;
+  },
+  {
+    &quot;id&quot;: &quot;Login.usernameRequired&quot;,
+    &quot;defaultMessage&quot;: &quot;Username is required.&quot;
+  },
+[...]
+</pre>
+<p>However, JSON is not a format that Zanata understands by default. I
+think the latest version we upgraded to, or the next one might have some
+support for it, but since there's no i18n JSON standard it's somewhat
+limited. In open-source software projects, po/pot files are generally
+the standard to go with.</p>
+<pre class="literal-block">
+$ npm run json2pot
+
+&gt; tripleo-ui&#64;7.1.0 json2pot /home/jpichon/devel/tripleo-ui
+&gt; rip json2pot ./i18n/extracted-messages/**/*.json -o ./i18n/messages.pot
+
+&gt; [react-intl-po] write file -&gt; ./i18n/messages.pot ✔️
+
+$ cat i18n/messages.pot
+msgid &quot;&quot;
+msgstr &quot;&quot;
+&quot;POT-Creation-Date: 2017-07-07T09:14:10.098Z\n&quot;
+&quot;Content-Type: text/plain; charset=UTF-8\n&quot;
+&quot;Content-Transfer-Encoding: 8bit\n&quot;
+&quot;MIME-Version: 1.0\n&quot;
+&quot;X-Generator: react-intl-po\n&quot;
+
+
+#: ./i18n/extracted-messages/src/js/components/nodes/RegisterNodesDialog.json
+#. [RegisterNodesDialog.noNodesToRegister] - undefined
+msgid &quot;&quot;No Nodes To Register&quot;&quot;
+msgstr &quot;&quot;
+
+#: ./i18n/extracted-messages/src/js/components/nodes/NodesToolbar/NodesToolbar.json
+#. [Toolbar.activeFilters] - undefined
+#: ./i18n/extracted-messages/src/js/components/validations/ValidationsToolbar.json
+#. [Toolbar.activeFilters] - undefined
+msgid &quot;Active Filters:&quot;
+msgstr &quot;&quot;
+
+#: ./i18n/extracted-messages/src/js/components/nodes/RegisterNodesDialog.json
+#. [RegisterNodesDialog.addNew] - Small button, to add a new Node
+msgid &quot;Add New&quot;
+msgstr &quot;&quot;
+
+#: ./i18n/extracted-messages/src/js/components/plan/PlanFormTabs.json
+#. [PlanFormTabs.addPlanName] - Tooltip for &quot;Plan Name&quot; form field
+msgid &quot;Add a Plan Name&quot;
+msgstr &quot;&quot;
+[...]
+</pre>
+<p>This messages.pot file is what will be automatically uploaded to Zanata.</p>
+</div>
+<div class="section" id="infra-from-the-git-repo-to-zanata">
+<h3>Infra: from the git repo, to Zanata</h3>
+<p>The following steps are done by the infrastructure scripts. There's
+<a class="reference external" href="https://docs.openstack.org/infra/manual/creators.html#enabling-translation-infrastructure">infra documentation on how to enable translations for your
+project</a>,
+in our case as the first internationalised JavaScript project we had to
+update the scripts a little as well. This is useful to know if an issue
+happens with the infra jobs; debugging will probably bring you here.</p>
+<p>The scripts live in the <a class="reference external" href="https://github.com/openstack-infra/project-config/tree/605299/jenkins/scripts">project-config infra
+repo</a>
+and there are three files of interest for us:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/common_translation_update.sh">common_translation_update.sh</a>
+- a bunch of common functions</li>
+<li><a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L241">propose_translation_update.sh</a>
+- proposes the translations back to the repository (we'll talk about
+it in a bit)</li>
+<li><a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L75">upstream_translation_update.sh</a>
+- that sends the translations up to Zanata</li>
+</ul>
+<p>In this case, upstream_translation_update.sh is the file of interest
+to us: it simply <a class="reference external" href="https://github.com/openstack-infra/project-config/blob/master/jenkins/scripts/upstream_translation_update.sh#L75-L79">sets up the project on line
+76</a>,
+then <a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L115">sends the pot file up to Zanata on line
+115</a>.</p>
+<p>What does &quot;setting up the project&quot; entails? It's a function in
+common_translations_update.sh, that pretty much <a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/common_translation_update.sh#L252-L271">runs the steps we
+talked about in the previous section, and also creates a config file to
+talk to
+Zanata</a>.</p>
+</div>
+<div class="section" id="monitoring-the-post-jobs">
+<h3>Monitoring the post jobs</h3>
+<p>Post jobs run after a patch has already merged - usually to upload
+tarballs where they should be, update the documentation pages, etc, and
+also upload messages catalogues onto Zanata. Being a 'post' job however
+means that if something goes wrong, there is no notification on the
+original review so it's easy to miss.</p>
+<p>Here's the <a class="reference external" href="http://status.openstack.org/openstack-health/#/g/build_queue/post?groupKey=build_queue&amp;searchJob=tripleo-ui">OpenStack Health page to monitor 'post' jobs related to
+tripleo-ui</a>.
+Scroll to the bottom - hopefully tripleo-ui-upstream-translation-update
+is still green! It's good to keep an eye on it although it's easy to
+forget. Thankfully, AJaeger from #openstack-infra has been great at
+filing bugs and letting us know when <a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1691006">something does go
+wrong</a>.</p>
+</div>
+<div class="section" id="debugging-when-things-go-wrong-an-example">
+<h3>Debugging when things go wrong: an example</h3>
+<p>We had a couple of issues whereby a <a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1674011">linebreak gets
+introduced</a> into one
+of the strings, which works fine in JSON but breaks our pot file. If you
+look at the content from the bug (the full logs are no longer
+accessible):</p>
+<pre class="literal-block">
+2017-03-16 12:55:13.468428 | + zanata-cli -B -e push --copy-trans False
+[...]
+2017-03-16 12:55:15.391220 | [INFO] Found source documents:
+2017-03-16 12:55:15.391405 | [INFO]            i18n/messages
+2017-03-16 12:55:15.531164 | [ERROR] Operation failed: missing end-quote
+</pre>
+<p>You'll notice the first line is <a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L115">the last function we call in the
+upstream_translation_update.sh
+script</a>;
+for debugging that gives you an idea of the steps to follow to
+reproduce. The <a class="reference external" href="https://translate.zanata.org">upstream Zanata
+instance</a> also lets you create toy
+projects, if you want to test uploads yourself (this can't be done
+directly on the OpenStack Zanata instance.)</p>
+<p>This particular newline issue has popped up a couple of times already.
+We're treating it with band-aids at the moment, ideally we'd get a
+proper test on the gate to prevent it from happening again: this is why
+<a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1674011">this bug is still
+open</a>. I'm not very
+familiar with JavaScript testing and haven't had a chance to look into
+it yet; if you'd like to give it a shot that'd be a useful contribution
+:)</p>
+</div>
+<div class="section" id="zanata-and-contributing-translations">
+<h3>Zanata, and contributing translations</h3>
+<p>The OpenStack Zanata instance lives at <a class="reference external" href="https://translate.openstack.org">https://translate.openstack.org</a>.
+This is where the translators do their work. <a class="reference external" href="https://translate.openstack.org/project/view/tripleo-ui">Here's the page for
+tripleo-ui</a>,
+you can see there is one project per branch (stable/ocata and master,
+for now). Sort by &quot;Percent Translated&quot; to see the languages currently
+translated. Here's an example of the <a class="reference external" href="https://translate.openstack.org/webtrans/translate?project=tripleo-ui&amp;iteration=stable-ocata&amp;localeId=es&amp;locale=en-US&amp;dswid=-8746#view:doc;doc:i18n/messages">translator's view, for
+Spanish</a>:
+you can see the English string on the left, and the translator fills in
+the right side. No context! Just strings.</p>
+<p>At this stage of the release cycle, the focus would be on 'master,'
+although it is still early to do translations; there is a lot of churn
+still.</p>
+<p>If you'd like to contribute translations, the <a class="reference external" href="https://wiki.openstack.org/wiki/I18n">I18n
+team</a> has <a class="reference external" href="https://docs.openstack.org/i18n/latest/">good
+documentation</a> about <a class="reference external" href="https://docs.openstack.org/i18n/latest/official_translator.html">how to
+go about how to do
+it</a>.
+The short version: sign up on Zanata, request to join your language
+team, once you're approved - you're good to go!</p>
+</div>
+<div class="section" id="return-of-the-string">
+<h3>Return of the string</h3>
+<p>Now that we have our strings available in multiple languages, it's time
+for another infra job to kick in and bring them into our repository.
+This is where
+<a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L241-L257">propose_translation_update.sh</a>
+comes in. We pull the po files from Zanata, convert them to JSON, then
+do a git commit that will be proposed to Gerrit.</p>
+<p>The <a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L245">cleanup
+step</a>
+does more than it might seem. It checks if files are translated over a
+certain ratio (~75% for code), which avoids adding new languages when
+there might only be one or two words translated (e.g. someone just
+testing Zanata to see how it works). Switching to your language and yet
+having the vast majority of the UI still appear in English is not a
+great user experience.</p>
+<p>In theory, files that were added but are now below 40% should get
+automatically removed, however this <a class="reference external" href="https://storyboard.openstack.org/#!/story/2000949">doesn't quite work for
+JavaScript</a> at the
+moment - another opportunity to help! Manual cleanups can be done in the
+meantime, but it's a rare event so not a major issue.</p>
+</div>
+<div class="section" id="monitoring-the-periodic-jobs">
+<h3>Monitoring the periodic jobs</h3>
+<p>Zanata is checked once a day every morning, there is an <a class="reference external" href="http://status.openstack.org/openstack-health/#/g/build_queue/periodic?groupKey=build_queue&amp;searchJob=tripleo-ui">OpenStack
+Health
+page</a>
+for this as well. You can see there are two jobs at the moment
+(hopefully green!), one per branch:
+tripleo-ui-propose-translation-update and
+tripleo-ui-propose-translation-update-ocata. The job should run every
+day even if there are no updates - it simply means there might not be a
+git review proposed at the end.</p>
+<p>We haven't had issues with the periodic job so far, though the debugging
+process would be the same: figure out based on the failure if it is
+happening at the infra script stage or in one of our commands (e.g. <em>npm
+run po2json</em>), try to reproduce and fix. I'm sure super-helpful AJaeger
+would also let us know if he were to notice an issue here.</p>
+</div>
+<div class="section" id="automated-patches">
+<h3>Automated patches</h3>
+<p>You may have seen the <a class="reference external" href="https://review.openstack.org/#/q/project:openstack/tripleo-ui+topic:zanata/translations">automated translations
+updates</a>
+pop up on Gerrit. The commit message has some <a class="reference external" href="https://docs.openstack.org/i18n/latest/reviewing-translation-import.html">tips on how to
+review</a>
+these: basically don't agonise over the translation contents as problems
+there should be handled in Zanata anyway, just make sure the format
+looks good and is unlikely to break the code. A <a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L251">JSON validation
+tool</a>
+runs during the infra prep step in order to &quot;prettify&quot; the JSON blob and
+limit the size of the diffs, therefore once the patch&nbsp; makes it out to
+Gerrit we know the JSON is well-formed at least.</p>
+<p>Try to review these patches quickly to respect the translators' work.
+Not very nice to spend a lot of time on translating a project and yet
+not have your work included because no one was bothered to merge it :)</p>
+</div>
+<div class="section" id="a-note-about-new-languages">
+<h3>A note about new languages...</h3>
+<p>If the automated patch adds a new language, there'll be an <a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e8684162811c88fb10c8c43c8e59bec3510eb2/docs/translation.rst#adding-a-new-language">additional
+step
+required</a>
+after merging the translations in order to enable it: adding a string
+with the language name to a constants file. Until recently, this took 3
+or 4 steps - <a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1682452">thanks to Honza for making it much
+simpler</a>!</p>
+<p>This concludes the technical journey of a string. If you'd like to help
+with i18n tasks, we have <a class="reference external" href="https://bugs.launchpad.net/tripleo/+bugs?field.tag=i18n">a few related
+bugs</a> open.
+They go from very simple low-hanging-fruits you could use to make your
+first contribution to the UI, to weird buttons that have translations
+available yet show in English but only in certain modals, to the kind of
+CI resiliency tasks I linked to earlier. Something for everyone! ;)</p>
+</div>
+</div>
+<div class="section" id="working-with-the-i18n-team">
+<h2>Working with the I18n team</h2>
+<p>It's really all about communication. Starting with...</p>
+<div class="section" id="release-schedule-and-string-freezes">
+<h3>Release schedule and string freezes</h3>
+<p>String freezes are noted on the <a class="reference external" href="https://releases.openstack.org/pike/schedule.html">main
+schedule</a> but tend
+to fit the regular cycle-with-milestones work. This is a problem for a
+cycle-trailing project like tripleo-ui as we could be implementing
+features up to 2 weeks after the other projects, so we can't freeze
+strings that early.</p>
+<p>There were discussions at the Atlanta PTG around whether the I18n should
+care at all about projects that don't respect the freeze deadlines. That
+would have made it impossible for projects like ours to ever make it
+onto the I18n official radar. The compromise was that cycle-trailing
+project should have a <a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n">I18n cross-project
+liaison</a>
+that communicates with the I18n PTL and team to inform them of
+deadlines, and also to ignore Soft Freeze and only do a Hard Freeze.</p>
+<p>This will all be documented under an i18n governance tag; while waiting
+for it the <a class="reference external" href="https://etherpad.openstack.org/p/i18n-horizon-release-collaboration-session">notes from the sessions are
+available</a>
+for the curious!</p>
+</div>
+<div class="section" id="what-s-a-string-freeze-again">
+<h3>What's a String Freeze again?</h3>
+<p>The two are defined on the schedule: <a class="reference external" href="https://releases.openstack.org/pike/schedule.html#p-soft-sf">soft
+freeze</a>
+means not allowing changes to strings, as it invalidates the
+translator's work and forces them to retranslate; <a class="reference external" href="https://releases.openstack.org/pike/schedule.html#p-hard-sf">hard
+freeze</a>
+means no additions, changes or anything else in order to give
+translators a chance to catch up.</p>
+<p>When we looked at Zanata earlier, there were <a class="reference external" href="https://translate.openstack.org/iteration/view/tripleo-ui/master">translation percentages
+beside each
+language</a>:
+the goal is always the satisfaction of reaching 100%. If we keep adding
+new strings then the goalpost keeps moving, which is discouraging and
+unfair.</p>
+<p>Of course there's also an &quot;exception process&quot; when needed, to ask for
+permission to merge a string change with an explanation or at least a
+heads-up, by sending an email to the <a class="reference external" href="http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-i18n">openstack-i18n mailing
+list</a>.
+Not to be abused :)</p>
+</div>
+<div class="section" id="role-of-the-i18n-liaison">
+<h3>Role of the I18n liaison</h3>
+<p>...Liaise?! Haha. The role is defined briefly on the <a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n">Cross-Projects
+Liaison wiki
+page</a>.
+It's much more important toward the end of the cycle, when the codebase
+starts to stabilise, there are fewer changes and translators look at
+starting their work to be included in the release.</p>
+<p>In general it's good to hang out on the #openstack-i18n IRC channel
+(very low traffic), <a class="reference external" href="https://wiki.openstack.org/wiki/Meetings/I18nTeamMeeting">attend the weekly
+meeting</a>
+(it alternates times), be available to answer questions, and keep the
+PTL informed of the I18n status of the project. In the case of
+cycle-trailing projects (quite a new release model still), it's also
+important to be around to explain the deadlines.</p>
+<p>A couple of examples having an active liaison helps with:</p>
+<ul class="simple">
+<li>Toward the end or after the release, once translations into the
+stable branch have settled, the stable translations get copied into
+the master branch on Zanata. The strings should still be fairly
+similar at that point and it avoids translators having to re-do the
+work. It's a manual process, so you need to let the I18n PTL know
+when there are no longer changes to stable/*.</li>
+<li>Last cycle, because the cycle-trailing status of tripleo-ui was not
+correctly documented, a Zanata upgrade was planned right after the
+main release - which for us ended up being right when the codebase
+had stabilised enough and several translators had planned to be most
+active. Would have been solved with better, earlier communication :)</li>
+</ul>
+</div>
+<div class="section" id="post-release">
+<h3>Post-release</h3>
+<p>After the Ocata release, I sent <a class="reference external" href="http://imgur.com/a/tlnAx">a few
+screenshots</a> of tripleo-ui to the i18n list
+so translators could see the result of their work. I don't know if
+anybody cared :-) But unlike Horizon, which has an informal test system
+available for translators to check their strings during the RC period,
+most of the people who volunteered translations had no idea what the UI
+looked like. It'd be cool if we could offer a test system with regular
+string updates next release - maybe just an undercloud on the new RDO
+cloud? Deployment success/failures strings wouldn't be verifiable but
+the rest would, while the system would be easier to maintain than a full
+dev TripleO environment - better than nothing. Perhaps an idea for the
+Queens cycle!</p>
+<p>The I18n team has a <a class="reference external" href="https://translate.openstack.org/">priority board on the Zanata main
+page</a> (only visible when logged in
+I think). I'm grateful to see TripleO UI in there! :) Realistically
+we'll never move past Low or perhaps Medium priority which is fair, as
+TripleO doesn't have the same kind of reach or visibility that Horizon
+or the installation guides do. I'm happy that we're included! The
+OpenStack I18n team is probably the most volunteer-driven team in
+OpenStack. Let's be kind, respect string freezes and translators' time!
+\o/</p>
+<p>&lt;/braindump&gt;</p>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Identi.ca and XMPP</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="I've been trying out micro-blogging through Identi.ca recently. (I'm jpichon, if you're curious.) I find their integration with XMPP both awesome..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/09/identica-xmpp/" rel="bookmark"
+           title="Permalink to Identi.ca and XMPP">Identi.ca and XMPP</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-09-13T22:25:00+01:00">
+                Published: Mon 13 September 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->      <p>I've been trying out micro-blogging through
+<a class="reference external" href="http://www.identi.ca">Identi.ca</a> recently. (I'm
+<a class="reference external" href="http://identi.ca/jpichon">jpichon</a>, if you're curious.) I find their
+integration with XMPP both awesome and handy, so here's a quick guide to
+setting it up and using it, if you haven't given it a try yet.</p>
+<div class="section" id="activating-it">
+<h2>Activating it</h2>
+<p>Start by adding <a class="reference external" href="mailto:update&#64;identi.ca">update&#64;identi.ca</a> to your buddy list. Then, log in to
+your Identi.ca account, go to Connect -&gt; I.M. and enter your XMPP
+enabled address. They say any Jabber or GTalk account will work, I'd be
+surprised if it didn't work with any XMPP account.</p>
+<p>Authorise <a class="reference external" href="mailto:update&#64;identi.ca">update&#64;identi.ca</a> when it asks to add you, and tadam! You are
+set to send and receive updates, depending on the options you selected
+on that initial Connect -&gt; I.M. screen.</p>
+</div>
+<div class="section" id="how-to-use-it">
+<h2>How to use it</h2>
+<p>Don't trust the <a class="reference external" href="http://identi.ca/doc/im">Identi.ca</a> help page as it
+appears new commands have been added since it was last updated. If you
+open a chat with your new <a class="reference external" href="mailto:update&#64;identi.ca">update&#64;identi.ca</a> buddy and type 'help', you'll
+see the following menu:</p>
+<pre class="literal-block">
+(12:34:56) update&#64;identi.ca: [Identi.ca] Commands:
+on - turn on notifications
+off - turn off notifications
+help - show this help
+follow &lt;nickname&gt; - subscribe to user
+groups - lists the groups you have joined
+subscriptions - list the people you follow
+subscribers - list the people that follow you
+leave &lt;nickname&gt; - unsubscribe from user
+d &lt;nickname&gt; &lt;text&gt; - direct message to user
+get &lt;nickname&gt; - get last notice from user
+whois &lt;nickname&gt; - get profile info on user
+lose &lt;nickname&gt; - force user to stop following you
+fav &lt;nickname&gt; - add user's last notice as a 'fave'
+fav #&lt;notice_id&gt; - add notice with the given id as a 'fave'
+repeat #&lt;notice_id&gt; - repeat a notice with a given id
+repeat &lt;nickname&gt; - repeat the last notice from user
+reply #&lt;notice_id&gt; - reply to notice with a given id
+reply &lt;nickname&gt; - reply to the last notice from user
+join &lt;group&gt; - join group
+login - Get a link to login to the web interface
+drop &lt;group&gt; - leave group
+stats - get your stats
+stop - same as 'off'
+quit - same as 'off'
+sub &lt;nickname&gt; - same as 'follow'
+unsub &lt;nickname&gt; - same as 'leave'
+last &lt;nickname&gt; - same as 'get'
+on &lt;nickname&gt; - not yet implemented.
+off &lt;nickname&gt; - not yet implemented.
+nudge &lt;nickname&gt; - remind a user to update.
+invite &lt;phone number&gt; - not yet implemented.
+track &lt;word&gt; - not yet implemented.
+untrack &lt;word&gt; - not yet implemented.
+track off - not yet implemented.
+untrack all - not yet implemented.
+tracks - not yet implemented.
+tracking - not yet implemented.
+</pre>
+<p>(As a side-note, if you see me saying 'help' on Identi.ca, I'm not in
+trouble, I probably fat-fingered the command. Ignore!)</p>
+<p>These are all the cool commands to do basic micro-blogging tasks from
+the comfort of your IM client, as well as a few house-keeping tasks. I
+particularly like the commands using ids: Identi.ca has a feature I find
+very nice, the link &quot;in context&quot; under notices that let you follow the
+flow of a conversation (<a class="reference external" href="http://identi.ca/conversation/47878701#notice-48331539">see an
+example</a>).
+Replying / repeating with id lets you preserve this link.</p>
+<p>For a bit of context (heh!), when you have your IM client open and
+someone you're subscribed to writes a notice, you'll see something like
+this:</p>
+<pre class="literal-block">
+(21:23:51) update&#64;identi.ca: CoolKid789: Hello, world! [12345]
+</pre>
+<p>12345 is the notice id, so you still don't need to open a browser.
+Usually, both the id and the person name appear as hyperlinks, if you'd
+like quick access to the web view. To preserve the link, I would reply:</p>
+<pre class="literal-block">
+reply #12345 &#64;CoolKid789 OHAI!
+</pre>
+<p>The actual notice posted (and associated character count) will start
+from &#64;, and the 'in context' information will be preserved.</p>
+<p>Something to watch out for: When I initially tried this, I kept getting
+a &quot;Message too long&quot; error, even when writing very short notices. It
+turns out that when I was copying the ids in my IM client, Pidgin, I was
+also copying the url for the initial notice, even if I couldn't see it.
+Right-click -&gt; Reset formatting in the text area and the problem is
+solved. Have fun!</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

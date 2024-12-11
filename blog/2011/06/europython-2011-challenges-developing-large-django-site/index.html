@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>EuroPython 2011: Simon Willison on Challenges in developing a large Django site</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Links: talk description and video and slides. Simon Willison is the co-founder lanyrd.com, a social website for conferences. Tips and tricks..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/06/europython-2011-challenges-developing-large-django-site/" rel="bookmark"
+           title="Permalink to EuroPython 2011: Simon Willison on Challenges in developing a large Django site">EuroPython 2011: Simon Willison on Challenges in developing a large Django site</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-06-27T13:57:00+01:00">
+                Published: Mon 27 June 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/scaling/">scaling</a> </p>
+</footer><!-- /.post-info -->      <p>Links: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/challenges-building-large-django-site">talk description and
+video</a>
+and
+<a class="reference external" href="http://www.slideshare.net/simon/tricks-challenges-developing-a-large-django-application">slides</a>.</p>
+<hr class="docutils" />
+<p>Simon Willison is the co-founder <a class="reference external" href="http://lanyrd.com/">lanyrd.com</a>, a
+social website for conferences.</p>
+<div class="section" id="tips-and-tricks">
+<h2>Tips and tricks</h2>
+<div class="section" id="signing-from-1-4-currently-in-trunk">
+<h3>Signing (from 1.4, currently in trunk)</h3>
+<p>Using cryptographic signing for various things can ensure that they
+haven't been tampered with, for instance a cookie or an unsubscribe
+link. If you encrypt your session cookies you don't have to hit the
+database anymore, you just need to check the proper signed cookie.</p>
+<p>The speaker showed a couple of short code examples to demonstrate how
+simple it is to use, and how the interface is consistent with the other
+serialisation interfaces.</p>
+<pre class="literal-block">
+from django.core import signing
+signing.dumps({&quot;foo&quot;: &quot;bar&quot;})&nbsp; # url safe
+signing.loads(string)
+</pre>
+</div>
+<div class="section" id="cache-version">
+<h3>cache_version</h3>
+<p>This is another way to do cache invalidation. You add a cache_version
+field to the model, that is incremented when calling the save() hook or
+a touch() method. In the template cache fragment, you use the primary
+key and the cache_version to invalidate.</p>
+<p>You can also mass invalidate by updating the cache version of
+objects.all() using F() -- example from the slides:</p>
+<pre class="literal-block">
+topic.conferences.all().update(
+&nbsp;&nbsp;&nbsp; cache_version = F('cache_version') + 1
+)
+</pre>
+</div>
+<div class="section" id="nosql-for-denormalisation">
+<h3>noSQL for denormalisation</h3>
+<p>Use noSQL to denormalise and keep the database and the cache/nosql in
+sync. It's more work but it's worth it.</p>
+<p>For instance they use Redis sets to maintain lists such as
+username-follows, europython-attendees and then they simply need to do a
+set intersection to get the information they want. These are only lists
+of ids so they don't take that much space.</p>
+</div>
+<div class="section" id="hashed-static-asset-filenames-in-cloudfront">
+<h3>Hashed static asset filenames in CloudFront</h3>
+<p>They created a management command to push static assets, that compresses
+Javascript, changes the names/urls, etc. This way they can publish them
+in advance, and also keep static files around if there's a need to
+rollback. The different names are also good to prevent Internet Explorer
+caching.</p>
+</div>
+</div>
+<div class="section" id="challenges">
+<h2>Challenges</h2>
+<p>This part of the talk is about things they don't really have answers
+for.</p>
+<div class="section" id="http-requests">
+<h3>HTTP Requests</h3>
+<p>e.g. talking to an API: what if it fails or take 30 seconds? Do you use
+urllib? What if people enter private urls from within your Intranet? :O</p>
+<p>You have to handle connection timeouts, logging and profiling, url
+validation, and http caching. All of these are a common set of problems
+that should be baked into the framework.</p>
+</div>
+<div class="section" id="profiling-and-debugging-production-problems">
+<h3>Profiling and debugging production problems</h3>
+<p>Debugging in development rocks, with the django-debug-toolbar, the way
+error 500 are handled, pdb, etc.</p>
+<p>Once you turn debug to False, you're blind. After a while, all the bugs,
+particularly performance bugs, only happen in production.</p>
+<p>He showed us a code snippet for a UserBasedExceptionMiddleware, that if
+you access the page throwing a 500 error and is_superuser is True, you
+will see a traceback, not the default 500 error (so if one of your users
+reports a problem, you can go to the page straight off and see a
+traceback).</p>
+<p>At the database level, there is a handy tool called <strong>mysql-proxy</strong> that
+is customisable using Lua. Using a wonderful, horribly documented
+library called log.lua, you can for instance turn on logging for a
+couple of minutes when needed.</p>
+<p>He created an app called django_instrumented (unreleased, until it's
+cleaned up) that collects statistics and sticks them into memcached. He
+has a special bookmark to access them, they are stored for 5 minutes
+only&nbsp; -- so they waste neither space or time.</p>
+<p>This actually helped improve the performance: if you measure something
+and make it visible, people will improve it over time.</p>
+</div>
+<div class="section" id="downtime-deployments">
+<h3>0 downtime deployments</h3>
+<p>Code-wise it's easy enough to do, but when there are database changes
+it's tougher. Ideally they try to make schema changes backwards
+compatible, then use ./manage.py migrate (using South) on another web
+server.</p>
+<p>Having a read-only mode made a lot of problems easier! It's not 0
+downtime but the content is still readable. It can be a setting or a
+Redis key.</p>
+<p>Feature flags work in the same way but at a more fine-grained level, for
+instance turning off search while you update your solr cluster. There's
+quite a bit more work involved.</p>
+</div>
+</div>
+<div class="section" id="one-lesson-we-keep-on-learning-in-django">
+<h2>One lesson we keep on learning in Django</h2>
+<p>We went from one database to multi-databases, from one cache to
+multi-caches, from one haystack backend to multiple backends.</p>
+<p>Debug is one single setting, that affects a lot of things.</p>
+<p>The timezone setting also affects Apache log files.</p>
+<p>The middleware concept is very powerful, but is executed on every single
+request: if there's a conditional it has to be done within the
+middleware.</p>
+<p>Really, global settings should be flushed out of the project! They are
+evil settings that cannot be changed at runtime.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/all.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2024-08-30T21:58:00+01:00</updated><entry><title>ShipItCon 2024</title><link href="https://www.jpichon.net/blog/2024/08/shipitcon-2024/" rel="alternate"></link><published>2024-08-30T21:58:00+01:00</published><updated>2024-08-30T21:58:00+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2024-08-30:/blog/2024/08/shipitcon-2024/</id><summary type="html">&lt;p&gt;To avoid taking a year again to (fail to) put my notes together, I decide to do
+it quickly and stick to a few thoughts and highlights. The 2024 edition of
+&lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; happened today. This year's theme was "Flow." Many speakers
+mentioned ownership when talking about ways to reach flow …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To avoid taking a year again to (fail to) put my notes together, I decide to do
+it quickly and stick to a few thoughts and highlights. The 2024 edition of
+&lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; happened today. This year's theme was "Flow." Many speakers
+mentioned ownership when talking about ways to reach flow.&lt;/p&gt;
+&lt;p&gt;I haven't attended many conferences in the last couple of years, but maybe 90%
+of the people I talked to were also meeting their co-workers face-to-face for
+the first time at this event, despite working together for years. At least
+three different companies. I found it interesting. It doesn't look like there
+are many opportunities for teams to meet outside of conferences at the moment.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ShipItCon welcome slide" src="https://www.jpichon.net/site_media/images/2024/shipitcon2024.jpg"&gt;&lt;/p&gt;
+&lt;h1&gt;DevOps Topologies 10 years on: what have we learned about silos, collaboration, and flow? (Matthew Skelton)&lt;/h1&gt;
+&lt;p&gt;The speaker kindly summarised his findings both at the start and the end of the
+talk: decouple teams and tech (not just defining an org structure, something
+more dynamic), but diffuse learning across the company (that can take the form
+of Lunch and Learns, blogs, Communities of Practice, guides, etc...)&lt;/p&gt;
+&lt;p&gt;Reading recs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gene Kim's books (the Phoenix Project, Accelerate, ...)&lt;/li&gt;
+&lt;li&gt;SODOR, the State Of DevOps Reports&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Organisation, Flow, and Architecture (Sam Newman)&lt;/h1&gt;
+&lt;p&gt;What an incredibly dynamic and engaging speaker! The theme was generally how to
+reduce handoffs, which happens particularly when organisation are siloed.&lt;/p&gt;
+&lt;p&gt;Conway's law: An organisation design systems that replicate the communication
+structure of that organisation.&lt;/p&gt;
+&lt;p&gt;So if you have Taylorism-inspired silos with e.g. separate
+front-end/back-end/DB teams, the system will reproduce that.&lt;/p&gt;
+&lt;p&gt;The solution is feature-based teams (micro-services are good to enable full
+ownership). Durable as opposed to initiative-based teams are also better as
+long-lived teams make better decisions about trade-offs (e.g. incurred tech
+debt, etc).&lt;/p&gt;
+&lt;h1&gt;Data Driven Decisions to Improve Testing Flows (Heather Reid)&lt;/h1&gt;
+&lt;p&gt;Using data to take risks. Differentiating between reversible and not reversible
+risks. The speaker used various examples based on her own experiences to
+illustrate the principle.&lt;/p&gt;
+&lt;p&gt;For example: closing an old bug to remove noise is easily reversible if it
+turns out it shouldn't have been closed.&lt;/p&gt;
+&lt;p&gt;If 1000s of users report a problem, it can feel like millions/all of your users
+are hitting the problem. But maybe when you look at the data it's 0.6% of the
+userbase, which is still bad but not world-ending.&lt;/p&gt;
+&lt;p&gt;Or a really bad bug affecting 6 users using that phone model (out of millions)
+can probably be closed.&lt;/p&gt;
+&lt;p&gt;Prioritise accordingly.&lt;/p&gt;
+&lt;h1&gt;Observability 2.0 and other things (Charity Majors)&lt;/h1&gt;
+&lt;p&gt;(The title isn't on the agenda and I forgot to write it down!)&lt;/p&gt;
+&lt;p&gt;Tip for how to supercharge your career: join a high-performing team.&lt;/p&gt;
+&lt;p&gt;Engineering should own the code in production.&lt;/p&gt;
+&lt;p&gt;Observability is a property of complex systems.&lt;/p&gt;
+&lt;p&gt;Observability-driven development means looking at your dashboards (as opposed
+to waiting for alerts/paging to bring them up). It's a constant conversation
+with code (including unstructured logs, not just metrics, because they provide
+CONTEXT). (Higher level: structured logs with trace ids you can follow end to
+end.)&lt;/p&gt;
+&lt;h1&gt;Establishing a culture of ownership and observability at Phorest (Paweł Malon and Paul Dailly)&lt;/h1&gt;
+&lt;p&gt;Interestingly, the speakers use Honeycomb which is the observability platform
+of the previous speaker. It was like seeing practical examples of the concepts
+detailed in the previous talk.&lt;/p&gt;
+&lt;p&gt;The theme of engineering owning the code all the way to production came up
+again.&lt;/p&gt;
+&lt;p&gt;And also, of linking engineering workflows to observability: deploying a change
+and seeing what difference it makes, and conversely using the insights gained
+from observing software behaviour on prod to find new bugs/improvements.&lt;/p&gt;
+&lt;p&gt;Having a lot of metrics does create issues with the cost of storing all of that
+data, which is where sampling helps, although the speakers talked about the
+other problems you then have to deal with when sampling and how to manage them.&lt;/p&gt;
+&lt;h1&gt;Go With The Flow? (Vessy Tasheva)&lt;/h1&gt;
+&lt;p&gt;Play is a component of flow. Venn diagram of Play and Environment with Flow
+where the circles meet.&lt;/p&gt;
+&lt;p&gt;Environment: must be safe even if there are constraints/discomfort. E.g. a
+leader having your back when working on a challenging project.&lt;/p&gt;
+&lt;p&gt;Play is a way to be more authentic and creative. "Being" (which respects focus
+time) vs "Reacting" (which breaks flows and creates defensiveness).&lt;/p&gt;
+&lt;h1&gt;Flow-etry in Motion: Navigating Cascades of Threat Data (Claire Burn)&lt;/h1&gt;
+&lt;p&gt;Interesting twist to the talk! When the speaker submitted it, it was supposed
+to be about how their pivot to using Kubernetes and Google Cloud Platform
+enabled better flow in the team. But by the time the conference happened, they
+had reverted back to AWS and EC2!&lt;/p&gt;
+&lt;p&gt;There was no "peak flow" to be found because Kubernetes wasn't the right tool
+to solve their problems (they needed finer grained OS control).&lt;/p&gt;
+&lt;p&gt;Considerations around Learning Curve vs Velocity, especially when working as a
+smaller team (4 people). The management debt became too much.&lt;/p&gt;
+&lt;p&gt;They did end up keeping Kotlin from this experiment, good for integration with
+other Java projects in the company.&lt;/p&gt;
+&lt;h1&gt;The impact of Flow on various aspects of work (Panel discussion)&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Beat_Saber"&gt;Beat Saber&lt;/a&gt; as a way to get into flow 😂&lt;/p&gt;
+&lt;p&gt;Distributed teams are good for making the implicit explicit. Managing based on
+outcomes. The additional flexibility is good for everyone.&lt;/p&gt;
+&lt;p&gt;Honeycomb has a quarterly "everyone works from home" week, up to the CEO. It's
+good to get distance from processes, etc. (I thought that was a refreshing
+contrast to all the Return To Office talk from the last couple of years.)&lt;/p&gt;
+&lt;p&gt;Many problems are socio-technical: need a combination of tech and people
+solutions, not just one or the other.&lt;/p&gt;
+&lt;h1&gt;Harnessing Developer Insights to maximise flow (Mihai Paun and Alma Tarfa)&lt;/h1&gt;
+&lt;p&gt;Learned helplessness in companies: "we've always done it this way" "that's
+never going to work here."&lt;/p&gt;
+&lt;p&gt;I really liked the picture of the Iceberg of Ignorance, from &lt;a href="https://www.corporate-rebels.com/blog/iceberg-of-ignorance"&gt;Corporate
+Rebels&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Iceberg of Ignorance" src="https://www.jpichon.net/site_media/images/2024/iceberg-ignorance.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Papercuts affecting flow tend not to surface in retrospectives.&lt;/p&gt;
+&lt;p&gt;Solution: Plan - Do (gather data) - Check (target condition) - Act&lt;/p&gt;
+&lt;p&gt;For example, they found their dev team struggled to reach flow state because of
+the number of meetings, so they decided to try setting up two no-meetings day
+(Monday, Wednesday) then gather data to see if that helped. Everyone involved
+in the four steps.&lt;/p&gt;
+&lt;p&gt;Small changes toward reaching the bigger goal.&lt;/p&gt;
+&lt;p&gt;Leaders: be gardeners, not mechanics.&lt;/p&gt;
+&lt;h1&gt;From MLOps to AI Systems (Jim Dowling)&lt;/h1&gt;
+&lt;p&gt;Most AI systems don't ship. This hasn't changed in the last few years.&lt;/p&gt;
+&lt;p&gt;MLOps, LLMOps. He explained when he teaches a ML course, his students complete
+an AI project from scratch in 2 weeks. It doesn't need to be as complicated as
+30+ steps diagrams/consultants make it out to be.&lt;/p&gt;
+&lt;p&gt;While looking for a link to the course, I came across this &lt;a href="https://www.hopsworks.ai/post/mlops-to-ml-systems-with-fti-pipelines"&gt;detailed
+article&lt;/a&gt; that goes into the details of the talk if that is of interest. And
+includes a link to the students' projects.&lt;/p&gt;
+&lt;h1&gt;Finding personal flow (Patrick Kua)&lt;/h1&gt;
+&lt;p&gt;Personal flow usually comes from:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;adding value&lt;/li&gt;
+&lt;li&gt;learning&lt;/li&gt;
+&lt;li&gt;having a lot of ownership (with support)&lt;/li&gt;
+&lt;li&gt;a sense of progress&lt;/li&gt;
+&lt;li&gt;applying the team's strengths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The speaker used past experiences to illustrate various kind of very different
+environments that can lead to good flow. This actually linked back nicely to
+Vessy's earlier talk as well: challenging projects but in a safe
+environment/with support.&lt;/p&gt;
+&lt;p&gt;One of the anecdotes I liked was when he was trying to remove himself as a
+bottleneck in a large project, he broke down the features, and asked if anyone
+would step up as feature leads for each of those. People had no problem
+volunteering and that also links back to ownership again. And feature-based
+teams.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;The disadvantage of putting up notes early is that the recordings are not yet
+available!&lt;/p&gt;</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category></entry><entry><title>ShipItCon 2023</title><link href="https://www.jpichon.net/blog/2024/08/shipitcon-2023/" rel="alternate"></link><published>2024-08-28T20:12:00+01:00</published><updated>2024-08-28T20:12:00+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2024-08-28:/blog/2024/08/shipitcon-2023/</id><summary type="html">&lt;p&gt;With &lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; 2024 fast approaching (in 2 days!!), it's time for me to
+admit I will never finish writing up my notes from last year's and just post
+what I do have. Perhaps this year my note-taking skills will improve?&lt;/p&gt;
+&lt;p&gt;ShipItCon is a small non-profit conference in Dublin that focuses …&lt;/p&gt;</summary><content type="html">&lt;p&gt;With &lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; 2024 fast approaching (in 2 days!!), it's time for me to
+admit I will never finish writing up my notes from last year's and just post
+what I do have. Perhaps this year my note-taking skills will improve?&lt;/p&gt;
+&lt;p&gt;ShipItCon is a small non-profit conference in Dublin that focuses on Software
+Delivery. The conference is a single track on a single day, and the theme in
+2023 was "The Unknown" (observability came up A LOT!). Here are of a few of the
+highlights, from my perspective (and from my very, very partial notes).&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://shipitcon.com/recordings/?_sfm_year=2023"&gt;2023 recordings&lt;/a&gt; are available now.&lt;/p&gt;
+&lt;h2&gt;Keynote: Dr Norah Patten&lt;/h2&gt;
+&lt;p&gt;Inspiring journey to become Ireland's first astronaut! Also very
+impressive and massive amount of outreach work. Including writing a
+children's book, &lt;a href="https://app.thestorygraph.com/books/fbb5ee56-d40e-48f3-b2d2-34c7e84493e0"&gt;Shooting for the Stars&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;I liked how she broke down several stages of her life into categories:
+Influences (e.g. teachers, family) / Role models / Peers / Experience
+(e. g. a visit to NASA as a child), and how each contributed and came
+together to allow her to come to where she is, now.&lt;/p&gt;
+&lt;p&gt;Some cool outreach projects I didn't know about:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using &lt;a href="https://en.wikipedia.org/wiki/Nanoracks"&gt;Nanoracks&lt;/a&gt;, students plan experiments for astronauts then examine
+  the results.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://possum13.org/about/"&gt;PoSSUM 13&lt;/a&gt; for researchers, and the microgravity challenge for payload
+  experiments in space/suborbital/microgravity. High school students apply with
+  detailed plans of the science experiment they want to run, and if successful
+  get to build the payload themselves with mentoring, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;What's Slowing Your Team Down? (Laura Tacho)&lt;/h2&gt;
+&lt;p&gt;After observing hundreds of teams, the speaker found that every team has the
+same problems, divided into three categories: projects, processes, people.&lt;/p&gt;
+&lt;p&gt;The speaker uses thousands of metrics to determine issues. Tracking doesn't
+solve the problem but it helps with tracking progress as well as "quantify
+sentiment" which I found really interesting. In general, I found this talk
+incredibly informative and valuable, and I recommend the recording.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Projects&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Too much work in progress&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is the biggest problems for most teams. It causes issues with getting
+things done or finishing things.&lt;/p&gt;
+&lt;p&gt;Measures that can help: number of projects per person (engineer cognitive
+load), ...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lack of prioritisation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;No means "not now"; yes means "forever" (with an every increasing maintenance
+cost).&lt;/p&gt;
+&lt;p&gt;The goal should be specific enough that teams can easily say no to things.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Process&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Slow feedback (from people or machines)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Not enough focus time&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Length and frequency of focus time chunks, number of meetings where something
+is actually at stake, ...&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. People&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unclear expectations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Giving expectations vs fear of micromanagement.
+&lt;br/&gt;Receiving expectations vs fear of seeming incompetent, psychologically
+unsafe teams.
+&lt;br/&gt; (How this can set up a negative circle where one lead to the other and
+back)&lt;/p&gt;
+&lt;p&gt;Reading recommendations: "Accelerate" (about DORA metrics), the SPACE of
+Developer Productivity, &lt;a href="https://queue.acm.org/detail.cfm?id=3595878"&gt;DevEx: What Actually Drives Productivity&lt;/a&gt;
+(interesting, although at least one of the main author is selling something
+related).&lt;/p&gt;
+&lt;p&gt;I imagine the recording is available now, and the &lt;a href="https://shipitcon.com/wp-content/uploads/2023/09/2-Laura-Tacho-Whats-Slowing-Your-Team-Down_-ShipItCon-2023.pptx"&gt;slides&lt;/a&gt; are also
+interesting for a more detailed summary with many more examples of measures for
+each category, and a link to the kind of developer survey they used to
+"quantify sentiment."&lt;/p&gt;
+&lt;h2&gt;Building scalable GenAI Retrievial Augmented Generation Platforms (Mihai Criveti)&lt;/h2&gt;
+&lt;p&gt;LLM and their limitations. Text generation, doesn't learn from interactions, AI
+function to predict the next word, doesn't access the Internet.&lt;/p&gt;
+&lt;p&gt;Models with 70 billions parameters cost $20k/month dedicated GPU instance on
+Amazon.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://shipitcon.com/wp-content/uploads/2023/09/3-Mihai-Criveti-Retrieval-Augmented-Generation-v3.pdf"&gt;Slides&lt;/a&gt; with more information on this works and the limitations the speaker
+found.&lt;/p&gt;
+&lt;h2&gt;How to Make Your Automation a Better Team Player (Laura Nolan)&lt;/h2&gt;
+&lt;p&gt;This felt particularly relevant to my work. The talk was really engaging
+because the speaker always links every issue back to famous incidents or
+incidents she personally experienced. The &lt;a href="https://shipitcon.com/wp-content/uploads/2023/09/4-Laura-Nolan-Making-your-Automation-a-Better-Team-Player.pptx"&gt;slides&lt;/a&gt; also include these
+examples.&lt;/p&gt;
+&lt;p&gt;"Joint Cognitive Systems" where computers and humans collaborate on cognitive
+work.&lt;/p&gt;
+&lt;p&gt;Paper recommendation: &lt;a href="https://en.wikipedia.org/wiki/Ironies_of_Automation"&gt;Ironies of Automation&lt;/a&gt; by Lisanne Bainbridge. 40yo
+paper and these problems still haven't been solved!&lt;/p&gt;
+&lt;p&gt;The problem described is like this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The easy stuff is automated first&lt;/li&gt;
+&lt;li&gt;New people only ever learn the hard stuff, and develop a partial
+   mental model of how things work&lt;/li&gt;
+&lt;li&gt;Life becomes harder for operators because they need to learn both
+   how things work + how the automation works.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We are doing a bad job if the operator can shoot themselves in the foot with
+our tools.&lt;/p&gt;
+&lt;p&gt;Two anti-patterns to avoid!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Automation surprises&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Automation through using a lot of scripts, tools, cronjobs is hard to
+manage. Centralising into a self-running/autonomous automation helps, where
+possible.&lt;/p&gt;
+&lt;p&gt;The behaviour should be as simple and as predictable as possible.&lt;/p&gt;
+&lt;p&gt;Unattended upgrades are a bad idea, silent and deadly.&lt;/p&gt;
+&lt;p&gt;Incident examples (although there are many! Linked in the slides, all
+informative):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;a href="https://firefish.social/notes/9iqefgi8rzfksnqc"&gt;routine GitOps operation&lt;/a&gt; (link now defunct :() that caused a
+  namespace to be deleted when ArgoCD system lost visibility on the yaml,
+  bringing down the entire site.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.datadoghq.com/blog/2023-03-08-multiregion-infrastructure-connectivity-issue/"&gt;Unattended upgrade disaster&lt;/a&gt; at DataDog&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2. Recommendation systems (e.g. to assist in troubleshooting.)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;They make it harder to generate alternative hypothesis. Using softer language
+may help, like "in the past, problems like this were caused by X."&lt;/p&gt;
+&lt;p&gt;Tools as amplifiers: help with understanding systems, as opposed to providing
+suggestions. They shouldn't hide complexity. Help operators to build a mental
+model of the system.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://shipitcon.com/wp-content/uploads/2023/09/4-Laura-Nolan-Making-your-Automation-a-Better-Team-Player.pptx"&gt;slides&lt;/a&gt; include links to more advice and lots of incident examples.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;And that's it, because the talks were too interesting and I'm apparently unable
+to be concise when taking notes. The conference is really excellent at inviting
+deeply knowledgeable, deeply interesting speakers, and I'm looking forward to
+the next one. Thankfully I won't have to wait long ;)&lt;/p&gt;</content><category term="Tech"></category><category term="events"></category></entry><entry><title>Extracting reviews from Goodreads into Markdown pages</title><link href="https://www.jpichon.net/blog/2023/05/extracting-reviews-from-goodreads-into-markdown-pages/" rel="alternate"></link><published>2023-05-07T11:00:00+01:00</published><updated>2023-05-07T11:00:00+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2023-05-07:/blog/2023/05/extracting-reviews-from-goodreads-into-markdown-pages/</id><summary type="html">&lt;p&gt;In early 2020, it became really difficult to read books. I'm slowly starting to
+get past that at last, but while Goodreads was super fun for a few years, right
+now tracking and counting and rating just makes reading feel like a chore and
+Not Fun as a hobby.&lt;/p&gt;
+&lt;p&gt;I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In early 2020, it became really difficult to read books. I'm slowly starting to
+get past that at last, but while Goodreads was super fun for a few years, right
+now tracking and counting and rating just makes reading feel like a chore and
+Not Fun as a hobby.&lt;/p&gt;
+&lt;p&gt;I still would like to keep a record of what I read, though. And I used to write
+&lt;a href="/tag/book-review/"&gt;book reviews&lt;/a&gt; on this blog before getting onto
+Goodreads. It seems like a nice way to keep a record of what I read without it
+becoming a number thing. I'll probably still write Goodreads reviews for small
+authors since I know it can help, but I feel less pressed about having
+everything there.&lt;/p&gt;
+&lt;p&gt;I also wanted to save the reviews I wrote only on Goodreads here, and wrote a
+script to migrate my reviews into Pelican-friendly Markdown pages since that's
+what powers this blog now. I decided to keep to a single entry per year
+rather than one entry per book, since I had a few good reading years in there
+(and others will only a single review!)&lt;/p&gt;
+&lt;h1&gt;Step 1: CSV export of the books&lt;/h1&gt;
+&lt;p&gt;First, if you go to 'My books' and find the 'Tools' menu at the bottom of the
+leftside menu on Goodreads, you'll find a page to &lt;a href="https://www.goodreads.com/review/import"&gt;export your
+library&lt;/a&gt;. You may have to try a couple
+of times: my first export only had a handful a books, the second one looks more
+comprehensive although the number of books was off by two, but what can you do.&lt;/p&gt;
+&lt;h1&gt;Step 2: Python script to create the Markdown pages&lt;/h1&gt;
+&lt;p&gt;This is the script I wrote to extract only the books I've actually read. I
+don't really care about DNF (did not finish) and to-read, right now. I also
+hardcoded the years relevant to me. May someone find something helpful in here!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;csv&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dataclasses&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;dataclass&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+
+
+&lt;span class="nd"&gt;@dataclass&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Review&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;date_read&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
+    &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;rating&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_reviews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;goodreads_library_export.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;csvfile&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DictReader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csvfile&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Review&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                           &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Author&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                           &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Date Read&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                           &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;My Review&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                           &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;My Rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+            &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="c1"&gt;# When the int() cast fails, usually it means the CSV is&lt;/span&gt;
+                &lt;span class="c1"&gt;# corrupted for that line. In my case, it was for a few to-read&lt;/span&gt;
+                &lt;span class="c1"&gt;# records so I ignore them rather than attempt to fix the&lt;/span&gt;
+                &lt;span class="c1"&gt;# original CSV. You can print the row here if you want to check&lt;/span&gt;
+                &lt;span class="c1"&gt;# what&amp;#39;s failing.&lt;/span&gt;
+                &lt;span class="k"&gt;pass&lt;/span&gt;
+
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date_read&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;reviews&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;rating_or_review&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# If I wrote a review, return that&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Otherwise, make the rating into words.&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rating&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;I really enjoyed it.&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rating&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;It was fine.&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Wasn&amp;#39;t for me.&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;format_reviews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;book-reviews-&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;.md&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Title: Book reviews: Year &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Date: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tags: book review&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="c1"&gt;# A couple of abandoned books sneaked in with a &amp;#39;0&amp;#39; rating, and I&amp;#39;m&lt;/span&gt;
+            &lt;span class="c1"&gt;# not interested in preserving those&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rating&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;## &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; by &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;rating_or_review&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2013&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2023&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_reviews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="c1"&gt;# Chronological order&lt;/span&gt;
+    &lt;span class="n"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date_read&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;format_reviews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The hardest part was probably to decide what text to convert a rating into,
+since I didn't want to keep numbers!&lt;/p&gt;
+&lt;h1&gt;Step 3: Checking the output looks right and recalling fond memories&lt;/h1&gt;
+&lt;p&gt;I used the &lt;a href="https://www.goodreads.com/user/year_in_books/2022/"&gt;'Year in Books'
+pages&lt;/a&gt; on Goodreads to
+compare the results. There was some funkiness sometimes, like a book read in
+2011 showing in year in books but without any shelves and a date read showing
+as 2020, even though I don't remember messing with it. The review also shows as
+Jan 2020 on the Goodreads UI despite appearing in the correct 'Year in
+books'. 2020 turned out to be &lt;code&gt;date_added&lt;/code&gt; (which is definitely false) while
+the &lt;code&gt;date_read&lt;/code&gt; field is empty. Maybe some data migration funkiness on the
+Goodreads side at some point during the last 12 years. Otherwise, a duplicate
+once, and a couple of intra-Goodreads links that didn't work.&lt;/p&gt;
+&lt;p&gt;I still have to clean up the file for 2022. I was getting annoyed with tracking
+myself so I didn't write reviews, but if it's for the blog I wouldn't mind
+adding a few notes. And I need to decide if I want to post my 2023 reviews as I
+go, or batch them in some way!&lt;/p&gt;</content><category term="Tech"></category><category term="python"></category></entry><entry><title>Book reviews: Year 2021</title><link href="https://www.jpichon.net/blog/2023/04/book-reviews-year-2021/" rel="alternate"></link><published>2023-04-25T22:38:13+01:00</published><updated>2023-04-25T22:38:13+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2023-04-25:/blog/2023/04/book-reviews-year-2021/</id><summary type="html">&lt;h2&gt;Bonds of Brass (The Bloodright Trilogy, #1) by Emily Skrutskie&lt;/h2&gt;
+&lt;p&gt;An easy-to-read space romance. The mutual pining starts strong from the start and it was just fun to read. The worldbuilding is super interesting and I really, really enjoyed how the politics and moral dilemmas are slowly introduced and explored …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Bonds of Brass (The Bloodright Trilogy, #1) by Emily Skrutskie&lt;/h2&gt;
+&lt;p&gt;An easy-to-read space romance. The mutual pining starts strong from the start and it was just fun to read. The worldbuilding is super interesting and I really, really enjoyed how the politics and moral dilemmas are slowly introduced and explored. What life is like when your country was conquered and colonised. There are no good compromises and you can feel how sick it makes the narrator feel, that no matter what decision they make people will get hurt and die. The Found Family vibes were excellent whenever they popped up but then again, see: moral dilemma getting in the way. Looking forward to the next volume after that ending! Not exactly a cliffhanger but certainly opens up a lot of interesting possibilities.&lt;/p&gt;
+&lt;h2&gt;Frédéric Cendrevent: L'autre côté des ombres, T2 by Noëmie Auke&lt;/h2&gt;
+&lt;p&gt;J'ai eu quelques difficultés au début à me remémorer les règles de ce monde tout en absorbant les nouvelles informations qui nous sont données, mais une fois tout mis en place (et qu'Allowin nous refait sa première apparition !) l'histoire m'a complètement absorbée. L'intrigue politique est intéressante mais c'est surtout l'évolution de Frédéric et de sa relation avec les autres (son loup, ses nouveaux cercles, et bien sûr Owin) que j'ai trouvé prenante. Voir sa volonté de décider de sa vie par et pour lui-même s'affirmer, et réaliser peu à peu que ce ne sont pas juste les autres qui lui mettent des bâtons dans les roues mais aussi lui-même. J'ai beaucoup aimé découvrir de nouveaux recoins de cet univers fascinant, rencontrer les autres personnages et leurs relations, entendre des explications d'événements mentionnés dans le premier volume sur lesquels je ne m'attendais pas à en apprendre plus (bonne surprise!!), et généralement voir tout ce petit monde faire de leur mieux pour se protéger les uns les autres a été un véritable plaisir. J'ai trouvé la conclusion très réconfortante. Enchanteur !&lt;/p&gt;
+&lt;h2&gt;A Deadly Education (The Scholomance, #1) by Naomi Novik&lt;/h2&gt;
+&lt;p&gt;A magic school without teachers or staff that is infested with monsters that kill many of the students before or during graduation... And where learning is a matter of survival. Incredible, fascinating worldbuilding. The characters are endearing in somewhat unusual ways, due to the kind of environment they are operating in. And seeing the outcasts and weirdos sort of slowly gravitate toward each other had a kind of found family vibe that I eagerly absorbed. It's hard work getting there though!&lt;br/&gt;&lt;br/&gt;I read this in one go and loved all of it. Which is why my review is short, because I am very tired now.&lt;/p&gt;
+&lt;h2&gt;Quit Like a Millionaire: No Gimmicks, Luck, or Trust Fund Required by Kristy Shen&lt;/h2&gt;
+&lt;p&gt;I found the methodical, systematic advice on how to choose (POT) very good and would recommend the method to all students or people considering a career change. Overall, very engaging writing style. As always, the concrete advice is north american-based (includes Canada this time, though!) and doesn't apply to different tax system, but the general advice ("The past doesn't matter") and other anecdotes and stories were all interesting and thought provoking.&lt;/p&gt;
+&lt;h2&gt;The Forty Rules of Love by Elif Shafak&lt;/h2&gt;
+&lt;p&gt;This is two stories in one, because someone is reading a book inside of it, and that book is about the poet Rumi and Shams of Tabriz. I admit I found it difficult at first to feel compassion toward Ella, the modern narrator who is reading book - until we get more of her perspective and suddenly I understood her better, and she broke my heart a little bit.&lt;br/&gt;&lt;br/&gt;It's a book about love, all kinds of love. Romantic, platonic, religious, toward the self... It's a spiritual book as well, one that gives you a lot to think about, the kind of thoughts you feel down in your soul.&lt;br/&gt;&lt;br/&gt;It's a book about people, and humanity, and human emotions - many of them beautiful, and a few others that are less pretty.&lt;br/&gt;&lt;br/&gt;Because the book within the book was focused on Shams and Rumi, I found it a little bit disappointing when we were missing the full "arc" for some of the characters who observe and float around them (especially Desert Rose), but I would still heartily recommend this story.&lt;/p&gt;
+&lt;h2&gt;Project Hail Mary by Andy Weir&lt;/h2&gt;
+&lt;p&gt;Although I prefer character-driven stories, I really enjoy Andy Weir's books. The characterisation is a bit weak in this book as well, in that despite the different backstory it feels like exactly the same main character as the other books, tone-wise, especially The Martian. But I actually don't mind the wry, sarcastic, self-deprecating American-type humour so it works for me. I think that covers what I thought were the weakest parts but then again, it's not the kind of story it was meant to be either. This is more plot-driven? Mystery-driven? And damn if that part isn't impeccably done, I was hooked right from the start. Slowly figuring out together with the protagonist what the hell is going on was really, really well done - and you have two storylines in a way, the current one and the flashbacks from back on Earth. There's always something you're wondering about, and the more you learn the more questions you have, but in a really fun and gripping way.&lt;br/&gt;&lt;br/&gt;And like, it's a desperate situation, certain death and a whole bunch of other things, but it's also, somehow, an incredibly hopeful story. Finding things to marvel about even in the face of crushing adversity because hey! This is space? Isn't this cool?! And there is so much joy in discovery and in science. There's a particular, very important event that happens about a third of the way into the book, maybe, and in any other story these days this would have been cause for terrifying story development, because cynicism and pessimism is the name of the game, but... not here. Super hopeful instead, and I appreciated that so much.&lt;br/&gt;&lt;br/&gt;There's something to be said about a story that's about finding delight in all the small, cool things that are going well even when faced with an overwhelmingly bad situation you can't change, especially these days. I really enjoyed this book and wholly recommend it.&lt;/p&gt;
+&lt;h2&gt;A Desolation Called Peace (Teixcalaan, #2) by Arkady Martine&lt;/h2&gt;
+&lt;p&gt;There is a large cast of characters for this book and it took me a while to find my bearings especially since it had been a while since the first book. As before, if you enjoy political intrigue you'll get your fill here, but the worldbuilding and character relationships are what sells this book to me just like its predecessor. The language aspect is still wonderful, the way speaking another language forces you to think differently, but even more so the... I'm not sure how to call it. The longing and fear and conflicted admiration for an Empire that would destroy you and your entire culture given half a chance is just fascinating and so well done, I really enjoyed it.&lt;br/&gt;&lt;br/&gt;A lot of the book sets things in place, and then it all falls together very quickly over the last quarter of the book - breathtaking! I enjoyed the resolution greatly.&lt;/p&gt;
+&lt;h2&gt;How to Fail at Almost Everything and Still Win Big: Kind of the Story of My Life by Scott Adams&lt;/h2&gt;
+&lt;p&gt;I really enjoyed it.&lt;/p&gt;
+&lt;h2&gt;Gideon the Ninth (The Locked Tomb, #1) by Tamsyn Muir&lt;/h2&gt;
+&lt;p&gt;It's a difficult book to review. The writing style is so dense and the atmosphere so grim. I mean, necromancers have an aesthetic to preserve I suppose, even necromancers in space. But so many &lt;i&gt;dense&lt;/i&gt; descriptions of skeletons and darkness and grime and black veils and... it's tough. It's tough and yet the narrator Gideon has such a great voice. She's not untouched by the grimness of the setting but she still always feels - out of place, out of place in a way that fits. So you'll read a beautiful description of a rotten space platform half-falling apart and in the same breath Gideon will describe the necromancer standing on it as having a "resting bitch face" and I'll be snorting but it doesn't pull you out of the story because it's &lt;i&gt;Gideon&lt;/i&gt; so it works. &lt;br/&gt;&lt;br/&gt;I found the whole cast of characters a bit difficult to keep up with, especially since they have too many names (I thought "the twins" and "the teenagers" referred to the same people for a confusing, embarrassingly long time) but I was still very invested in multiple characters, their relationships and the mystery of the plot. The aesthetic of everyone, everything, and especially the Ninth house is flawless, too. Just zoom in on that cover: black garb, skeleton face paint, and sunglasses. Hell yeah.&lt;br/&gt;&lt;br/&gt;(Yes, that's Gideon.)&lt;br/&gt;&lt;br/&gt;Anyway. Lesbian necromancers in space, go!!&lt;/p&gt;
+&lt;h2&gt;The Last Graduate (The Scholomance, #2) by Naomi Novik&lt;/h2&gt;
+&lt;p&gt;I really enjoyed it.&lt;/p&gt;
+&lt;h2&gt;Any Way the Wind Blows (Simon Snow, #3) by Rainbow Rowell&lt;/h2&gt;
+&lt;p&gt;I really enjoyed this conclusion to the trilogy. It's an easy read, great for my still pandemic-fuddled mind but I also liked the plotlines. The first book was all prophecies and Chosen Ones, the second book more about running away from your problems (road trip!) and facing new ones, and this third book... well, it's about what happens once the prophecies are done and dusted, once the characters have to face the end of their lives as they knew it and the trauma that goes with that, and come to terms with it. I quite liked it. The cast of characters is varied enough to keep the story engaging even if you don't like everyone as much and the glimpses into the worldbuilding were fun as well.&lt;/p&gt;
+&lt;h2&gt;Save the Cat! Writes a Novel by Jessica Brody&lt;/h2&gt;
+&lt;p&gt;Really interesting outlining method based on screenwriting techniques, using beat sheets. The first quarter of the book explains the method, then the meat of the book shows how it can be applied to different genres by breaking down well-known books into their beats. You can't help but start looking at movies differently after reading it because the beats become very noticeable.&lt;/p&gt;
+&lt;h2&gt;Harrow the Ninth (The Locked Tomb, #2) by Tamsyn Muir&lt;/h2&gt;
+&lt;p&gt;I'm a little bit torn as to how to review this book. I found it really difficult to get into. The prose is just as dense as in the first book, but a lot of the fun characters are either dead or MIA and that leaves only the grim, cynical, psychopathic, paranoid, backstabbing or generally unfun ones around. A couple might be okay but they know much more than the protagonist and the handwaving about "you couldn't understand" is as frustrating for the reader as for the protagonist - even as I recognise that they are right. I wouldn't have understood. I can't even begrudge the other characters  for being like they are (except maybe for the backstabbing one, who I still feel furious with) because the world is grim and everyone has seen some shit (tm).&lt;br/&gt;&lt;br/&gt;What kept me going was the plot and worldbuilding. The plot is very well weaved, with flashbacks and flashforwards like "the night before the emperor's murder" right from the first page that certainly arouse curiosity. Learning more about the worldbuilding of this strange solar system, the Nine Houses and their mythology and how it all connects to what is happening now was also very interesting.&lt;br/&gt;&lt;br/&gt;The last quarter of the book is a lot more engaging, and I even laughed out loud a few times in between all of the other hellish crap happening. Knowing the emperor would be murdered, it was really interesting to try to guess who would do it and changing my mind right until the end.&lt;br/&gt;&lt;br/&gt;The ending is somewhat open ended and I know there are more books coming, but I can't say I feel super satisfied with it. It's a complex story and I can see how it would have more impact if you managed to keep track of absolutely everything. I know people who re-read both books immediately upon finishing and I certainly understand why. We do learn about a lot of lore that sheds a different light on a number of events of the first book and many (most?) of the events of the second one. I'm not invested enough to do that because as interesting as it was, this is a story and world more grim than I usually enjoy. But it certainly makes for compelling storytelling, and even when I was hating or not caring about most characters on the page (that changes as we go) I still couldn't help but keep reading.&lt;/p&gt;
+&lt;h2&gt;Binti (Binti, #1) by Nnedi Okorafor&lt;/h2&gt;
+&lt;p&gt;A short story about grief, finding your people without disavowing your roots, building understanding across cultures. I enjoyed it.&lt;/p&gt;</content><category term="Misc"></category><category term="book review"></category></entry><entry><title>Book reviews: Year 2020</title><link href="https://www.jpichon.net/blog/2023/04/book-reviews-year-2020/" rel="alternate"></link><published>2023-04-25T22:38:13+01:00</published><updated>2023-04-25T22:38:13+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2023-04-25:/blog/2023/04/book-reviews-year-2020/</id><summary type="html">&lt;h2&gt;The Fractal Prince (Jean le Flambeur, #2) by Hannu Rajaniemi&lt;/h2&gt;
+&lt;p&gt;I look at my review for the first book and see delight and enthusiasm. Reading the Quantum Thief was &lt;b&gt;hard work&lt;/b&gt; but getting to understand the world and the characters that inhabit it was such a reward, brought such enchantment …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;The Fractal Prince (Jean le Flambeur, #2) by Hannu Rajaniemi&lt;/h2&gt;
+&lt;p&gt;I look at my review for the first book and see delight and enthusiasm. Reading the Quantum Thief was &lt;b&gt;hard work&lt;/b&gt; but getting to understand the world and the characters that inhabit it was such a reward, brought such enchantment. Reading the Fractal Prince felt like hard work and that's about it. I had some vague curiosity about one of the characters but everyone else felt so flat. Most interactions felt so negative. Most descriptions felt so confusing. There was nothing for me in this book. Maybe there is a particular mood that's required when deciding to read this series, and I didn't pick it up at the right time.&lt;/p&gt;
+&lt;h2&gt;Provenance (Imperial Radch) by Ann Leckie&lt;/h2&gt;
+&lt;p&gt;I loved the Ancillary trilogy, and I loved Leckie's fantasy book The Raven Tower as well. Provenance is a stand-alone novel set in the same universe as that first trilogy, but unrelated to it except for the way some events affect the news here. It has everything I enjoy in a book: compelling characters. Friendships and kindness. Sentences I can understand (*). There's plotting and politics and betrayals too of course.&lt;br/&gt;&lt;br/&gt;All those books had very different atmospheres to them and yet I enjoyed them all tremendously. I think Ann Leckie is going onto the list of authors whose books I know I can always look forward to.&lt;br/&gt;&lt;br/&gt;(*) (I am clearly still bitter about the Fractal Prince.)&lt;/p&gt;
+&lt;h2&gt;After the World by Máire Brophy&lt;/h2&gt;
+&lt;p&gt;This is a very short book so I'm a bit annoyed that some of the descriptions out there manage to spoil stuff that happens later. It threw me off when reading, because what I thought would be the start was more like the end. Anyway. All one needs to know is that this is the story of an orc after their side, which we would normally see as the bad guys, have lost the war. It's quite interesting and different from the usual fantasy stories, in that I don't think I had read any with an orc as the narrator before. I quite enjoyed it. I picked up the book after hearing the author speak at a panel about what makes a good villain when WorldCon was in Dublin, and I loved how enthusiastic she was about good bad characters. The book delivered, and I wouldn't mind seeing more.&lt;/p&gt;
+&lt;h2&gt;The Girl Who Drank The Moon by Kelly Barnhill&lt;/h2&gt;
+&lt;p&gt;This is a story about magic and love. It's hard not to feel your heart grow a little bit bigger as you read it.&lt;/p&gt;
+&lt;h2&gt;City of Stairs (The Divine Cities, #1) by Robert Jackson Bennett&lt;/h2&gt;
+&lt;p&gt;What a wonderful series. It's a bit more modern than I usually like my fantasy, with cars and some light industrialisation. But the setting is so original, and the characters so well-written it's an absolute pleasure to read. Everybody feels so multi-faceted. Complex humans with motivations that are not always straightforward despite what they may say or even believe themselves.&lt;br/&gt;&lt;br/&gt;The setting is a world in which the gods used to walk the earth, but then they were killed. A few decades have passed and their worshippers are still trying to cope with this new reality, dwelling in half-destroyed cities that were once held up by miracles that no longer work.&lt;/p&gt;
+&lt;h2&gt;The Richest Man in Babylon by George S. Clason&lt;/h2&gt;
+&lt;p&gt;A short book and nice way to learn about the basics of personal finances in parable form, if stories speak more to you. I wouldn't have hated it but the dialogues in thou/thee/thy/thine format hurt my head enough to distract from the message. This was compounded by the fact the edition I read (black and red hardcover) was riddled with typos, including footnotes not at the foot of the page but floating between paragraphs. If you decide to read it, pick any edition but this one.&lt;/p&gt;
+&lt;h2&gt;The Money Doctor 2020 by John Lowe&lt;/h2&gt;
+&lt;p&gt;I really enjoyed it.&lt;/p&gt;
+&lt;h2&gt;City of Blades (The Divine Cities, #2) by Robert Jackson Bennett&lt;/h2&gt;
+&lt;p&gt;This series continues to be amazing. The main narrator is Mulaghesh this time. I liked her from the first chapter of the first book, she's a great character and such a hardass.&lt;br/&gt;&lt;blockquote&gt;There's a silence. Mulaghesh holds up her hand. Sigrud, without a word, tosses her the jug. She catches it, pulls the cork out with her teeth, spits it into the fire, and takes a long pull.&lt;/blockquote&gt;&lt;br/&gt;In the main storyline we investigate a potentially miraculous ore, which raises some concerning questions on how dead the dead gods are exactly. I really enjoy how internally consistent the worldbuilding is. This is a world where reality-bending miracles are or were commonplace, but they still respond to rules and every new discovery feels logical once understood.&lt;/p&gt;
+&lt;h2&gt;City of Miracles (The Divine Cities, #3) by Robert Jackson Bennett&lt;/h2&gt;
+&lt;p&gt;I'm a little choked up after closing this book. I was planning to take a short break and read something else before reading the conclusion to the series, but first I read the Goodreads blurb for book #3 and wow. A beloved character was assassinated and we must find out who and why? I had to read immediately.&lt;br/&gt;&lt;br/&gt;It was good and a lot happens. A lot of reflection on war and the cycle of life. The ending scene wasn't unexpected but it is staying with me.&lt;br/&gt;&lt;br/&gt;This series really was excellent, with tight and original worldbuilding and a story that spans close to two decades. You don't always get to see what happens after the protagonist changes the world, the things that go right and the ones that go wrong, what becomes of everyone. There is a lot to think about. But probably it is the characters, all of them, their hopes and pain that will stay with me the most.&lt;/p&gt;
+&lt;h2&gt;You're Never Weird on the Internet (Almost) by Felicia Day&lt;/h2&gt;
+&lt;p&gt;Wow, so many relatable moments! Sweet and awkward. Laugh out loud hilarious at times.&lt;br/&gt;&lt;br/&gt;The chapter towards the end on losing your sense of community, your tribe was heartbreaking. Especially after so many chapters where crippling anxiety was mentioned. But still, I feel inspired after closing the book. It makes you remember your abandoned creative projects and go like "Hm... Yeah? Yeah??! HELL YEAH!" and that's a pretty cool feeling.&lt;/p&gt;
+&lt;h2&gt;Wayward Son (Simon Snow, #2) by Rainbow Rowell&lt;/h2&gt;
+&lt;p&gt;I think I like this sequel much better than the first book. The first book was fun, breaking a number of magic school/chosen one stereotypes and parts of the ending took me by surprise. But at the same time it was hard not to constantly compare with other magic school books, and on the way to the ending there were a number of plot points that didn't quite work for me and made reading frustrating.&lt;br/&gt;&lt;br/&gt;This book happens after. Quest complete, prophecy fulfilled - what happens after? We follow the characters as they decide to take on a road trip through America and end up having to face up to the broken parts of themselves. Parts that sometimes they didn't even realise were there but now seem oh-so-obvious even just remembering a little about the previous book. There's a lot of vulnerability and sweetness, and of course also a lot of hitting people in the face with axes as things start to go wrong. Sometimes the voices weren't distinctive enough and I had to jump back a couple pages to remember who the hell was narrating. Even then though, thoroughly enjoyable and I read it in one go.&lt;/p&gt;
+&lt;h2&gt;Good Economics for Hard Times : Better Answers to Our Biggest Problems by Abhijit V. Banerjee&lt;/h2&gt;
+&lt;p&gt;I think I would recommend this book to everyone. Written in 2019 by the winners of the Nobel Prize in Economics for their work on alleviating global poverty, the authors take a hard look at a number of issues and concerns that affect us all today: immigration, free trade, automation, climate change, inequality... and take us through the latest research. The conclusions are not always the obvious ones. The authors don't necessarily give us "the answer" either but they show us the data, how they interpreted it and the conclusions they drew from there. You are free to draw different ones but will be left with plenty of thought anyway. The overall picture is not rosy, but it is not hopeless either. The last 80 pages or so contain all the references to the various papers mentioned through the book, but it still reads easily.&lt;/p&gt;
+&lt;h2&gt;Last Colony by John Scalzi&lt;/h2&gt;
+&lt;p&gt;I was readying myself for a tale of colonisation, like, strange beasts and diseases, human drama, etc. I certainly got that, but really I was hooked on the story right from the start when the spaceship bringing them to the new colony gets sabotaged.&lt;br/&gt;&lt;br/&gt;Also appreciated the little asides to remind the reader about what happened in previous books since it's been years and I forgot. The humour was nice too. There are a number of events happening that are bigger than the characters themselves and their summaries are nearly news report-like, which was probably unavoidable but made the pace at a bit strange at times. Still, good political intrigue on top of everything else.&lt;/p&gt;
+&lt;h2&gt;The E-myth Revisited by Michael E. Gerber&lt;/h2&gt;
+&lt;p&gt;This is a book about small businesses. The format reminded me of the "Richest Man in Babylon" in places. An allegory with the paternal figure who's seen it all benevolently offering guidance to the lost lamb. Warm-hearted chuckles when they don't quite get it. Long monologues on both sides to illustrate understanding. I find this kind of format a bit difficult. However the ideas are interesting, and the later chapters describing systems and how to build them particularly so.&lt;/p&gt;
+&lt;h2&gt;L'autre côté des ombres by Noëmie Auke&lt;/h2&gt;
+&lt;p&gt;Quelle histoire merveilleuse. J'ai été fascinée par ce monde d'exorcistes dès les premières pages, terriblement curieuse d'en apprendre plus. Les courtes descriptions de créatures entre les chapitres sont très sympas et entre ça et la richesse des détails qui parsèment le roman, on sent qu'on entre dans un monde très recherché et bien plus grand que seule cette histoire peut nous faire découvrir.&lt;br/&gt;&lt;br/&gt;Les personnages sont attachants, sans être trop parfaits. Les mystères auxquels ils se confrontent, petits et grands, sont fascinants ; on se demande toujours ce qui va se passer après, s'il y a un lien avec ceci ou cela, et comment ça va se résoudre... J'ai vraiment passé un bon moment avec tout ce petit monde et j'ai fini le livre d'une traite.&lt;br/&gt;&lt;br/&gt;J'ai hâte de lire ce que l'auteure nous proposera d'autre dans le futur !&lt;/p&gt;
+&lt;h2&gt;This is How You Lose the Time War by Amal El-Mohtar and Max Gladstone&lt;/h2&gt;
+&lt;p&gt;Let me start with, this is one of the best titles ever. So enticing. I saw it pass through goodreads and I was like, "yeah clearly this is a book for me."&lt;br/&gt;&lt;br/&gt;And it was! Although I wasn't sure at the start. Fancy prose, I thought. Maybe I've been reading too much straightforward writing and that's why this is so jarring, so difficult.&lt;br/&gt;&lt;br/&gt;But this is way beyond attempts at appearing literary. Blue and Red are two agents in a war fought from so far downthread, with ways of life we can barely comprehend that they might as well be alien. They come from two different worlds, strands, universes and we feel that in the way every chapter and letter is written and woven and the metaphors are chosen. It's beautiful. Slowly in their words we learn to perceive the world the way they might, and the way they experience their love feels different and yet it is the same and also so much more.&lt;br/&gt;&lt;br/&gt;I started this book thinking, "4 stars because I kind of have to work at this" and I finished it thinking, "what a glorious 5 stars," with so many emotions still bursting through my seams.&lt;/p&gt;
+&lt;h2&gt;How to Write Lots, and Get Sh*t Done: The Art of Not Being a Flake by Jess Mountifield&lt;/h2&gt;
+&lt;p&gt;I really enjoyed it.&lt;/p&gt;
+&lt;h2&gt;Self-Editing On A Penny: A Comprehensive Guide by Ashlyn Forge&lt;/h2&gt;
+&lt;p&gt;A pleasant read, easy to finish in one go yet still jam-packed with useful advice that make it also useful as a reference. I'm not sure that it lives up to the 'comprehensive' part of title but it certainly approaches editing from many angles (plot structure, common grammar mistakes, line edits, ...) and gives you good ideas for approaching revisions when you can't figure out where to start. The examples are written especially for the book and illustrate the point of each piece of advice very well.&lt;/p&gt;
+&lt;h2&gt;Big Magic: Creative Living Beyond Fear by Elizabeth Gilbert&lt;/h2&gt;
+&lt;p&gt;A wonderful little book about creativity, full of hope and interesting thoughts. I didn't necessarily agree with every idea, not everything resonated with me but every section had something that made me think, consider. I really enjoyed the chapters around fear, around trust, around giving yourself permission to create. I liked the concept of dedication without ever taking yourself or art seriously. "Done is better than good" keeps floating around my mind and making a lot of sense, especially because something else in me really wants to oppose it. But still the concept resonates so deeply and I want to embrace it.&lt;br/&gt;&lt;br/&gt;A gentle, hopeful read that I think I will return to from time to time when I find myself lacking courage.&lt;/p&gt;
+&lt;h2&gt;Bird by Bird: Some Instructions on Writing and Life by Anne Lamott&lt;/h2&gt;
+&lt;p&gt;Life advice masquerading as writing advice, and sometimes the other way around. &lt;/p&gt;
+&lt;h2&gt;Network Effect (The Murderbot Diaries, #5) by Martha Wells&lt;/h2&gt;
+&lt;p&gt;A bit slow to start, I felt, and although I do enjoy tremendously the sarcastic parenthetical asides, the beginning really truly had a great many. Once the banter got properly started though, the story flowed a lot better for me and I enjoyed a lot getting to spend time again with those characters. Can't wait for the next book!&lt;/p&gt;
+&lt;h2&gt;On Writing: A Memoir of the Craft by Stephen King&lt;/h2&gt;
+&lt;p&gt;Whenever I see a rec list for writing books, this one always tops it. I even saw people say that if you can only read one book on writing, this should be the one.&lt;br/&gt;&lt;br/&gt;I think... maybe if you're a Stephen King fan, that's true, but if you're more neutral about him (I don't reach much horror), this book can get tough going at times. It's like, 4 or 5 different books. The first part is autobiographical, it's called "CV" but except for a couple of anecdotes, I found it difficult to stick with it at times. Then there's the Writer's Toolbox, which I thought I would enjoy but also found difficult to get through.&lt;br/&gt;&lt;br/&gt;Then comes the section of the book called "On Writing" - I loved that part! Deeply interesting, the metaphor of the story as a fossil to dig out and the different methods to approach it were really interesting. The part on research, leaving that until the second draft and using details for verisimilitude as opposed to accidentally writing a paper within the story... Interesting food for thoughts, and lots of other titbits like that.&lt;br/&gt;&lt;br/&gt;Then there was the story of his accident. Reading about the driver being described like a character was compelling, great storytelling in action again despite it being real. Then a bunch of book recommendations to finish things off.&lt;br/&gt;&lt;br/&gt;I think it's an interesting book for the "On Writing" section, and understanding how some writers work (no outline!). I just found everything around it a bit more difficult to get through.&lt;/p&gt;
+&lt;h2&gt;Uprooted by Naomi Novik&lt;/h2&gt;
+&lt;p&gt;What a wonderful book and story. It has the intriguing, unsettling, alluring atmosphere of an old fairytale, and the worldbuilding is so captivating and artfully done. Like, the story seems to start small although very mysterious, but as the story moves forward the world starts to feel larger and larger in captivating ways - it's very well done, like in such a way that the reader doesn't feel overwhelmed, and I enjoyed losing myself in it. Despite everything that is going on, it's easy to pace yourself reading the first half of the book - but when I got to the mid-point and the stakes suddenly feels so much higher and yet it's unclear what is going on, what is going wrong, and how much might be lost, and I just couldn't stop reading until I reached the ending. The ending was most certainly not what I expected, but I liked it, and I think some of the images painted in it will remain in my mind for a while. It fits the rest of the book well, and I enjoyed it a lot.&lt;/p&gt;</content><category term="Misc"></category><category term="book review"></category></entry></feed>

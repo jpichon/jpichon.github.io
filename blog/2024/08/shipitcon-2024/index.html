@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>ShipItCon 2024</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="To avoid taking a year again to (fail to) put my notes together, I decide to do it quickly and stick to a few thoughts and highlights. The 2024..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2024/08/shipitcon-2024/" rel="bookmark"
+           title="Permalink to ShipItCon 2024">ShipItCon 2024</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2024-08-30T21:58:00+01:00">
+                Published: Fri 30 August 2024
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/julie-pichon.html">Julie Pichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> </p>
+</footer><!-- /.post-info -->      <p>To avoid taking a year again to (fail to) put my notes together, I decide to do
+it quickly and stick to a few thoughts and highlights. The 2024 edition of
+<a href="https://shipitcon.com/">ShipItCon</a> happened today. This year's theme was "Flow." Many speakers
+mentioned ownership when talking about ways to reach flow.</p>
+<p>I haven't attended many conferences in the last couple of years, but maybe 90%
+of the people I talked to were also meeting their co-workers face-to-face for
+the first time at this event, despite working together for years. At least
+three different companies. I found it interesting. It doesn't look like there
+are many opportunities for teams to meet outside of conferences at the moment.</p>
+<p><img alt="ShipItCon welcome slide" src="https://www.jpichon.net/site_media/images/2024/shipitcon2024.jpg"></p>
+<h1>DevOps Topologies 10 years on: what have we learned about silos, collaboration, and flow? (Matthew Skelton)</h1>
+<p>The speaker kindly summarised his findings both at the start and the end of the
+talk: decouple teams and tech (not just defining an org structure, something
+more dynamic), but diffuse learning across the company (that can take the form
+of Lunch and Learns, blogs, Communities of Practice, guides, etc...)</p>
+<p>Reading recs:</p>
+<ul>
+<li>Gene Kim's books (the Phoenix Project, Accelerate, ...)</li>
+<li>SODOR, the State Of DevOps Reports</li>
+</ul>
+<h1>Organisation, Flow, and Architecture (Sam Newman)</h1>
+<p>What an incredibly dynamic and engaging speaker! The theme was generally how to
+reduce handoffs, which happens particularly when organisation are siloed.</p>
+<p>Conway's law: An organisation design systems that replicate the communication
+structure of that organisation.</p>
+<p>So if you have Taylorism-inspired silos with e.g. separate
+front-end/back-end/DB teams, the system will reproduce that.</p>
+<p>The solution is feature-based teams (micro-services are good to enable full
+ownership). Durable as opposed to initiative-based teams are also better as
+long-lived teams make better decisions about trade-offs (e.g. incurred tech
+debt, etc).</p>
+<h1>Data Driven Decisions to Improve Testing Flows (Heather Reid)</h1>
+<p>Using data to take risks. Differentiating between reversible and not reversible
+risks. The speaker used various examples based on her own experiences to
+illustrate the principle.</p>
+<p>For example: closing an old bug to remove noise is easily reversible if it
+turns out it shouldn't have been closed.</p>
+<p>If 1000s of users report a problem, it can feel like millions/all of your users
+are hitting the problem. But maybe when you look at the data it's 0.6% of the
+userbase, which is still bad but not world-ending.</p>
+<p>Or a really bad bug affecting 6 users using that phone model (out of millions)
+can probably be closed.</p>
+<p>Prioritise accordingly.</p>
+<h1>Observability 2.0 and other things (Charity Majors)</h1>
+<p>(The title isn't on the agenda and I forgot to write it down!)</p>
+<p>Tip for how to supercharge your career: join a high-performing team.</p>
+<p>Engineering should own the code in production.</p>
+<p>Observability is a property of complex systems.</p>
+<p>Observability-driven development means looking at your dashboards (as opposed
+to waiting for alerts/paging to bring them up). It's a constant conversation
+with code (including unstructured logs, not just metrics, because they provide
+CONTEXT). (Higher level: structured logs with trace ids you can follow end to
+end.)</p>
+<h1>Establishing a culture of ownership and observability at Phorest (Paweł Malon and Paul Dailly)</h1>
+<p>Interestingly, the speakers use Honeycomb which is the observability platform
+of the previous speaker. It was like seeing practical examples of the concepts
+detailed in the previous talk.</p>
+<p>The theme of engineering owning the code all the way to production came up
+again.</p>
+<p>And also, of linking engineering workflows to observability: deploying a change
+and seeing what difference it makes, and conversely using the insights gained
+from observing software behaviour on prod to find new bugs/improvements.</p>
+<p>Having a lot of metrics does create issues with the cost of storing all of that
+data, which is where sampling helps, although the speakers talked about the
+other problems you then have to deal with when sampling and how to manage them.</p>
+<h1>Go With The Flow? (Vessy Tasheva)</h1>
+<p>Play is a component of flow. Venn diagram of Play and Environment with Flow
+where the circles meet.</p>
+<p>Environment: must be safe even if there are constraints/discomfort. E.g. a
+leader having your back when working on a challenging project.</p>
+<p>Play is a way to be more authentic and creative. "Being" (which respects focus
+time) vs "Reacting" (which breaks flows and creates defensiveness).</p>
+<h1>Flow-etry in Motion: Navigating Cascades of Threat Data (Claire Burn)</h1>
+<p>Interesting twist to the talk! When the speaker submitted it, it was supposed
+to be about how their pivot to using Kubernetes and Google Cloud Platform
+enabled better flow in the team. But by the time the conference happened, they
+had reverted back to AWS and EC2!</p>
+<p>There was no "peak flow" to be found because Kubernetes wasn't the right tool
+to solve their problems (they needed finer grained OS control).</p>
+<p>Considerations around Learning Curve vs Velocity, especially when working as a
+smaller team (4 people). The management debt became too much.</p>
+<p>They did end up keeping Kotlin from this experiment, good for integration with
+other Java projects in the company.</p>
+<h1>The impact of Flow on various aspects of work (Panel discussion)</h1>
+<p><a href="https://en.wikipedia.org/wiki/Beat_Saber">Beat Saber</a> as a way to get into flow 😂</p>
+<p>Distributed teams are good for making the implicit explicit. Managing based on
+outcomes. The additional flexibility is good for everyone.</p>
+<p>Honeycomb has a quarterly "everyone works from home" week, up to the CEO. It's
+good to get distance from processes, etc. (I thought that was a refreshing
+contrast to all the Return To Office talk from the last couple of years.)</p>
+<p>Many problems are socio-technical: need a combination of tech and people
+solutions, not just one or the other.</p>
+<h1>Harnessing Developer Insights to maximise flow (Mihai Paun and Alma Tarfa)</h1>
+<p>Learned helplessness in companies: "we've always done it this way" "that's
+never going to work here."</p>
+<p>I really liked the picture of the Iceberg of Ignorance, from <a href="https://www.corporate-rebels.com/blog/iceberg-of-ignorance">Corporate
+Rebels</a>:</p>
+<p><img alt="Iceberg of Ignorance" src="https://www.jpichon.net/site_media/images/2024/iceberg-ignorance.jpg"></p>
+<p>Papercuts affecting flow tend not to surface in retrospectives.</p>
+<p>Solution: Plan - Do (gather data) - Check (target condition) - Act</p>
+<p>For example, they found their dev team struggled to reach flow state because of
+the number of meetings, so they decided to try setting up two no-meetings day
+(Monday, Wednesday) then gather data to see if that helped. Everyone involved
+in the four steps.</p>
+<p>Small changes toward reaching the bigger goal.</p>
+<p>Leaders: be gardeners, not mechanics.</p>
+<h1>From MLOps to AI Systems (Jim Dowling)</h1>
+<p>Most AI systems don't ship. This hasn't changed in the last few years.</p>
+<p>MLOps, LLMOps. He explained when he teaches a ML course, his students complete
+an AI project from scratch in 2 weeks. It doesn't need to be as complicated as
+30+ steps diagrams/consultants make it out to be.</p>
+<p>While looking for a link to the course, I came across this <a href="https://www.hopsworks.ai/post/mlops-to-ml-systems-with-fti-pipelines">detailed
+article</a> that goes into the details of the talk if that is of interest. And
+includes a link to the students' projects.</p>
+<h1>Finding personal flow (Patrick Kua)</h1>
+<p>Personal flow usually comes from:</p>
+<ul>
+<li>adding value</li>
+<li>learning</li>
+<li>having a lot of ownership (with support)</li>
+<li>a sense of progress</li>
+<li>applying the team's strengths</li>
+</ul>
+<p>The speaker used past experiences to illustrate various kind of very different
+environments that can lead to good flow. This actually linked back nicely to
+Vessy's earlier talk as well: challenging projects but in a safe
+environment/with support.</p>
+<p>One of the anecdotes I liked was when he was trying to remove himself as a
+bottleneck in a large project, he broke down the features, and asked if anyone
+would step up as feature leads for each of those. People had no problem
+volunteering and that also links back to ownership again. And feature-based
+teams.</p>
+<hr>
+<p>The disadvantage of putting up notes early is that the recordings are not yet
+available!</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

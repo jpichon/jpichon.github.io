@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - exams</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-exams.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2010-06-24T21:05:00+01:00</updated><entry><title>Book review: Sun Certified Programmer for Java 6 Study Guide, by Kathy Sierra and Bert Bates</title><link href="https://www.jpichon.net/blog/2010/06/scjp-6-study-guide-kathy-sierra-bert-bates/" rel="alternate"></link><published>2010-06-24T21:05:00+01:00</published><updated>2010-06-24T21:05:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-06-24:/blog/2010/06/scjp-6-study-guide-kathy-sierra-bert-bates/</id><summary type="html">&lt;p&gt;If you're studying for the SCJP exam, &lt;a class="reference external" href="http://www.amazon.co.uk/Certified-Programmer-Study-Guide-CX-310-065/dp/0071591060"&gt;this is **the**
+book&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The structure of the book is beautiful, although the chapters vary
+wildly in length. Every paragraph has bold, visible headings for easy
+navigation, there are side-bars of all sorts everywhere, the most useful
+being the &amp;quot;exam watch&amp;quot; which highlight …&lt;/p&gt;</summary><content type="html">&lt;p&gt;If you're studying for the SCJP exam, &lt;a class="reference external" href="http://www.amazon.co.uk/Certified-Programmer-Study-Guide-CX-310-065/dp/0071591060"&gt;this is **the**
+book&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The structure of the book is beautiful, although the chapters vary
+wildly in length. Every paragraph has bold, visible headings for easy
+navigation, there are side-bars of all sorts everywhere, the most useful
+being the &amp;quot;exam watch&amp;quot; which highlight some tricky parts of the exam. At
+the end of every chapter, there is a tremendously useful self-test
+section, broad enough to encompass most of the important concepts and
+exam tricks for that particular chapter.&lt;/p&gt;
+&lt;p&gt;The self-tests are fantastic to strengthen your knowledge, make the
+concepts and ideas stick and, very importantly, learn to watch out for
+the exam tricks and traps: missing semi-colons, missing exception
+handling (I find that one so nasty. From the mock exams, it seems most
+common in complex threading questions), instance variable read from
+static main(), discrete ++ increment of a final variable deep inside a
+loop...&lt;/p&gt;
+&lt;p&gt;Additionally, the book caters as much as possible to different styles of
+learning (and reading!), by repeating and summarising the same
+information in diagrams, exercises, tables, and full recaps with bullet
+points at the end of every chapter. It all gets very handy as the exam
+gets closer and you don't have time to dive in deeply anymore.&lt;/p&gt;
+&lt;p&gt;I liked the sparse &amp;quot;on the job&amp;quot; sidebars to highlight some of the
+differences between real life and the exam. The humour in the book
+doesn't distract and can make the reading flow more pleasantly, though
+if you're not interested in a topic nothing will help (file I/O in Java
+kills me... Perl, Perl, Perl!)&lt;/p&gt;
+&lt;p&gt;Form-wise, the book is big and thus cumbersome, but surprisingly light
+so not too painful to carry around. PDFs of every chapter are provided
+on the accompanying CD, though I wasn't impressed when trying them on a
+friend's Sony e-reader.&lt;/p&gt;
+&lt;p&gt;Note for Linux users: the quiz/mock exam software on the CD runs fine
+under Wine (the only one out of 3 SCJP training software products I
+tried! None of them written in Java, funnily enough.)&lt;/p&gt;
+</content><category term="Tech"></category><category term="book review"></category><category term="exams"></category><category term="java"></category></entry><entry><title>Certification</title><link href="https://www.jpichon.net/blog/2010/06/certification/" rel="alternate"></link><published>2010-06-22T21:10:00+01:00</published><updated>2010-06-22T21:10:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-06-22:/blog/2010/06/certification/</id><summary type="html">&lt;p&gt;I surface again, back from the land of studying and cramming. I decided
+to study for the SCJP (Sun Certified Java Programmer) exam, since that's
+what I spend my time doing at $dayjob (I might as well do it as best as
+I can!) Yesterday I passed the exam, yay …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I surface again, back from the land of studying and cramming. I decided
+to study for the SCJP (Sun Certified Java Programmer) exam, since that's
+what I spend my time doing at $dayjob (I might as well do it as best as
+I can!) Yesterday I passed the exam, yay!&lt;/p&gt;
+&lt;p&gt;I kinda like exams and certifications and courses in general (though if
+you'd asked me on Sunday I likely would have had something different to
+say!) They give a focus to my learning or simply give me the opportunity
+to look into a topic -- I'm interested in many many things and although
+I plan to learn about them all at some point, I can't learn everything
+at once. I was delighted when a JQuery course was organised in
+&lt;a class="reference external" href="http://www.tog.ie/"&gt;Tog&lt;/a&gt; earlier this year, it was the perfect
+opportunity to get a taste for it.&lt;/p&gt;
+&lt;p&gt;My usual process for learning a programming language usually starts like
+this:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Do something. I first used Perl when I had a huge QIF export where I
+needed to change the dates from DD/MM/YY to MM/DD/YY. Or maybe it was
+the other way around.&lt;/li&gt;
+&lt;li&gt;Or follow a tutorial to learn about it. Django looked so cool I had
+to try out their awesome, awesome tutorial.&lt;/li&gt;
+&lt;li&gt;Sometimes I'll pick up a book on the topic if I see a good
+recommendation, like &lt;em&gt;Learning Perl&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Very quickly though, I'll usually get interested in a problem or app and
+I'll drop the tutorials and books, simply using them as reference
+materials. It's the best way to learn, my practical knowledge expands
+but at the same time I'm likely to miss on things because I don't know
+they exist, or I don't realise I only have a partial understanding of a
+particular topic. In the end I only learn and see what I need for
+whatever task at hand, my knowledge can be fuzzy in places. I build a
+good feel for what's right and wrong but I don't necessarily understand
+precisely why. There could be a world of useful features I'm missing,
+especially if the new language has its own very specific quirks and
+shortcuts that don't always map one-to-one to other languages -- Perl
+comes to mind!&lt;/p&gt;
+&lt;p&gt;So that's why I enjoy studying for a certification or course, it gives
+me a different focus. Sometimes I even learn things that could end up
+being useful! ( ;) ) Some I'm sure will help me debug tough issues in
+the future, others I'll want to try out in my next project. I enjoy my
+new understanding of why some things work and why others don't.&lt;/p&gt;
+&lt;p&gt;Right now though, what I'm really looking forward to is having the time
+again to read other, non-Java related books!&lt;/p&gt;
+</content><category term="Tech"></category><category term="exams"></category><category term="java"></category></entry></feed>

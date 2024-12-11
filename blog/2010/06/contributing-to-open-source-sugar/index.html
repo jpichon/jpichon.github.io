@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Contributing to an open-source project: Sugar, a newcomer's perspective.</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="It's proven difficult to write up a summary of my experience as..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/06/contributing-to-open-source-sugar/" rel="bookmark"
+           title="Permalink to Contributing to an open-source project: Sugar, a newcomer's perspective.">Contributing to an open-source project: Sugar, a newcomer's perspective.</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-06-02T23:01:00+01:00">
+                Published: Wed 02 June 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/contributing/">contributing</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/sugar/">sugar</a> </p>
+</footer><!-- /.post-info -->      <p>It's proven difficult to write up a summary of my experience as
+someone-who's-not-a-hardcore-open-source-contributor-yet-but-certainly-plans-on-becoming-one.
+There's an easy dialogue-killing answer to any anecdote I relate: &quot;suck
+it up.&quot; I'm still trying to find a way to express all this though,
+because I'm sure there's something to learn from any newcomer's attempt
+to join a project, and also for my future self, when I'll be the one
+encouraging others to get involved with open-source and won't remember
+what it's like to stand on the edge, trying to understand how a
+community functions and how to find a space that fits you in there.</p>
+<p>So. Two anecdotes on contributing to Sugar, then a description of the
+incredible level of confusion I've been experiencing looking at the
+development process overhaul, followed by some ponderings on &quot;what's
+next&quot; which I better follow up on in the future :)</p>
+<div class="section" id="anecdote-1-fixing-a-bug-infoslicer">
+<h2>Anecdote 1: Fixing a bug (InfoSlicer)</h2>
+<p>Sugar (and the XO!) had been on my radar for a while. Last summer I
+finally made the time to set up sugar-jhbuild on my laptop and start
+trying it out for myself. I was enthusiastic but despite the very good
+wiki I wasn't sure where I could make myself the most useful (Sugar
+core? Making a new activity? Fixing activity bugs?). I find fixing bugs
+to be a fantastic way to get familiar with a project and a code base,
+however I wasn't sure how to pick one because every ticket in
+bugs.sugarlabs.org is already assigned to someone. It wasn't obvious to
+me whether I was welcome to work on any or if there was some sort of
+&quot;please may I work on this bug&quot; process or if assigned people might be
+protective of their code (I've met a few virulent &quot;It's my code/my bug!&quot;
+people before, albeit mostly in college.) The sugar-love bugs were few.</p>
+<p>Enters <a class="reference external" href="http://www.ossbarcamp.com/">OSS BarCamp</a> in September 2009,
+where I met <a class="reference external" href="http://www.lauracowen.co.uk/blog/2009/02/19/presentinginfoslicer-educational-software-for-sugar/">Laura
+Cowen</a>
+(thanks Jaime for pushing me to introduce myself!) who presented a
+lightning talk on a Sugar activity, InfoSlicer. Having met with a real
+person who was enthusiastic and sort of involved with Sugar, I thought
+I'd take a look at InfoSlicer. There was only one bug filed against it
+at the time, that quite seriously limited the capabilities of the
+activity. I set out to fix it. A few weeks later, I was attaching my
+patch to <a class="reference external" href="http://bugs.sugarlabs.org/ticket/1348">the ticket</a>,
+discreetly sweating over the associated comment. Someone replied less
+than a day later, suggesting a different approach inspired after another
+activity I hadn't heard about and before I had come back from work that
+same day, the current maintainer had accepted my patch and also
+suggested another way to do it that <strong>we</strong> could work on together. I was
+double-elated and thanks to the &quot;we&quot; felt very welcome.</p>
+<p>Unfortunately I hadn't enjoyed a lot working on the parsing code for
+InfoSlicer and despite promising myself I would update the activity with
+the new toolbar &quot;soon&quot; I didn't get back to it (yet, shall we say. I'd
+still like to do the toolbar thing sometime.)</p>
+</div>
+<div class="section" id="anecdote-2-fixing-bugs-pippy">
+<h2>Anecdote 2: Fixing bugs (Pippy)</h2>
+<p>'round the same time I had volunteered to show cool engineering things
+to a transition year (high school) student spending a few &quot;work
+experience&quot; days in my workplace. Although he was a bit older than the
+Sugar usual demographics, I gave him a usb stick with Sugar on it
+anyway: Sugar is <em>cool</em> and we all had unrealistic expectations of what
+a student could accomplish in a week. I thought perhaps he could get
+familiar with the project then investigate a bug. After he showed some
+curiosity about programming, I stirred him toward Pippy which he enjoyed
+greatly despite the occasional stracktraces some examples were
+invariably throwing up.</p>
+<p>Most of these issues had already been reported so I thought, &quot;I love
+Pippy, I'm gonna try to fix as many as I can.&quot; Along the way someone I
+know got a bit hyped up by my enthusiastic chanting of &quot;Sugar Sugar
+Sugar&quot; and had set out to fix a <a class="reference external" href="http://bugs.sugarlabs.org/ticket/347">serious display
+bug</a> in Pippy, #347, despite
+not being particularly fond of Python. I fixed a couple of other bugs,
+attached the patches to the relevant reports and hopped away, waiting
+for a review or update. Months went by. My friend lost interest. I began
+to pep myself up to ask about the Pippy maintainer on IRC. At the time I
+was trying to build up some confidence by getting my work accepted first
+before going about and expressing opinions or asking questions in public
+places (not the way people usually prefer things to be done in
+open-source, I realise.)</p>
+<p>A series of coincidences happened and I suddenly was offered commit
+access to the Pippy repository (<a class="reference external" href="https://www.jpichon.net/blog/2010/03/commit-access/">I mentioned that
+before.</a>) Despite
+the best intentions, I wasn't comfortable pushing my patches to the
+mainline merely because I had the power to do so ; I find it preferable
+and better for patches to be looked at and approved by people who know
+what they're doing. Eventually I pushed
+<a class="reference external" href="http://dev.sugarlabs.org/ticket/843">#843</a> myself into the mainline,
+as Chris Ball kindly reviewed it as part of an email thread. I still
+didn't feel so good about it, managing the statuses in Trac was unclear
+(both status + resolution must be marked as fixed/resolved?) and the bug
+never ended up assigned to me (it looked like Trac's button would change
+both the status and assignee so I wasn't sure and then it was too late,
+I didn't want to revert the status back.) Basically, as I've stated
+before, I was still in dear need of a mentor, and I still didn't reach
+out. I fully understand and accept that this is my fault for not
+communicating well enough with the community.</p>
+<p>Another bug I had worked on, I didn't fix correctly the first time
+around. When this was brought up I responded quickly, explaining where I
+thought the issue was and submitting <a class="reference external" href="http://bugs.sugarlabs.org/ticket/638">a second
+patch</a> a few days later. I
+won't be pushing this to mainline until someone else confirms it works,
+but I'm still happy with it because I proved (to myself, too) that in
+case of problems I am responsive and able to correct issues within a
+decent timeframe.</p>
+<p>Meanwhile, I was also getting fidgety about #347 as without it, Pippy is
+impossible to use on my Eee and likely on other netbooks. Eventually I
+asked, still within the bug tracker, if people would mind if I pushed
+the current (working) patch to the mainline. Other unrelated
+requirements had come up in the bug report discussion, much less serious
+than does-not-work-at-all-unless-patch-is-applied so it felt fair to
+push the partial patch. Lots of people had popped up the first time
+around and subscribed to that bug, but there was no answer.</p>
+<p>Not long after, someone submitted a duplicated patch to fix #347 as well
+as the other unaddressed aesthetic issues, using a new process still
+being defined. The patch got reviewed, no one mentioned the duplication
+(I didn't either) and soon after the patch was pushed to the mainline
+and the submitter became Pippy maintainer (yay! At least Pippy now has a
+more active maintainer, hopefully!)</p>
+<p>It's great to see movement on the Pippy front but I felt so disheartened
+by the duplication of that patch that had been sitting there for 7
+months and that I had to install manually on every stick I made for the
+past 7 months. I invested so much energy running in circles like a
+headless chicken, trying to do things right with my shiny commit access
+and waiting for feedback. I was very discouraged, the basic lesson
+being: I shouldn't have cared so much, especially when I knew I hadn't
+fully groked all the processes yet. This only (mostly?) happened because
+I did not reach out to the community through other channels than the bug
+tracker.</p>
+</div>
+<div class="section" id="the-new-process">
+<h2>The new process</h2>
+<p>While I'm at it, I'd like to mention what's going through my mind with
+regard to development process changes that SugarLabs has been setting up
+lately. Sugar is basically moving toward a mailing-list only style of
+communication to submit patches and I've been endlessly confused since
+this started. I'm not sure it's the most inclusive process either though
+I understand the problems it's trying to solve -- mostly lack of code
+reviews as illustrated by anecdote #2 :)</p>
+<p>I think it's more confusing than it used to be and makes the barrier to
+entry higher because as far as I can tell, now if I or anyone want to
+fix a bug:</p>
+<ul class="simple">
+<li>I go browse trac and find something interesting/that I care about to
+work on</li>
+<li>Now I also have to search through my inbox and patchwork (a new
+system I haven't totally figured out yet either, but it doesn't look
+any less confusing than my inbox with every patch/email thread thrown
+in there together) to see if the bug is already being worked on</li>
+<li>I need to join the mailing list to submit my patch (I'm assuming, but
+it's probably necessary if you want to be sure to get the answers) --
+that's quite intimidating and a commitment for &quot;just&quot; a patch. The
+process should also be easy for passersby if you want people to stick
+around.</li>
+</ul>
+<p>Reading the mailing list and the patches as they get submitted is also
+confusing because it's difficult to link a patch to a bug and understand
+the background/context. In most cases you'd have to go and dig it back
+up from the bug tracker.</p>
+<p>I know people are working on it at the moment, so I will wait for the
+wiki to be updated with clear instructions on how to effectively use the
+new process and systems, as the wiki still only describes how to work
+with trac. For now I'm watching perplexedly and wondering if really, the
+mailing list will be the only way for people to contribute in the
+future? I worry that the new process is inspired from projects that
+focus on hardcore technical people (Linux kernel) rather than others
+that also welcome passionate beginners
+(<a class="reference external" href="http://denise.dreamwidth.org/23600.html">Dreamwidth</a>).</p>
+<p>Other valid solutions were proposed to fix the patch review problem and
+I wish I had found the bug on re-creating a &quot;patch need review&quot;
+automatic weekly email so I could have tried to do my bit to help. Great
+Sugar contributors believe in the new process though, enough to invest
+their time setting it up and setting up the tools to make it work more
+conveniently. Now that I've finally written this post and digested what
+happened and where I messed up, I should be able to focus on how I can
+help the project with other contributions.</p>
+</div>
+<div class="section" id="what-now">
+<h2>What now?</h2>
+<p>Step back, start from scratch with a clean state of mind. Probably stay
+away from code contributions for a bit. Talk with the community. Stop
+messing up brilliant opportunities when introduced to cool people by
+email ;) Be more pushy when it comes to asking for feedback.</p>
+<p>Looking at the releases notes surrounding Fedora 13 and Mirabelle make
+me hopeful: the <a class="reference external" href="http://wiki.sugarlabs.org/go/Sugar_on_a_Stick">Sugar on a Stick (Mirabelle) wiki
+pages</a> are awesome,
+vibrant with optimism and that sub-community within the community sounds
+like a great way into main Sugar. Quote from their wiki I love: &quot;When
+you're stuck, and have spent more than 15 minutes trying to figure out
+what to do next [, email the mailing list / ask on IRC].&quot; The weekly
+meetings where newcomers are welcome sound like a good idea as well, it
+gives some structure rather than let new people break into the main
+group on their own (or so I imagine, I wasn't able to attend the first
+meeting last Monday.)</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

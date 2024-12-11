@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Installing Planet Venus | on Debian Lenny</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="I decided to try out Planet Venus over the week-end, a popular blog aggregation system. The end result is pretty neat, I really like how it works..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/06/installing-planet-venus/" rel="bookmark"
+           title="Permalink to Installing Planet Venus | on Debian Lenny">Installing Planet Venus  | on Debian Lenny</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-06-07T19:00:00+01:00">
+                Published: Mon 07 June 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->      <p>I decided to try out <a class="reference external" href="http://intertwingly.net/code/venus/">Planet
+Venus</a> over the week-end, a
+popular blog aggregation system. The end result is pretty neat, I really
+like how it works (though I must say it's the first blog aggregator I
+ever look into.)</p>
+<p>The
+<a class="reference external" href="http://intertwingly.net/code/venus/docs/installation.html">documentation</a>
+very sensibly insists on running all the unit tests before doing
+anything, which is where I encountered a couple of issues. One was a
+malformed HTML docs page which I ignored, the other one looked a bit
+more serious, a parsing error.</p>
+<pre class="literal-block">
+======================================================================
+ERROR: test_content_tag_soup (tests.test_reconstitute.ReconstituteTest)
+----------------------------------------------------------------------
+&lt;...snip traceback...&gt;
+HTMLParseError: malformed start tag, at line 1, column 14
+</pre>
+<div class="section" id="what-didn-t-make-a-difference">
+<h2>What didn't make a difference</h2>
+<ul class="simple">
+<li>Running the tests using python 2.4, 2.5, 2.6</li>
+<li>Reinstalling python-libxml2 (already installed, reinstall inspired by
+Venus devel mailing list archives)</li>
+<li>Reinstalling python-beautifulsoup</li>
+<li>Installing python-libxslt1, python-xml, python-lxml</li>
+</ul>
+<p>Trying to debug the exception a bit more closely, this looked like the
+usual BeautifulSoup issues that started occurring after the move to
+HTMLParser for Python 3.0 compatibility.</p>
+</div>
+<div class="section" id="what-worked-eventually">
+<h2>What worked, eventually</h2>
+<p>Warning: it's a hack :/ Some solutions suggest removing the
+python-beautifulsoup package, unfortunately I am unable to try this out
+as many things on my desktop depend on it.</p>
+<p>This <a class="reference external" href="http://lists.planetplanet.org/archives/devel/2009-June/001982.html">workaround posted on the mailing
+list</a>
+for a similar problem did work for me though. It involves looking for
+&quot;import BeautifulSoup&quot; in planet/vendor/feedparser.py and removing the
+statement.</p>
+<pre class="literal-block">
+try:
+    raise Exception # import BeautifulSoup
+except:
+    BeautifulSoup = None
+</pre>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>EuroPython 2011: Mark Ramm on Relate or !Relate</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Link: Talk description and video This talk was about non-relational databases. I didn't take a lot of notes :o) The most important morale is..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/07/europython-2011-relate-or-not-relate/" rel="bookmark"
+           title="Permalink to EuroPython 2011: Mark Ramm on Relate or !Relate">EuroPython 2011: Mark Ramm on Relate or !Relate</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-07-10T16:48:00+01:00">
+                Published: Sun 10 July 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/scaling/">scaling</a> </p>
+</footer><!-- /.post-info -->      <p>Link: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/relate-or-relate">Talk description and
+video</a></p>
+<p>This talk was about non-relational databases. I didn't take a lot of
+notes :o) The most important morale is probably: don't keep the mind
+altering substances and the tools in the same shed.</p>
+<p>With 2 decades of relational databases, they are pretty robust by now.
+They cover different spectrum of ACID compliance ; for instance MySQL is
+faster, Postgres is more reliable (though becoming faster... if you tick
+off the reliability options!). Relational databases are supposed to be
+normalised, except they are not really: there is also a spectrum here as
+databases tend to get denormalised for performance reasons.</p>
+<p>Amazon uses an &quot;eventually consistent&quot; system, which they can pull off
+by charging at shipping time only. Conflicts are rare, if 2 orders are
+placed and there is only 1 item available, someone might get a gift
+certificate instead.</p>
+<p>The NoSQL taxonomy includes wildly different tools that don't have much
+in common except for the fact that they don't use SQL: key-value stores,
+document stores, ....</p>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/CAP_theorem">CAP</a>: Consistency,
+Availability, Partition tolerance. You can have 1 or 2, not all 3.
+(Brewer's Theorem)</p>
+<p>There was only 1 Postgres database for all of SourceForge for a long
+time, while they were in the top 100 sites. Don't obsess about scale
+you'll never achieve.</p>
+<p>One of the question was about how difficult it is to convert from a
+relational database to NoSQL. The answer is, from something like
+Postgres to MongoDB, it wouldn't be that much work (he did suggest 4
+people 6 weeks though, which doesn't sound that trivial to me). Changing
+to Cassandra on the other hand would be a huge effort.</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

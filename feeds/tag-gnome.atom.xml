@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - gnome</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-gnome.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2015-04-19T03:52:00+01:00</updated><entry><title>Switching locale (Gnome 3, Fedora 20) | and making sure all the menus switch too</title><link href="https://www.jpichon.net/blog/2015/04/switching-locale-gnome-3/" rel="alternate"></link><published>2015-04-19T03:52:00+01:00</published><updated>2015-04-19T03:52:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2015-04-19:/blog/2015/04/switching-locale-gnome-3/</id><summary type="html">&lt;p&gt;In the spirit of immersion, I switched the laptop's language to
+Japanese, however most of the Gnome menus remained in English even after
+switching the System Language altogether, logging out etc. Another
+profile on the laptop shows the menus for Activities, etc in Japanese
+just fine so it wasn't a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the spirit of immersion, I switched the laptop's language to
+Japanese, however most of the Gnome menus remained in English even after
+switching the System Language altogether, logging out etc. Another
+profile on the laptop shows the menus for Activities, etc in Japanese
+just fine so it wasn't a missing package. I found the following in
+~/.profile, which seems a bit heavy-handed but does do the trick. For
+future reference:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+LANG=&amp;quot;ja_JP.UTF-8&amp;quot;
+LANGUAGE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_CTYPE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_NUMERIC=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_TIME=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_COLLATE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MONETARY=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MESSAGES=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_PAPER=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_NAME=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_ADDRESS=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_TELEPHONE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MEASUREMENT=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_IDENTIFICATION=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_ALL=
+&lt;/pre&gt;
+&lt;p&gt;Note on restarting X one is asked if they want to change the names for
+the default folders like Documents, etc. Personally I find it makes
+using the CLI a pain and don't recommend it.&lt;/p&gt;
+</content><category term="Tech"></category><category term="gnome"></category><category term="japanese"></category><category term="linux"></category><category term="open-source"></category></entry><entry><title>"Making Your First Contribution To Open-Source" | Irish Hackerspaces Week 2011</title><link href="https://www.jpichon.net/blog/2011/08/making-your-first-contribution-open-source/" rel="alternate"></link><published>2011-08-26T21:15:00+01:00</published><updated>2011-08-26T21:15:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-08-26:/blog/2011/08/making-your-first-contribution-open-source/</id><summary type="html">&lt;p&gt;&lt;img alt="A CG character in front of a laptop thinking of various open-source projects" src="https://www.jpichon.net/site_media/images/2011/contributing_to_open-source.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I gave my presentation on &amp;quot;making your first open-source contribution&amp;quot;
+in &lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt; yesterday evening and I think it went
+down well; I enjoyed delivering the talk and received positive comments
+about it afterwards -- although I do need to speak louder. I'm enjoying
+lightning talks! Now, what to speak about next …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="A CG character in front of a laptop thinking of various open-source projects" src="https://www.jpichon.net/site_media/images/2011/contributing_to_open-source.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;I gave my presentation on &amp;quot;making your first open-source contribution&amp;quot;
+in &lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt; yesterday evening and I think it went
+down well; I enjoyed delivering the talk and received positive comments
+about it afterwards -- although I do need to speak louder. I'm enjoying
+lightning talks! Now, what to speak about next... :)&lt;/p&gt;
+&lt;p&gt;The slides are available on
+&lt;a class="reference external" href="http://www.slideshare.net/jpichon/making-your-first-opensource-contribution"&gt;Slideshare&lt;/a&gt;
+(or
+&lt;a class="reference external" href="https://www.jpichon.net/site_media/presentations/2011_08_25_ContributingOSS_TOG.pdf"&gt;PDF&lt;/a&gt;).
+I also gave a
+&lt;a class="reference external" href="https://www.jpichon.net/site_media/presentations/2011_08_25_ContributingOSS_TOG_handout.pdf"&gt;hand-out&lt;/a&gt;
+to give people a chance to check out the links afterwards.&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;ul class="first"&gt;
+&lt;li&gt;&lt;ul class="first"&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;On another note I think an evening of lightning talks was generally well
+received, and there is some motivation to run another similar event in 2
+months. I'd love to have this be a regular thing. We need to be more
+strict on time-keeping though; surprisingly it seems people tend to feel
+bad for not speaking long enough, so they start just talking about
+random stuff or opening web links of cool things to show off... and
+interesting or not it feels like it's dragging on, particularly when one
+knows there's 3 or 4 more talks to go after.&lt;/p&gt;
+&lt;p&gt;I also got feedback from first time visitors that starting late &amp;quot;because
+people will be late anyway&amp;quot; makes it very sucky for people who don't
+know anyone yet, and also less likely that there'll be time to stick
+around after the talks to chat with the speakers and other attendees. I
+think we should start right on time next time (and to be fair, the 2 or
+3 people who arrived between 7:00pm (announced time) and 7:30pm (actual
+starting time) were members... Not worth waiting for!!). It'd be nice to
+start on time and then encourage people to stay with drinks and cookies,
+or otherwise we need to find a social butterfly that is good at
+integrating people. :-)&lt;/p&gt;
+&lt;p&gt;Writing this down now, so that I can remember it in 2 months. Any other
+comments on the evening from people who were there, or general
+suggestions and tips on organising lightning talks?&lt;/p&gt;
+&lt;p&gt;(&lt;a class="reference external" href="http://www.tog.ie/2011/08/irish-hackerspaces-week-2011/"&gt;Irish Hackerspaces Week isn't over yet! Check out our other
+events.&lt;/a&gt;)&lt;/p&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="events"></category><category term="gnome"></category><category term="ireland"></category><category term="tog"></category></entry><entry><title>Desktop Summit 2011 - Back!</title><link href="https://www.jpichon.net/blog/2011/08/desktop-summit-2011-back/" rel="alternate"></link><published>2011-08-10T16:47:00+01:00</published><updated>2011-08-10T16:47:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-08-10:/blog/2011/08/desktop-summit-2011-back/</id><summary type="html">&lt;p&gt;The &lt;a class="reference external" href="http://desktopsummit.org"&gt;Desktop Summit&lt;/a&gt; is finished for me,
+though it continues on with workshop and BoFs.&lt;/p&gt;
+&lt;p&gt;Berlin's weather is pretty much like Dublin's with regard to the sky
+colour and rain status; though maybe with a few more degrees :) I quite
+enjoyed the conference, very happy to meet again the friends …&lt;/p&gt;</summary><content type="html">&lt;p&gt;The &lt;a class="reference external" href="http://desktopsummit.org"&gt;Desktop Summit&lt;/a&gt; is finished for me,
+though it continues on with workshop and BoFs.&lt;/p&gt;
+&lt;p&gt;Berlin's weather is pretty much like Dublin's with regard to the sky
+colour and rain status; though maybe with a few more degrees :) I quite
+enjoyed the conference, very happy to meet again the friends I made last
+year as well as meeting up with new interesting people (btw, if you
+asked about my card, it was made at &lt;a class="reference external" href="http://www.moo.com"&gt;moo.com&lt;/a&gt;:
+get yours now!!). It was also great to meet a couple of cool people
+whose activities I follow online, though I'd like to find a way to
+introduce myself to someone I know who doesn't know me in a perhaps less
+creepy way :o) (Sorry people, it was still a pleasure!)&lt;/p&gt;
+&lt;p&gt;I found less elation in the technical talks this year than last, perhaps
+because it's difficult to beat the excitement of seeing Gnome 3 work for
+the first time, pre-release. The ones I attended were still interesting
+and hinted at all the solid work that is going on currently, and I
+really enjoyed the many discussions on outreach, collaboration between
+the projects and within projects, and all that goodness. The &lt;a class="reference external" href="https://www.desktopsummit.org/program/sessions/gnome-state-union"&gt;Gnome
+State of the
+Union&lt;/a&gt;
+talk was a hoot, and one of the highlights for me was when they showed a
+list of quotes from unhappy users, like &amp;quot;if they treat their users like
+idiots, they should expect idiots as users&amp;quot; (or something like this),
+etc., as we're seeing online at the moment. It turned out these quotes
+were about the Gnome &lt;strong&gt;2.0&lt;/strong&gt; release, and this makes me hopeful once the
+dust settles down, people will look at Gnome 3 with less of a knee-jerk
+reaction (and might still decide it's not for them, of course).&lt;/p&gt;
+&lt;p&gt;I will try to put together my notes into a few posts, though I can
+guarantee I won't have the time to be as thorough (or long-winded,
+depending on the point of view!) as in &lt;a class="reference external" href="https://www.jpichon.net/tag/europython/"&gt;my notes for
+EuroPython&lt;/a&gt; unless I get the
+flu or something.&lt;/p&gt;
+&lt;p&gt;Many thanks to the organisers for putting together the conference and
+parties, I had a great time -- s'y'all next year!&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="gnome"></category></entry><entry><title>Desktop Summit 2011</title><link href="https://www.jpichon.net/blog/2011/08/desktop-summit-2011/" rel="alternate"></link><published>2011-08-04T19:27:00+01:00</published><updated>2011-08-04T19:27:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2011-08-04:/blog/2011/08/desktop-summit-2011/</id><content type="html">&lt;p&gt;&lt;img alt="I'm going to the Desktop Summit 2011" src="https://www.jpichon.net/site_media/images/2011/desktop_summit.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Tomorrow morning at ass o'clock, I fly to Berlin to attend the &lt;a class="reference external" href="http://desktopsummit.org/"&gt;Desktop
+Summit&lt;/a&gt; \o/ The &lt;a class="reference external" href="https://desktopsummit.org/program"&gt;talk
+schedule&lt;/a&gt; looks fantastic and I'm
+really looking forward to it, and to meeting again the friendly people
+from last year as well as new friendly faces.&lt;/p&gt;
+&lt;p&gt;Woohoo! See you there!&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="gnome"></category></entry><entry><title>GUADEC: Inside the Banshee Awesome Factory</title><link href="https://www.jpichon.net/blog/2010/12/guadec-banshee/" rel="alternate"></link><published>2010-12-30T21:23:00+00:00</published><updated>2010-12-30T21:23:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-12-30:/blog/2010/12/guadec-banshee/</id><summary type="html">&lt;p&gt;Eek! Looking through my old drafts I can't believe I forgot to post
+this. I was waiting for the LWN link to become available to all -- but I
+guess it's never too late to share the awesome.&lt;/p&gt;
+&lt;p&gt;Article: &lt;a class="reference external" href="http://lwn.net/Articles/399296/"&gt;GUADEC: Banshee project reaches out for
+contributors&lt;/a&gt; (LWN)&lt;/p&gt;
+&lt;p&gt;This is the summary …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Eek! Looking through my old drafts I can't believe I forgot to post
+this. I was waiting for the LWN link to become available to all -- but I
+guess it's never too late to share the awesome.&lt;/p&gt;
+&lt;p&gt;Article: &lt;a class="reference external" href="http://lwn.net/Articles/399296/"&gt;GUADEC: Banshee project reaches out for
+contributors&lt;/a&gt; (LWN)&lt;/p&gt;
+&lt;p&gt;This is the summary of a very good talk, &amp;quot;&lt;a class="reference external" href="http://guadec.org/index.php/guadec/2010/paper/view/95"&gt;Inside the Banshee Awesome
+Factory&lt;/a&gt;&amp;quot; from
+last GUADEC, describing a number of things that the
+&lt;a class="reference external" href="http://banshee.fm/"&gt;Banshee&lt;/a&gt; project does to attract, welcome and
+nurture new contributors. For instance, they make sure to make plugin
+development fun, by automating away the boilerplate code -- kinda
+similar to starting a new project in Django (I wonder if that's
+something Sugar could use, to create new Activities...) Every
+contribution is equally appreciated, including the &amp;quot;typo&amp;quot; fixes that
+many people would start with. They're not afraid to welcome people with
+little programming knowledge, and walk them through how easy it is to
+fix a bug or add a new feature. I suspect this works fantastically to
+also attract good people who are not overly confident in their skills.
+The speaker wasn't scared to live-demo how easy it is to add a new
+feature, particularly if it's similar to something existing -- actually
+he was a very good speaker, if you have the time you might want to catch
+&lt;a class="reference external" href="http://www.flumotion.com/first_webm_live_event.php"&gt;the video of the talk
+itself&lt;/a&gt; (day 3,
+Paris room, 10:15-11:00).&lt;/p&gt;
+&lt;p&gt;A very cool stat I forgot about, that's in the article: in the last 2
+years and a half of development, Banshee has averaged &lt;strong&gt;one new
+contributor every week&lt;/strong&gt;. That is awesome! It's worth looking into what
+it is they're doing right.&lt;/p&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="events"></category><category term="gnome"></category></entry></feed>

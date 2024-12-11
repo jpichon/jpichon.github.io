@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - events</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-events.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2024-08-30T21:58:00+01:00</updated><entry><title>ShipItCon 2024</title><link href="https://www.jpichon.net/blog/2024/08/shipitcon-2024/" rel="alternate"></link><published>2024-08-30T21:58:00+01:00</published><updated>2024-08-30T21:58:00+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2024-08-30:/blog/2024/08/shipitcon-2024/</id><summary type="html">&lt;p&gt;To avoid taking a year again to (fail to) put my notes together, I decide to do
+it quickly and stick to a few thoughts and highlights. The 2024 edition of
+&lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; happened today. This year's theme was "Flow." Many speakers
+mentioned ownership when talking about ways to reach flow …&lt;/p&gt;</summary><content type="html">&lt;p&gt;To avoid taking a year again to (fail to) put my notes together, I decide to do
+it quickly and stick to a few thoughts and highlights. The 2024 edition of
+&lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; happened today. This year's theme was "Flow." Many speakers
+mentioned ownership when talking about ways to reach flow.&lt;/p&gt;
+&lt;p&gt;I haven't attended many conferences in the last couple of years, but maybe 90%
+of the people I talked to were also meeting their co-workers face-to-face for
+the first time at this event, despite working together for years. At least
+three different companies. I found it interesting. It doesn't look like there
+are many opportunities for teams to meet outside of conferences at the moment.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ShipItCon welcome slide" src="https://www.jpichon.net/site_media/images/2024/shipitcon2024.jpg"&gt;&lt;/p&gt;
+&lt;h1&gt;DevOps Topologies 10 years on: what have we learned about silos, collaboration, and flow? (Matthew Skelton)&lt;/h1&gt;
+&lt;p&gt;The speaker kindly summarised his findings both at the start and the end of the
+talk: decouple teams and tech (not just defining an org structure, something
+more dynamic), but diffuse learning across the company (that can take the form
+of Lunch and Learns, blogs, Communities of Practice, guides, etc...)&lt;/p&gt;
+&lt;p&gt;Reading recs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gene Kim's books (the Phoenix Project, Accelerate, ...)&lt;/li&gt;
+&lt;li&gt;SODOR, the State Of DevOps Reports&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Organisation, Flow, and Architecture (Sam Newman)&lt;/h1&gt;
+&lt;p&gt;What an incredibly dynamic and engaging speaker! The theme was generally how to
+reduce handoffs, which happens particularly when organisation are siloed.&lt;/p&gt;
+&lt;p&gt;Conway's law: An organisation design systems that replicate the communication
+structure of that organisation.&lt;/p&gt;
+&lt;p&gt;So if you have Taylorism-inspired silos with e.g. separate
+front-end/back-end/DB teams, the system will reproduce that.&lt;/p&gt;
+&lt;p&gt;The solution is feature-based teams (micro-services are good to enable full
+ownership). Durable as opposed to initiative-based teams are also better as
+long-lived teams make better decisions about trade-offs (e.g. incurred tech
+debt, etc).&lt;/p&gt;
+&lt;h1&gt;Data Driven Decisions to Improve Testing Flows (Heather Reid)&lt;/h1&gt;
+&lt;p&gt;Using data to take risks. Differentiating between reversible and not reversible
+risks. The speaker used various examples based on her own experiences to
+illustrate the principle.&lt;/p&gt;
+&lt;p&gt;For example: closing an old bug to remove noise is easily reversible if it
+turns out it shouldn't have been closed.&lt;/p&gt;
+&lt;p&gt;If 1000s of users report a problem, it can feel like millions/all of your users
+are hitting the problem. But maybe when you look at the data it's 0.6% of the
+userbase, which is still bad but not world-ending.&lt;/p&gt;
+&lt;p&gt;Or a really bad bug affecting 6 users using that phone model (out of millions)
+can probably be closed.&lt;/p&gt;
+&lt;p&gt;Prioritise accordingly.&lt;/p&gt;
+&lt;h1&gt;Observability 2.0 and other things (Charity Majors)&lt;/h1&gt;
+&lt;p&gt;(The title isn't on the agenda and I forgot to write it down!)&lt;/p&gt;
+&lt;p&gt;Tip for how to supercharge your career: join a high-performing team.&lt;/p&gt;
+&lt;p&gt;Engineering should own the code in production.&lt;/p&gt;
+&lt;p&gt;Observability is a property of complex systems.&lt;/p&gt;
+&lt;p&gt;Observability-driven development means looking at your dashboards (as opposed
+to waiting for alerts/paging to bring them up). It's a constant conversation
+with code (including unstructured logs, not just metrics, because they provide
+CONTEXT). (Higher level: structured logs with trace ids you can follow end to
+end.)&lt;/p&gt;
+&lt;h1&gt;Establishing a culture of ownership and observability at Phorest (Paweł Malon and Paul Dailly)&lt;/h1&gt;
+&lt;p&gt;Interestingly, the speakers use Honeycomb which is the observability platform
+of the previous speaker. It was like seeing practical examples of the concepts
+detailed in the previous talk.&lt;/p&gt;
+&lt;p&gt;The theme of engineering owning the code all the way to production came up
+again.&lt;/p&gt;
+&lt;p&gt;And also, of linking engineering workflows to observability: deploying a change
+and seeing what difference it makes, and conversely using the insights gained
+from observing software behaviour on prod to find new bugs/improvements.&lt;/p&gt;
+&lt;p&gt;Having a lot of metrics does create issues with the cost of storing all of that
+data, which is where sampling helps, although the speakers talked about the
+other problems you then have to deal with when sampling and how to manage them.&lt;/p&gt;
+&lt;h1&gt;Go With The Flow? (Vessy Tasheva)&lt;/h1&gt;
+&lt;p&gt;Play is a component of flow. Venn diagram of Play and Environment with Flow
+where the circles meet.&lt;/p&gt;
+&lt;p&gt;Environment: must be safe even if there are constraints/discomfort. E.g. a
+leader having your back when working on a challenging project.&lt;/p&gt;
+&lt;p&gt;Play is a way to be more authentic and creative. "Being" (which respects focus
+time) vs "Reacting" (which breaks flows and creates defensiveness).&lt;/p&gt;
+&lt;h1&gt;Flow-etry in Motion: Navigating Cascades of Threat Data (Claire Burn)&lt;/h1&gt;
+&lt;p&gt;Interesting twist to the talk! When the speaker submitted it, it was supposed
+to be about how their pivot to using Kubernetes and Google Cloud Platform
+enabled better flow in the team. But by the time the conference happened, they
+had reverted back to AWS and EC2!&lt;/p&gt;
+&lt;p&gt;There was no "peak flow" to be found because Kubernetes wasn't the right tool
+to solve their problems (they needed finer grained OS control).&lt;/p&gt;
+&lt;p&gt;Considerations around Learning Curve vs Velocity, especially when working as a
+smaller team (4 people). The management debt became too much.&lt;/p&gt;
+&lt;p&gt;They did end up keeping Kotlin from this experiment, good for integration with
+other Java projects in the company.&lt;/p&gt;
+&lt;h1&gt;The impact of Flow on various aspects of work (Panel discussion)&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Beat_Saber"&gt;Beat Saber&lt;/a&gt; as a way to get into flow 😂&lt;/p&gt;
+&lt;p&gt;Distributed teams are good for making the implicit explicit. Managing based on
+outcomes. The additional flexibility is good for everyone.&lt;/p&gt;
+&lt;p&gt;Honeycomb has a quarterly "everyone works from home" week, up to the CEO. It's
+good to get distance from processes, etc. (I thought that was a refreshing
+contrast to all the Return To Office talk from the last couple of years.)&lt;/p&gt;
+&lt;p&gt;Many problems are socio-technical: need a combination of tech and people
+solutions, not just one or the other.&lt;/p&gt;
+&lt;h1&gt;Harnessing Developer Insights to maximise flow (Mihai Paun and Alma Tarfa)&lt;/h1&gt;
+&lt;p&gt;Learned helplessness in companies: "we've always done it this way" "that's
+never going to work here."&lt;/p&gt;
+&lt;p&gt;I really liked the picture of the Iceberg of Ignorance, from &lt;a href="https://www.corporate-rebels.com/blog/iceberg-of-ignorance"&gt;Corporate
+Rebels&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Iceberg of Ignorance" src="https://www.jpichon.net/site_media/images/2024/iceberg-ignorance.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Papercuts affecting flow tend not to surface in retrospectives.&lt;/p&gt;
+&lt;p&gt;Solution: Plan - Do (gather data) - Check (target condition) - Act&lt;/p&gt;
+&lt;p&gt;For example, they found their dev team struggled to reach flow state because of
+the number of meetings, so they decided to try setting up two no-meetings day
+(Monday, Wednesday) then gather data to see if that helped. Everyone involved
+in the four steps.&lt;/p&gt;
+&lt;p&gt;Small changes toward reaching the bigger goal.&lt;/p&gt;
+&lt;p&gt;Leaders: be gardeners, not mechanics.&lt;/p&gt;
+&lt;h1&gt;From MLOps to AI Systems (Jim Dowling)&lt;/h1&gt;
+&lt;p&gt;Most AI systems don't ship. This hasn't changed in the last few years.&lt;/p&gt;
+&lt;p&gt;MLOps, LLMOps. He explained when he teaches a ML course, his students complete
+an AI project from scratch in 2 weeks. It doesn't need to be as complicated as
+30+ steps diagrams/consultants make it out to be.&lt;/p&gt;
+&lt;p&gt;While looking for a link to the course, I came across this &lt;a href="https://www.hopsworks.ai/post/mlops-to-ml-systems-with-fti-pipelines"&gt;detailed
+article&lt;/a&gt; that goes into the details of the talk if that is of interest. And
+includes a link to the students' projects.&lt;/p&gt;
+&lt;h1&gt;Finding personal flow (Patrick Kua)&lt;/h1&gt;
+&lt;p&gt;Personal flow usually comes from:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;adding value&lt;/li&gt;
+&lt;li&gt;learning&lt;/li&gt;
+&lt;li&gt;having a lot of ownership (with support)&lt;/li&gt;
+&lt;li&gt;a sense of progress&lt;/li&gt;
+&lt;li&gt;applying the team's strengths&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The speaker used past experiences to illustrate various kind of very different
+environments that can lead to good flow. This actually linked back nicely to
+Vessy's earlier talk as well: challenging projects but in a safe
+environment/with support.&lt;/p&gt;
+&lt;p&gt;One of the anecdotes I liked was when he was trying to remove himself as a
+bottleneck in a large project, he broke down the features, and asked if anyone
+would step up as feature leads for each of those. People had no problem
+volunteering and that also links back to ownership again. And feature-based
+teams.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;The disadvantage of putting up notes early is that the recordings are not yet
+available!&lt;/p&gt;</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category></entry><entry><title>ShipItCon 2023</title><link href="https://www.jpichon.net/blog/2024/08/shipitcon-2023/" rel="alternate"></link><published>2024-08-28T20:12:00+01:00</published><updated>2024-08-28T20:12:00+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2024-08-28:/blog/2024/08/shipitcon-2023/</id><summary type="html">&lt;p&gt;With &lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; 2024 fast approaching (in 2 days!!), it's time for me to
+admit I will never finish writing up my notes from last year's and just post
+what I do have. Perhaps this year my note-taking skills will improve?&lt;/p&gt;
+&lt;p&gt;ShipItCon is a small non-profit conference in Dublin that focuses …&lt;/p&gt;</summary><content type="html">&lt;p&gt;With &lt;a href="https://shipitcon.com/"&gt;ShipItCon&lt;/a&gt; 2024 fast approaching (in 2 days!!), it's time for me to
+admit I will never finish writing up my notes from last year's and just post
+what I do have. Perhaps this year my note-taking skills will improve?&lt;/p&gt;
+&lt;p&gt;ShipItCon is a small non-profit conference in Dublin that focuses on Software
+Delivery. The conference is a single track on a single day, and the theme in
+2023 was "The Unknown" (observability came up A LOT!). Here are of a few of the
+highlights, from my perspective (and from my very, very partial notes).&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://shipitcon.com/recordings/?_sfm_year=2023"&gt;2023 recordings&lt;/a&gt; are available now.&lt;/p&gt;
+&lt;h2&gt;Keynote: Dr Norah Patten&lt;/h2&gt;
+&lt;p&gt;Inspiring journey to become Ireland's first astronaut! Also very
+impressive and massive amount of outreach work. Including writing a
+children's book, &lt;a href="https://app.thestorygraph.com/books/fbb5ee56-d40e-48f3-b2d2-34c7e84493e0"&gt;Shooting for the Stars&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;I liked how she broke down several stages of her life into categories:
+Influences (e.g. teachers, family) / Role models / Peers / Experience
+(e. g. a visit to NASA as a child), and how each contributed and came
+together to allow her to come to where she is, now.&lt;/p&gt;
+&lt;p&gt;Some cool outreach projects I didn't know about:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using &lt;a href="https://en.wikipedia.org/wiki/Nanoracks"&gt;Nanoracks&lt;/a&gt;, students plan experiments for astronauts then examine
+  the results.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://possum13.org/about/"&gt;PoSSUM 13&lt;/a&gt; for researchers, and the microgravity challenge for payload
+  experiments in space/suborbital/microgravity. High school students apply with
+  detailed plans of the science experiment they want to run, and if successful
+  get to build the payload themselves with mentoring, etc.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;What's Slowing Your Team Down? (Laura Tacho)&lt;/h2&gt;
+&lt;p&gt;After observing hundreds of teams, the speaker found that every team has the
+same problems, divided into three categories: projects, processes, people.&lt;/p&gt;
+&lt;p&gt;The speaker uses thousands of metrics to determine issues. Tracking doesn't
+solve the problem but it helps with tracking progress as well as "quantify
+sentiment" which I found really interesting. In general, I found this talk
+incredibly informative and valuable, and I recommend the recording.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Projects&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Too much work in progress&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is the biggest problems for most teams. It causes issues with getting
+things done or finishing things.&lt;/p&gt;
+&lt;p&gt;Measures that can help: number of projects per person (engineer cognitive
+load), ...&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lack of prioritisation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;No means "not now"; yes means "forever" (with an every increasing maintenance
+cost).&lt;/p&gt;
+&lt;p&gt;The goal should be specific enough that teams can easily say no to things.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. Process&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Slow feedback (from people or machines)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Not enough focus time&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Length and frequency of focus time chunks, number of meetings where something
+is actually at stake, ...&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. People&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unclear expectations&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Giving expectations vs fear of micromanagement.
+&lt;br/&gt;Receiving expectations vs fear of seeming incompetent, psychologically
+unsafe teams.
+&lt;br/&gt; (How this can set up a negative circle where one lead to the other and
+back)&lt;/p&gt;
+&lt;p&gt;Reading recommendations: "Accelerate" (about DORA metrics), the SPACE of
+Developer Productivity, &lt;a href="https://queue.acm.org/detail.cfm?id=3595878"&gt;DevEx: What Actually Drives Productivity&lt;/a&gt;
+(interesting, although at least one of the main author is selling something
+related).&lt;/p&gt;
+&lt;p&gt;I imagine the recording is available now, and the &lt;a href="https://shipitcon.com/wp-content/uploads/2023/09/2-Laura-Tacho-Whats-Slowing-Your-Team-Down_-ShipItCon-2023.pptx"&gt;slides&lt;/a&gt; are also
+interesting for a more detailed summary with many more examples of measures for
+each category, and a link to the kind of developer survey they used to
+"quantify sentiment."&lt;/p&gt;
+&lt;h2&gt;Building scalable GenAI Retrievial Augmented Generation Platforms (Mihai Criveti)&lt;/h2&gt;
+&lt;p&gt;LLM and their limitations. Text generation, doesn't learn from interactions, AI
+function to predict the next word, doesn't access the Internet.&lt;/p&gt;
+&lt;p&gt;Models with 70 billions parameters cost $20k/month dedicated GPU instance on
+Amazon.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://shipitcon.com/wp-content/uploads/2023/09/3-Mihai-Criveti-Retrieval-Augmented-Generation-v3.pdf"&gt;Slides&lt;/a&gt; with more information on this works and the limitations the speaker
+found.&lt;/p&gt;
+&lt;h2&gt;How to Make Your Automation a Better Team Player (Laura Nolan)&lt;/h2&gt;
+&lt;p&gt;This felt particularly relevant to my work. The talk was really engaging
+because the speaker always links every issue back to famous incidents or
+incidents she personally experienced. The &lt;a href="https://shipitcon.com/wp-content/uploads/2023/09/4-Laura-Nolan-Making-your-Automation-a-Better-Team-Player.pptx"&gt;slides&lt;/a&gt; also include these
+examples.&lt;/p&gt;
+&lt;p&gt;"Joint Cognitive Systems" where computers and humans collaborate on cognitive
+work.&lt;/p&gt;
+&lt;p&gt;Paper recommendation: &lt;a href="https://en.wikipedia.org/wiki/Ironies_of_Automation"&gt;Ironies of Automation&lt;/a&gt; by Lisanne Bainbridge. 40yo
+paper and these problems still haven't been solved!&lt;/p&gt;
+&lt;p&gt;The problem described is like this:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The easy stuff is automated first&lt;/li&gt;
+&lt;li&gt;New people only ever learn the hard stuff, and develop a partial
+   mental model of how things work&lt;/li&gt;
+&lt;li&gt;Life becomes harder for operators because they need to learn both
+   how things work + how the automation works.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;We are doing a bad job if the operator can shoot themselves in the foot with
+our tools.&lt;/p&gt;
+&lt;p&gt;Two anti-patterns to avoid!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. Automation surprises&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Automation through using a lot of scripts, tools, cronjobs is hard to
+manage. Centralising into a self-running/autonomous automation helps, where
+possible.&lt;/p&gt;
+&lt;p&gt;The behaviour should be as simple and as predictable as possible.&lt;/p&gt;
+&lt;p&gt;Unattended upgrades are a bad idea, silent and deadly.&lt;/p&gt;
+&lt;p&gt;Incident examples (although there are many! Linked in the slides, all
+informative):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A &lt;a href="https://firefish.social/notes/9iqefgi8rzfksnqc"&gt;routine GitOps operation&lt;/a&gt; (link now defunct :() that caused a
+  namespace to be deleted when ArgoCD system lost visibility on the yaml,
+  bringing down the entire site.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.datadoghq.com/blog/2023-03-08-multiregion-infrastructure-connectivity-issue/"&gt;Unattended upgrade disaster&lt;/a&gt; at DataDog&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2. Recommendation systems (e.g. to assist in troubleshooting.)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;They make it harder to generate alternative hypothesis. Using softer language
+may help, like "in the past, problems like this were caused by X."&lt;/p&gt;
+&lt;p&gt;Tools as amplifiers: help with understanding systems, as opposed to providing
+suggestions. They shouldn't hide complexity. Help operators to build a mental
+model of the system.&lt;/p&gt;
+&lt;p&gt;The &lt;a href="https://shipitcon.com/wp-content/uploads/2023/09/4-Laura-Nolan-Making-your-Automation-a-Better-Team-Player.pptx"&gt;slides&lt;/a&gt; include links to more advice and lots of incident examples.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;And that's it, because the talks were too interesting and I'm apparently unable
+to be concise when taking notes. The conference is really excellent at inviting
+deeply knowledgeable, deeply interesting speakers, and I'm looking forward to
+the next one. Thankfully I won't have to wait long ;)&lt;/p&gt;</content><category term="Tech"></category><category term="events"></category></entry><entry><title>UXDX 2018</title><link href="https://www.jpichon.net/blog/2019/10/uxdx-2018/" rel="alternate"></link><published>2019-10-07T07:24:00+01:00</published><updated>2019-10-07T07:24:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2019-10-07:/blog/2019/10/uxdx-2018/</id><summary type="html">&lt;p&gt;Whoops! Clearly I'm never going to finish writing up my notes for the
+conference last year. Better post what I got even if incomplete, before the
+next one begins :-) I couldn't get a discounted ticket this year and won't be
+attending. Have fun, everyone there!&lt;/p&gt;
+&lt;p&gt;I was lucky enough to …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Whoops! Clearly I'm never going to finish writing up my notes for the
+conference last year. Better post what I got even if incomplete, before the
+next one begins :-) I couldn't get a discounted ticket this year and won't be
+attending. Have fun, everyone there!&lt;/p&gt;
+&lt;p&gt;I was lucky enough to be able to attend &lt;a class="reference external" href="https://uxdxconf.com/"&gt;UXDX&lt;/a&gt; this
+year as well, thanks to a discounted ticket and my employer kindly allowing me
+the day off. The venue was again the RDS, with the lovely room that's lined up
+with actual real books.&lt;/p&gt;
+&lt;p&gt;UXDX is an interesting conferences, that aims to bring down barriers between
+User Experience and Developer Experience people. The conference has expanded
+this year, now covering two days. I was happy to see some issues I had with the
+conference last year resolved. For example, although the stated goal is to
+bring together UX and DX people, improve collaboration, etc, the tracks were
+completely separate. Worst for the DX-centred talks, the &amp;quot;room&amp;quot; was a stage at
+the back of the exhibition hall and all the noise that entails. This year, the
+separation between the two tracks was labelled &amp;quot;Vision&amp;quot; and &amp;quot;Execution&amp;quot; which
+made it easier to have talks mixing everything together, and also the Execution
+room had a proper room with doors that close. The room was larger than the
+section assigned last year too, and always full whenever I peeked in. Both
+tracks were always busy. The exhibition hall seemed pretty empty outside of the
+breaks, but there were plenty of those - staggered to lessen the lunch/coffee
+rush.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="51%" /&gt;
+&lt;col width="49%" /&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td rowspan="2"&gt;&lt;img alt="Library room" src="https://www.jpichon.net/site_media/images/2018/RDS.jpg" style="width: 330.0px; height: 247.50000000000003px;" /&gt;&lt;/td&gt;
+&lt;td rowspan="2"&gt;&lt;img alt="Books" src="https://www.jpichon.net/site_media/images/2018/RDS_books.jpg" style="width: 330.0px; height: 247.50000000000003px;" /&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There was a handful of talks I was looking forward to, some met my expectations
+and others turned out different. Many other good surprises. I'll summarise some
+of the talks I enjoyed the most and only include my key takeaways for
+others. This doesn't mean any of it was the actual point or meat of the talk,
+more like the insights that were new to me personally and that I'll be
+ruminating on.&lt;/p&gt;
+&lt;div class="section" id="day-one"&gt;
+&lt;h2&gt;Day One&lt;/h2&gt;
+&lt;div class="section" id="micro-frontend-architecture-luca-mezzalira-dazn"&gt;
+&lt;h3&gt;Micro Frontend Architecture | Luca Mezzalira (DAZN)&lt;/h3&gt;
+&lt;p&gt;I started the day in the Execution room (it sounds a bit dramatic phrased like
+this) and didn't really know what to expect with this talk, but it may have
+ended up being my favourite one. The speaker stated his problem clearly - how
+to make it work with hundreds of distributed developers/teams - and also noted
+that the solution he came up with challenges common software development
+wisdom, but to keep an open mind.&lt;/p&gt;
+&lt;p&gt;The idea is to share absolutely nothing. Not even a button. &lt;strong&gt;Don't&lt;/strong&gt; create a
+library of shared components, like headers. Really, how often does your header
+change anyway? Trust your developers. They can duplicate and maintain this. The
+goal is to minimise dependencies. Don't centralise.&lt;/p&gt;
+&lt;p&gt;The rest is structured based on &amp;quot;Domain-Driven Development.&amp;quot; Each team has
+their own domain (e.g. Catalogue, Subscription, Payment, ...) and completely
+independent technology stack.&lt;/p&gt;
+&lt;p&gt;The benefits:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Quicker on-boarding, because you only need to understand your own domain
+deeply&lt;/li&gt;
+&lt;li&gt;Easier to scale teams&lt;/li&gt;
+&lt;li&gt;Freedom for developers to innovate and own something end-to-end&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;He also mentioned the positive impact on turnover. In London, it's apparently
+not uncommon for developers to change company every year, year and a half. This
+makes it easy to try new technology which is often the main reason to jump
+ship.&lt;/p&gt;
+&lt;p&gt;There are frameworks that enable this nowadays, like &lt;a class="reference external" href="http://single-spa.js.org"&gt;single-spa&lt;/a&gt; and &lt;a class="reference external" href="http://frint.js.org"&gt;frint&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="planning-your-agile-architecture-will-demaine-fat-llama"&gt;
+&lt;h3&gt;Planning your Agile Architecture | Will Demaine (Fat Llama)&lt;/h3&gt;
+&lt;p&gt;This was an excellent talk, and well delivered as well. The speaker described
+the steps you may want to follow to modernise your application and enable a
+more agile architecture, from lessons learnt first hand through different
+companies. If I had to undertake a project like this I think I'd find the
+slides or recording again to refresh my memory first, but for today my key
+takeaways would be that this is a long process that you want to tackle
+iteratively, so that you can continue to deliver &lt;strong&gt;business value&lt;/strong&gt; along the
+way. No one will let you just take off and deliver nothing new for 8 months
+while you rewrite the thing from scratch.&lt;/p&gt;
+&lt;p&gt;Have solid foundations in place (monitoring, feature flags, ...) before
+starting. Take your time and do it right the first time or they won't let you
+migrate more services!&lt;/p&gt;
+&lt;p&gt;Another point I found interesting: create a gateway for the clients, the things
+that you can't roll back like mobile apps. Even if it's just a proxy to start
+with.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="embracing-empathy-tim-hudson-adyen"&gt;
+&lt;h3&gt;Embracing empathy | Tim Hudson (Adyen)&lt;/h3&gt;
+&lt;p&gt;Pie charts bad. Bar charts good.&lt;/p&gt;
+&lt;p&gt;(Also, look into the Design Sprint / Design Sprint 2.0 books.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="solving-problems-to-build-a-compelling-product-deborah-clarke-cartrawler"&gt;
+&lt;h3&gt;Solving Problems to Build a Compelling Product | Deborah Clarke (Cartrawler)&lt;/h3&gt;
+&lt;p&gt;User research is vital but not the only important thing. Combining with other
+incentives can lead to better focus and great breakthroughs. Innocuous, small
+moments of delight can increase your conversion rate.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-journey-from-complexity-reducing-technical-debt-fabrizio-fortunato-ryanair"&gt;
+&lt;h3&gt;A Journey from Complexity: Reducing Technical Debt | Fabrizio Fortunato (Ryanair)&lt;/h3&gt;
+&lt;p&gt;Interesting to follow the evolution of the RyanAir front page over the decades!
+Some tidbits I found of interest:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Impact of page load. Any speed increase has a direct impact on revenue.&lt;/li&gt;
+&lt;li&gt;They use &amp;quot;micro-pages.&amp;quot; Concept similar to micro-frontend except it relates
+to full pages, each page is its own app. So everyone is only responsible for
+their own page independently, and loosely coupled. Single SPA per page, that
+can be released independently but still has shared components (interesting
+contrast with micro-frontend above).&lt;/li&gt;
+&lt;li&gt;They eventually wrote two different apps for mobile and web, as optimising
+for one over the other never quite worked and only served in increasing
+complexity. Now optimised for each flow. Still haven't decided whether to use
+mobile or web format on tablets.&lt;/li&gt;
+&lt;li&gt;They use GraphQL, serverless, Brotli.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="design-and-prototyping-david-hoang-one-medical"&gt;
+&lt;h3&gt;Design and prototyping | David Hoang (One Medical)&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Prototypes should be low cost and provide high insights. The goal is
+learning. Having a prototype together with a vision/roadmap is powerful.&lt;/li&gt;
+&lt;li&gt;&amp;quot;Validating&amp;quot; a prototype or design is about gaining insights. About
+learning. Not about proving something right or wrong.&lt;/li&gt;
+&lt;li&gt;Design is not magic, it's a rigorous process.&lt;/li&gt;
+&lt;li&gt;Include User Testing in every sprint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Prototyping is successful if you get &lt;strong&gt;insights&lt;/strong&gt; that provide &lt;strong&gt;value&lt;/strong&gt; to
+your user.&lt;/p&gt;
+&lt;p&gt;The examples related to medical applications were compelling. From paper
+(e.g. stuck onto a 3d printed watch model, to test for smart watches ahead of
+releases), to powerpoint, to node-based prototyping, to Figma.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="the-tools-we-use-challenging-dogma-in-the-design-process-emmet-connolly-intercom"&gt;
+&lt;h3&gt;The tools we use: Challenging dogma in the design process | Emmet Connolly (Intercom)&lt;/h3&gt;
+&lt;p&gt;Tools influence output, and can even generate trends.&lt;/p&gt;
+&lt;p&gt;Use these tools and remain sceptical, don't let the tools push you around and
+end up with a design monoculture (noticeable in the history of the web).&lt;/p&gt;
+&lt;p&gt;&amp;quot;Design Ops&amp;quot; - a concept I hadn't heard of.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="ensuring-the-success-of-your-remote-engineering-team-panel"&gt;
+&lt;h3&gt;Ensuring the Success of your Remote Engineering Team | Panel&lt;/h3&gt;
+&lt;p&gt;I really liked that the conference kept the talks to 30 minutes, but I think
+that's one case where it would have been better to get an extended timeslot,
+maybe 45 minutes. As it stands even with only two panelists (+ one moderator)
+we barely had time to scratch beyond the surface.&lt;/p&gt;
+&lt;p&gt;Keeping a budget for internal face-to-face interactions, some kind of annual
+get-together has a great impact on morale and engagement and pays for itself.&lt;/p&gt;
+&lt;p&gt;The cost of saving on office space is not the point (numbers like
+€17,000/person in Dublin, €11,000/person in Sligo were mentioned). Talent is
+the point. Working remotely helps to attract and retain people.&lt;/p&gt;
+&lt;p&gt;Onboarding strategies were briefly touched on. One of the companies hires
+mainly senior people with 10y+ experience while the other also hires new grads
+so the strategies are different. It's great if you can get people to HQ for
+this, makes sure they understand the company's values and culture, and also the
+tools at their disposal.&lt;/p&gt;
+&lt;p&gt;To keep people connected, having non-work related communication channels like a
+#showyourdesk Slash channel or &amp;quot;whose view is better this week?&amp;quot; can help.&lt;/p&gt;
+&lt;p&gt;Time zones are a challenge for global meetings. Some expectation that you will
+go the extra mile for the business, since you are not tied to a regular 9 to 5.&lt;/p&gt;
+&lt;p&gt;There were concerns about working from home and whether people are really
+working. In general the opposite seemed to be a concern for the panelists: when
+people work from home you can't see the black bags under their eyes, or if
+people are stuck. People know working from home is a privilege and work hard to
+prove themselves. One of the companies measures employee productivity to make
+sure they don't burn out - though you have to be very careful about how you
+measure people.&lt;/p&gt;
+&lt;p&gt;The secret sauce is flexibility. Work is only one part of life.&lt;/p&gt;
+&lt;p&gt;How about accountability and self-determination? Decisions should be made by
+the person who needs to. Empower people. Get that right. Measure what you want
+success to look like.&lt;/p&gt;
+&lt;p&gt;With regard to people not contributing, teams are tight and it becomes obvious
+who is and who isn't. You do need to be more proactive in searching for
+information with remote teams. One-on-one meetings every two weeks to touch
+base. They are still refining the process. Seven seems to be a magic
+number, you can see if people are performing for any type of team.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="accessibility-brian-dalton-aer-lingus"&gt;
+&lt;h3&gt;Accessibility | Brian Dalton (Aer Lingus)&lt;/h3&gt;
+&lt;p&gt;I missed the beginning but seeing how a user who relies on accessibility
+features uses a computer and navigates the Internet is always powerful. Lots of
+work to be done still.&lt;/p&gt;
+&lt;p&gt;From keyboard to navigation to simple, silly things like &amp;quot;times shown in red
+are not available.&amp;quot; Label your fields.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="five-phrases-that-shout-your-agile-isn-t-scaling-tony-grout-atlassian"&gt;
+&lt;h3&gt;Five phrases that shout your agile isn't scaling | Tony Grout (Atlassian)&lt;/h3&gt;
+&lt;p&gt;The Agile manifesto 17 years ago didn't talk about how to scale it! From 17 to
+70000 people.&lt;/p&gt;
+&lt;p&gt;Some interesting suggestions that challenge conventional wisdom. My favourite:
+it's well-known that smaller teams are more productive. Studies have shown that
+teams of 9 to 16 people were 6% less productive than teams of 5 to 9. However,
+if you decide to make 2 teams instead you now have &lt;em&gt;twice&lt;/em&gt; the unpredictability
+because you've added a dependency on another team. Think carefully, run the
+experiment to see if bigger teams may be better.&lt;/p&gt;
+&lt;p&gt;Encourage people to think about &amp;quot;teams&amp;quot; over &amp;quot;team.&amp;quot; For example, if the UI
+team is currently the bottleneck, instead of engineering twiddling their thumbs
+or overengineering something while they wait, perhaps they could create tooling
+to help the team. That slows them down and helps the other team.&lt;/p&gt;
+&lt;p&gt;One team working faster can cause everyone else to go slower. For example, a UI
+team wanting to be pixel perfect.&lt;/p&gt;
+&lt;p&gt;Those closest to the problem should make the decisions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="kessel-run-a-digital-transformation-story-within-the-world-s-largest-bureaucracy-adam-furtado-kessel-run-u-s-air-force"&gt;
+&lt;h3&gt;Kessel Run: A Digital Transformation Story within the World's Largest Bureaucracy | Adam Furtado (Kessel Run / U.S. Air Force)&lt;/h3&gt;
+&lt;p&gt;An interesting choice for a closing keynote for day one.&lt;/p&gt;
+&lt;p&gt;The transformation described is absolutely incredible. The speaker spent a fair
+amount of time at the beginning to explain the current state of things,
+years/decades of risk aversion leading to becoming unable to adapt to change
+and thus less safe. Twelve to fifteen years to go from an idea to something in
+the users' hands, 96% of project behind schedule or over budget, 40% never
+delivered... They went to Pivotal, who helped them to learn about modern
+software development practices, devops, etc but more importantly how to change
+the culture. Now deploying is a non-event and they went from 10 years to 120
+days for delivering.&lt;/p&gt;
+&lt;p&gt;It's truly inspiring and the project they presented as an example showed the
+real-world benefits: allowing soldiers to stay safe at home and with their
+family rather than go on months-long refuelling missions around the world,
+thanks to streamlining the refuelling planning process with
+software. Definitely a worthy goal.&lt;/p&gt;
+&lt;p&gt;It was however a bit strange to hear about software described as a
+differentiator and weapon to cultivate on the battlefield, and how to improve
+warfare. I suppose keynotes are meant to make you think rather than just give
+you warm fuzzy feelings, and this talk sure fit the bill!&lt;/p&gt;
+&lt;img alt="Courtyard" class="align-center" src="https://www.jpichon.net/site_media/images/2018/RDS_courtyard.jpg" style="width: 600px; height: 450px;" /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="day-two"&gt;
+&lt;h2&gt;Day Two&lt;/h2&gt;
+&lt;p&gt;Was just as interesting, too bad I left it too long to get the rest of my notes
+together.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="Ireland"></category></entry><entry><title>OpenStack PTG Dublin - Rocky</title><link href="https://www.jpichon.net/blog/2018/03/openstack-ptg-dublin-rocky/" rel="alternate"></link><published>2018-03-09T11:57:00+00:00</published><updated>2018-03-09T11:57:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2018-03-09:/blog/2018/03/openstack-ptg-dublin-rocky/</id><summary type="html">&lt;p&gt;I was so excited when it was first hinted in Denver that the next
+OpenStack PTG would be in Dublin. In my town! Zero jet lag! Commuting
+from home! Showing people around! Alas, it was not to be. Thanks,
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/2018_Great_Britain_and_Ireland_cold_wave"&gt;Beast from the East&lt;/a&gt;.
+Now everybody hates Ireland forever.&lt;/p&gt;
+&lt;p&gt;The weather …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I was so excited when it was first hinted in Denver that the next
+OpenStack PTG would be in Dublin. In my town! Zero jet lag! Commuting
+from home! Showing people around! Alas, it was not to be. Thanks,
+&lt;a class="reference external" href="https://en.wikipedia.org/wiki/2018_Great_Britain_and_Ireland_cold_wave"&gt;Beast from the East&lt;/a&gt;.
+Now everybody hates Ireland forever.&lt;/p&gt;
+&lt;p&gt;The weather definitely had some impact on sessions and
+productivity. People were jokingly then worryingly checking on the
+news, dropping in and out of rooms as they tried to rebook their
+cancelled flights. Still we did what we could and had snow-related
+activities too - good for building team spirit, if nothing else!&lt;/p&gt;
+&lt;p&gt;I mostly dropped in and out of rooms, here are some of my notes and
+sometimes highlights.&lt;/p&gt;
+&lt;div class="section" id="openstack-client"&gt;
+&lt;h2&gt;OpenStack Client&lt;/h2&gt;
+&lt;p&gt;Like before, the first two days of the PTG were focused on
+cross-projects concerns. The OpenStack Client didn't have a room this
+time, which seems fair as it was sparsely attended the last couple of
+times - I would have thought there'd have been one helproom session at
+least but if there was I missed it.&lt;/p&gt;
+&lt;p&gt;I regret missing the &lt;a class="reference external" href="https://etherpad.openstack.org/p/api-sig-ptg-rocky"&gt;API Working Group&lt;/a&gt; morning
+sessions on API discovery and micro-versions, which I think were
+relevant. The afternoon API sessions were more focused on services and
+less applicable for me. I need to be smarter about it next time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="first-contact-sig"&gt;
+&lt;h2&gt;First Contact SIG&lt;/h2&gt;
+&lt;p&gt;Instead, that morning I attended the &lt;a class="reference external" href="https://etherpad.openstack.org/p/FC_SIG_Rocky_PTG"&gt;First Contact Special Interest
+Group&lt;/a&gt; sessions,
+which aim to make OpenStack more accessible to newcomers. It was well
+attended, with even a few new and want-to-be contributors who were
+first-time PTG attendes - I think having the PTG in Europe really
+helped with that. The session focused on making sure everyone in the
+room/SIG is aware of the resources that are out there, to be able to
+help people looking to get started.&lt;/p&gt;
+&lt;p&gt;The SIG is also looking for &lt;a class="reference external" href="https://wiki.openstack.org/wiki/First_Contact_SIG#Project_Liaisons"&gt;points of contact for every project&lt;/a&gt;,
+so that newcomers have someone to ask questions to directly (even
+better if there's a backup person too, but difficult enough to find one
+as it is!).&lt;/p&gt;
+&lt;p&gt;Some of the questions that came up from people in the room related to being
+able to map projects to IRC channel (e.g. devstack questions go to
+#openstack-qa).&lt;/p&gt;
+&lt;p&gt;Also, the OpenStack community has a ton of mentoring programs, both
+formal and informal and just going through the list to explain them
+took a while. Outreachy, Google Summer of Code, Upstream Institute,
+Women of OpenStack, First Contact Liaisons (see above). Didn't realise
+there were so many!&lt;/p&gt;
+&lt;p&gt;I remember when a lot of the initiatives discussed were started. It was
+interesting to hear the perspectives from people who arrived later,
+especially the discussions around the ones that have become irrelevant.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="packaging-rpms"&gt;
+&lt;h2&gt;Packaging RPMs&lt;/h2&gt;
+&lt;p&gt;On Tuesday I dropped by the &lt;a class="reference external" href="https://etherpad.openstack.org/p/rpm-packaging-rocky-ptg"&gt;packaging RPMs Working Group&lt;/a&gt;
+session. A small group made up of very focused RDO/Red Hat/SUSE
+people. The discussions were intense, with Python 2 going End Of Life
+in under 2 years now.&lt;/p&gt;
+&lt;p&gt;The current consensus seems to be to create a RPM-based Python 3 gate
+based on 3.6. There's no supported distro that offers this at the
+moment, so we will create our own Fedora-based distro with only what we
+need at the versions we need it. Once RDO is ready with this, it could
+be moved upstream.&lt;/p&gt;
+&lt;p&gt;There were some concerns about 3.5 vs 3.6 as the current gating is done
+on 3.5. Debian also appears to prefer 3.6. In general it was agreed
+there should not be major differences and generally ok.&lt;/p&gt;
+&lt;p&gt;The clients must still support Python 2.&lt;/p&gt;
+&lt;p&gt;There was a little bit of discussion about the stable policy and how it
+doesn't apply to the specs or the rpm-packaging project (I think the
+example was with Monasca and the default backend not working (?), so a
+spec change to modify the backend was backported - which could be
+considered a feature backport, but since the project isn't under the
+stable policy remit it could be done).&lt;/p&gt;
+&lt;p&gt;There was a brief chat at the end about whether there is still interest in
+packaging services, as opposed to just shipping them as containers. There
+certainly still seems to be at this point.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="release-management"&gt;
+&lt;h2&gt;Release management&lt;/h2&gt;
+&lt;p&gt;A much &lt;a class="reference external" href="http://lists.openstack.org/pipermail/openstack-dev/2018-March/128005.html"&gt;more complete summary&lt;/a&gt;
+has already been posted on the list, and I had to leave the session
+halfway to attend something else.&lt;/p&gt;
+&lt;p&gt;There seems to be an agreement that it &lt;em&gt;is&lt;/em&gt; getting easier to upgrade
+(although some people still don't want to do it, perhaps an education
+effort is needed to help with this). People do use the stable point
+release tags.&lt;/p&gt;
+&lt;p&gt;The &amp;quot;pressure to upgrade&amp;quot;: would Long-Term Support release actually
+help? Probably it would make it worse. The pressure to upgrade will
+still be there except there won't be a need to work on it for another
+year, and it'll make life worse for operators/etc submitting back fixes
+because it'll take over a year for a patch to make it into their
+system.&lt;/p&gt;
+&lt;p&gt;Fast-Forward Upgrade (which is &lt;strong&gt;not&lt;/strong&gt; skip-level upgrades) may help with
+that pressure... Or not, maybe different problems will come up because
+of things like not restarting services in between upgrades. It batches
+things and helps to upgrade faster, but changes nothing.&lt;/p&gt;
+&lt;p&gt;The conversation moved to one year release cycles just before I
+left. It seemed to be all concerns and I don't recall active support
+for the idea. Some of the concerns:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Concerns about backports - so many changes&lt;/li&gt;
+&lt;li&gt;Concerns about marketing - it's already hard to keep up with all
+that's going on, and it's good to show the community is active and
+stuff is happening more than once a year. It's not that closely tied
+to releases though, announces could still go out more regularly.&lt;/li&gt;
+&lt;li&gt;Planning when something will land may become even harder as so much
+can happen in a year&lt;/li&gt;
+&lt;li&gt;It's painful for both people who keep up &lt;em&gt;and&lt;/em&gt; people who don't,
+because there is so much new stuff happening at once.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tripleo"&gt;
+&lt;h2&gt;TripleO&lt;/h2&gt;
+&lt;p&gt;The sessions began with a &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky-retro"&gt;retrospective&lt;/a&gt; on
+Wednesday. I was really excited to hear that tripleo-common was going
+to get unit tests for workflows. I still love the idea of workflows but
+I found them becoming more and more difficult to work with as they get
+larger, and difficult to review. Boilerplate gets copy-pasted, can't
+work without a few changes that are easy to miss unless manually tested
+and these get missed in reviews all the time.&lt;/p&gt;
+&lt;p&gt;The next session was about &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-ci"&gt;CI&lt;/a&gt;. The focus during
+Queens was on reliability, which worked well although promotions
+suffered as a result. There were some questions as to whether we should
+try to prevent people from merging anything when the promotion pipeline
+is broken but no consensus was really reached.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky-workflows-api"&gt;Workflows session&lt;/a&gt;
+was really interesting, there's been a lot of Lessons Learnt from our
+initial attempt with Mistral this last couple of years and it looks
+like we're setting up for a v2 overhaul that'll get rid of many of the
+issues we found. Exciting! There was a brief moment of talk about
+ripping Mistral out and reimplementing everything in Ansible,
+conclusions unclear.&lt;/p&gt;
+&lt;p&gt;I didn't take good notes during the other sessions and once the venue
+closed down (snow!) it became a bit difficult to find people in the
+hotel and then actually hear them. Most etherpads with the notes are
+linked from the &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-ptg-rocky"&gt;main TripleO etherpad&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="openstack"></category></entry><entry><title>OpenStack Client in Queens - Notes from the PTG</title><link href="https://www.jpichon.net/blog/2017/09/openstack-client-queens-notes-ptg/" rel="alternate"></link><published>2017-09-27T08:40:00+01:00</published><updated>2017-09-27T08:40:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2017-09-27:/blog/2017/09/openstack-client-queens-notes-ptg/</id><summary type="html">&lt;p&gt;Here are a couple of notes about the &lt;a class="reference external" href="https://docs.openstack.org/python-openstackclient"&gt;OpenStack
+Client&lt;/a&gt;, taken
+while dropping in and out of the room during the &lt;a class="reference external" href="https://www.openstack.org/ptg/"&gt;OpenStack
+PTG&lt;/a&gt; in Denver, a couple of weeks
+ago.&lt;/p&gt;
+&lt;div class="section" id="osc-4"&gt;
+&lt;h2&gt;OSC 4&lt;/h2&gt;
+&lt;p&gt;The original plan was to simply get rid of deprecated stuff, change a
+few names here and there …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Here are a couple of notes about the &lt;a class="reference external" href="https://docs.openstack.org/python-openstackclient"&gt;OpenStack
+Client&lt;/a&gt;, taken
+while dropping in and out of the room during the &lt;a class="reference external" href="https://www.openstack.org/ptg/"&gt;OpenStack
+PTG&lt;/a&gt; in Denver, a couple of weeks
+ago.&lt;/p&gt;
+&lt;div class="section" id="osc-4"&gt;
+&lt;h2&gt;OSC 4&lt;/h2&gt;
+&lt;p&gt;The original plan was to simply get rid of deprecated stuff, change a
+few names here and there and have few compatibility breaking changes.&lt;/p&gt;
+&lt;p&gt;However, now &lt;a class="reference external" href="https://docs.openstack.org/shade"&gt;shade&lt;/a&gt; may adopt the
+&lt;a class="reference external" href="https://developer.openstack.org/sdks/python/openstacksdk/"&gt;SDK&lt;/a&gt; and
+move some of its contents into it. Then shade would consume the SDK, and
+OSC would consume it as well. It would be pretty clean and easy to use,
+but would mean major breaking changes for OSC4. OSC would become a shim
+layer over &lt;a class="reference external" href="https://docs.openstack.org/developer/osc-lib/"&gt;osc-lib&lt;/a&gt;.
+The plugin interface is going to change, as the loading time is long -
+every command requires loading all of the plugins which takes over half
+of the loading time even though the commands themselves load quickly.
+(There will be more communication once we understand what the new plugin
+interface will look like.) OSC4 would rip out global argument processing
+and adopt
+&lt;a class="reference external" href="https://docs.openstack.org/os-client-config"&gt;os-client-config&lt;/a&gt;(breaking
+change). It would adopt the SDK and stop using the client libraries.&lt;/p&gt;
+&lt;p&gt;Note that this may all change depending on how the SDK situation
+evolves.&lt;/p&gt;
+&lt;p&gt;From the end-user perspective, some option names will change. There is
+some old cruft left around for compatibility reasons that will disappear
+(e.g. &amp;quot;ip floating&amp;quot; will be gone, it changed a year ago to &amp;quot;floating
+ip&amp;quot;). The column output will handle structured data better and some of
+this is already commited to the osc4 feature branch.&lt;/p&gt;
+&lt;p&gt;The order of commands will not be changed.&lt;/p&gt;
+&lt;p&gt;For authentication, the bevahiour may change a bit between the CLI
+behaviour or clouds.yaml. os-client-config came along and changed a few
+things, notably with regard to precedence. The OSC way of doing will be
+removed and replaced with OCC.&lt;/p&gt;
+&lt;p&gt;Best effort will be made not to break scripts. The &amp;quot;configuration show&amp;quot;
+command shows your current configuration but not where it comes from -
+it's a bit hard to do because of all the merging of parameters going on.&lt;/p&gt;
+&lt;p&gt;The conversation continued about auth, how shade uses adapters and may
+change the SDK to use them as well: would sessions or adapters make the
+most sense? I had to attend another session and missed the discussion
+and conclusions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="command-aliases"&gt;
+&lt;h2&gt;Command aliases&lt;/h2&gt;
+&lt;p&gt;There was a long discussion around command aliases, as some commands are
+very long to type (e.g. healthmonitor). It was very clear it's not
+something OSC wants to get into the business of managing itself (master
+list of collisions, etc) so it would be up to individual plugins. There
+could be individual .osc config file that would do the short to long
+name mapping, similar to a shell alias. It shouldn't be part of the
+official plugin (otherwise, &amp;quot;why don't we just use those names to begin
+with?&amp;quot;) but it could be another pluging that sets up alias mappings to
+the short name or a second set of entry points, or include a &amp;quot;list of
+shortcuts we found handy&amp;quot; in the documentation. Perhaps there should be
+a community-wide discussion about this.&lt;/p&gt;
+&lt;p&gt;Collisions are to be managed by users, not by OSC. Having one master
+list to manage the initial set of keywords is already an unfortunate
+compromise.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="filtering-and-others"&gt;
+&lt;h2&gt;Filtering and others&lt;/h2&gt;
+&lt;p&gt;It's not possible to do filtering on lists or any kind of complex
+filtering at the moment. The recommendation, or what people currently
+do, is to output to --json and pipe the output to
+&lt;a class="reference external" href="https://stedolan.github.io/jq/manual/"&gt;jq&lt;/a&gt; to do what they need. The
+documentation should be extended to show how to do this.&lt;/p&gt;
+&lt;p&gt;At the moment filtering varies wildly between APIs and none of them are
+very expressive, so there isn't a lot OSC can do.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="openstack"></category></entry></feed>

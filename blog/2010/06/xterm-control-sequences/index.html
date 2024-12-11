@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Xterm control sequences, a quick and incomplete introduction</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="XTerm control sequences are those sequences of characters that when typed into a terminal, can have all sort of cool side-effects. Try this one: $..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/06/xterm-control-sequences/" rel="bookmark"
+           title="Permalink to Xterm control sequences, a quick and incomplete introduction">Xterm control sequences, a quick and incomplete introduction</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-06-07T00:17:00+01:00">
+                Published: Mon 07 June 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/gnome/">gnome</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->      <p>XTerm control sequences are those sequences of characters that when
+typed into a terminal, can have all sort of cool side-effects. Try this
+one:</p>
+<pre class="literal-block">
+$ echo -e '\e[33;45mHello!'
+</pre>
+<p>If you're not too enthused about yellow and magenta (shame!) type in:</p>
+<pre class="literal-block">
+$ echo -e '\e[0m'
+</pre>
+<p>Many other neat things can be done with those control sequences, so I'm
+going to document here how to understand the documentation, so I don't
+have to figure it out from scratch again in the future. This could be
+summarised as, &quot;read the introduction to the documentation before
+jumping in the middle&quot; but I might not remember that either given enough
+time :o)</p>
+<p>It all started with a Pippy bug I was trying to figure out, summarised
+for the interesting bits here:</p>
+<pre class="literal-block">
+# xterm magic! see http://rtfm.etla.org/xterm/ctlseq.html
+import os, tty, termios
+fd = os.open('/dev/tty', os.O_RDWR|os.O_APPEND)
+tty.setraw(fd, termios.TCSANOW) # set to raw mode.
+os.write(fd, '\x1B[18t') # write the 'query screen size' command
+# (Removed: Code to parse response)
+</pre>
+<p>&quot;\x1B[18t&quot; is the bit that matters. I'm going to use the documentation
+linked in the code as a
+<a class="reference external" href="http://rtfm.etla.org/xterm/ctlseq.html">reference</a> here, though
+there are other versions, some more recent, floating around the
+Internet.</p>
+<p>Before skipping ahead and skimming around the document, there's a couple
+of crucially important pieces of information that must be read.</p>
+<p>First one is:</p>
+<blockquote>
+Ps &nbsp;&nbsp; &nbsp;A single (usually optional) numeric parameter, composed of
+one of more digits.
+Pm &nbsp;&nbsp; &nbsp;A multiple numeric parameter composed of any number of single
+numeric parameters, separated by ; character(s). Individual values
+for the parameters are listed with Ps.</blockquote>
+<p>Second bit is (even) weirder and hidden amidst other commands:</p>
+<blockquote>
+ESC [ &nbsp;&nbsp;&nbsp; &nbsp;CSI &nbsp;&nbsp;&nbsp; &nbsp; 0x9b &nbsp;&nbsp;&nbsp; &nbsp; Control Sequence Introducer</blockquote>
+<p>The CSI abbreviation is used all over the paper and without that, well,
+it's much more difficult to understand.</p>
+<p>Now looking again at \x1B[18t. \x1B means hexadecimal character 1B
+which in ASCII is &quot;ESCAPE.&quot;</p>
+<p>From what we just read we know that any command needs to be escaped by
+starting with ESC[ (represented by \e[ in our shell examples.) That's
+the &quot;CSI&quot; and it tells the terminal that what follows is to be
+interpreted as a control sequence.</p>
+<p>Moving on, the stuff of interest to us here is under the header
+&quot;Functions using CSI, ordered by the final character(s)&quot;. For the Pippy
+example, it's 't' and thus this one:</p>
+<blockquote>
+CSI Ps ; Ps ; Ps t &nbsp;&nbsp;&nbsp; &nbsp;Window manipulation (from dtterm, as well as
+extensions). Valid values for the first (and any additional
+parameters) are: &lt;snip values&gt;</blockquote>
+<p>Looking at the long list of possible values, we find: &quot;CSI 18 t&quot; returns
+the size of the xterm window in pixels as: &quot;CSI 4 ; height ; width t&quot;.
+End of mystery! Other &quot;suffix t&quot; commands can be played with to change
+the size of your terminal, $ echo -e '\e[;80;24t' to set things right
+again.</p>
+<p>There's a shell script on that same site if you want to play around
+more, as well as the patch that was submitted to gnome-terminal to
+implement more control sequences in all its glorious hyerogliphic
+majesty (commented though :)).</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

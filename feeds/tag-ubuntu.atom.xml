@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - ubuntu</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-ubuntu.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2010-02-28T22:41:00+00:00</updated><entry><title>Ubuntu-ie February 2010 talks | In Limerick!</title><link href="https://www.jpichon.net/blog/2010/02/ubuntu-ie-february-2010-talks/" rel="alternate"></link><published>2010-02-28T22:41:00+00:00</published><updated>2010-02-28T22:41:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2010-02-28:/blog/2010/02/ubuntu-ie-february-2010-talks/</id><summary type="html">&lt;p&gt;I went to Limerick this week-end to attend the &lt;a class="reference external" href="https://wiki.ubuntu.com/IrishTeam/Events/February-2010-Talks"&gt;SkyNet/Ubuntu
+talks&lt;/a&gt;.
+It was good fun, I enjoy so much walking around UL campus and corridors,
+basking in old memories of when I was just settling in Ireland and was
+learning so much, all the time :)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Picture of UL's wooden man sculpture" src="https://www.jpichon.net/site_media/images/2010/limerick-brownman.JPG" /&gt;&lt;/p&gt;
+&lt;p&gt;The first talk was …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I went to Limerick this week-end to attend the &lt;a class="reference external" href="https://wiki.ubuntu.com/IrishTeam/Events/February-2010-Talks"&gt;SkyNet/Ubuntu
+talks&lt;/a&gt;.
+It was good fun, I enjoy so much walking around UL campus and corridors,
+basking in old memories of when I was just settling in Ireland and was
+learning so much, all the time :)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Picture of UL's wooden man sculpture" src="https://www.jpichon.net/site_media/images/2010/limerick-brownman.JPG" /&gt;&lt;/p&gt;
+&lt;p&gt;The first talk was mostly about selling up Microsoft cloud services,
+which felt a bit surreal for a mostly open-source audience. I suspect
+the organisers didn't highlight enough that this particular afternoon of
+talks was slanted toward Ubuntu and open-source in general, so we
+definitely weren't the best audience. It's very strange to hear that the
+cost of computing is coming down at last, then being told that no, it's
+impractical for businesses to try to switch to free alternatives like
+OpenOffice, while at the same time mentioning that there won't be any
+more compatibility issues between .doc and .docx since Microsoft is
+dropping support for Office 2003 and businesses are forced to upgrade to
+Office 2007. How does this match the necessity for companies to look at
+ways to reduce costs, or not being willing to look at compatible
+alternatives (since they already managed compatibility issues for
+.doc/.docx issues)?&lt;/p&gt;
+&lt;p&gt;The second talk was about Google Summer of Code, by the very dynamic
+Jimmy O'Regan. He insisted a lot on the importance and impact that
+having a &lt;strong&gt;designated mentor&lt;/strong&gt; has on a new contributor. I'm struggling
+myself to get involved with open-source communities at the moment (as
+opposed to projects in themselves), so that's something that's very
+interesting to think about, and see if perhaps it could be adapted in a
+scalable way to lower the barrier to involvement for new contributors
+outside of GSoC.&lt;/p&gt;
+&lt;p&gt;Right before the lunch break, the folks from
+&lt;a class="reference external" href="http://www.tog.ie/"&gt;Tog&lt;/a&gt; had a talk on setting up your own
+hackerspace. I'm not sure at all we've ironed out all the issues with
+our own space in Dublin, but it'd certainly be very cool for other
+cities around Ireland to set up their own so we can all learn from each
+other's experience, within the Irish culture. I didn't know about the
+&lt;a class="reference external" href="http://hackerspaces.org/wiki/Design_Patterns"&gt;Hackerspaces design
+patterns&lt;/a&gt;, I definitely
+have some reading to do on that. The main point to take away from the
+talk IMO: &amp;quot;Try and work on the fun stuff.&amp;quot; :)&lt;/p&gt;
+&lt;p&gt;Matt Zimmerman, CEO of Canonical, gave an interesting talk on the
+conflicts between managing a community and managing a company, where
+transparency sometimes is just not possible for legal reasons, and the
+lessons Canonical learnt and is learning along the way. They're still
+figuring out the best practices. I like the &amp;quot;anything that could be
+public, should be&amp;quot; policy, as opposed to the &amp;quot;anything that hasn't been
+explicitly okayed cannot be talked about&amp;quot; from most other companies.
+Canonical folks work to earn their commit rights like the rest of the
+community, they're not granted automatically. Canonical is not doing too
+bad for transparency because it's grown organically from people working
+from home so when they need to talk, they do it on Freenode publicly.
+That's interesting to me because I'm sure I read somewhere (can't
+remember where though) that one of the problems with the OLPC project
+was actually having offices, because whether or not you mean to you end
+up talking about projects, issues and decisions and it looks to the
+community as if you're working behind closed doors without involving
+them.&lt;/p&gt;
+&lt;p&gt;Laura Cza talked about the Ubuntu community, all the ways to get
+involved and also everything that is going on in Ireland relating to
+Ubuntu and open-source events. I really look forward to the
+Free/Open/Global Jam in March! I was a bit spoiled for the talk as I had
+already &lt;a class="reference external" href="http://www.lczajkowski.com/2010/02/13/talking-to-masters-students-in-dit/"&gt;read through the
+slides&lt;/a&gt;
+from the first version of the presentation a couple of weeks back :)&lt;/p&gt;
+&lt;p&gt;Finally the day ended with a talk on CouchDB, by a presenter who should
+win some sort of prize for very realistic impressions of heads exploding
+in the audience not only once but twice. I'm going to have to give a try
+to CouchDB soon. I probably need to hear a couple more talks about it
+before I really start getting my mind around the concepts and the &amp;quot;why
+and when should I use it&amp;quot; (till then I'm doing quite fine with my
+PostgreSQL adventures!).&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category><category term="tog"></category><category term="ubuntu"></category></entry></feed>

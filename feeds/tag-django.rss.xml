@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>jpichon.net - django</title><link>https://www.jpichon.net/</link><description></description><lastBuildDate>Sun, 24 Mar 2013 20:22:00 +0000</lastBuildDate><item><title>Open-Source Night #2: March 2013</title><link>https://www.jpichon.net/blog/2013/03/open-source-night-2-march-2013/</link><description>&lt;p&gt;On Wednesday the 20th, we had the &lt;a class="reference external" href="http://www.tog.ie/2013/03/open-source-night-2/"&gt;2nd edition of Open-Source
+Night&lt;/a&gt; in
+&lt;a class="reference external" href="http://www.tog.ie"&gt;Tog&lt;/a&gt;. I think it went well. Once again there was
+about a dozen attendees, many of whom have never contributed to
+open-source before. A third of them were also in Tog for the first time.
+It might be too early to matter but there was also very little overlap
+with the audience from last time.&lt;/p&gt;
+&lt;div class="section" id="talks"&gt;
+&lt;h2&gt;Talks&lt;/h2&gt;
+&lt;p&gt;We started the evening with 2 talks, meant to be about 15 minutes long
+each. &lt;a class="reference external" href="http://blogs.gnome.org/markmc/"&gt;Mark&lt;/a&gt; started the evening
+telling us about open-source licences and the philosophy they
+encapsulate/were born from. Then I walked through how one would go about
+contributing to &lt;a class="reference external" href="https://www.djangoproject.com/"&gt;Django&lt;/a&gt;, basically
+clicking through the Django website and explaining different tasks the
+project needs help with, particularly for bug fixing contributions.&lt;/p&gt;
+&lt;p&gt;After this, we had 2 lightning talks that were meant to last 2 to 5
+minutes, to give people a chance to talk about a project they contribute
+to and get people to join in. This time the talks were more about ideas,
+which is fine, but both also ran overtime, which is less cool. I'm not
+sure if either found additional contributors/would-be contributors out
+of it for the evening.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hands-on"&gt;
+&lt;h2&gt;Hands-on&lt;/h2&gt;
+&lt;p&gt;The second part of the evening, the part that should be hands-on, didn't
+go so well. After the talks (which lasted for 1h30 instead of 45mins)
+and a tour of the hackerspace for the new people, most continued
+chatting instead of sitting down and getting things done. This
+especially saddened me for the ones who had never contributed before.
+The goal of the event is to help newcomers get started contributing,
+when they have experienced people at hand to ask questions to.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="next-time"&gt;
+&lt;h2&gt;Next time&lt;/h2&gt;
+&lt;p&gt;I'm not sure how to improve this next time and help attendees get
+started actually doing stuff. Running overtime for the talks really hurt
+for the rest of the evening, which is already such a short time to
+accomplish something. An idea: after my talk I was asked &amp;quot;How long would
+it take for someone to start from nothing to being able to run the
+Django unit test suite?&amp;quot; and maybe this kind of well-defined,
+self-contained task would be good to help people get started. It's not a
+contribution yet, but it's a first, necessary step toward it (for code
+contributions in any case), and it could be fun to try and mix this with
+some sort of &lt;a class="reference external" href="http://openbadges.org"&gt;open badge&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Somewhat related announcement: open-source night won't happen on April
+17th next month but probably on April 24th instead. Check the
+&lt;a class="reference external" href="http://www.tog.ie"&gt;tog.ie&lt;/a&gt; calendar for confirmation. If you're
+interested in speaking on a topic relating to the life of open-source or
+a project in particular, please get in touch :)&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Sun, 24 Mar 2013 20:22:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2013-03-24:/blog/2013/03/open-source-night-2-march-2013/</guid><category>Tech</category><category>contributing</category><category>django</category><category>events</category><category>ireland</category><category>open-source</category><category>tog</category></item><item><title>EuroPython 2011: Simone Federici on Django Productivity Tips and Tricks</title><link>https://www.jpichon.net/blog/2011/07/europython-2011-django-productivity-tips-and-tricks/</link><description>&lt;p&gt;Links: &lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/django-productivity-tips-and-tricks"&gt;Talk description, video and
+slides&lt;/a&gt;&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;div class="section" id="know-the-environment"&gt;
+&lt;h2&gt;Know the environment&lt;/h2&gt;
+&lt;p&gt;Use Linux with the &lt;a class="reference external" href="http://software.jessies.org/terminator/"&gt;&amp;quot;Terminator&amp;quot;
+shell&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Use a version control system.&lt;/p&gt;
+&lt;p&gt;Use &lt;a class="reference external" href="http://pypi.python.org/pypi/virtualenv/"&gt;virtualenv&lt;/a&gt;, for
+managing different versions of Python and dependencies, e.g.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+virtualenv path --python=python2.7 --no-sites-packages
+system libs: ./configure --prefix=envpath ; export LD_LIBRARY_PATH=envpath/lib
+&lt;/pre&gt;
+&lt;p&gt;Use &lt;a class="reference external" href="http://pypi.python.org/pypi/yolk/"&gt;yolk&lt;/a&gt;, handy tool to query
+pypi and status of pypi installed packages&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+yolk -l (to see installed packages)
+yolk -U (to see if there are updates on pypi)
+yolk -a
+&lt;/pre&gt;
+&lt;p&gt;Use the &lt;a class="reference external" href="https://code.djangoproject.com/browser/django/trunk/extras/django_bash_completion"&gt;bash autocomplete
+script&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Use djangodevtools
+(&lt;a class="reference external" href="http://pypi.python.org/pypi/djangodevtools/"&gt;PyPi&lt;/a&gt;/&lt;a class="reference external" href="http://www.os4d.org/djangodevtools"&gt;site with
+description of the new
+commands&lt;/a&gt;), for lots of useful
+things such as adding test coverage (./manage.py cover test myapp).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="continuous-integration"&gt;
+&lt;h2&gt;Continuous integration&lt;/h2&gt;
+&lt;p&gt;Use &lt;a class="reference external" href="http://trac.buildbot.net/"&gt;Buildbot&lt;/a&gt; and
+&lt;a class="reference external" href="http://code.google.com/p/django-buildbot"&gt;Django-Buildbot&lt;/a&gt; (note:
+there was a configuration example on the speaker slides).&lt;/p&gt;
+&lt;p&gt;In settings.py:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+try:
+&amp;nbsp;&amp;nbsp;&amp;nbsp; from setting_local import *
+&lt;/pre&gt;
+&lt;p&gt;setting_local.py shouldn't be shared or checked in.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;strong&gt;alias&lt;/strong&gt;, from djangodevtools, you can simply create commands
+to do whatever you want, e.g. clean up rabbit queues. The commands are
+stored in a manage.cfg file that is shared.&lt;/p&gt;
+&lt;p&gt;uWSGI is an application server with many options. --auto-snapshot sounds
+quite interesting. It supports clustering. It'll be in the official
+Django deployment documentation from the next release (ticket 16057).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="coding"&gt;
+&lt;h2&gt;Coding&lt;/h2&gt;
+&lt;p&gt;get_profile() tends to be a problem. It's possible to monkey patch the
+User.get_profile() method (to make sure a new profile is created if it
+doesn't exist) but you have to be careful where it's loaded. It's also
+possible to use a Meta proxy together with a new middleware (set up
+after the authentication middleware)&lt;/p&gt;
+&lt;p&gt;Django model form factory (django.forms.models.modelform_factory)
+sounds interesting to create forms more quickly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="uwsgi"&gt;
+&lt;h2&gt;uWSGI&lt;/h2&gt;
+&lt;p&gt;There was an on-the-fly short talk on uWSGI after the talk, by someone
+whose name I didn't pick up. It can talk to many protocols, it has lots
+of plugins so you can only use what you need. It's not the fastest but
+speed isn't the main factor that should make you decide to use it.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Tue, 05 Jul 2011 19:40:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2011-07-05:/blog/2011/07/europython-2011-django-productivity-tips-and-tricks/</guid><category>Tech</category><category>django</category><category>europython</category><category>python</category></item><item><title>EuroPython 2011: Simon Willison on Advanced Aspects of the Django Ecosystem</title><link>https://www.jpichon.net/blog/2011/07/europython-2011-django-ecosystem/</link><description>&lt;p&gt;Links: &lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/advanced-aspects-django-ecosystem-haystack-celery-fabric"&gt;Talk description and
+video&lt;/a&gt;
+and
+&lt;a class="reference external" href="http://www.slideshare.net/simon/advanced-aspects-of-the-django-ecosystem-haystack-celery-fabric"&gt;slides&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This talk will be about 3 tools, that can be considered secret weapons:
+they offer great payoffs, for low efforts.&lt;/p&gt;
+&lt;p&gt;(Note: the slides enhance most of these concepts with lots of code
+examples, have a look!)&lt;/p&gt;
+&lt;div class="section" id="haystack"&gt;
+&lt;h2&gt;Haystack&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://haystacksearch.org/"&gt;Haystack&lt;/a&gt; does full text search, and is
+available as modular search for Django. It's very easy to get a nice
+search interface if you already use the Django ORM, and the queryset can
+also be defined to limit search queries to what you want (e.g. only
+published entries).&lt;/p&gt;
+&lt;p&gt;You can have different templates/html bits depending on the type of
+objects returned by the search.&lt;/p&gt;
+&lt;div class="section" id="scaling-backend"&gt;
+&lt;h3&gt;Scaling/Backend&lt;/h3&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://bitbucket.org/mchaput/whoosh/wiki/Home"&gt;Woosh&lt;/a&gt; (Python) -
+Good if you have no write traffic, and not a lot of traffic in
+geenral&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://xapian.org/"&gt;Xapian&lt;/a&gt; (C)&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://lucene.apache.org/solr/"&gt;Solr&lt;/a&gt; (Java) tends to be the
+default choice. It has an HTTP interface, and there are tons of
+things that are already baked into Solr, like filtering down by
+object type. Objects can be associated with a template, although it
+sounds like it's more about relevance than display: the speaker
+mentioned showing the title twice in the template to increase its
+weight in search results. It can scale with SearchQuerySet, and works
+faster than complicated crazy SQL.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Search indexes usually don't like being updated much. Haystack offers
+several solutions. Sites with low write traffic can update the index in
+real time at every change. Or changes can be batched every 6 hours. At a
+higher scale, you have to roll your own solution. For Lanyrd they have
+added a &amp;quot;needs_indexing&amp;quot; boolean to their models that defaults to True
+and is also set in the save() hook. Then using a management command or
+something else, it's possible to look at what needs to be indexed,
+process it and set the flag to False.&lt;/p&gt;
+&lt;p&gt;Solr has master/slaves capabilities and knows how to balance the reads
+between slaves, the writes should be sent to master. Haystack only knows
+how to talk to one url, but using nginx it's possible to balance and to
+set up different proxies depending on the URLs to make sure the writes
+go where they should -- remember, Solr speaks HTTP.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="celery"&gt;
+&lt;h2&gt;Celery&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://celeryq.org/"&gt;Celery&lt;/a&gt; is a fully featured, distributed task
+queue manager. Any task that would take more than 200ms should go on the
+queue! For instance...&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Updating the search index&lt;/li&gt;
+&lt;li&gt;Resizing images&lt;/li&gt;
+&lt;li&gt;Hitting external APIs&lt;/li&gt;
+&lt;li&gt;Generating reports&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Using the &amp;#64;task decorator, the method works normally if called directly,
+but also gains a delay() that adds the method to the queue to be picked
+up by workers.&lt;/p&gt;
+&lt;p&gt;For tasks launched by users (such as uploading a picture or figuring out
+what's at a url):&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;To deal with people using Javascript or not: &lt;em&gt;if 'ajax' in
+request.POST&lt;/em&gt;, show an inline loading indicator, otherwise redirect.&lt;/li&gt;
+&lt;li&gt;Use memcached for automatic house keeping, in case the user closes
+the browser and doesn't come back, don't keep the task around
+forever. The oldest will get dropped out automatically after a few
+hours.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Use celerybeat for scheduling, celerymon for monitoring the worker
+cluster, &lt;strong&gt;celerycam&lt;/strong&gt; to take snapshots -- this helps figuring out
+when/where things go wrong.&lt;/p&gt;
+&lt;p&gt;The activity stream pattern gives everyone an &amp;quot;inbox&amp;quot; when everyone
+needs to receive something, like a tweet: it gets written to everyone's
+stream. Redis can handle 100,000 writes/second and is a handy tool to
+deal with this; this is also the kind of tasks that's a great candidate
+for queueing.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="fabric"&gt;
+&lt;h2&gt;Fabric&lt;/h2&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.fabfile.org"&gt;Fabric&lt;/a&gt; is great for automated and
+repeatable deployments, it also makes it easier to roll back. You could
+use chef and puppet, which are ridiculously powerful but quite complex
+to set up. Fabric fits the developer mental model better generally, it
+kind of wraps your current processes into Python.&lt;/p&gt;
+&lt;p&gt;For instance, you can create a clear_cache() that calls flush_all() on
+the cache. Then, to clear the cache on your server, call from your
+machine:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+fab -H host1,host2 clear_cache
+&lt;/pre&gt;
+&lt;p&gt;The file (fabfile.py) is version controlled therefore documenting your
+process -- so you don't forget how to do it 6 months from now!&lt;/p&gt;
+&lt;p&gt;env is a global variable used by Fabric, you can add your own variables
+to it that can be reused in other commands, for instance
+env.deploy_date to store the deployment date and time and make it
+easier to roll back and roll forward (he uses symlinks).&lt;/p&gt;
+&lt;p&gt;They use a servers.json configuration file that documents the instance
+id, public dns, private dns, names and roles (solr, memcached, etc).
+Fabric can use this to deploy, nginx can use it to load balance, Django
+can import it in the settings to know what to talk to.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Fri, 01 Jul 2011 07:45:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2011-07-01:/blog/2011/07/europython-2011-django-ecosystem/</guid><category>Tech</category><category>django</category><category>europython</category><category>python</category></item><item><title>EuroPython 2011: Simon Willison on Challenges in developing a large Django site</title><link>https://www.jpichon.net/blog/2011/06/europython-2011-challenges-developing-large-django-site/</link><description>&lt;p&gt;Links: &lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/challenges-building-large-django-site"&gt;talk description and
+video&lt;/a&gt;
+and
+&lt;a class="reference external" href="http://www.slideshare.net/simon/tricks-challenges-developing-a-large-django-application"&gt;slides&lt;/a&gt;.&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Simon Willison is the co-founder &lt;a class="reference external" href="http://lanyrd.com/"&gt;lanyrd.com&lt;/a&gt;, a
+social website for conferences.&lt;/p&gt;
+&lt;div class="section" id="tips-and-tricks"&gt;
+&lt;h2&gt;Tips and tricks&lt;/h2&gt;
+&lt;div class="section" id="signing-from-1-4-currently-in-trunk"&gt;
+&lt;h3&gt;Signing (from 1.4, currently in trunk)&lt;/h3&gt;
+&lt;p&gt;Using cryptographic signing for various things can ensure that they
+haven't been tampered with, for instance a cookie or an unsubscribe
+link. If you encrypt your session cookies you don't have to hit the
+database anymore, you just need to check the proper signed cookie.&lt;/p&gt;
+&lt;p&gt;The speaker showed a couple of short code examples to demonstrate how
+simple it is to use, and how the interface is consistent with the other
+serialisation interfaces.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+from django.core import signing
+signing.dumps({&amp;quot;foo&amp;quot;: &amp;quot;bar&amp;quot;})&amp;nbsp; # url safe
+signing.loads(string)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="cache-version"&gt;
+&lt;h3&gt;cache_version&lt;/h3&gt;
+&lt;p&gt;This is another way to do cache invalidation. You add a cache_version
+field to the model, that is incremented when calling the save() hook or
+a touch() method. In the template cache fragment, you use the primary
+key and the cache_version to invalidate.&lt;/p&gt;
+&lt;p&gt;You can also mass invalidate by updating the cache version of
+objects.all() using F() -- example from the slides:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+topic.conferences.all().update(
+&amp;nbsp;&amp;nbsp;&amp;nbsp; cache_version = F('cache_version') + 1
+)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="nosql-for-denormalisation"&gt;
+&lt;h3&gt;noSQL for denormalisation&lt;/h3&gt;
+&lt;p&gt;Use noSQL to denormalise and keep the database and the cache/nosql in
+sync. It's more work but it's worth it.&lt;/p&gt;
+&lt;p&gt;For instance they use Redis sets to maintain lists such as
+username-follows, europython-attendees and then they simply need to do a
+set intersection to get the information they want. These are only lists
+of ids so they don't take that much space.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hashed-static-asset-filenames-in-cloudfront"&gt;
+&lt;h3&gt;Hashed static asset filenames in CloudFront&lt;/h3&gt;
+&lt;p&gt;They created a management command to push static assets, that compresses
+Javascript, changes the names/urls, etc. This way they can publish them
+in advance, and also keep static files around if there's a need to
+rollback. The different names are also good to prevent Internet Explorer
+caching.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="challenges"&gt;
+&lt;h2&gt;Challenges&lt;/h2&gt;
+&lt;p&gt;This part of the talk is about things they don't really have answers
+for.&lt;/p&gt;
+&lt;div class="section" id="http-requests"&gt;
+&lt;h3&gt;HTTP Requests&lt;/h3&gt;
+&lt;p&gt;e.g. talking to an API: what if it fails or take 30 seconds? Do you use
+urllib? What if people enter private urls from within your Intranet? :O&lt;/p&gt;
+&lt;p&gt;You have to handle connection timeouts, logging and profiling, url
+validation, and http caching. All of these are a common set of problems
+that should be baked into the framework.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="profiling-and-debugging-production-problems"&gt;
+&lt;h3&gt;Profiling and debugging production problems&lt;/h3&gt;
+&lt;p&gt;Debugging in development rocks, with the django-debug-toolbar, the way
+error 500 are handled, pdb, etc.&lt;/p&gt;
+&lt;p&gt;Once you turn debug to False, you're blind. After a while, all the bugs,
+particularly performance bugs, only happen in production.&lt;/p&gt;
+&lt;p&gt;He showed us a code snippet for a UserBasedExceptionMiddleware, that if
+you access the page throwing a 500 error and is_superuser is True, you
+will see a traceback, not the default 500 error (so if one of your users
+reports a problem, you can go to the page straight off and see a
+traceback).&lt;/p&gt;
+&lt;p&gt;At the database level, there is a handy tool called &lt;strong&gt;mysql-proxy&lt;/strong&gt; that
+is customisable using Lua. Using a wonderful, horribly documented
+library called log.lua, you can for instance turn on logging for a
+couple of minutes when needed.&lt;/p&gt;
+&lt;p&gt;He created an app called django_instrumented (unreleased, until it's
+cleaned up) that collects statistics and sticks them into memcached. He
+has a special bookmark to access them, they are stored for 5 minutes
+only&amp;nbsp; -- so they waste neither space or time.&lt;/p&gt;
+&lt;p&gt;This actually helped improve the performance: if you measure something
+and make it visible, people will improve it over time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="downtime-deployments"&gt;
+&lt;h3&gt;0 downtime deployments&lt;/h3&gt;
+&lt;p&gt;Code-wise it's easy enough to do, but when there are database changes
+it's tougher. Ideally they try to make schema changes backwards
+compatible, then use ./manage.py migrate (using South) on another web
+server.&lt;/p&gt;
+&lt;p&gt;Having a read-only mode made a lot of problems easier! It's not 0
+downtime but the content is still readable. It can be a setting or a
+Redis key.&lt;/p&gt;
+&lt;p&gt;Feature flags work in the same way but at a more fine-grained level, for
+instance turning off search while you update your solr cluster. There's
+quite a bit more work involved.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="one-lesson-we-keep-on-learning-in-django"&gt;
+&lt;h2&gt;One lesson we keep on learning in Django&lt;/h2&gt;
+&lt;p&gt;We went from one database to multi-databases, from one cache to
+multi-caches, from one haystack backend to multiple backends.&lt;/p&gt;
+&lt;p&gt;Debug is one single setting, that affects a lot of things.&lt;/p&gt;
+&lt;p&gt;The timezone setting also affects Apache log files.&lt;/p&gt;
+&lt;p&gt;The middleware concept is very powerful, but is executed on every single
+request: if there's a conditional it has to be done within the
+middleware.&lt;/p&gt;
+&lt;p&gt;Really, global settings should be flushed out of the project! They are
+evil settings that cannot be changed at runtime.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Mon, 27 Jun 2011 13:57:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2011-06-27:/blog/2011/06/europython-2011-challenges-developing-large-django-site/</guid><category>Tech</category><category>django</category><category>europython</category><category>python</category><category>scaling</category></item><item><title>EuroPython 2011: David Cramer on building scalable websites</title><link>https://www.jpichon.net/blog/2011/06/europython-2011-building-scalable-websites/</link><description>&lt;p&gt;&lt;a class="reference external" href="http://ep2011.europython.eu/conference/talks/building-scalable-web-apps"&gt;Link to talk description and
+video&lt;/a&gt;
+(videos should be public next week I believe)&lt;/p&gt;
+&lt;hr class="docutils" /&gt;
+&lt;p&gt;Performance (e.g. a request should return in less than 5 seconds) is not
+the same as scalability (e.g. a request should ALWAYS return in less
+than 5 seconds). Fortunately, it turns out that when you start working
+on scalability you usually end up improving performance as well -- note
+that this doesn't work the other way around.&lt;/p&gt;
+&lt;div class="section" id="common-bottlenecks"&gt;
+&lt;h2&gt;Common bottlenecks&lt;/h2&gt;
+&lt;p&gt;The database is almost always an issue.&lt;/p&gt;
+&lt;p&gt;Caching and invalidation help.&lt;/p&gt;
+&lt;p&gt;They use Postgres for 98% of their data, it works great on good hardware
+with one master only (Disqus, his company, uses Django to serve 3
+billion page views a month)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="packaging-matters"&gt;
+&lt;h2&gt;Packaging matters&lt;/h2&gt;
+&lt;p&gt;Packaging is key: it lets you repeat your deployment, makes it
+repeatable which is incredibly useful even when you're working by
+yourself. Unfortunately there are too many ways to do packaging in
+Python, and none that solves all the problem. He uses setuptools,
+because it usually works.&lt;/p&gt;
+&lt;p&gt;Plenty of benefits to packaging:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;The handy 'develop' command installs all the dependencies.&lt;/li&gt;
+&lt;li&gt;Dependencies are frozen.&lt;/li&gt;
+&lt;li&gt;It's a great way to get a new team member quickly set up.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, they use fabric to deploy consistently.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="database-s"&gt;
+&lt;h2&gt;Database(s)&lt;/h2&gt;
+&lt;p&gt;This applies to any kind of datastore, which are the usual bottleneck.
+It can become difficult to scale once there is more than one server.&lt;/p&gt;
+&lt;p&gt;The rest of the talk uses a Twitter clone as an example.&lt;/p&gt;
+&lt;p&gt;For the public timeline, you select everything and order it by date.
+It's ok if there is only 1 database server, otherwise you need to use
+some sort of map/reduce variant to get it working. The index on date
+will be fairly heavy though. It's quite easy to cache (add tweet to a
+queue whenever it's added), and invalidate.&lt;/p&gt;
+&lt;p&gt;For personal timelines, you can use &lt;strong&gt;vertical partitioning&lt;/strong&gt;, with the
+user and tweets on separate machines. Unfortunately this means a SQL
+JOIN is not possible. &lt;strong&gt;Materialised views&lt;/strong&gt; are a possible answer but
+there aren't supported by many databases (for instance it's not
+supported by MySQL. MySQL will generate a view by rerunning the query
+everytime, which means you can't index it).&lt;/p&gt;
+&lt;p&gt;Using Postgres and Redis, you can have a sorted set, using the tweet id
+with the timestamp as its weight (will become ordering). Note that you
+can't have a never ending long tail of data, data will be truncated
+after 30 days or whatever (remove the data from Redis).&lt;/p&gt;
+&lt;p&gt;Now the new problem is to scale Redis! You can partition per user, say
+if you keep 1000 tweets per user you can know how much space a user will
+take, and how many you can have per server.&lt;/p&gt;
+&lt;p&gt;See: &lt;a class="reference external" href="http://github.com/disqus/nydus"&gt;github.com/disqus/nydus&lt;/a&gt; to
+package cluster of connections to Redis, it can be used like (?) a
+Django database. They store 64 redis nodes on the same machine in
+virtual machines.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="vertical-vs-horizontal-partitioning"&gt;
+&lt;h2&gt;Vertical vs. Horizontal partitioning&lt;/h2&gt;
+&lt;p&gt;You can have:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Master database with no indexes, only primary keys&lt;/li&gt;
+&lt;li&gt;A database of users&lt;/li&gt;
+&lt;li&gt;A database of tweets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So far the hardware scales at the same time as their app. If you need
+more machines, more RAM, it's cheap enough, and when you need it again
+in a few years it will be the same price.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="asynchronous-tasks"&gt;
+&lt;h2&gt;Asynchronous tasks&lt;/h2&gt;
+&lt;p&gt;Using Rabbit and Celery, you can use application triggers to manage your
+data, e.g. a signal on a model save() hook that adds the new item to a
+queue after it's been added to the database. This way, when the worker
+starts on the task it can add the new tweet to all the caches without
+blocking (e.g. if someone has 7 million followers, their tweet needs to
+be added to 7 million streams)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="building-an-api"&gt;
+&lt;h2&gt;Building an API&lt;/h2&gt;
+&lt;p&gt;Having an API is important to scale your code and your architecture.
+Making sure that all the places in your code (the Django code, the Redis
+code, the REST part, whatever) all use the same API, or are refactored
+to use the same API so that you can change them all in one place.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="to-wrap-up"&gt;
+&lt;h2&gt;To wrap up&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Use a framework (like Django, to do some of the legwork for you),
+then iterate. Start with querying the database then scale.&lt;/li&gt;
+&lt;li&gt;Scaling can lead to performance but not the other way around.&lt;/li&gt;
+&lt;li&gt;When you have a large infrastructure, architecture it in terms of
+services, it's easier to scale&lt;/li&gt;
+&lt;li&gt;Consolidate the entry points, it becomes easier to optimise&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="lessons-learnt"&gt;
+&lt;h2&gt;Lessons learnt&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Have more upfront, for instance 64 VMs, so that you can scale up to
+64 machines if needed.&lt;/li&gt;
+&lt;li&gt;Redistributing/rebalancing shards is a nightmare, plan far ahead.&lt;/li&gt;
+&lt;li&gt;PUSH to the cache, don't PULL: otherwise if the data is not there,
+5000 users might request it at the same time and suddenly you have
+5000 hits to the database. Cache everything, it's easier to
+invalidate (everything is cached 5 minutes in memcached in their
+system)&lt;/li&gt;
+&lt;li&gt;Write counters to denormalise views (updated via queues, stored in
+Redis I think)&lt;/li&gt;
+&lt;li&gt;Push everything to a queue from the start, it will make processing
+faster -- there is no excuse, Celery is so easy to set up&lt;/li&gt;
+&lt;li&gt;Don't write database triggers, handle the trigger logic in your queue&lt;/li&gt;
+&lt;li&gt;Database pagination is slow and crappy: LIMIT 0, 1000 may be ok --
+LIMIT 1000, 2000 and suddenly the database has to count rows, it gets
+slower and consumes CPU and memory. There are easier ways to do
+pagination, he likes to do id chunks and select range of ids, it's
+very quick.&lt;/li&gt;
+&lt;li&gt;Build with future sharding in mind. Think massive, use Puppet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;One of the questions was: does that mean there are 7 million cache
+misses if someone deletes a tweet? Answer: Yes indeed.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Fri, 24 Jun 2011 22:22:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2011-06-24:/blog/2011/06/europython-2011-building-scalable-websites/</guid><category>Tech</category><category>django</category><category>europython</category><category>python</category><category>scaling</category></item></channel></rss>

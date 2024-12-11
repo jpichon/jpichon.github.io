@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Building Gnome-Shell | ...at last!</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Since attending GUADEC I've been meaning to build Gnome-Shell from source and give it a serious try. Unfortunately, the few times I had the time..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/10/building-gnome-shell/" rel="bookmark"
+           title="Permalink to Building Gnome-Shell | ...at last!">Building Gnome-Shell  | ...at last!</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-10-24T22:26:00+01:00">
+                Published: Sun 24 October 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/gnome/">gnome</a> </p>
+</footer><!-- /.post-info -->      <p>Since attending GUADEC I've been meaning to build Gnome-Shell from
+source and give it a serious try. Unfortunately, the few times I had the
+time to work on it my trusty laptop couldn't handle it, in that even
+left alone for 3 or 4 hours it couldn't manage to finish building the
+first project... out of 23.</p>
+<p>Enters last Friday whereby after 3 weeks of little to no communication I
+finally received my new laptop, a fantastically beautiful and shiny
+ThinkPad X201 *_* Oh joy. There's another post coming with getting
+various Linux distros to work on it, but for now:</p>
+<div class="section" id="building-gnome-shell-on-debian-squeeze-unstable">
+<h2>Building Gnome-Shell on Debian (Squeeze/unstable)</h2>
+<p>Let's begin from the wonderful documentation:
+<a class="reference external" href="http://live.gnome.org/GnomeShell#building">http://live.gnome.org/GnomeShell#building</a>.</p>
+<p>I'm starting from a basically brand new Linux install, so there were
+many dependencies to install, which thankfully Jhbuild kindly specified
+in one go at the beginning.</p>
+<p>The first script creates a ~/bin folder and stores the jhbuild command
+in there, so this should be added to your $PATH (and in .bashrc for the
+future). I decided to follow the doc recommendation and created a
+gsbuild alias to avoid conflict with any other Gnome work I may end up
+doing, especially as Sugar also uses a custom version of jhbuild -- the
+more conflicts I can avoid, the better.</p>
+<p>After about 2 hours, the 23 projects were checked out and built. At that
+very same time, any guilt I may have been feeling at acquiring a brand
+new laptop disappeared in a puff of spoke. In 2 hours that little guy
+empowered me to do and try more things I couldn't do before -- awesome!</p>
+<p>Of course it would be a bit too simple to leave it at that, so one of
+the 23 projects did not built successfully, I name gjs.</p>
+</div>
+<div class="section" id="configure-error-mozilla-js-1-9-2-is-required">
+<h2>configure: error: mozilla-js &gt;= 1.9.2 is required</h2>
+<p>I'll spare my trials with various libraries... Here's what I should have
+looked up first:</p>
+<pre class="literal-block">
+$ dpkg-query -S mozilla-js
+libmozjs-dev: /usr/lib/pkgconfig/mozilla-js.pc
+</pre>
+<p>Unfortunately, <em>aptitude show libmozjs-dev</em> reveals that only 1.9.1 is
+available in unstable. Time to go experimenting with, heh, experimental.</p>
+<pre class="literal-block">
+[/etc/apt/sources.list]
+# Experimental
+deb http://ftp.ie.debian.org/debian experimental main
+</pre>
+<p>And to &quot;override&quot; a package already installed with one from another repo
+branch:</p>
+<pre class="literal-block">
+aptitude install -t experimental libmozjs-dev
+</pre>
+<p>This changes the error message into: &quot;Could not figure out where Firefox
+JavaScript library lives&quot;, solved with:</p>
+<pre class="literal-block">
+aptitude install -t experimental xulrunner-dev
+</pre>
+<p>And tadam! <em>gsbuild build gjs</em> completes! Time for a full rebuild
+(...and to comment out the experimental source, in my case.)</p>
+</div>
+<div class="section" id="collect2-ld-returned-1-exit-status">
+<h2>collect2: ld returned 1 exit status</h2>
+<p>Moving on: project 22 out of 23, gnome-shell, now fails with a collect2
+error. Googling around I stumble upon this <a class="reference external" href="http://www.webupd8.org/2010/10/install-gnome-shell-from-git-in-ubuntu.html">incredibly helpful blog
+post</a>
+that mentions, in passing, that you may come up against this error and
+how to solve it. Here's the 32-bit solution.</p>
+<pre class="literal-block">
+rm &lt;GNOME_SHELL&gt;/install/lib/*.la
+</pre>
+<p>A bit mysterious for a newbie Gnome hacker like me, but yay! Victory!</p>
+<div class="line-block">
+<div class="line">Browsing away from the Shell...</div>
+<div class="line"><a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2010/gshell01.png"><img alt="Gnome-Shell // Working on an activity" src="https://www.jpichon.net/site_media/images/2010/gshell01.png" style="width: 600px; height: 375px;" /></a></div>
+</div>
+<div class="line-block">
+<div class="line">...then switching context</div>
+<div class="line"><a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2010/gshell02.png"><img alt="Gnome-Shell // Dashboard" src="https://www.jpichon.net/site_media/images/2010/gshell02.png" style="width: 800px; height: 500px;" /></a></div>
+</div>
+<p>I'm really impressed and happy with how seamlessly it all works and
+comfortably fits my workflow. Many distros package it, give it a shot!</p>
+<p>Now, I better go and find a gnome-love bug related to Gnome-Shell to
+sink my teeth into...</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

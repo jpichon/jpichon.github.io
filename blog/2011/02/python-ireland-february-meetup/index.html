@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Python Ireland February meet-up | Introduction, unit testing</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="A delayed summary of Python Ireland's February meet-up last Wednesday -- another great event, after which I promptly fell sick (getting ready to..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/02/python-ireland-february-meetup/" rel="bookmark"
+           title="Permalink to Python Ireland February meet-up | Introduction, unit testing">Python Ireland February meet-up  | Introduction, unit testing</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-02-15T20:36:00+00:00">
+                Published: Tue 15 February 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info -->      <p>A delayed summary of <a class="reference external" href="http://www.python.ie/meetup/2011/feb_2011_talks__science_gallery/">Python Ireland's February
+meet-up</a>
+last Wednesday -- another great event, after which I promptly fell sick
+(getting ready to kick ass again now though :)). In January, the group
+had a simple and nice &quot;pub meet-up&quot;, where a few Python beginners and
+novices turned up (including one who's now my student *waves*), and it
+was thus decided it would be good to have some introductory talks in the
+following months. Hence February's first talk:</p>
+<div class="section" id="introduction-to-python">
+<h2>Introduction to Python</h2>
+<p>In this talk, Sean gave a quick introduction to Python by comparing it
+with other programming languages ; namely C, Java and Ruby.</p>
+<p>I must say I took notes in preparation for my crash course later on :o)
+Nice ideas on how to present a new language to programmers. The
+comparison wasn't only on the syntax or verbosity, and general
+programming paradigms espoused by the languages but also on the
+different cultures encouraged by their respective community. Very
+interesting! Though unfortunately, probably difficult to follow for
+beginners new to programming, of which there was at least 1 in the room
+-- but it's difficult (impossible) to create a talk that caters to
+everyone in the whole world.</p>
+<p>Somehow post-talk questions mostly resolved around high performance
+parallel programming :)</p>
+</div>
+<div class="section" id="advanced-unit-testing">
+<h2>Advanced unit testing</h2>
+<p>Rory enthusiastically introduced us to the latest additions in the unit
+test framework for Python 2.7 (backported from 3.x into unittest2), and
+after this talk I can't wait to enthusiastically switch my programs to
+Python 2.7. Exciting stuff. For instance...</p>
+<ul class="simple">
+<li>more Asserts! With cool names, like assertAlmostEquals ;)
+assertMultiLineEquals sounds fairly cool too, it gives you a diff as
+opposed to the whole strings that didn't match.</li>
+<li>when you have a slow setUp() or you simply do reads without writes...
+I introduce setUpClass()! Yes! There's even a setUpModule if all the
+tests for your module share a setup step. Of course the same exist
+for tearDown().</li>
+<li>&quot;discover&quot; will find and run your tests without you having to add the
+__main__ stanza to all your test files, yay. It works like this:</li>
+</ul>
+<pre class="literal-block">
+python -m unittest discover -s [path]
+</pre>
+<p>You can specify a class or function if you like.</p>
+<p>The rest of the talk was about mocks. Mocks. Mocks. They're not in the
+main unit test framework and voidspace's seems to be the recommended
+library. It was interesting to see how they're used. Mock patch enables
+doing all the mocking stuff with fancy decorators, thus avoiding you the
+pain of manually storing and restoring the original value of something
+before you replace it with a mock. Overall veeery interesting.</p>
+</div>
+<div class="section" id="agm-pub">
+<h2>AGM &amp; Pub</h2>
+<p>A short and sweet AGM followed where the committee ended up re-elected
+(go committee, y'all rock!). We then moved on to the pub where general
+Python and other techie discussions happily prevailed for the rest of
+the evening.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

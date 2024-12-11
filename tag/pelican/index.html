@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - pelican</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2018/02/migrated-to-pelican/">Migrated to Pelican</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-02-23T19:12:00+00:00">
+                Published: Fri 23 February 2018
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/pelican/">pelican</a> </p>
+</footer><!-- /.post-info --><p>After 8 years of maintaining my lil' custom Django blog, it's time for a
+change! I'd been thinking about migrating for a while. After the first couple
+of years of excitement I started falling further and further behind framework
+upgrades, and my cute anti-spam system kicked the bucket a couple of years
+back, even though there never was much conversation on the blog. Drop me an
+email or a tweet if you want to chat about something here :)</p>
+<p>I'd been postponing the migration because I thought it would be real painful to
+migrate both the content and keep the URL format the same, especially for a
+custom platform. It turned out to be really easy. Pelican rocks!</p>
+<div class="section" id="migrating-the-content">
+<h2>Migrating the content</h2>
+<p>Pelican comes with an <a class="reference external" href="http://docs.getpelican.com/en/stable/importer.html">import tool</a> that supports bland
+little feeds like mine. By default my feed only displays 10 entries but since
+it's my code I just modified it locally to show them all. That probably ended
+up being one of the least straightforward parts of the process actually. I was
+super excited about Django when I first created the blog but not too familiar
+with how to manage Python dependencies. Thus, although I did write down the
+dependency names in a text file I wasn't forward looking enough to include
+version numbers. <tt class="docutils literal">pip freeze</tt> is my friend now. Thankfully I only had a
+couple of plugins to play guess-what-version at.</p>
+<p>I did end up making a couple of changes to Pelican locally so it would work
+better with my content (yay open-source).</p>
+<p>First, to avoid the <tt class="docutils literal">&lt;pre&gt;</tt> code snippets getting mangled with no linebreaks
+I ended up commenting out a few lines in <a class="reference external" href="https://github.com/getpelican/pelican/blob/3.7.1/pelican/tools/pelican_import.py#L722-L724">fields2pelican()</a>
+that look like they're meant to ensure the validity of the original HTML. I was
+using a wizard in the old blog so there's no reason it shouldn't be. I wasn't
+too worried about it and didn't notice side-effects during the migration.</p>
+<p>Secondly, the files weren't created with the correct slugs and filenames, which
+caused some issues when rewriting the URLs. It looks like the feed parser
+doesn't look at the real slug so I figured out where the URL was at in
+<a class="reference external" href="https://github.com/getpelican/pelican/blob/3.7.1/pelican/tools/pelican_import.py#L494">feed2fields()</a>
+(in <tt class="docutils literal">entry.id</tt> for me) and changed the <tt class="docutils literal">slug = slugify(entry.title)</tt> line
+to break down that value and extract the real slug.</p>
+</div>
+<div class="section" id="adjusting-the-content">
+<h2>Adjusting the content</h2>
+<p>Now, I use tags quite liberally and on the feed that was marked with &quot;Tagged
+with: blah, bleh, bloh&quot; at the end of an article. I wrote a short script to
+scrap that line from the rst files created in the previous step, add the
+discovered tags to :tags: in the metadata and remove the 'Tagged with'
+line. That was fun!  The script is ugly and bugs were found along the way, but
+it did the job and now it even works when there are so many tags on an entry
+that they're spread over several lines ;)</p>
+</div>
+<div class="section" id="rewriting-the-urls">
+<h2>Rewriting the URLs</h2>
+<p>I don't know if I should even give this a heading. Figuring out rewrite rules
+was giving me cold sweats but it turns out Pelican gives you <a class="reference external" href="http://docs.getpelican.com/en/stable/settings.html#url-settings">handy settings</a> out of the
+box to have your URLs look like whatever you want. It's really easy. I mean, I
+don't think I broke anything?!</p>
+<p>Except the feeds, but after some thinking that's something I decided to do on
+purpose. The blog has ended up aggregated in a lot of places I don't even
+remember, and I was really concerned about 8 years of entries somehow getting
+newer timestamps and flooding the planets I'm on. So, brand new feeds. I'll
+update the two or three planets I remember being a part of, and the others as I
+find them or they find me again :)</p>
+</div>
+<div class="section" id="going-mad-with-sed">
+<h2>Going mad with sed</h2>
+<p>After putting what I had so far on a temporary place online, a couple of
+additional issues popped up:</p>
+<ul class="simple">
+<li>When the feed was imported, some of the internal URLs were copied as full
+URLs rather than relative ones. That means there were a bunch of references
+to <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>, since I'd used a local copy of the feed.</li>
+<li>The theme, images and most of the links didn't work because they expected the
+site to start at / but I was working off a temporary sub-directory for the
+test version.</li>
+</ul>
+<p>I've never used <tt class="docutils literal">sed</tt> so much in my life. I'm going to be an expert at it for
+the next three days at least, until I forget it all again. Here, writing some
+of them down now for future-me when how to use groups becomes a distant memory:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Fix the images!</span>
+$<span class="w"> </span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>grep<span class="w"> </span>-rl<span class="w"> </span><span class="s2">&quot;image:: http:\/\/localhost:8000&quot;</span><span class="w"> </span>*<span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w">  </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/image:: http:\/\/localhost:8000/image:: {filename}/g&#39;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+
+<span class="c1"># Fix the internal links!</span>
+$<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/&lt;\/blog\/[0-9]*\/[0-9]*/&lt;{static}\/Tech/g&#39;</span><span class="w"> </span>content/Tech/*
+$<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\({filename.*\)\/&gt;`__/\1.rst&gt;`__/g&#39;</span>
+
+<span class="c1"># Fix the tags!</span>
+$<span class="w"> </span><span class="k">for</span><span class="w"> </span>f<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>grep<span class="w"> </span>-rl<span class="w"> </span>/tag/<span class="w"> </span>*<span class="sb">`</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w">  </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\/tag\/\(.*\)\//{tag}\1/g&#39;</span><span class="w"> </span><span class="nv">$f</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</pre></div>
+<p>I think I had to do a bunch of other ad-hoc modifications. I also expect to
+find more niggles which I'll fix as I see them, but for now I'm happy with the
+current shape of things. I can't overstate how much easier this was than I
+expected. The stuff that took the most time (remembering how to run the custom
+blog code locally, importing tags, sedding all the things) was nearly all
+self-inflicted, and the whole process was over in a couple of evenings.</p>
+</div>
+<div class="section" id="blogging-from-emacs">
+<h2>Blogging from emacs</h2>
+<p>Sure feels nice.</p>
+</div>
+                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Getting started with virtualenv</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="After switching to pip a while back ("pip uninstall", oh yeah!) I thought it was time to tame virtualenv, as pip and virtualenv tend to be..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/03/getting-started-with-virtualenv/" rel="bookmark"
+           title="Permalink to Getting started with virtualenv">Getting started with virtualenv</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-03-13T22:06:00+00:00">
+                Published: Sun 13 March 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>After switching to <a class="reference external" href="http://www.pip-installer.org">pip</a> a while back
+(&quot;pip uninstall&quot;, oh yeah!) I thought it was time to tame
+<a class="reference external" href="http://pypi.python.org/pypi/virtualenv">virtualenv</a>, as pip and
+virtualenv tend to be introduced as the ideal way to work with Python
+nowadays. I started poking at it properly today, here's where I am so
+far.</p>
+<pre class="literal-block">
+$ pip -E mycoolenv install stuff
+</pre>
+<p>...That, does not really seem to work for me. Global dependencies still
+get picked up. I'll play with it more.</p>
+<p>In the meantime, I've been doing the following. I'm sure it'll get more
+elegant and refined as I get used to the tool -- I'm writing this down
+now so I don't have to figure it all out again next week!</p>
+<pre class="literal-block">
+$ virtualenv --no-site-packages mycoolenv
+</pre>
+<p>This creates a folder &quot;mycoolenv&quot; with 3 subdirectories, bin, include
+and lib. After cd-ing into the new folder:</p>
+<pre class="literal-block">
+$ source bin/activate
+</pre>
+<p>Theoretically this changes your $PATH etc to point to the virtualenv
+bin/ directory. I don't think I've fully grokked it yet. I thought this
+meant if I run &quot;python&quot; it would now run it from mycoolenv/bin/python
+but that doesn't seem to be the case. So I'm linking to it manually in
+the meantime. [Update: Seems to work for me now, I was probably doing it
+wrong! 'which python' does link to the binary in the virtual env.] Then:</p>
+<pre class="literal-block">
+$ bin/pip install &lt;all my dependencies&gt;
+</pre>
+<p>For now this is enough for what I want to do, comparing different Django
+versions output (e.g. ../mycoolenv/bin/python manage.py runserver).
+Looking forward to learning more about it and using its full power!</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

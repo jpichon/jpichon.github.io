@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - linux</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-linux.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2018-10-29T20:16:00+00:00</updated><entry><title>Recettear on Proton</title><link href="https://www.jpichon.net/blog/2018/10/recettear-on-proton/" rel="alternate"></link><published>2018-10-29T20:16:00+00:00</published><updated>2018-10-29T20:16:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2018-10-29:/blog/2018/10/recettear-on-proton/</id><summary type="html">&lt;p&gt;I was very excited to hear that many games formerly Windows-only are now
+playable on Linux, thanks to Steam Proton (based on Wine). Space is a bit too
+tight for Skyrim on my laptop, but surely it would be nice to see if playing
+&lt;a class="reference external" href="http://www.carpefulgur.com/recettear/about.htm"&gt;Recettear&lt;/a&gt; on Linux is now
+an …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I was very excited to hear that many games formerly Windows-only are now
+playable on Linux, thanks to Steam Proton (based on Wine). Space is a bit too
+tight for Skyrim on my laptop, but surely it would be nice to see if playing
+&lt;a class="reference external" href="http://www.carpefulgur.com/recettear/about.htm"&gt;Recettear&lt;/a&gt; on Linux is now
+an option!&lt;/p&gt;
+&lt;div class="section" id="enable-proton-install-recettear"&gt;
+&lt;h2&gt;Enable Proton &amp;amp; install Recettear&lt;/h2&gt;
+&lt;p&gt;The steps for this are not too difficult, just follow the &lt;a class="reference external" href="https://steamcommunity.com/games/221410/announcements/detail/1696055855739350561"&gt;FAQ&lt;/a&gt;:
+enable Steam beta, enable Steam Play for all titles.&lt;/p&gt;
+&lt;p&gt;The install button is now available for Recettear! Woohoo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="alas-no-sound"&gt;
+&lt;h2&gt;Alas, no sound&lt;/h2&gt;
+&lt;p&gt;Thankfully help came through, thanks to the &lt;a class="reference external" href="https://www.protondb.com/app/70400"&gt;protondb entry for Recettear&lt;/a&gt; that helpfully links to this &lt;a class="reference external" href="https://github.com/ValveSoftware/Proton/issues/5#issuecomment-429343368"&gt;GitHub
+Issue&lt;/a&gt;. Thank
+you kind stranger! My path was somewhat different, possibly because I installed
+Steam with &lt;a class="reference external" href="https://www.flatpak.org/"&gt;flatpak&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ locate pfx
+...
+/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx/
+...
+$ WINEPREFIX=/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx winetricks directmusic sound=alsa
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="unknown-arg-sound-alsa"&gt;
+&lt;h2&gt;Unknown arg sound=alsa&lt;/h2&gt;
+&lt;p&gt;Alas, now I get a black screen and a popping sound instead. Looking at the
+verbose output though, hidden toward the end I did notice &lt;tt class="docutils literal"&gt;Unknown arg
+sound=alsa&lt;/tt&gt;. Looks like my winetricks version may be a bit old.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo winetricks --self-update
+$ WINEPREFIX=/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx winetricks directmusic sound=alsa
+&lt;/pre&gt;
+&lt;p&gt;Success, this time! The game loads fine, and with music.&lt;/p&gt;
+&lt;p&gt;Capitalism, ho!&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="linux"></category><category term="games"></category></entry><entry><title>EFI, Linux and other boot-loading fun | a.k.a. where's my Grub gone</title><link href="https://www.jpichon.net/blog/2016/05/efi-linux/" rel="alternate"></link><published>2016-05-30T21:42:00+01:00</published><updated>2016-05-30T21:42:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2016-05-30:/blog/2016/05/efi-linux/</id><summary type="html">&lt;p&gt;I've been gaming more recently, on hardware that is
+decent-in-some-contexts-but-definitely-not-in-this-one which has meant
+pathetic frame rates as low as 7~12FPS as my save files grew bigger. A
+kind soul took pity on me and installed a better graphics card in my
+machine while I wasn't looking - which of course …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been gaming more recently, on hardware that is
+decent-in-some-contexts-but-definitely-not-in-this-one which has meant
+pathetic frame rates as low as 7~12FPS as my save files grew bigger. A
+kind soul took pity on me and installed a better graphics card in my
+machine while I wasn't looking - which of course is when everything
+started going wrong.&lt;/p&gt;
+&lt;p&gt;I'll gloss over the &amp;quot;Not turning on&amp;quot; part because that was due to
+mislabelled wires - the real problem began when Windows for some reason
+picked up that something had changed at boot time, and promptly
+overwrote the boot loader.&lt;/p&gt;
+&lt;div class="section" id="cannot-boot-from-usb-keys"&gt;
+&lt;h2&gt;Cannot boot from USB keys&lt;/h2&gt;
+&lt;p&gt;None of my LiveUSB sticks would boot.&lt;/p&gt;
+&lt;p&gt;This turned out to be due to the device (or the system on it?) not being
+compatible with EFI. I'm not sure how to make a EFI-compatible Live USB
+system and didn't need to in the end - if you absolutely need to,
+enabling CSM mode in the BIOS (&amp;quot;Compatibility Support Module&amp;quot;) was
+useful there, but likely wouldn't have helped with fixing my
+boot-loader. EFI and Legacy OS shouldn't be dual-booted in parallel -
+you can read more about this at the beginning of that &lt;a class="reference external" href="http://www.rodsbooks.com/linux-uefi/"&gt;excellent
+page&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="side-note-chroot-cannot-execute-bin-sh"&gt;
+&lt;h2&gt;Side-note: &amp;quot;chroot: cannot execute /bin/sh&amp;quot;&lt;/h2&gt;
+&lt;p&gt;That was because the Live USB stick turned out to be a 32 bit system,
+while my desktop OS is 64 bits.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="where-s-my-efi-partition-anyway"&gt;
+&lt;h2&gt;Where's my EFI partition anyway&lt;/h2&gt;
+&lt;p&gt;I found an old install CD for Debian testing 7.10 (64 bits) lying around
+that turned out to have a Rescue mode option.&lt;/p&gt;
+&lt;p&gt;To prepare the system for the chroot that would fix All My Problems,
+first I had to figure out what was on which partition. The rescue mode
+let me mount them one by one and take a peek, though using &lt;em&gt;parted&lt;/em&gt;
+would have been much faster.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# parted /dev/sda print
+Model: Blah
+Disk /dev/sda: 1000GB
+Sector size (logical/physical): 512B/4096B
+Partition Table: gpt
+Disk Flags:
+
+Number&amp;nbsp; Start&amp;nbsp;&amp;nbsp; End&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Size&amp;nbsp;&amp;nbsp;&amp;nbsp; File system&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Name&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Flags
+&amp;nbsp;1&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 1049kB&amp;nbsp; 420MB&amp;nbsp;&amp;nbsp; 419MB&amp;nbsp;&amp;nbsp; ntfs&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Basic data partition&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; hidden, diag
+&amp;nbsp;2&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 420MB&amp;nbsp;&amp;nbsp; 735MB&amp;nbsp;&amp;nbsp; 315MB&amp;nbsp;&amp;nbsp; fat32&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; EFI system partition&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; boot, esp
+&amp;nbsp;3&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 735MB&amp;nbsp;&amp;nbsp; 869MB&amp;nbsp;&amp;nbsp; 134MB&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Microsoft reserved partition&amp;nbsp; msftres
+&amp;nbsp;4&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 869MB&amp;nbsp;&amp;nbsp; 247GB&amp;nbsp;&amp;nbsp; 247GB&amp;nbsp;&amp;nbsp; ntfs&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Basic data partition&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; msftdata
+&amp;nbsp;6&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 247GB&amp;nbsp;&amp;nbsp; 347GB&amp;nbsp;&amp;nbsp; 100GB&amp;nbsp;&amp;nbsp; ext4&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; debian-root&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; msftdata
+etc etc etc
+&lt;/pre&gt;
+&lt;p&gt;So my Debian partition is on /dev/sda6, the EFI stuff is on /dev/sda2. I
+need to make a Debian chroot and reinstall Grub from there - that's the
+kind of stuff I learnt &lt;a class="reference external" href="https://www.jpichon.net/blog/2010/10/recovering-a-lost-partition-table/"&gt;last time I broke a lot of
+things&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="let-s-chroot-and-grub"&gt;
+&lt;h2&gt;Let's chroot and grub!&lt;/h2&gt;
+&lt;p&gt;After selecting the &amp;quot;Execute a shell in Installer environment&amp;quot; option:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# mount /dev/sda6 /mnt
+# mount -o bind /dev /mnt/dev
+# chroot /mnt
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="error-update-grub-device-node-not-found"&gt;
+&lt;h2&gt;Error: update-grub: device node not found&lt;/h2&gt;
+&lt;p&gt;This one I think happened because I only bind mounted /dev, when you
+also need things like /dev/pts, /sys, /proc.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# for i in /dev /dev/pts /proc /sys ; do mount -o bind $i /mnt$i ; done
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="error-grub-install-dev-sda-cannot-find-efi-directory"&gt;
+&lt;h2&gt;Error: grub-install /dev/sda: cannot find EFI directory&lt;/h2&gt;
+&lt;p&gt;That one was before I figured out I also needed to mount the EFI special
+boot partition - sda2 as shown in the printed output.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# mount /dev/sda2 /mnt/boot/efi
+&lt;/pre&gt;
+&lt;p&gt;From then on I read about the &lt;em&gt;efibootmgr&lt;/em&gt; tool and decided to try and
+use that instead.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="error-efibootmgr-efi-variables-are-not-supported-on-this-system"&gt;
+&lt;h2&gt;Error: efibootmgr: EFI variables are not supported on this system&lt;/h2&gt;
+&lt;p&gt;Outside the chroot, you need to &lt;a class="reference external" href="https://unix.stackexchange.com/questions/91620/arch-linux-grub-install-efi-variables-are-not-supported-on-this-system#91623"&gt;load the efivars
+module&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# modprobe efivars
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-are-things-looking-by-now"&gt;
+&lt;h2&gt;How are things looking by now&lt;/h2&gt;
+&lt;pre class="literal-block"&gt;
+# modprobe efivars
+# mount /dev/sda6 /mnt
+# mount /dev/sda2 /mnt/boot/efi
+# for i in /dev /dev/pts /proc /sys ; do mount -o bind $i /mnt$i ; done
+# chroot /mnt
+&lt;/pre&gt;
+&lt;p&gt;Usually I can never remember the &lt;em&gt;mount&lt;/em&gt; syntax (does the mount point
+come first or second?!) but I typed these commands so many times today,
+I bet I'll remember the syntax for &lt;em&gt;at least&lt;/em&gt; a week.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="playing-with-efibootmgr"&gt;
+&lt;h2&gt;Playing with efibootmgr&lt;/h2&gt;
+&lt;p&gt;I tried to use the following command from the &amp;quot;&lt;a class="reference external" href="http://www.rodsbooks.com/efi-bootloaders/installation.html"&gt;Managing EFI Boot
+Loaders for
+Linux&lt;/a&gt;&amp;quot;
+page but it didn't quite work for me.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# efibootmgr -c -d /dev/sda -p 2 -l \\EFI\\debian\\grubx64.efi -L Linux
+&lt;/pre&gt;
+&lt;p&gt;While this did add a Linux entry to my F12 BIOS boot menu (yay!), that
+booted straight into a black screen (&amp;quot;Reboot and Select proper Boot
+Device or Insert Boot Media&amp;quot; etc etc). Later on I learnt about the
+&lt;em&gt;efibootmgr --verbose&lt;/em&gt; command which shows the difference between the
+working entry and the non-working one:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# efibootmgr --verbose
+Boot0000* debian&amp;nbsp;&amp;nbsp;&amp;nbsp; HD(2,c8800,96000,0123456789-abcd-1234)File(\EFI\debian\grubx64.efi)
+Boot0005&amp;nbsp; Linux&amp;nbsp;&amp;nbsp;&amp;nbsp; HD(2,c8800,96000,0123456789-abcd-1234)File(\EFI\redhat\grub.efi)\EFI\debian\grubx64.efi
+&lt;/pre&gt;
+&lt;p&gt;I'm not quite sure how the path ended up looking like that. It could be
+a default somewhere, or I'm quite willing to believe I did something
+wrong - I also made a mistake on the partition number when I first ran
+the command.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="but-how-did-you-fix-it"&gt;
+&lt;h2&gt;But how did you fix it?!&lt;/h2&gt;
+&lt;p&gt;Despite showing all the options I wanted in the &lt;em&gt;efibootmgr&lt;/em&gt; output
+within the chroot, running &lt;em&gt;grub-install&lt;/em&gt; and &lt;em&gt;update-grub&lt;/em&gt; multiple
+times did nothing: I'd still boot straight into Windows or straight into
+a black screen. The strange thing is that even though only &amp;quot;Windows Boot
+Manager&amp;quot; and my new &amp;quot;Linux&amp;quot; entry were in the F12 boot menu, the BIOS
+setup did offer a 'debian' entry (created automatically at install time
+a long time ago) was in the boot ordering options. Moving it around
+didn't change a thing though.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;efibootmgr&lt;/em&gt; man page talks of a &amp;quot;BootNext&amp;quot; option. With the
+'debian' entry right in front of me, why not try it? It's entry Boot0000
+on my list, therefore:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+# efibootmgr -n 0
+&lt;/pre&gt;
+&lt;p&gt;Ta-dah! I rebooted straight into Grub then Debian. From there,
+&lt;em&gt;grub-install /dev/sda&lt;/em&gt; and &lt;em&gt;update-grub&lt;/em&gt; worked just fine.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="things-i-still-don-t-know"&gt;
+&lt;h2&gt;Things I still don't know&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Why did this happen in the first place? Can I prevent it from
+happening again?&lt;/li&gt;
+&lt;li&gt;I'm not sure why the grub install properly worked that last time. Did
+I miss something when working from the chroot?&lt;/li&gt;
+&lt;li&gt;Where does the &amp;quot;redhat\grub.efi&amp;quot; line come from, and can I amend
+that?&lt;/li&gt;
+&lt;li&gt;Why does Windows take so long to restart each time, when I don't even
+log in?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="references"&gt;
+&lt;h2&gt;References&lt;/h2&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.rodsbooks.com/linux-uefi/"&gt;Linux on UEFI: A quick installation
+guide&lt;/a&gt; - I found this site
+incredibly informational.&lt;/li&gt;
+&lt;li&gt;The &lt;a class="reference external" href="http://linux.die.net/man/8/efibootmgr"&gt;efibootmgr man page&lt;/a&gt;
+is very nice and contains useful examples.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://wiki.debian.org/GrubEFIReinstall"&gt;GrubEFIReinstall&lt;/a&gt; - I
+probably would have tried that tool at some point. I postponed
+because I didn't have an easy way to burn a CD and wasn't sure about
+how to boot from USB without enabling CSM.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://mjg59.livejournal.com/138188.html"&gt;Booting with EFI&lt;/a&gt;, a
+blog entry about fallback boot loaders. While this didn't help in my
+case, I found the article very clear and enjoyed getting an
+explanation of the context around the problem in addition to the
+solution.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Punch line: the graphics card wasn't the bottle neck and my frame rate
+still hovers around 9FPS.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="linux"></category><category term="open-source"></category></entry><entry><title>Switching locale (Gnome 3, Fedora 20) | and making sure all the menus switch too</title><link href="https://www.jpichon.net/blog/2015/04/switching-locale-gnome-3/" rel="alternate"></link><published>2015-04-19T03:52:00+01:00</published><updated>2015-04-19T03:52:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2015-04-19:/blog/2015/04/switching-locale-gnome-3/</id><summary type="html">&lt;p&gt;In the spirit of immersion, I switched the laptop's language to
+Japanese, however most of the Gnome menus remained in English even after
+switching the System Language altogether, logging out etc. Another
+profile on the laptop shows the menus for Activities, etc in Japanese
+just fine so it wasn't a …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the spirit of immersion, I switched the laptop's language to
+Japanese, however most of the Gnome menus remained in English even after
+switching the System Language altogether, logging out etc. Another
+profile on the laptop shows the menus for Activities, etc in Japanese
+just fine so it wasn't a missing package. I found the following in
+~/.profile, which seems a bit heavy-handed but does do the trick. For
+future reference:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+LANG=&amp;quot;ja_JP.UTF-8&amp;quot;
+LANGUAGE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_CTYPE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_NUMERIC=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_TIME=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_COLLATE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MONETARY=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MESSAGES=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_PAPER=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_NAME=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_ADDRESS=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_TELEPHONE=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_MEASUREMENT=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_IDENTIFICATION=&amp;quot;ja_JP.UTF-8&amp;quot;
+LC_ALL=
+&lt;/pre&gt;
+&lt;p&gt;Note on restarting X one is asked if they want to change the names for
+the default folders like Documents, etc. Personally I find it makes
+using the CLI a pain and don't recommend it.&lt;/p&gt;
+</content><category term="Tech"></category><category term="gnome"></category><category term="japanese"></category><category term="linux"></category><category term="open-source"></category></entry><entry><title>Adventures with Steam on Linux | Today: Mark of the Ninja doesn't start</title><link href="https://www.jpichon.net/blog/2014/05/steam-on-linux/" rel="alternate"></link><published>2014-05-19T20:09:00+01:00</published><updated>2014-05-19T20:09:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2014-05-19:/blog/2014/05/steam-on-linux/</id><summary type="html">&lt;p&gt;I've been getting back into PC gaming for the last couple of months, and
+that has involved a lot of checking out what Steam on Linux looks like
+nowadays (i.e. playing lots of games). Most of the time everything works
+just fine and smoothly, but sometimes there are hiccups …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been getting back into PC gaming for the last couple of months, and
+that has involved a lot of checking out what Steam on Linux looks like
+nowadays (i.e. playing lots of games). Most of the time everything works
+just fine and smoothly, but sometimes there are hiccups and yesterday I
+was motivated to learn how to debug them. Our story begins: &lt;a class="reference external" href="http://store.steampowered.com/app/214560/"&gt;*Mark of
+the Ninja*&lt;/a&gt; wouldn't start
+when clicking on the &amp;quot;Play&amp;quot; button from within the Steam client.&lt;/p&gt;
+&lt;p&gt;For context I'm running Steam on Fedora 19, 64 bits. I have a separate
+&amp;quot;Library&amp;quot; folder on another partition on which I install the games
+instead of Steam's default location in &lt;em&gt;~/.local/share&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="section" id="running-the-game-from-the-command-line"&gt;
+&lt;h2&gt;Running the game from the command-line&lt;/h2&gt;
+&lt;p&gt;Launching from the Steam client gives me zero information, just a brief
+black screen, so I thought I would see what happens when attempting to
+launch the game from the command-line.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+jpichon&amp;#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ./ninja.sh
+dlopen failed trying to load:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.sowith error:
+libtier0_s.so: cannot open shared object file: No such file or directory
+[S_API FAIL] SteamAPI_Init() failed; Sys_LoadModule failed to load: /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+[S_API FAIL] SteamAPI_Init() failed; unable to locate a running instance of Steam, or a local steamclient.dll.
+./ninja.sh: line 3:&amp;nbsp; 6477 Segmentation fault&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; (core dumped) ./ninja-bin32
+&lt;/pre&gt;
+&lt;p&gt;Note that the Steam client must be started in order to even get that
+far. That library does exist at that location, let's see what's
+preventing it from being loaded:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+&amp;nbsp;&amp;nbsp;&amp;nbsp; linux-gate.so.1 =&amp;gt;&amp;nbsp; (0xf77cb000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libtier0_s.so =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libvstdlib_s.so =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; librt.so.1 =&amp;gt; /lib/librt.so.1 (0xf67f4000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libX11.so.6 =&amp;gt; /lib/libX11.so.6 (0xf66ba000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libusb-1.0.so.0 =&amp;gt; /lib/libusb-1.0.so.0 (0xf66a1000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libopenal.so.1 =&amp;gt; /lib/libopenal.so.1 (0xf664a000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libpulse.so.0 =&amp;gt; /lib/libpulse.so.0 (0xf65fa000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libgobject-2.0.so.0 =&amp;gt; /lib/libgobject-2.0.so.0 (0xf65aa000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libglib-2.0.so.0 =&amp;gt; /lib/libglib-2.0.so.0 (0xf647b000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libdbus-glib-1.so.2 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libnm-glib.so.4 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libnm-util.so.2 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libudev.so.0 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libm.so.6 =&amp;gt; /lib/libm.so.6 (0xf6437000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libdl.so.2 =&amp;gt; /lib/libdl.so.2 (0xf6432000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; ...
+&lt;/pre&gt;
+&lt;p&gt;A number of these libraries already exist in Steam's &lt;em&gt;ubuntu12_32&lt;/em&gt;
+directory. Let's add it to our library path.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ export LD_LIBRARY_PATH=/home/jpichon/.local/share/Steam/ubuntu12_32:/home/jpichon/.local/share/Steam/linux32
+jpichon&amp;#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so
+&amp;nbsp;&amp;nbsp;&amp;nbsp; linux-gate.so.1 =&amp;gt;&amp;nbsp; (0xf7749000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libtier0_s.so =&amp;gt; /home/jpichon/.local/share/Steam/ubuntu12_32/libtier0_s.so (0xf676b000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libvstdlib_s.so =&amp;gt; /home/jpichon/.local/share/Steam/ubuntu12_32/libvstdlib_s.so (0xf6727000)
+&amp;nbsp;&amp;nbsp;&amp;nbsp; ...
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libdbus-glib-1.so.2 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libnm-glib.so.4 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libnm-util.so.2 =&amp;gt; not found
+&amp;nbsp;&amp;nbsp;&amp;nbsp; libudev.so.0 =&amp;gt; not found
+&lt;/pre&gt;
+&lt;p&gt;Yup, that does seem to help. Let's add the rest:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ export LD_LIBRARY_PATH=/home/jpichon/.local/share/Steam/ubuntu12_32:/home/jpichon/.local/share/Steam/linux32:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/usr/lib:/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu:
+/home/jpichon/.local/share/Steam/ubuntu12_32/steam-runtime/i386/lib/i386-linux-gnu
+$ ldd /home/jpichon/.local/share/Steam/ubuntu12_32/steamclient.so | grep not
+$
+&lt;/pre&gt;
+&lt;p&gt;Excellent! Let's see if the game can run from the CLI now:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ./ninja-bin32
+[S_API FAIL] SteamAPI_Init() failed; no appID found.
+Either launch the game from Steam, or put the file steam_appid.txt containing the correct appID in your game folder.
+Segmentation fault (core dumped)
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="how-to-find-a-steam-appid"&gt;
+&lt;h2&gt;How to find a Steam appID?&lt;/h2&gt;
+&lt;p&gt;That one's &lt;a class="reference external" href="http://gaming.stackexchange.com/questions/149837/how-do-i-find-the-id-for-a-game-on-steam"&gt;easy to find a solution
+for&lt;/a&gt;.
+One can either look at the ID in the store URL as linked earlier or
+check out &lt;a class="reference external" href="http://steamdb.info"&gt;steamdb&lt;/a&gt;. Let's create a file with
+the correct ID in that directory and try again.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ emacs -nw steam_appid.txt
+jpichon&amp;#64;localhost:~/games/steam/SteamApps/common/mark_of_the_ninja/bin$ ./ninja-bin32
+Setting breakpad minidump AppID = 214560
+Steam_SetMinidumpSteamID:&amp;nbsp; Caching Steam ID:&amp;nbsp; 76561198074768941 [API loaded no]
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+ERROR: Missing required OpenGL extensions.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="section" id="missing-required-opengl-extensions"&gt;
+&lt;h2&gt;Missing required OpenGL extensions&lt;/h2&gt;
+&lt;p&gt;At first I thought that was it - my laptop simply wasn't powerful enough
+to play the game. But fear not, &lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=1324172#p1324172"&gt;ArchLinux came to the
+rescue&lt;/a&gt;
+and thanks to them I learnt about the handy &lt;em&gt;-enablelog&lt;/em&gt; flag for the
+game.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ./ninja-bin32 -enablelog
+...
+$ less ~/.klei/ninja/log/rendering.log
+...
+[16:34.09] (4144580416) EXT_texture_compression_s3tc required
+&lt;/pre&gt;
+&lt;p&gt;The solution is to install the &lt;strong&gt;libtxc_dxtn&lt;/strong&gt; package (available in
+&lt;em&gt;rpmfusion-free&lt;/em&gt;) and/or set &lt;em&gt;force_s3tc_enable=true&lt;/em&gt; as an
+environment variable (discovered in a cached version of the &lt;a class="reference external" href="http://forums.kleientertainment.com/topic/27805-cant-run-motn-64-bits-archlinux/"&gt;developer's
+official
+forum&lt;/a&gt;,
+as it's currently showing blank pages for me).&lt;/p&gt;
+&lt;p&gt;I think I had to restart X to make sure the new library was picked up
+correctly, and then success!&lt;/p&gt;
+&lt;p&gt;Additional notes: The game still requires the Steam client to be
+running, and the Steam overlay won't work. However your Steam status
+will be correctly shown as in-game and the time, etc, should update
+correctly.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="starting-the-game-from-steam"&gt;
+&lt;h2&gt;Starting the game from Steam&lt;/h2&gt;
+&lt;p&gt;Unfortunately, starting the game from Steam still didn't work, and I
+also happen to quite like the overlay especially for games that don't
+react well to Alt-tabbing. I modified the &lt;em&gt;ninja.sh&lt;/em&gt; script to add the
+new paths and environment variables, with no luck.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To help with troubleshooting:&lt;/strong&gt; right-click on the game name then go
+to Properties, there is a &amp;quot;Set launch options&amp;quot; button. There we can add
+the friendly &lt;em&gt;-enablelog&lt;/em&gt; flag discovered earlier. Trying and failing to
+launch the game again gives us some helpful logs in the same location as
+before in &lt;em&gt;~/.klei&lt;/em&gt;.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+crash.log:
+[17:25.42] (4144023360) Failed to CreateDevice
+[17:25.42] (4144023360) KGraphics failed to initialize.
+
+rendering.log:
+[17:25.42] (4144023360) EXT_texture_compression_s3tc required
+&lt;/pre&gt;
+&lt;p&gt;Sadly, the same problem as before - it turns out &lt;em&gt;ninja.sh&lt;/em&gt; is likely
+not used at all when launching from Steam so the extra environment
+variables are not being picked up.&lt;/p&gt;
+&lt;p&gt;If Steam isn't using &lt;em&gt;ninja.sh&lt;/em&gt;, how can I find out what it is using and
+if I can change it?&lt;/p&gt;
+&lt;p&gt;In the end, installing &lt;strong&gt;libtxc_dxtn.i686&lt;/strong&gt; (in parallel to the
+.x86_64 version) resolved the problem. I'm not sure why the game
+insists on using 32 bits libraries when articles over the web make it
+clear it supports 64 bits, but either way that did the trick and the
+game now behaves correctly like any other Steam game.&lt;/p&gt;
+&lt;p&gt;I'm still somewhat unhappy about that last part because it was more
+guesswork than debugging, and I don't feel equipped to properly gather
+information next time a similar issue occurs. How can I know which
+binary / path / file Steam is trying to launch and with what flags?&lt;/p&gt;
+&lt;p&gt;Hopefully while I go on to continue my Steam journey, this will have
+been helpful to someone else. Happy gaming!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="bonus-track-the-game-is-sloooow"&gt;
+&lt;h2&gt;Bonus track: the game is sloooow&lt;/h2&gt;
+&lt;p&gt;After all this, it turns out my laptop is indeed a bit underpowered to
+play this particular game. Deactivating blur, bloom and displacement in
+the options helped, and so did greatly lowering the resolution (windowed
+mode would help too but it became pretty much unreadable to me then, so
+I favoured the fullscreen 640x480 instead. Your tolerance levels may
+vary!)&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="games"></category><category term="linux"></category></entry><entry><title>git diff showing a weird output | ^[[1;33m^[[mmmmh?!</title><link href="https://www.jpichon.net/blog/2013/05/git-diff-showing-weird-output/" rel="alternate"></link><published>2013-05-09T21:34:00+01:00</published><updated>2013-05-09T21:34:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2013-05-09:/blog/2013/05/git-diff-showing-weird-output/</id><summary type="html">&lt;p&gt;I came back to an old project on another machine only to find that the
+&lt;em&gt;git diff&lt;/em&gt; command did not behave as expected anymore:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+^[[1;33mdiff --git a/myproject/myapp/models.py b/myproject/myapp/models.py^[[m
+^[[1;33mindex 0216829..d9e1637 100644^[[m
+^[[1;33m--- a/myproject/myapp/models …&lt;/pre&gt;</summary><content type="html">&lt;p&gt;I came back to an old project on another machine only to find that the
+&lt;em&gt;git diff&lt;/em&gt; command did not behave as expected anymore:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+^[[1;33mdiff --git a/myproject/myapp/models.py b/myproject/myapp/models.py^[[m
+^[[1;33mindex 0216829..d9e1637 100644^[[m
+^[[1;33m--- a/myproject/myapp/models.py^[[m
+^[[1;33m+++ b/myproject/myapp/models.py^[[m
+^[[1;35m&amp;#64;&amp;#64; -87,6 +87,12 &amp;#64;&amp;#64;^[[m ^[[mclass DoomDoomDoom(models.Model):^[[m
+&lt;/pre&gt;
+&lt;p&gt;Instead of showing the colours defined in ~/.gitconfig, it was
+displaying escaped sequences in black and white, as well as a &amp;quot;(stdin)&amp;quot;
+prompt at the bottom of the page.&lt;/p&gt;
+&lt;p&gt;At first I thought it was a difftool issue but actually it relates to
+the pager, i.e. with either of these commands things works well:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git --no-pager diff # No paging
+$ git diff --color | less -R # With paging
+&lt;/pre&gt;
+&lt;p&gt;The default pager in git is supposed to be 'less'... Still, making sure
+it actually &lt;strong&gt;is&lt;/strong&gt; fixed this for me:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git config --global core.pager 'less'
+&lt;/pre&gt;
+&lt;p&gt;I'm still annoyed. Why was a different pager being used (and not showing
+in &lt;em&gt;git config --list&lt;/em&gt;) and what tool was it?&lt;/p&gt;
+</content><category term="Tech"></category><category term="linux"></category></entry></feed>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Back to Moodle | The joys of digging up old projects</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="I've ended up a bit discouraged about my Sugar involvement (there's probably a blog post about lessons learnt in there, after I finish processing..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/05/back-moodle/" rel="bookmark"
+           title="Permalink to Back to Moodle | The joys of digging up old projects">Back to Moodle  | The joys of digging up old projects</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-05-11T19:11:00+01:00">
+                Published: Tue 11 May 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/moodle/">moodle</a> </p>
+</footer><!-- /.post-info -->      <p>I've ended up a bit discouraged about my Sugar involvement (there's
+probably a blog post about lessons learnt in there, after I finish
+processing events in a useful way) so I decided it'd be best to step
+back for a while and digest things in the background before trying
+again. In the meantime I thought it'd be cool to remove the dust from my
+old, old, <em>old</em> <a class="reference external" href="http://moodle.org">Moodle</a> plug-in back from
+college.</p>
+<p>Various things learnt, re-learnt and discovered over the past couple of
+days:</p>
+<ul class="simple">
+<li>Remembered my old tip of appending a version number to the Moodle
+folders in /var/www/ and /var/wwwdata/ so I can install multiple
+versions of Moodle in parallel without having to remember which
+version is in &quot;moodle&quot;</li>
+<li>Could not install nor find a threaded mod_php5 Apache module in my
+Debian repos, had to remove apache and install apache2 prefork
+instead. To be investigated still, I want to understand why the repos
+are set up this way.</li>
+<li>Learnt to check http.conf for port conflicts before installing a new
+module. Django and mod_wsgi trying to read my PHP files on port 80
+did not work well.</li>
+<li>After updating the mod_wsgi port in httpd.conf, without having to
+add or configure anything the php files were running with no issues
+-- surprising and cool!</li>
+<li>New Moodle point version, woohoo! Go 1.9.8, as smooth to install as
+usual.</li>
+<li>Happy surprise: my plugin, DVReport, installed and worked properly!
+Guess there was no major architectural change between 1.9 and
+1.9.8... ;)</li>
+<li>Nasty surprise: visualisations (the core of the plugin) were not
+working</li>
+<li>Realisation #1: using double-quotes (&quot;) to delimit text in not proper
+SQL. This is pretty sad considering how much effort and agony I spent
+worrying about creating database neutral queries at the time.</li>
+<li>Realisation #2: MySQL is way too kind with horrible, broken,
+standardless SQL. I must have been tight on a deadline (or on crack)
+when I wrote one particularly crazy GROUP BY statement. I'm guessing
+MySQL just ignored the bits that didn't make sense, but since working
+on this plugin last I've fallen in love with PostgreSQL, who isn't so
+kind (sloppy?) in parsing queries. I'll keep using Postgres as my
+main backend (&lt;3), but will be testing with MySQL as well for this
+plugin considering I'm apparently unable to write db neutral SQL the
+first time around :)</li>
+</ul>
+<p>The project had remained untouched since October 2008, according to
+GitHub. Since then GitHub has acquired an issue tracker (major YAY!) and
+a download tab so I cleaned up the wiki (who'd been upgraded and wasn't
+parsing all the old syntax anymore either) and set those up. Now the
+only horrible thing that's left, is <a class="reference external" href="http://github.com/jpichon/moodle-dvreport">all that dreadful
+code</a>... ;)</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

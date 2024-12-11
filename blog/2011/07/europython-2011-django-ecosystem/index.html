@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>EuroPython 2011: Simon Willison on Advanced Aspects of the Django Ecosystem</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Links: Talk description and video and slides. This talk will be about 3 tools, that can be considered secret weapons: they offer great payoffs,..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/07/europython-2011-django-ecosystem/" rel="bookmark"
+           title="Permalink to EuroPython 2011: Simon Willison on Advanced Aspects of the Django Ecosystem">EuroPython 2011: Simon Willison on Advanced Aspects of the Django Ecosystem</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-07-01T07:45:00+01:00">
+                Published: Fri 01 July 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>Links: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/advanced-aspects-django-ecosystem-haystack-celery-fabric">Talk description and
+video</a>
+and
+<a class="reference external" href="http://www.slideshare.net/simon/advanced-aspects-of-the-django-ecosystem-haystack-celery-fabric">slides</a>.</p>
+<p>This talk will be about 3 tools, that can be considered secret weapons:
+they offer great payoffs, for low efforts.</p>
+<p>(Note: the slides enhance most of these concepts with lots of code
+examples, have a look!)</p>
+<div class="section" id="haystack">
+<h2>Haystack</h2>
+<p><a class="reference external" href="http://haystacksearch.org/">Haystack</a> does full text search, and is
+available as modular search for Django. It's very easy to get a nice
+search interface if you already use the Django ORM, and the queryset can
+also be defined to limit search queries to what you want (e.g. only
+published entries).</p>
+<p>You can have different templates/html bits depending on the type of
+objects returned by the search.</p>
+<div class="section" id="scaling-backend">
+<h3>Scaling/Backend</h3>
+<ul class="simple">
+<li><a class="reference external" href="https://bitbucket.org/mchaput/whoosh/wiki/Home">Woosh</a> (Python) -
+Good if you have no write traffic, and not a lot of traffic in
+geenral</li>
+<li><a class="reference external" href="http://xapian.org/">Xapian</a> (C)</li>
+<li><a class="reference external" href="http://lucene.apache.org/solr/">Solr</a> (Java) tends to be the
+default choice. It has an HTTP interface, and there are tons of
+things that are already baked into Solr, like filtering down by
+object type. Objects can be associated with a template, although it
+sounds like it's more about relevance than display: the speaker
+mentioned showing the title twice in the template to increase its
+weight in search results. It can scale with SearchQuerySet, and works
+faster than complicated crazy SQL.</li>
+</ul>
+<p>Search indexes usually don't like being updated much. Haystack offers
+several solutions. Sites with low write traffic can update the index in
+real time at every change. Or changes can be batched every 6 hours. At a
+higher scale, you have to roll your own solution. For Lanyrd they have
+added a &quot;needs_indexing&quot; boolean to their models that defaults to True
+and is also set in the save() hook. Then using a management command or
+something else, it's possible to look at what needs to be indexed,
+process it and set the flag to False.</p>
+<p>Solr has master/slaves capabilities and knows how to balance the reads
+between slaves, the writes should be sent to master. Haystack only knows
+how to talk to one url, but using nginx it's possible to balance and to
+set up different proxies depending on the URLs to make sure the writes
+go where they should -- remember, Solr speaks HTTP.</p>
+</div>
+</div>
+<div class="section" id="celery">
+<h2>Celery</h2>
+<p><a class="reference external" href="http://celeryq.org/">Celery</a> is a fully featured, distributed task
+queue manager. Any task that would take more than 200ms should go on the
+queue! For instance...</p>
+<ul class="simple">
+<li>Updating the search index</li>
+<li>Resizing images</li>
+<li>Hitting external APIs</li>
+<li>Generating reports</li>
+</ul>
+<p>Using the &#64;task decorator, the method works normally if called directly,
+but also gains a delay() that adds the method to the queue to be picked
+up by workers.</p>
+<p>For tasks launched by users (such as uploading a picture or figuring out
+what's at a url):</p>
+<ul class="simple">
+<li>To deal with people using Javascript or not: <em>if 'ajax' in
+request.POST</em>, show an inline loading indicator, otherwise redirect.</li>
+<li>Use memcached for automatic house keeping, in case the user closes
+the browser and doesn't come back, don't keep the task around
+forever. The oldest will get dropped out automatically after a few
+hours.</li>
+</ul>
+<p>Use celerybeat for scheduling, celerymon for monitoring the worker
+cluster, <strong>celerycam</strong> to take snapshots -- this helps figuring out
+when/where things go wrong.</p>
+<p>The activity stream pattern gives everyone an &quot;inbox&quot; when everyone
+needs to receive something, like a tweet: it gets written to everyone's
+stream. Redis can handle 100,000 writes/second and is a handy tool to
+deal with this; this is also the kind of tasks that's a great candidate
+for queueing.</p>
+</div>
+<div class="section" id="fabric">
+<h2>Fabric</h2>
+<p><a class="reference external" href="http://www.fabfile.org">Fabric</a> is great for automated and
+repeatable deployments, it also makes it easier to roll back. You could
+use chef and puppet, which are ridiculously powerful but quite complex
+to set up. Fabric fits the developer mental model better generally, it
+kind of wraps your current processes into Python.</p>
+<p>For instance, you can create a clear_cache() that calls flush_all() on
+the cache. Then, to clear the cache on your server, call from your
+machine:</p>
+<pre class="literal-block">
+fab -H host1,host2 clear_cache
+</pre>
+<p>The file (fabfile.py) is version controlled therefore documenting your
+process -- so you don't forget how to do it 6 months from now!</p>
+<p>env is a global variable used by Fabric, you can add your own variables
+to it that can be reused in other commands, for instance
+env.deploy_date to store the deployment date and time and make it
+easier to roll back and roll forward (he uses symlinks).</p>
+<p>They use a servers.json configuration file that documents the instance
+id, public dns, private dns, names and roles (solr, memcached, etc).
+Fabric can use this to deploy, nginx can use it to load balance, Django
+can import it in the settings to know what to talk to.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

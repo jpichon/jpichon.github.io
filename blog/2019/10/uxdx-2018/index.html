@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>UXDX 2018</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Whoops! Clearly I'm never going to finish writing up my notes for the conference last year. Better post what I got even if incomplete, before the..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2019/10/uxdx-2018/" rel="bookmark"
+           title="Permalink to UXDX 2018">UXDX 2018</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-10-07T07:24:00+01:00">
+                Published: Mon 07 October 2019
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/ireland/">Ireland</a> </p>
+</footer><!-- /.post-info -->      <p>Whoops! Clearly I'm never going to finish writing up my notes for the
+conference last year. Better post what I got even if incomplete, before the
+next one begins :-) I couldn't get a discounted ticket this year and won't be
+attending. Have fun, everyone there!</p>
+<p>I was lucky enough to be able to attend <a class="reference external" href="https://uxdxconf.com/">UXDX</a> this
+year as well, thanks to a discounted ticket and my employer kindly allowing me
+the day off. The venue was again the RDS, with the lovely room that's lined up
+with actual real books.</p>
+<p>UXDX is an interesting conferences, that aims to bring down barriers between
+User Experience and Developer Experience people. The conference has expanded
+this year, now covering two days. I was happy to see some issues I had with the
+conference last year resolved. For example, although the stated goal is to
+bring together UX and DX people, improve collaboration, etc, the tracks were
+completely separate. Worst for the DX-centred talks, the &quot;room&quot; was a stage at
+the back of the exhibition hall and all the noise that entails. This year, the
+separation between the two tracks was labelled &quot;Vision&quot; and &quot;Execution&quot; which
+made it easier to have talks mixing everything together, and also the Execution
+room had a proper room with doors that close. The room was larger than the
+section assigned last year too, and always full whenever I peeked in. Both
+tracks were always busy. The exhibition hall seemed pretty empty outside of the
+breaks, but there were plenty of those - staggered to lessen the lunch/coffee
+rush.</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="51%" />
+<col width="49%" />
+</colgroup>
+<tbody valign="top">
+<tr><td rowspan="2"><img alt="Library room" src="https://www.jpichon.net/site_media/images/2018/RDS.jpg" style="width: 330.0px; height: 247.50000000000003px;" /></td>
+<td rowspan="2"><img alt="Books" src="https://www.jpichon.net/site_media/images/2018/RDS_books.jpg" style="width: 330.0px; height: 247.50000000000003px;" /></td>
+</tr>
+<tr></tr>
+</tbody>
+</table>
+</blockquote>
+<p>There was a handful of talks I was looking forward to, some met my expectations
+and others turned out different. Many other good surprises. I'll summarise some
+of the talks I enjoyed the most and only include my key takeaways for
+others. This doesn't mean any of it was the actual point or meat of the talk,
+more like the insights that were new to me personally and that I'll be
+ruminating on.</p>
+<div class="section" id="day-one">
+<h2>Day One</h2>
+<div class="section" id="micro-frontend-architecture-luca-mezzalira-dazn">
+<h3>Micro Frontend Architecture | Luca Mezzalira (DAZN)</h3>
+<p>I started the day in the Execution room (it sounds a bit dramatic phrased like
+this) and didn't really know what to expect with this talk, but it may have
+ended up being my favourite one. The speaker stated his problem clearly - how
+to make it work with hundreds of distributed developers/teams - and also noted
+that the solution he came up with challenges common software development
+wisdom, but to keep an open mind.</p>
+<p>The idea is to share absolutely nothing. Not even a button. <strong>Don't</strong> create a
+library of shared components, like headers. Really, how often does your header
+change anyway? Trust your developers. They can duplicate and maintain this. The
+goal is to minimise dependencies. Don't centralise.</p>
+<p>The rest is structured based on &quot;Domain-Driven Development.&quot; Each team has
+their own domain (e.g. Catalogue, Subscription, Payment, ...) and completely
+independent technology stack.</p>
+<p>The benefits:</p>
+<ul class="simple">
+<li>Quicker on-boarding, because you only need to understand your own domain
+deeply</li>
+<li>Easier to scale teams</li>
+<li>Freedom for developers to innovate and own something end-to-end</li>
+</ul>
+<p>He also mentioned the positive impact on turnover. In London, it's apparently
+not uncommon for developers to change company every year, year and a half. This
+makes it easy to try new technology which is often the main reason to jump
+ship.</p>
+<p>There are frameworks that enable this nowadays, like <a class="reference external" href="http://single-spa.js.org">single-spa</a> and <a class="reference external" href="http://frint.js.org">frint</a>.</p>
+</div>
+<div class="section" id="planning-your-agile-architecture-will-demaine-fat-llama">
+<h3>Planning your Agile Architecture | Will Demaine (Fat Llama)</h3>
+<p>This was an excellent talk, and well delivered as well. The speaker described
+the steps you may want to follow to modernise your application and enable a
+more agile architecture, from lessons learnt first hand through different
+companies. If I had to undertake a project like this I think I'd find the
+slides or recording again to refresh my memory first, but for today my key
+takeaways would be that this is a long process that you want to tackle
+iteratively, so that you can continue to deliver <strong>business value</strong> along the
+way. No one will let you just take off and deliver nothing new for 8 months
+while you rewrite the thing from scratch.</p>
+<p>Have solid foundations in place (monitoring, feature flags, ...) before
+starting. Take your time and do it right the first time or they won't let you
+migrate more services!</p>
+<p>Another point I found interesting: create a gateway for the clients, the things
+that you can't roll back like mobile apps. Even if it's just a proxy to start
+with.</p>
+</div>
+<div class="section" id="embracing-empathy-tim-hudson-adyen">
+<h3>Embracing empathy | Tim Hudson (Adyen)</h3>
+<p>Pie charts bad. Bar charts good.</p>
+<p>(Also, look into the Design Sprint / Design Sprint 2.0 books.)</p>
+</div>
+<div class="section" id="solving-problems-to-build-a-compelling-product-deborah-clarke-cartrawler">
+<h3>Solving Problems to Build a Compelling Product | Deborah Clarke (Cartrawler)</h3>
+<p>User research is vital but not the only important thing. Combining with other
+incentives can lead to better focus and great breakthroughs. Innocuous, small
+moments of delight can increase your conversion rate.</p>
+</div>
+<div class="section" id="a-journey-from-complexity-reducing-technical-debt-fabrizio-fortunato-ryanair">
+<h3>A Journey from Complexity: Reducing Technical Debt | Fabrizio Fortunato (Ryanair)</h3>
+<p>Interesting to follow the evolution of the RyanAir front page over the decades!
+Some tidbits I found of interest:</p>
+<ul class="simple">
+<li>Impact of page load. Any speed increase has a direct impact on revenue.</li>
+<li>They use &quot;micro-pages.&quot; Concept similar to micro-frontend except it relates
+to full pages, each page is its own app. So everyone is only responsible for
+their own page independently, and loosely coupled. Single SPA per page, that
+can be released independently but still has shared components (interesting
+contrast with micro-frontend above).</li>
+<li>They eventually wrote two different apps for mobile and web, as optimising
+for one over the other never quite worked and only served in increasing
+complexity. Now optimised for each flow. Still haven't decided whether to use
+mobile or web format on tablets.</li>
+<li>They use GraphQL, serverless, Brotli.</li>
+</ul>
+</div>
+<div class="section" id="design-and-prototyping-david-hoang-one-medical">
+<h3>Design and prototyping | David Hoang (One Medical)</h3>
+<ul class="simple">
+<li>Prototypes should be low cost and provide high insights. The goal is
+learning. Having a prototype together with a vision/roadmap is powerful.</li>
+<li>&quot;Validating&quot; a prototype or design is about gaining insights. About
+learning. Not about proving something right or wrong.</li>
+<li>Design is not magic, it's a rigorous process.</li>
+<li>Include User Testing in every sprint.</li>
+</ul>
+<p>Prototyping is successful if you get <strong>insights</strong> that provide <strong>value</strong> to
+your user.</p>
+<p>The examples related to medical applications were compelling. From paper
+(e.g. stuck onto a 3d printed watch model, to test for smart watches ahead of
+releases), to powerpoint, to node-based prototyping, to Figma.</p>
+</div>
+<div class="section" id="the-tools-we-use-challenging-dogma-in-the-design-process-emmet-connolly-intercom">
+<h3>The tools we use: Challenging dogma in the design process | Emmet Connolly (Intercom)</h3>
+<p>Tools influence output, and can even generate trends.</p>
+<p>Use these tools and remain sceptical, don't let the tools push you around and
+end up with a design monoculture (noticeable in the history of the web).</p>
+<p>&quot;Design Ops&quot; - a concept I hadn't heard of.</p>
+</div>
+<div class="section" id="ensuring-the-success-of-your-remote-engineering-team-panel">
+<h3>Ensuring the Success of your Remote Engineering Team | Panel</h3>
+<p>I really liked that the conference kept the talks to 30 minutes, but I think
+that's one case where it would have been better to get an extended timeslot,
+maybe 45 minutes. As it stands even with only two panelists (+ one moderator)
+we barely had time to scratch beyond the surface.</p>
+<p>Keeping a budget for internal face-to-face interactions, some kind of annual
+get-together has a great impact on morale and engagement and pays for itself.</p>
+<p>The cost of saving on office space is not the point (numbers like
+€17,000/person in Dublin, €11,000/person in Sligo were mentioned). Talent is
+the point. Working remotely helps to attract and retain people.</p>
+<p>Onboarding strategies were briefly touched on. One of the companies hires
+mainly senior people with 10y+ experience while the other also hires new grads
+so the strategies are different. It's great if you can get people to HQ for
+this, makes sure they understand the company's values and culture, and also the
+tools at their disposal.</p>
+<p>To keep people connected, having non-work related communication channels like a
+#showyourdesk Slash channel or &quot;whose view is better this week?&quot; can help.</p>
+<p>Time zones are a challenge for global meetings. Some expectation that you will
+go the extra mile for the business, since you are not tied to a regular 9 to 5.</p>
+<p>There were concerns about working from home and whether people are really
+working. In general the opposite seemed to be a concern for the panelists: when
+people work from home you can't see the black bags under their eyes, or if
+people are stuck. People know working from home is a privilege and work hard to
+prove themselves. One of the companies measures employee productivity to make
+sure they don't burn out - though you have to be very careful about how you
+measure people.</p>
+<p>The secret sauce is flexibility. Work is only one part of life.</p>
+<p>How about accountability and self-determination? Decisions should be made by
+the person who needs to. Empower people. Get that right. Measure what you want
+success to look like.</p>
+<p>With regard to people not contributing, teams are tight and it becomes obvious
+who is and who isn't. You do need to be more proactive in searching for
+information with remote teams. One-on-one meetings every two weeks to touch
+base. They are still refining the process. Seven seems to be a magic
+number, you can see if people are performing for any type of team.</p>
+</div>
+<div class="section" id="accessibility-brian-dalton-aer-lingus">
+<h3>Accessibility | Brian Dalton (Aer Lingus)</h3>
+<p>I missed the beginning but seeing how a user who relies on accessibility
+features uses a computer and navigates the Internet is always powerful. Lots of
+work to be done still.</p>
+<p>From keyboard to navigation to simple, silly things like &quot;times shown in red
+are not available.&quot; Label your fields.</p>
+</div>
+<div class="section" id="five-phrases-that-shout-your-agile-isn-t-scaling-tony-grout-atlassian">
+<h3>Five phrases that shout your agile isn't scaling | Tony Grout (Atlassian)</h3>
+<p>The Agile manifesto 17 years ago didn't talk about how to scale it! From 17 to
+70000 people.</p>
+<p>Some interesting suggestions that challenge conventional wisdom. My favourite:
+it's well-known that smaller teams are more productive. Studies have shown that
+teams of 9 to 16 people were 6% less productive than teams of 5 to 9. However,
+if you decide to make 2 teams instead you now have <em>twice</em> the unpredictability
+because you've added a dependency on another team. Think carefully, run the
+experiment to see if bigger teams may be better.</p>
+<p>Encourage people to think about &quot;teams&quot; over &quot;team.&quot; For example, if the UI
+team is currently the bottleneck, instead of engineering twiddling their thumbs
+or overengineering something while they wait, perhaps they could create tooling
+to help the team. That slows them down and helps the other team.</p>
+<p>One team working faster can cause everyone else to go slower. For example, a UI
+team wanting to be pixel perfect.</p>
+<p>Those closest to the problem should make the decisions.</p>
+</div>
+<div class="section" id="kessel-run-a-digital-transformation-story-within-the-world-s-largest-bureaucracy-adam-furtado-kessel-run-u-s-air-force">
+<h3>Kessel Run: A Digital Transformation Story within the World's Largest Bureaucracy | Adam Furtado (Kessel Run / U.S. Air Force)</h3>
+<p>An interesting choice for a closing keynote for day one.</p>
+<p>The transformation described is absolutely incredible. The speaker spent a fair
+amount of time at the beginning to explain the current state of things,
+years/decades of risk aversion leading to becoming unable to adapt to change
+and thus less safe. Twelve to fifteen years to go from an idea to something in
+the users' hands, 96% of project behind schedule or over budget, 40% never
+delivered... They went to Pivotal, who helped them to learn about modern
+software development practices, devops, etc but more importantly how to change
+the culture. Now deploying is a non-event and they went from 10 years to 120
+days for delivering.</p>
+<p>It's truly inspiring and the project they presented as an example showed the
+real-world benefits: allowing soldiers to stay safe at home and with their
+family rather than go on months-long refuelling missions around the world,
+thanks to streamlining the refuelling planning process with
+software. Definitely a worthy goal.</p>
+<p>It was however a bit strange to hear about software described as a
+differentiator and weapon to cultivate on the battlefield, and how to improve
+warfare. I suppose keynotes are meant to make you think rather than just give
+you warm fuzzy feelings, and this talk sure fit the bill!</p>
+<img alt="Courtyard" class="align-center" src="https://www.jpichon.net/site_media/images/2018/RDS_courtyard.jpg" style="width: 600px; height: 450px;" />
+</div>
+</div>
+<div class="section" id="day-two">
+<h2>Day Two</h2>
+<p>Was just as interesting, too bad I left it too long to get the rest of my notes
+together.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

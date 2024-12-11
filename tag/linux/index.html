@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - linux</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2018/10/recettear-on-proton/">Recettear on Proton</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-10-29T20:16:00+00:00">
+                Published: Mon 29 October 2018
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/linux/">linux</a> <a href="https://www.jpichon.net/tag/games/">games</a> </p>
+</footer><!-- /.post-info --><p>I was very excited to hear that many games formerly Windows-only are now
+playable on Linux, thanks to Steam Proton (based on Wine). Space is a bit too
+tight for Skyrim on my laptop, but surely it would be nice to see if playing
+<a class="reference external" href="http://www.carpefulgur.com/recettear/about.htm">Recettear</a> on Linux is now
+an option!</p>
+<div class="section" id="enable-proton-install-recettear">
+<h2>Enable Proton &amp; install Recettear</h2>
+<p>The steps for this are not too difficult, just follow the <a class="reference external" href="https://steamcommunity.com/games/221410/announcements/detail/1696055855739350561">FAQ</a>:
+enable Steam beta, enable Steam Play for all titles.</p>
+<p>The install button is now available for Recettear! Woohoo.</p>
+</div>
+<div class="section" id="alas-no-sound">
+<h2>Alas, no sound</h2>
+<p>Thankfully help came through, thanks to the <a class="reference external" href="https://www.protondb.com/app/70400">protondb entry for Recettear</a> that helpfully links to this <a class="reference external" href="https://github.com/ValveSoftware/Proton/issues/5#issuecomment-429343368">GitHub
+Issue</a>. Thank
+you kind stranger! My path was somewhat different, possibly because I installed
+Steam with <a class="reference external" href="https://www.flatpak.org/">flatpak</a>.</p>
+<pre class="literal-block">
+$ locate pfx
+...
+/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx/
+...
+$ WINEPREFIX=/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx winetricks directmusic sound=alsa
+</pre>
+</div>
+<div class="section" id="unknown-arg-sound-alsa">
+<h2>Unknown arg sound=alsa</h2>
+<p>Alas, now I get a black screen and a popping sound instead. Looking at the
+verbose output though, hidden toward the end I did notice <tt class="docutils literal">Unknown arg
+sound=alsa</tt>. Looks like my winetricks version may be a bit old.</p>
+<pre class="literal-block">
+$ sudo winetricks --self-update
+$ WINEPREFIX=/home/jpichon/.var/app/com.valvesoftware.Steam/games/steamapps/compatdata/70400/pfx winetricks directmusic sound=alsa
+</pre>
+<p>Success, this time! The game loads fine, and with music.</p>
+<p>Capitalism, ho!</p>
+</div>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2016/05/efi-linux/" rel="bookmark"
+                           title="Permalink to EFI, Linux and other boot-loading fun | a.k.a. where's my Grub gone">EFI, Linux and other boot-loading fun  | a.k.a. where's my Grub gone</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-05-30T21:42:00+01:00">
+                Published: Mon 30 May 2016
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/linux/">linux</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->                <p>I've been gaming more recently, on hardware that is
+decent-in-some-contexts-but-definitely-not-in-this-one which has meant
+pathetic frame rates as low as 7~12FPS as my save files grew bigger. A
+kind soul took pity on me and installed a better graphics card in my
+machine while I wasn't looking - which of course …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2016/05/efi-linux/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2015/04/switching-locale-gnome-3/" rel="bookmark"
+                           title="Permalink to Switching locale (Gnome 3, Fedora 20) | and making sure all the menus switch too">Switching locale (Gnome 3, Fedora 20)  | and making sure all the menus switch too</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-04-19T03:52:00+01:00">
+                Published: Sun 19 April 2015
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/gnome/">gnome</a> <a href="https://www.jpichon.net/tag/japanese/">japanese</a> <a href="https://www.jpichon.net/tag/linux/">linux</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->                <p>In the spirit of immersion, I switched the laptop's language to
+Japanese, however most of the Gnome menus remained in English even after
+switching the System Language altogether, logging out etc. Another
+profile on the laptop shows the menus for Activities, etc in Japanese
+just fine so it wasn't a …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2015/04/switching-locale-gnome-3/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2014/05/steam-on-linux/" rel="bookmark"
+                           title="Permalink to Adventures with Steam on Linux | Today: Mark of the Ninja doesn't start">Adventures with Steam on Linux  | Today: Mark of the Ninja doesn't start</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-05-19T20:09:00+01:00">
+                Published: Mon 19 May 2014
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/games/">games</a> <a href="https://www.jpichon.net/tag/linux/">linux</a> </p>
+</footer><!-- /.post-info -->                <p>I've been getting back into PC gaming for the last couple of months, and
+that has involved a lot of checking out what Steam on Linux looks like
+nowadays (i.e. playing lots of games). Most of the time everything works
+just fine and smoothly, but sometimes there are hiccups …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2014/05/steam-on-linux/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2013/05/git-diff-showing-weird-output/" rel="bookmark"
+                           title="Permalink to git diff showing a weird output | ^[[1;33m^[[mmmmh?!">git diff showing a weird output  | ^[[1;33m^[[mmmmh?!</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2013-05-09T21:34:00+01:00">
+                Published: Thu 09 May 2013
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/linux/">linux</a> </p>
+</footer><!-- /.post-info -->                <p>I came back to an old project on another machine only to find that the
+<em>git diff</em> command did not behave as expected anymore:</p>
+<pre class="literal-block">
+^[[1;33mdiff --git a/myproject/myapp/models.py b/myproject/myapp/models.py^[[m
+^[[1;33mindex 0216829..d9e1637 100644^[[m
+^[[1;33m--- a/myproject/myapp/models …</pre>
+                <a class="readmore" href="https://www.jpichon.net/blog/2013/05/git-diff-showing-weird-output/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<nav>
+    Page 1 / 3
+        <a href="https://www.jpichon.net/tag/linux/index2.html">&rang;</a>
+        <a href="https://www.jpichon.net/tag/linux/index3.html">&Rang;</a>
+</nav>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>jpichon.net - n900</title><link>https://www.jpichon.net/</link><description></description><lastBuildDate>Sun, 01 May 2011 14:41:00 +0100</lastBuildDate><item><title>Getting started developing for Maemo in Python</title><link>https://www.jpichon.net/blog/2011/05/getting-started-maemo-python/</link><description>&lt;p&gt;After a few months of owning a N900 finally came the itch to write an
+app for it -- using of course Python! The Maemo documentation is
+excellent, I'm only putting my notes down here for future reference.&lt;/p&gt;
+&lt;p&gt;First off, making sure to know which version of Maemo is on the phone:
+Settings -&amp;gt; About: Maemo 5.&lt;/p&gt;
+&lt;div class="section" id="setting-up"&gt;
+&lt;h2&gt;Setting up&lt;/h2&gt;
+&lt;p&gt;The documentation at &lt;a class="reference external" href="http://maemo.org/development/"&gt;http://maemo.org/development/&lt;/a&gt; is truly excellent.
+Of interest to us to begin with is &lt;a class="reference external" href="http://wiki.maemo.org/Documentation/Maemo_5_Final_SDK_Installation"&gt;installing the
+SDK&lt;/a&gt;.
+The wiki has been kept up to date with tips and links to solutions of
+potential problems at the stage where you might encounter them, making
+any issue a non-event.&lt;/p&gt;
+&lt;p&gt;Note: It turns out that the SDK is optional to develop with Python. If
+you would prefer not to set this all up, you can simply move your Python
+files to the phone or write the code there directly. Personally I found
+having a full SDK on the laptop to be really handy to try things out
+quickly, and to tweak and understand what the final result will look
+like.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="getting-started-every-time"&gt;
+&lt;h2&gt;Getting started, every time&lt;/h2&gt;
+&lt;p&gt;The SDK docs lists the various commands that may work for your distro
+and system specifics, which is awesome but can be a bit dense to read
+through and find again later on. Here's what I do on Debian unstable:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Xephyr :2 -host-cursor -screen 800x480x16 -dpi 96 -ac &amp;amp;
+&lt;/pre&gt;
+&lt;p&gt;and:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+/scratchbox/login
+export DISPLAY=:2
+af-sb-init.sh start
+&lt;/pre&gt;
+&lt;p&gt;Important: Don't forget to run `af-sb-init.sh stop` at the end, or
+say, if you messed your Xephyr command and need to restart it -- you
+will need to stop this script before attempting to start the emulator
+environment again. Otherwise there will be D-Bus conflicts and things
+won't work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hello-world"&gt;
+&lt;h2&gt;Hello, world&lt;/h2&gt;
+&lt;p&gt;After setting up the SDK, the documentation recommends you go learn
+about packaging next -- I kept that one for later, it's more interesting
+to build something first!&lt;/p&gt;
+&lt;p&gt;By following the documentation you can find the Hello world for Python,
+which does work on the phone with no hassle and without stopping by the
+SDK: &lt;a class="reference external" href="http://wiki.maemo.org/Documentation/Maemo_5_Developer_Guide"&gt;Developer
+Guide&lt;/a&gt;
+-&amp;gt; &lt;a class="reference external" href="http://wiki.maemo.org/Documentation/Maemo_5_Developer_Guide/Development_Environment/Maemo_Programming_Environments"&gt;Programming
+Environments&lt;/a&gt;
+-&amp;gt; &lt;a class="reference external" href="http://wiki.maemo.org/PyMaemo/Quick_start_guide"&gt;PyMaemo quick
+start.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;If you'd like to work in scratchbox (quicker turnaround!), you can go
+back to the Maemo SDK on your machine and follow again the instructions
+to set up a Python development environment.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="hello-world-again"&gt;
+&lt;h2&gt;Hello world, again&lt;/h2&gt;
+&lt;p&gt;The same Python-related packages need to be installed into the dev
+environment, within scratchbox.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+nano /etc/apt/sources.list
+deb http://repository.maemo.org/extras-devel/ fremantle free non-free
+apt-get update
+apt-get install maemo-python-env (and qemacs :o))
+&lt;/pre&gt;
+&lt;p&gt;Note that on the phone, you would install &lt;em&gt;maemo-python-device-env&lt;/em&gt; (cf.
+&lt;a class="reference external" href="http://wiki.maemo.org/PyMaemo/Quick_start_guide"&gt;Quick Start
+Guide&lt;/a&gt;), while when
+working in scratchbox&amp;nbsp; you should install &lt;em&gt;maemo-python-env&lt;/em&gt; instead
+(cf.&amp;nbsp; &lt;a class="reference external" href="http://maemo.org/development/documentation/programming_languages/"&gt;Python
+support&lt;/a&gt;)&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+qemacs -nw hello.py
+python2.5 hello.py
+&lt;/pre&gt;
+&lt;p&gt;Make sure you're calling `python2.5` explicitly or the program will
+fail with &amp;quot;&lt;strong&gt;ImportError: No module named gtk&lt;/strong&gt;&amp;quot;. While working with
+Hildon I use this command instead, which you'll learn when doing the UI
+Tutorial.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+run-standalone.sh python2.5 hello.py
+&lt;/pre&gt;
+&lt;p&gt;Because of the various warnings messing up my scratchbox screen, I ended
+up using emacs from outside of scratchbox. The files you're working with
+are located at /scratchbox/users/&amp;lt;username&amp;gt;/home/&amp;lt;username&amp;gt;.&lt;/p&gt;
+&lt;p&gt;Once you can run the Hello world program, the next step is to go through
+the &lt;a class="reference external" href="http://wiki.maemo.org/PyMaemo/UI_tutorial"&gt;handy UI tutorial&lt;/a&gt;,
+which teaches a lot about Hildon and GTK.&lt;/p&gt;
+&lt;p&gt;I would also recommend installing the devhelp packages for:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;PyGTK (python-gtk2-doc),&lt;/li&gt;
+&lt;li&gt;the PyGTK tutorial (python-gtk2-tutorial), and&lt;/li&gt;
+&lt;li&gt;the hildon API (libhildon-1-doc) (also &lt;a class="reference external" href="http://maemo.org/api_refs/5.0/5.0-final/hildon/"&gt;available
+online&lt;/a&gt;). The API
+reference is in C but after doing the tutorial it's easy enough to
+guess the Python names. Note that although it's still handy, the
+Debian package does not appear to be the very latest version, e.g.
+HildonSizeType isn't documented.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'm really happy with that setup, and it's lovely to get a nice looking
+UI working so quickly and easily. This is reconciling me with GUI
+programming -- it looks nice and because of the small screen, there
+isn't a ton of repetitive boilerplate to write. I can't wait to be far
+along enough in that project, that I have an excuse to learn again about
+Debian packaging! :-)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Screenshot of development environment" src="https://www.jpichon.net/site_media/images/2011/pymaemo.png" /&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Sun, 01 May 2011 14:41:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2011-05-01:/blog/2011/05/getting-started-maemo-python/</guid><category>Tech</category><category>n900</category><category>open-source</category><category>python</category></item><item><title>Tethering on the N900</title><link>https://www.jpichon.net/blog/2011/02/tethering-on-the-n900/</link><description>&lt;p&gt;As &lt;a class="reference external" href="http://www.fosdem.org"&gt;FOSDEM&lt;/a&gt; (woohoo \o/) draws closer and the
+likelihood of &lt;a class="reference external" href="http://www.rte.ie/news/2011/0202/aerlingus.html"&gt;spending a lot of time in the
+airport&lt;/a&gt; doesn't
+change, I thought it was time to find out how to use my N900 as a modem
+or for &amp;quot;tethering&amp;quot; as I'm told the proper word is.&lt;/p&gt;
+&lt;p&gt;Some background:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;my laptop runs Debian Squeeze (unstable) -- the stable release is
+coming out this week-end by the way!&lt;/li&gt;
+&lt;li&gt;my phone carrier is Meteor (Ireland) and I use their 3G/GPRS
+connection for data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="section" id="tethering-via-the-usb-cable"&gt;
+&lt;h2&gt;Tethering via the USB cable&lt;/h2&gt;
+&lt;p&gt;The &lt;a class="reference external" href="http://maemo.nokia.com/n900/tips/tethering/linux/"&gt;official Maemo
+webpage&lt;/a&gt; makes it
+all sound real simple but it didn't quite work this way for me. The
+wizard did not appear either on Debian or when I tried on Ubuntu 10.10.
+Although the phone did show up in Network Manager -&amp;gt; Wired networks, it
+only displayed as Disconnected and I couldn't find any option to set up
+a new 3G network.&lt;/p&gt;
+&lt;p&gt;After many failed attempts, this is the &lt;a class="reference external" href="http://forums.internettablettalk.com/showthread.php?p=804214"&gt;approach that worked for
+me&lt;/a&gt;. It
+requires wvdial. One annoyance: it works once, then I need to unplug and
+re-plug the phone.&lt;/p&gt;
+&lt;p&gt;Here's the wvdial information for Meteor Ireland:&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;APN: data.mymeteor.ie&lt;/div&gt;
+&lt;div class="line"&gt;Username: my&lt;/div&gt;
+&lt;div class="line"&gt;Password: meteor&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tethering-via-bluetooth"&gt;
+&lt;h2&gt;Tethering via Bluetooth&lt;/h2&gt;
+&lt;p&gt;Emboldened by my success I decided to follow the link to the &lt;a class="reference external" href="http://wiki.debian.org/UseYourCellPhoneAsModem"&gt;Debian
+wiki&lt;/a&gt; on how to set
+up the same using Bluetooth. I was very disappointed to see they
+recommend using a KDE app even under Gnome, and when I looked at the
+number of dependencies it would bring I thought I'd take my chance the
+Gnome way.&lt;/p&gt;
+&lt;p&gt;...I'll skip on the embarrassing moments where I was thinking Gnome 3
+wasn't set up yet to handle Bluetooth then found out the Bluetooth
+service was actually turned off... *cough* I used the Bluetooth applet
+to pair with the phone and followed the rest of the instructions on the
+wiki page, until the rfcomm command brought up the following error.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Can't connect RFCOMM socket: Connection refused
+&lt;/pre&gt;
+&lt;p&gt;Using &amp;quot;&lt;em&gt;sdptool browse &amp;lt;N900_MAC_ADDRESS&amp;gt;&lt;/em&gt;&amp;quot; revealed that I did not
+have the &amp;quot;Dial up networking service&amp;quot; running on the phone. You actually
+need to install an extra app, available in the repos first (application
+name is: Bluetooth Dial-Up Networking). I then followed &lt;a class="reference external" href="http://wiki.maemo.org/Debian-Tethering"&gt;these
+instructions on the Maemo
+wiki&lt;/a&gt; to set up rfcomm.conf,
+until &amp;quot;Restart the bluetooth stack&amp;quot; in the first section, and ta-dah!
+With &amp;quot;&lt;em&gt;wvdial bluetooth&lt;/em&gt;&amp;quot; I can now start the connection via Bluetooth.&lt;/p&gt;
+&lt;p&gt;To be honest I'm sure this is a battery drain nightmare and I can't
+imagine tethering without the cable but heh! I learnt about several new
+tools and if I ever need it, it's there :-)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="final-wvdial-conf-in-all-its-mighty-glory"&gt;
+&lt;h2&gt;Final wvdial.conf, in all its mighty glory&lt;/h2&gt;
+&lt;pre class="literal-block"&gt;
+[Dialer Defaults]
+Init1 = ATZ
+Init2 = ATQ0 V1 E1 S0=0 &amp;amp;C1 &amp;amp;D2 +FCLASS=0
+Baud = 460800
+New PPPD = yes
+ISDN = 0
+New PPPD = yes
+Phone = *99***1#
+Username = &amp;quot;my&amp;quot;
+Password = &amp;quot;meteor&amp;quot;
+Init6= AT+CGDCONT=1,&amp;quot;IP&amp;quot;,&amp;quot;data.mymeteor.ie&amp;quot;
+
+[Dialer usb]
+Modem Type = USB Modem
+Modem = /dev/ttyACM0
+
+[Dialer bluetooth]
+Modem = /dev/rfcomm0
+&lt;/pre&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Wed, 02 Feb 2011 19:34:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2011-02-02:/blog/2011/02/tethering-on-the-n900/</guid><category>Tech</category><category>linux</category><category>n900</category><category>open-source</category></item><item><title>Spring cleaning</title><link>https://www.jpichon.net/blog/2010/12/spring-cleaning/</link><description>&lt;p&gt;I'm after &amp;quot;spring&amp;quot; cleaning a little the website. A bit of CSS here,
+updating some Django code there, adding a couple of icons and creating
+new pages. It's a bit sad how short the &amp;quot;Speaking &amp;amp; Writing&amp;quot; page ended
+up being! A clear path for improvement in 2011.&lt;/p&gt;
+&lt;p&gt;In other news I got myself a N900 \o/ I can now handle email while
+stuck on the bus, yay. I would have posted a picture, but I applied the
+protector film so poorly that I can't take a picture without weird
+reflections. Ah well. Here's a picture from Nokia themselves, who are
+much better photographers than I am :-)&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="http://www.nokia.ie/PRODUCT_METADATA_0/Products/Phones/N-series/N900/images/n900_features_main_490x258.png"&gt;&lt;img alt="Hot linking a picture of the N900" src="http://www.nokia.ie/PRODUCT_METADATA_0/Products/Phones/N-series/N900/images/n900_features_main_490x258.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Tue, 28 Dec 2010 21:24:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2010-12-28:/blog/2010/12/spring-cleaning/</guid><category>Tech</category><category>gadgets</category><category>n900</category><category>open-source</category></item></channel></rss>

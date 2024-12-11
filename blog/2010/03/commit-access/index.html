@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Commit access | Contributing to Sugar</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Through a series of kinda mind boggling coincidences, meeting people and talking about what I have in mind and am passionate about, earlier this..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/03/commit-access/" rel="bookmark"
+           title="Permalink to Commit access | Contributing to Sugar">Commit access  | Contributing to Sugar</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-03-16T22:56:00+00:00">
+                Published: Tue 16 March 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/contributing/">contributing</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/sugar/">sugar</a> </p>
+</footer><!-- /.post-info -->      <p>Through a series of kinda mind boggling coincidences, meeting people and
+talking about what I have in mind and am passionate about, earlier this
+month I ended up with commit access to the Pippy activity (a
+<a class="reference external" href="http://www.sugarlabs.org">Sugar</a> application). Wow! Awesome. A few
+weeks back, I had decided to fix as many of the broken examples as I
+could after getting a bit embarrassed showing off Sugar to a teenager,
+last October. He was very interested but as we were using Pippy it felt
+like we were getting stack traces a bit too often (they weren't that
+many really, they just happen to be more memorable.)</p>
+<p>So I fixed them and the patches sat there for weeks (I didn't set the
+&quot;need review&quot; flag to be fair, which I just discovered in a corner of
+the wiki last week), along with a patch not-from-me in #347 which I
+think should really-really make it into the next release because Pippy
+is completely unusable on my (all?) netbook without it.</p>
+<p>Now, I've been granted the Power Of The Commit so it should all be fine,
+with me committing away and happily making the world a better place...
+but it's not so simple, because really, I'm still living too far away
+from the community to understand how they work and notably here, the
+interactions with and within the bug tracker. For instance, I didn't
+realise you were supposed to add the &quot;r?&quot; keyword when submitting a
+patch, I found it accidentally when looking for something else in the
+wiki. I'm not a maintainer either, so it's not entirely clear what I
+should be doing with the bug report after submitting a patch or the
+process to follow.</p>
+<p>Although my patches are tested and too small (I believe!) to actually do
+great damage, I didn't commit them... which ended up being a good idea
+since one of them was incorrect :) Someone kindly commented on the bug
+report saying it didn't work, with details. Turns out I was so keen on
+removing the stack traces I didn't check if the error messages provided
+by other Pippy examples were actually correct (so I display &quot;install
+this&quot; instead of showing a stack trace, but the &quot;install this&quot; doesn't
+actually solve the issue for that example, nor for the example I took it
+from.) I've now attached a <a class="reference external" href="http://bugs.sugarlabs.org/ticket/638">new, better
+patch</a> to the report (...and
+set the proper review flag!)</p>
+<p>It's probably a tad too early for me to have those commit rights, just
+yet. I need a mentor still, except individually everybody is incredibly
+busy being awesome already, which is fair. The truth is, I already have
+a mentor if I reach out to it: the community. So this is always
+something I will be working on in parallel, I really want to integrate
+with the community. It just takes time for someone not so comfortable
+with the &quot;public speaking effect&quot; of pouring thoughts, mistakes and
+ideas on public, sometimes archived mailing lists and channels. I'll
+figure it out, at my own pace. I have access to some pretty cool people
+individually in the meantime if I really need help. My first area of
+focus is grokking the bug tracker so I can contribute effectively there.</p>
+<div class="section" id="sugar-stuff-i-want-to-figure-out">
+<h2>Sugar stuff I want to figure out:</h2>
+<ul class="simple">
+<li>How to know when a patch is big enough to warrant the &quot;r?&quot; flag, or
+really should they all have it?</li>
+<li>The complete process for submitting a patch. Right now, I think, a
+lot of the information I am looking for is under the &quot;<a class="reference external" href="http://wiki.sugarlabs.org/go/Development_Team/Code_Review">Code
+review</a>&quot;
+wiki page which makes it not obvious to find, and it's still not a
+clear step-by-step process. As I progressively get a better
+understanding of how things work I'd like to improve on it and/or
+eventually make a case for a &quot;Submitting patches&quot; page aimed at
+brand-new contributors, ideally &quot;drive by&quot; contributors too. I'm
+thinking of something along the lines of Gnome's <a class="reference external" href="http://live.gnome.org/GnomeLove/SubmittingPatches">&quot;Submitting
+patches&quot; page</a>,
+or Gnome's <a class="reference external" href="http://live.gnome.org/Empathy/Git">project</a>
+<a class="reference external" href="http://live.gnome.org/Tomboy/HowToSubmitPatches">specific</a>
+guidelines, which I found really useful when I was getting ready to
+make my first open-source contribution.</li>
+<li>Find out what developers do with bug reports, the best practices. How
+keywords and the 5.000 status/milestones/etc fields are being used
+and who gets to set them. I suspect there's probably an established
+set of guidelines for Sugar core, and that activity maintainers kinda
+do their own things, but still, I'm sure a set of best practices has
+emerged, somehow, somewhere. Usually <a class="reference external" href="http://wiki.sugarlabs.org/go/BugSquad/Triage_Guide">triaging
+guides</a> are
+pretty good at indicating how the <a class="reference external" href="http://wiki.sugarlabs.org/go/BugSquad/Status_Fields">status
+field</a> should
+be used and what it means up to a certain point (usually, up to when
+the developer takes charge of the bug which is when I started getting
+stuck) but for Sugar, what I've seen so far doesn't seem to match the
+wiki (for instance there are a lot of bug marked assigned that aren't
+being worked on, and I suspect they just automatically get assigned
+to the maintainer or something like this. To be investigated
+further.) Also for the non-creator/non-main-maintainer of a
+component, is it ok to simply close off a bug after pushing a patch,
+even if no one else confirmed it worked? (I guess any problem will
+bubble back up to the bug tracker anyway, eventually...)</li>
+<li>Code freezes. <a class="reference external" href="http://wiki.sugarlabs.org/go/0.88/Roadmap">We're in one
+now</a>, but I'm not sure
+how this impacts activities or if this is mostly about Sugar core,
+and when/which/how a version of an activity is selected to be shipped
+with the current release (and does that differ for &quot;main&quot;/fructose
+activities like Pippy?)</li>
+</ul>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Getting started developing for Maemo in Python</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="After a few months of owning a N900 finally came the itch to write an app for it -- using of course Python! The Maemo documentation is excellent,..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/05/getting-started-maemo-python/" rel="bookmark"
+           title="Permalink to Getting started developing for Maemo in Python">Getting started developing for Maemo in Python</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-05-01T14:41:00+01:00">
+                Published: Sun 01 May 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/n900/">n900</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>After a few months of owning a N900 finally came the itch to write an
+app for it -- using of course Python! The Maemo documentation is
+excellent, I'm only putting my notes down here for future reference.</p>
+<p>First off, making sure to know which version of Maemo is on the phone:
+Settings -&gt; About: Maemo 5.</p>
+<div class="section" id="setting-up">
+<h2>Setting up</h2>
+<p>The documentation at <a class="reference external" href="http://maemo.org/development/">http://maemo.org/development/</a> is truly excellent.
+Of interest to us to begin with is <a class="reference external" href="http://wiki.maemo.org/Documentation/Maemo_5_Final_SDK_Installation">installing the
+SDK</a>.
+The wiki has been kept up to date with tips and links to solutions of
+potential problems at the stage where you might encounter them, making
+any issue a non-event.</p>
+<p>Note: It turns out that the SDK is optional to develop with Python. If
+you would prefer not to set this all up, you can simply move your Python
+files to the phone or write the code there directly. Personally I found
+having a full SDK on the laptop to be really handy to try things out
+quickly, and to tweak and understand what the final result will look
+like.</p>
+</div>
+<div class="section" id="getting-started-every-time">
+<h2>Getting started, every time</h2>
+<p>The SDK docs lists the various commands that may work for your distro
+and system specifics, which is awesome but can be a bit dense to read
+through and find again later on. Here's what I do on Debian unstable:</p>
+<pre class="literal-block">
+Xephyr :2 -host-cursor -screen 800x480x16 -dpi 96 -ac &amp;
+</pre>
+<p>and:</p>
+<pre class="literal-block">
+/scratchbox/login
+export DISPLAY=:2
+af-sb-init.sh start
+</pre>
+<p>Important: Don't forget to run `af-sb-init.sh stop` at the end, or
+say, if you messed your Xephyr command and need to restart it -- you
+will need to stop this script before attempting to start the emulator
+environment again. Otherwise there will be D-Bus conflicts and things
+won't work.</p>
+</div>
+<div class="section" id="hello-world">
+<h2>Hello, world</h2>
+<p>After setting up the SDK, the documentation recommends you go learn
+about packaging next -- I kept that one for later, it's more interesting
+to build something first!</p>
+<p>By following the documentation you can find the Hello world for Python,
+which does work on the phone with no hassle and without stopping by the
+SDK: <a class="reference external" href="http://wiki.maemo.org/Documentation/Maemo_5_Developer_Guide">Developer
+Guide</a>
+-&gt; <a class="reference external" href="http://wiki.maemo.org/Documentation/Maemo_5_Developer_Guide/Development_Environment/Maemo_Programming_Environments">Programming
+Environments</a>
+-&gt; <a class="reference external" href="http://wiki.maemo.org/PyMaemo/Quick_start_guide">PyMaemo quick
+start.</a></p>
+<p>If you'd like to work in scratchbox (quicker turnaround!), you can go
+back to the Maemo SDK on your machine and follow again the instructions
+to set up a Python development environment.</p>
+</div>
+<div class="section" id="hello-world-again">
+<h2>Hello world, again</h2>
+<p>The same Python-related packages need to be installed into the dev
+environment, within scratchbox.</p>
+<pre class="literal-block">
+nano /etc/apt/sources.list
+deb http://repository.maemo.org/extras-devel/ fremantle free non-free
+apt-get update
+apt-get install maemo-python-env (and qemacs :o))
+</pre>
+<p>Note that on the phone, you would install <em>maemo-python-device-env</em> (cf.
+<a class="reference external" href="http://wiki.maemo.org/PyMaemo/Quick_start_guide">Quick Start
+Guide</a>), while when
+working in scratchbox&nbsp; you should install <em>maemo-python-env</em> instead
+(cf.&nbsp; <a class="reference external" href="http://maemo.org/development/documentation/programming_languages/">Python
+support</a>)</p>
+<pre class="literal-block">
+qemacs -nw hello.py
+python2.5 hello.py
+</pre>
+<p>Make sure you're calling `python2.5` explicitly or the program will
+fail with &quot;<strong>ImportError: No module named gtk</strong>&quot;. While working with
+Hildon I use this command instead, which you'll learn when doing the UI
+Tutorial.</p>
+<pre class="literal-block">
+run-standalone.sh python2.5 hello.py
+</pre>
+<p>Because of the various warnings messing up my scratchbox screen, I ended
+up using emacs from outside of scratchbox. The files you're working with
+are located at /scratchbox/users/&lt;username&gt;/home/&lt;username&gt;.</p>
+<p>Once you can run the Hello world program, the next step is to go through
+the <a class="reference external" href="http://wiki.maemo.org/PyMaemo/UI_tutorial">handy UI tutorial</a>,
+which teaches a lot about Hildon and GTK.</p>
+<p>I would also recommend installing the devhelp packages for:</p>
+<ul class="simple">
+<li>PyGTK (python-gtk2-doc),</li>
+<li>the PyGTK tutorial (python-gtk2-tutorial), and</li>
+<li>the hildon API (libhildon-1-doc) (also <a class="reference external" href="http://maemo.org/api_refs/5.0/5.0-final/hildon/">available
+online</a>). The API
+reference is in C but after doing the tutorial it's easy enough to
+guess the Python names. Note that although it's still handy, the
+Debian package does not appear to be the very latest version, e.g.
+HildonSizeType isn't documented.</li>
+</ul>
+<p>I'm really happy with that setup, and it's lovely to get a nice looking
+UI working so quickly and easily. This is reconciling me with GUI
+programming -- it looks nice and because of the small screen, there
+isn't a ton of repetitive boilerplate to write. I can't wait to be far
+along enough in that project, that I have an excuse to learn again about
+Debian packaging! :-)</p>
+<p><img alt="Screenshot of development environment" src="https://www.jpichon.net/site_media/images/2011/pymaemo.png" /></p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

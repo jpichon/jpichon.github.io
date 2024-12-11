@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - pelican</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-pelican.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2018-02-23T19:12:00+00:00</updated><entry><title>Migrated to Pelican</title><link href="https://www.jpichon.net/blog/2018/02/migrated-to-pelican/" rel="alternate"></link><published>2018-02-23T19:12:00+00:00</published><updated>2018-02-23T19:12:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2018-02-23:/blog/2018/02/migrated-to-pelican/</id><summary type="html">&lt;p&gt;After 8 years of maintaining my lil' custom Django blog, it's time for a
+change! I'd been thinking about migrating for a while. After the first couple
+of years of excitement I started falling further and further behind framework
+upgrades, and my cute anti-spam system kicked the bucket a couple …&lt;/p&gt;</summary><content type="html">&lt;p&gt;After 8 years of maintaining my lil' custom Django blog, it's time for a
+change! I'd been thinking about migrating for a while. After the first couple
+of years of excitement I started falling further and further behind framework
+upgrades, and my cute anti-spam system kicked the bucket a couple of years
+back, even though there never was much conversation on the blog. Drop me an
+email or a tweet if you want to chat about something here :)&lt;/p&gt;
+&lt;p&gt;I'd been postponing the migration because I thought it would be real painful to
+migrate both the content and keep the URL format the same, especially for a
+custom platform. It turned out to be really easy. Pelican rocks!&lt;/p&gt;
+&lt;div class="section" id="migrating-the-content"&gt;
+&lt;h2&gt;Migrating the content&lt;/h2&gt;
+&lt;p&gt;Pelican comes with an &lt;a class="reference external" href="http://docs.getpelican.com/en/stable/importer.html"&gt;import tool&lt;/a&gt; that supports bland
+little feeds like mine. By default my feed only displays 10 entries but since
+it's my code I just modified it locally to show them all. That probably ended
+up being one of the least straightforward parts of the process actually. I was
+super excited about Django when I first created the blog but not too familiar
+with how to manage Python dependencies. Thus, although I did write down the
+dependency names in a text file I wasn't forward looking enough to include
+version numbers. &lt;tt class="docutils literal"&gt;pip freeze&lt;/tt&gt; is my friend now. Thankfully I only had a
+couple of plugins to play guess-what-version at.&lt;/p&gt;
+&lt;p&gt;I did end up making a couple of changes to Pelican locally so it would work
+better with my content (yay open-source).&lt;/p&gt;
+&lt;p&gt;First, to avoid the &lt;tt class="docutils literal"&gt;&amp;lt;pre&amp;gt;&lt;/tt&gt; code snippets getting mangled with no linebreaks
+I ended up commenting out a few lines in &lt;a class="reference external" href="https://github.com/getpelican/pelican/blob/3.7.1/pelican/tools/pelican_import.py#L722-L724"&gt;fields2pelican()&lt;/a&gt;
+that look like they're meant to ensure the validity of the original HTML. I was
+using a wizard in the old blog so there's no reason it shouldn't be. I wasn't
+too worried about it and didn't notice side-effects during the migration.&lt;/p&gt;
+&lt;p&gt;Secondly, the files weren't created with the correct slugs and filenames, which
+caused some issues when rewriting the URLs. It looks like the feed parser
+doesn't look at the real slug so I figured out where the URL was at in
+&lt;a class="reference external" href="https://github.com/getpelican/pelican/blob/3.7.1/pelican/tools/pelican_import.py#L494"&gt;feed2fields()&lt;/a&gt;
+(in &lt;tt class="docutils literal"&gt;entry.id&lt;/tt&gt; for me) and changed the &lt;tt class="docutils literal"&gt;slug = slugify(entry.title)&lt;/tt&gt; line
+to break down that value and extract the real slug.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="adjusting-the-content"&gt;
+&lt;h2&gt;Adjusting the content&lt;/h2&gt;
+&lt;p&gt;Now, I use tags quite liberally and on the feed that was marked with &amp;quot;Tagged
+with: blah, bleh, bloh&amp;quot; at the end of an article. I wrote a short script to
+scrap that line from the rst files created in the previous step, add the
+discovered tags to :tags: in the metadata and remove the 'Tagged with'
+line. That was fun!  The script is ugly and bugs were found along the way, but
+it did the job and now it even works when there are so many tags on an entry
+that they're spread over several lines ;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rewriting-the-urls"&gt;
+&lt;h2&gt;Rewriting the URLs&lt;/h2&gt;
+&lt;p&gt;I don't know if I should even give this a heading. Figuring out rewrite rules
+was giving me cold sweats but it turns out Pelican gives you &lt;a class="reference external" href="http://docs.getpelican.com/en/stable/settings.html#url-settings"&gt;handy settings&lt;/a&gt; out of the
+box to have your URLs look like whatever you want. It's really easy. I mean, I
+don't think I broke anything?!&lt;/p&gt;
+&lt;p&gt;Except the feeds, but after some thinking that's something I decided to do on
+purpose. The blog has ended up aggregated in a lot of places I don't even
+remember, and I was really concerned about 8 years of entries somehow getting
+newer timestamps and flooding the planets I'm on. So, brand new feeds. I'll
+update the two or three planets I remember being a part of, and the others as I
+find them or they find me again :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="going-mad-with-sed"&gt;
+&lt;h2&gt;Going mad with sed&lt;/h2&gt;
+&lt;p&gt;After putting what I had so far on a temporary place online, a couple of
+additional issues popped up:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;When the feed was imported, some of the internal URLs were copied as full
+URLs rather than relative ones. That means there were a bunch of references
+to &lt;a class="reference external" href="http://localhost:8000"&gt;http://localhost:8000&lt;/a&gt;, since I'd used a local copy of the feed.&lt;/li&gt;
+&lt;li&gt;The theme, images and most of the links didn't work because they expected the
+site to start at / but I was working off a temporary sub-directory for the
+test version.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've never used &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; so much in my life. I'm going to be an expert at it for
+the next three days at least, until I forget it all again. Here, writing some
+of them down now for future-me when how to use groups becomes a distant memory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Fix the images!&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;f&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-rl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;image:: http:\/\/localhost:8000&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/image:: http:\/\/localhost:8000/image:: {filename}/g&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Fix the internal links!&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/&amp;lt;\/blog\/[0-9]*\/[0-9]*/&amp;lt;{static}\/Tech/g&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;content/Tech/*
+$&lt;span class="w"&gt; &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/\({filename.*\)\/&amp;gt;`__/\1.rst&amp;gt;`__/g&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Fix the tags!&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;f&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-rl&lt;span class="w"&gt; &lt;/span&gt;/tag/&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/\/tag\/\(.*\)\//{tag}\1/g&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I think I had to do a bunch of other ad-hoc modifications. I also expect to
+find more niggles which I'll fix as I see them, but for now I'm happy with the
+current shape of things. I can't overstate how much easier this was than I
+expected. The stuff that took the most time (remembering how to run the custom
+blog code locally, importing tags, sedding all the things) was nearly all
+self-inflicted, and the whole process was over in a couple of evenings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="blogging-from-emacs"&gt;
+&lt;h2&gt;Blogging from emacs&lt;/h2&gt;
+&lt;p&gt;Sure feels nice.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="open-source"></category><category term="pelican"></category></entry></feed>

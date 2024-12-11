@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>jpichon.net - apache</title><link>https://www.jpichon.net/</link><description></description><lastBuildDate>Fri, 21 May 2010 22:42:00 +0100</lastBuildDate><item><title>Django + mod_wsgi and PHP | Slowly improving my httpd.conf-fu</title><link>https://www.jpichon.net/blog/2010/05/django-mod_wsgi-and-php/</link><description>&lt;p&gt;Initially I followed the &lt;a class="reference external" href="http://docs.djangoproject.com/en/dev/howto/deployment/modwsgi/"&gt;Django
+documentation&lt;/a&gt;
+and the &lt;a class="reference external" href="http://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide"&gt;mod_wsgi
+documentation&lt;/a&gt;
+to run Django on my local Apache server, but after installing mod_php5
+the 2 modules began conflicting with each other when I wanted both to
+run peacefully in parallel.&lt;/p&gt;
+&lt;p&gt;PHP was to keep the default port 80 and Django was to run on port 9000.
+Here's how I triumphed over the slew of Error 500:&lt;/p&gt;
+&lt;ol class="arabic simple"&gt;
+&lt;li&gt;&amp;lt;VirtualHost *:9000&amp;gt; for WSGI&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2. Add the following statement before the &amp;lt;VirtualHost *:9000&amp;gt; line
+(that's the bit not mentioned in the documentation I was following, and
+that I want to document here for $future_self...)&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+Listen 127.0.0.1:9000
+&lt;/pre&gt;
+&lt;ol class="arabic simple" start="3"&gt;
+&lt;li&gt;Update the MEDIA_URL in settings.py to reference port 9000 as well.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;And they all lived on their respective port happily ever after.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Fri, 21 May 2010 22:42:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2010-05-21:/blog/2010/05/django-mod_wsgi-and-php/</guid><category>Tech</category><category>apache</category><category>django</category><category>python</category></item></channel></rss>

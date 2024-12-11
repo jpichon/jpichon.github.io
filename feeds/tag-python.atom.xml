@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>jpichon.net - python</title><link href="https://www.jpichon.net/" rel="alternate"></link><link href="https://www.jpichon.net/feeds/tag-python.atom.xml" rel="self"></link><id>https://www.jpichon.net/</id><updated>2023-05-07T11:00:00+01:00</updated><entry><title>Extracting reviews from Goodreads into Markdown pages</title><link href="https://www.jpichon.net/blog/2023/05/extracting-reviews-from-goodreads-into-markdown-pages/" rel="alternate"></link><published>2023-05-07T11:00:00+01:00</published><updated>2023-05-07T11:00:00+01:00</updated><author><name>Julie Pichon</name></author><id>tag:www.jpichon.net,2023-05-07:/blog/2023/05/extracting-reviews-from-goodreads-into-markdown-pages/</id><summary type="html">&lt;p&gt;In early 2020, it became really difficult to read books. I'm slowly starting to
+get past that at last, but while Goodreads was super fun for a few years, right
+now tracking and counting and rating just makes reading feel like a chore and
+Not Fun as a hobby.&lt;/p&gt;
+&lt;p&gt;I …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In early 2020, it became really difficult to read books. I'm slowly starting to
+get past that at last, but while Goodreads was super fun for a few years, right
+now tracking and counting and rating just makes reading feel like a chore and
+Not Fun as a hobby.&lt;/p&gt;
+&lt;p&gt;I still would like to keep a record of what I read, though. And I used to write
+&lt;a href="/tag/book-review/"&gt;book reviews&lt;/a&gt; on this blog before getting onto
+Goodreads. It seems like a nice way to keep a record of what I read without it
+becoming a number thing. I'll probably still write Goodreads reviews for small
+authors since I know it can help, but I feel less pressed about having
+everything there.&lt;/p&gt;
+&lt;p&gt;I also wanted to save the reviews I wrote only on Goodreads here, and wrote a
+script to migrate my reviews into Pelican-friendly Markdown pages since that's
+what powers this blog now. I decided to keep to a single entry per year
+rather than one entry per book, since I had a few good reading years in there
+(and others will only a single review!)&lt;/p&gt;
+&lt;h1&gt;Step 1: CSV export of the books&lt;/h1&gt;
+&lt;p&gt;First, if you go to 'My books' and find the 'Tools' menu at the bottom of the
+leftside menu on Goodreads, you'll find a page to &lt;a href="https://www.goodreads.com/review/import"&gt;export your
+library&lt;/a&gt;. You may have to try a couple
+of times: my first export only had a handful a books, the second one looks more
+comprehensive although the number of books was off by two, but what can you do.&lt;/p&gt;
+&lt;h1&gt;Step 2: Python script to create the Markdown pages&lt;/h1&gt;
+&lt;p&gt;This is the script I wrote to extract only the books I've actually read. I
+don't really care about DNF (did not finish) and to-read, right now. I also
+hardcoded the years relevant to me. May someone find something helpful in here!&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;csv&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dataclasses&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;dataclass&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;
+
+
+&lt;span class="nd"&gt;@dataclass&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Review&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;date_read&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;date&lt;/span&gt;
+    &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;
+    &lt;span class="n"&gt;rating&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_reviews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;goodreads_library_export.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;csvfile&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;reader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;csv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DictReader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;csvfile&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;row&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;reader&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Review&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                           &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Author&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                           &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Date Read&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                           &lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;My Review&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                           &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;row&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;My Rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+            &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="c1"&gt;# When the int() cast fails, usually it means the CSV is&lt;/span&gt;
+                &lt;span class="c1"&gt;# corrupted for that line. In my case, it was for a few to-read&lt;/span&gt;
+                &lt;span class="c1"&gt;# records so I ignore them rather than attempt to fix the&lt;/span&gt;
+                &lt;span class="c1"&gt;# original CSV. You can print the row here if you want to check&lt;/span&gt;
+                &lt;span class="c1"&gt;# what&amp;#39;s failing.&lt;/span&gt;
+                &lt;span class="k"&gt;pass&lt;/span&gt;
+
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date_read&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;reviews&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;rating_or_review&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="c1"&gt;# If I wrote a review, return that&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;review&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Otherwise, make the rating into words.&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rating&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;I really enjoyed it.&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;review&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rating&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;It was fine.&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Wasn&amp;#39;t for me.&amp;quot;&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;format_reviews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;book-reviews-&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;.md&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Title: Book reviews: Year &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Date: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;now&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isoformat&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;tags: book review&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="c1"&gt;# A couple of abandoned books sneaked in with a &amp;#39;0&amp;#39; rating, and I&amp;#39;m&lt;/span&gt;
+            &lt;span class="c1"&gt;# not interested in preserving those&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rating&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;## &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; by &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;rating_or_review&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2013&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2023&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_reviews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="c1"&gt;# Chronological order&lt;/span&gt;
+    &lt;span class="n"&gt;reviews&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;sorted&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;date_read&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;format_reviews&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;reviews&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The hardest part was probably to decide what text to convert a rating into,
+since I didn't want to keep numbers!&lt;/p&gt;
+&lt;h1&gt;Step 3: Checking the output looks right and recalling fond memories&lt;/h1&gt;
+&lt;p&gt;I used the &lt;a href="https://www.goodreads.com/user/year_in_books/2022/"&gt;'Year in Books'
+pages&lt;/a&gt; on Goodreads to
+compare the results. There was some funkiness sometimes, like a book read in
+2011 showing in year in books but without any shelves and a date read showing
+as 2020, even though I don't remember messing with it. The review also shows as
+Jan 2020 on the Goodreads UI despite appearing in the correct 'Year in
+books'. 2020 turned out to be &lt;code&gt;date_added&lt;/code&gt; (which is definitely false) while
+the &lt;code&gt;date_read&lt;/code&gt; field is empty. Maybe some data migration funkiness on the
+Goodreads side at some point during the last 12 years. Otherwise, a duplicate
+once, and a couple of intra-Goodreads links that didn't work.&lt;/p&gt;
+&lt;p&gt;I still have to clean up the file for 2022. I was getting annoyed with tracking
+myself so I didn't write reviews, but if it's for the blog I wouldn't mind
+adding a few notes. And I need to decide if I want to post my 2023 reviews as I
+go, or batch them in some way!&lt;/p&gt;</content><category term="Tech"></category><category term="python"></category></entry><entry><title>PyCon Ireland 2014</title><link href="https://www.jpichon.net/blog/2014/11/pycon-ireland-2014/" rel="alternate"></link><published>2014-11-20T08:56:00+00:00</published><updated>2014-11-20T08:56:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2014-11-20:/blog/2014/11/pycon-ireland-2014/</id><content type="html">&lt;p&gt;Together with a couple of colleagues, I wrote a &lt;a class="reference external" href="http://community.redhat.com/blog/2014/11/pycon-ireland-2014-report/"&gt;short report about
+PyCon Ireland
+2014&lt;/a&gt;.
+Once again the conference was a lot of fun and I'm looking forward to
+the 2015 edition! :)&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category><category term="python"></category></entry><entry><title>Training at EuroPython 2014 | Making your first contribution to OpenStack</title><link href="https://www.jpichon.net/blog/2014/08/training-europython-2014/" rel="alternate"></link><published>2014-08-01T11:18:00+01:00</published><updated>2014-08-01T11:18:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2014-08-01:/blog/2014/08/training-europython-2014/</id><summary type="html">&lt;p&gt;&lt;img alt="OpenStack logo" src="http://www.openstack.org/assets/openstack-logo/openstack-cloud-software-vertical-small.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Last week I ran a 3-hour training on how to &lt;a class="reference external" href="https://ep2014.europython.eu/en/schedule/sessions/76/"&gt;get started contributing to
+OpenStack&lt;/a&gt; at
+&lt;a class="reference external" href="https://ep2014.europython.eu/en/"&gt;EuroPython&lt;/a&gt;. The aim was to give a
+high-level overview of how the contribution process works in the project
+and guide people through making their first contribution, from account
+creation to submitting a patch.&lt;/p&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview …&lt;/h2&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="OpenStack logo" src="http://www.openstack.org/assets/openstack-logo/openstack-cloud-software-vertical-small.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Last week I ran a 3-hour training on how to &lt;a class="reference external" href="https://ep2014.europython.eu/en/schedule/sessions/76/"&gt;get started contributing to
+OpenStack&lt;/a&gt; at
+&lt;a class="reference external" href="https://ep2014.europython.eu/en/"&gt;EuroPython&lt;/a&gt;. The aim was to give a
+high-level overview of how the contribution process works in the project
+and guide people through making their first contribution, from account
+creation to submitting a patch.&lt;/p&gt;
+&lt;div class="section" id="overview"&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The session starts with an extremely fast overview of OpenStack, geared
+toward giving the participants an idea of the different components and
+possible areas for contribution. We then go through creating the
+accounts, why they're all needed, and how to work with DevStack for the
+people who have installed it. From there we finally start talking about
+the contribution process itself, some general points on open-source and
+OpenStack culture then go through a number of ideas for small tasks
+suitable for a first contribution. After that it's down to the
+participants to work on something and prepare a patch. Some people chose
+to file and triage/confirm bugs. The last part is about making sure the
+patch matches the community standards, submitting it, and talking about
+what happens next both to the patch and to the participant as a new
+member of the community.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="preparing"&gt;
+&lt;h2&gt;Preparing&lt;/h2&gt;
+&lt;p&gt;During the weeks preceding the event, I ran two pilot workshops with
+small groups (less than 10 people) in &lt;a class="reference external" href="http://www.tog.ie/"&gt;my local
+hackerspace&lt;/a&gt;, in preparation for the big one in
+Berlin. That was absolutely invaluable in terms of making the material
+more understandable and refining the content for items I didn't think of
+covering initially (e.g. screen, openrc files) and topics that could use
+more in-depth explanations (e.g. how to find your first task), timings,
+and generally getting a feel for what's reasonably achievable within a
+3-hour intro workshop.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="delivering"&gt;
+&lt;h2&gt;Delivering&lt;/h2&gt;
+&lt;p&gt;I think it went well, despite some issues at the beginning due to lack
+of Internet connectivity (always a problem during hands-on workshops!).
+About 70 people had signed up to attend (a.k.a. about 7 times too many),
+thankfully other members of the OpenStack community stepped up and
+offered their help as mentors - thanks again everyone! In the end, about
+half the participants showed up in the morning, and we lost another
+dozen to the Internet woes. The people who stayed were mostly
+enthusiastic and seemed happy with the experience. According to the
+&lt;a class="reference external" href="https://etherpad.openstack.org/p/ep-openstack"&gt;session etherpad&lt;/a&gt;, at
+least 5 new contributors uploaded a first patch :) Three are merged so
+far.&lt;/p&gt;
+&lt;p&gt;Distributing the slides early proved popular and useful. For an
+interactive workshop with lots of links and references it's really
+helpful for people to go back on something they missed or want to check
+again.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="issues"&gt;
+&lt;h2&gt;Issues&lt;/h2&gt;
+&lt;p&gt;The start of the workshop is a bit lecture-heavy and could be titled
+&amp;quot;Things I Desperately Wish I Knew When Starting Out,&amp;quot; and although
+there's some quizzes/discussions/demoing I'd love to make it more
+interactive in the future.&lt;/p&gt;
+&lt;p&gt;The information requested in order to join the Foundation tends to
+surprise people, I think because people come at it from the perspective
+of &amp;quot;I want to submit a patch&amp;quot; rather than &amp;quot;I am preparing to join a
+Foundation.&amp;quot; At the hackerspace sessions in particular (maybe because it
+was easier to have candid discussions in such a small group), people
+weren't impressed with being forced to state an affiliation. The lack of
+obvious answer for volunteers gave the impression that the project cares
+more about contributions from companies. &amp;quot;&lt;a class="reference external" href="http://www.tog.ie/"&gt;Tog&lt;/a&gt;&amp;quot;
+might make an appearance in the company stats in the future :-)&lt;/p&gt;
+&lt;p&gt;On the sign-up form, the &amp;quot;Statement of Interest&amp;quot; is intimidating and
+confusing for some people (I certainly remember being uncertain over
+mine and what was appropriate, back when I was new and joining the
+Foundation was optional!). I worked around this after the initial
+session by offering suggestions/tips for both these fields, and spoke a
+bit more about their purpose.&lt;/p&gt;
+&lt;p&gt;A few people suggested I simply tell people to sign up for all these
+accounts in advance so there's more time during the workshop to work on
+the contribution itself. It's an option, though a number of people still
+hit non-obvious issues with Gerrit that are difficult to debug (some we
+&lt;a class="reference external" href="https://bugs.launchpad.net/openstack-ci/+bug/1346833"&gt;opened bugs&lt;/a&gt;
+for, others we added to the etherpad). During one of the pilot sessions
+at the hackerspace, 6 of the 7 participants had errors when running git
+review -s&amp;nbsp; - I'm still not sure why, as it Worked On My Machine (tm)
+just fine at the same time.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Overall, I'm glad I did this! It was interesting to extract all this
+information from my brain, wiki pages and docs and attempt to make it as
+consumable as possible. It's really exciting when people come back later
+to say they've made a contribution and that the session helped to make
+the process less scary and more comprehensible. Thanks to all the
+participants who took the time to offer feedback as well! I hope I can
+continue to improve on this.&lt;/p&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="contributing"></category><category term="europython"></category><category term="open-source"></category><category term="openstack"></category><category term="python"></category><category term="teaching"></category><category term="tog"></category></entry><entry><title>Python meet-up, November 2012: DevOps 101 | DevOps 101</title><link href="https://www.jpichon.net/blog/2012/11/python-ie-november-2012-devops-101/" rel="alternate"></link><published>2012-11-27T20:19:00+00:00</published><updated>2012-11-27T20:19:00+00:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2012-11-27:/blog/2012/11/python-ie-november-2012-devops-101/</id><summary type="html">&lt;p&gt;Shame on me for not blogging about &lt;a class="reference external" href="http://python.ie/pycon/2012/"&gt;PyCon
+Ireland&lt;/a&gt; this year, another success
+where I happily spent a big chunk of time greeting attendees at the
+registration desk and attended some interesting talks.&lt;/p&gt;
+&lt;p&gt;The stylish volunteers:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2012/Python-Ireland-Volunteers.jpg"&gt;&lt;img alt="PyCon Ireland 2012 Volunteers" src="https://www.jpichon.net/site_media/images/2012/Python-Ireland-Volunteers.thumb.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the meantime, I took better notes at the November Python Ireland
+meet-up, where …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Shame on me for not blogging about &lt;a class="reference external" href="http://python.ie/pycon/2012/"&gt;PyCon
+Ireland&lt;/a&gt; this year, another success
+where I happily spent a big chunk of time greeting attendees at the
+registration desk and attended some interesting talks.&lt;/p&gt;
+&lt;p&gt;The stylish volunteers:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external image-reference" href="https://www.jpichon.net/site_media/images/2012/Python-Ireland-Volunteers.jpg"&gt;&lt;img alt="PyCon Ireland 2012 Volunteers" src="https://www.jpichon.net/site_media/images/2012/Python-Ireland-Volunteers.thumb.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In the meantime, I took better notes at the November Python Ireland
+meet-up, where &lt;a class="reference external" href="http://spamt.net"&gt;Ulrich&lt;/a&gt; took us through DevOps 101,
+going from the basics of what it is and all sort of related tools to
+help, mostly Python-based.&lt;/p&gt;
+&lt;p&gt;I thought interesting that Ulrich worked from a specific definition of
+DevOps that differs from the ones I heard. There was a time when I used
+to call myself &amp;quot;a devop&amp;quot; because in addition to development work I was
+also maintaining production and test servers and handling deployments,
+etc. However at the time I learnt from other sources that &amp;quot;a devop&amp;quot; was
+actually a system admin who also writes code to make their job easier...
+so I just stopped using the word ;) Ulrich based his talk on the
+premise&amp;nbsp; of development and operations working together.&lt;/p&gt;
+&lt;p&gt;Development tends to move fast while operations are more stable and
+conservative, why would you put these groups together?&lt;/p&gt;
+&lt;p&gt;The need to scale is an important one. You need the knowledge that the
+developers have of the application itself, but you also need to
+understand infrastructure. For instance if you deploy something and
+suddenly the number of requests spikes, you want devs and ops to be
+close together to solve the problem.&lt;/p&gt;
+&lt;p&gt;Following a &amp;quot;release early, release often&amp;quot; principle where you might
+deploy several times a day makes that collaboration important.&lt;/p&gt;
+&lt;p&gt;Environments are complicated and it's important for people to integrate
+; if the departments remain separate people tend to stick only with the
+same group of people.&lt;/p&gt;
+&lt;p&gt;Devops enable better communication and understanding. Developers can
+move fast and deploy faster as they know what ops need. This also helps
+mitigate risk thanks to the regular deployments: fewer changes are
+deployed at once (helpful to determine what breaks) and it becomes
+easier to do.&lt;/p&gt;
+&lt;p&gt;The talk then moved on to tools, including advice on how to create a
+simple django app to keep track of which versions of software are
+deployed where -- very simple and yet usually enough.&lt;/p&gt;
+&lt;p&gt;Some of the projects that were mentioned:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Using &lt;a class="reference external" href="http://swordapp.org"&gt;Sword&lt;/a&gt; instead of puppet (...which is
+still best, apparently) if you want to stick to Python, though it's a
+very young project. Using such tools you can start versioning your
+configuration and environment, and store reasons for changes in
+commit messages.&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://fabfile.org"&gt;Fabric&lt;/a&gt; for ssh the Python way :)&lt;/li&gt;
+&lt;li&gt;Virtualenv to isolate Python and manage dependencies&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://www.buildout.org/"&gt;Buildout&lt;/a&gt; is like Maven for Python
+projects. It's used to maintain dependencies and deploy, though it
+can be overkill for many projects...&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="http://augeas.net/"&gt;Augeas&lt;/a&gt; is not Python specific and supports
+many configuration formats&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ulrich then went through some of Martin Fowler's principles for
+refactoring among other things, and also talked about Jenkins, not
+Python but known as the &amp;quot;Wordpress of Continuous Integration&amp;quot; because it
+has so many plugins. &lt;a class="reference external" href="http://www.sonarsource.org/"&gt;Sonar&lt;/a&gt; can be used
+for code quality.&lt;/p&gt;
+&lt;div class="line-block"&gt;
+&lt;div class="line"&gt;&lt;br /&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;We tried something different for the second part of the evening and
+watched a video of a Pyramid talk. I don't think it quite worked, even
+at 30 minutes it felt too long. Perhaps we should try again with a video
+more likely to appeal to a wider range of people, or simply shorter
+talks. Fair play to Diarmuid for standing up and taking the heat of
+answering questions afterwards ;)&lt;/p&gt;
+</content><category term="Tech"></category><category term="events"></category><category term="ireland"></category><category term="python"></category></entry><entry><title>EuroPython 2012 | Let's go</title><link href="https://www.jpichon.net/blog/2012/06/europython-2012/" rel="alternate"></link><published>2012-06-30T20:55:00+01:00</published><updated>2012-06-30T20:55:00+01:00</updated><author><name>jpichon</name></author><id>tag:www.jpichon.net,2012-06-30:/blog/2012/06/europython-2012/</id><summary type="html">&lt;p&gt;I'm very happy to be going to EuroPython again this year :) Once more
+the talks I'm most looking forward to are mainly related to scalability,
+perhaps with a dash of internationalisation/encoding on the side. The
+tutorial on Django testing with Selenium should be interesting too.&lt;/p&gt;
+&lt;p&gt;Say hi if you …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I'm very happy to be going to EuroPython again this year :) Once more
+the talks I'm most looking forward to are mainly related to scalability,
+perhaps with a dash of internationalisation/encoding on the side. The
+tutorial on Django testing with Selenium should be interesting too.&lt;/p&gt;
+&lt;p&gt;Say hi if you see me! :)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python Logo" src="https://www.jpichon.net/site_media/images/python.png" /&gt;&lt;/p&gt;
+</content><category term="Tech"></category><category term="europython"></category><category term="events"></category><category term="python"></category></entry></feed>

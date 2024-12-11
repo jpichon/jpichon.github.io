@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Testing django admin customisations</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="In preparation for an upgrade, I've been writing unit tests for a Django app with the help of a fantastic book -- Django 1.1 Testing and Debugging..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/03/testing-django-admin-customisations/" rel="bookmark"
+           title="Permalink to Testing django admin customisations">Testing django admin customisations</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-03-17T10:05:00+00:00">
+                Published: Thu 17 March 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info -->      <p>In preparation for an upgrade, I've been writing unit tests for a Django
+app with the help of a fantastic book -- <a class="reference external" href="http://www.amazon.co.uk/Django-Testing-Debugging-Karen-Tracey/dp/1847197566/">Django 1.1 Testing and
+Debugging</a>
+by Karen M. Tracey, there'll be a review coming up when I finish it.</p>
+<p>I had some issues with the code to test admin customisations (Chapter
+4), I want to document the changes I made for future reference.</p>
+<div class="section" id="error-403">
+<h2>Error 403</h2>
+<p>Despite using client.login() in the setUp() method, response returned
+with a status_code of 403 (Forbidden) when creating a new item.</p>
+<pre class="literal-block">
+class AdminCustomisationTest(TestCase):
+
+    def setUp(self):
+        username = 'test_user'
+        pwd = 'secret'
+
+        self.u = User.objects.create_user(username, '', pwd)
+        self.u.is_staff = True
+        self.u.is_superuser = True
+        self.u.save()
+
+        self.assertTrue(self.client.login(username=username, password=pwd),
+            &quot;Logging in user %s, pwd %s failed.&quot; % (username, pwd))
+
+        Survey.objects.all().delete()
+
+    def tearDown(self):
+        self.client.logout()
+        self.u.delete()
+
+    def test_add_survey_ok(self):
+        self.assertEquals(Survey.objects.count(), 0)
+
+        post_data = { 'title': u'Test OK',
+                      'open_date': datetime.now(),
+                    }
+
+        response = self.client.post(reverse('admin:survey_survey_add'), post_data)
+
+        self.assertRedirects(response, reverse('admin:survey_survey_changelist'))
+        self.assertEquals(Survey.objects.count(), 1)
+</pre>
+<p>At first I blamed some customisations I did to the authentication
+backends to allow OpenID, however printing the response.content revealed
+otherwise:</p>
+<pre class="literal-block">
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot;&gt;&lt;body&gt;&lt;h1&gt;403 Forbidden&lt;/h1&gt;&lt;p&gt;Cross Site Request Forgery detected. Request aborted.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</pre>
+<p>The Django CSRF protection system prevented the tests from passing. Note
+that this app runs on Django 1.1, Django 1.2 overhauled the CSRF system
+and would likely work without problems.</p>
+<p>I'm sure there are more elegant ways to solve this. Here's a method that
+works:</p>
+<pre class="literal-block">
+def get_csrf_token(self, response):
+    csrf = &quot;name='csrfmiddlewaretoken' value='&quot;
+    start = response.content.find(csrf) + len(csrf)
+    end = response.content.find(&quot;'&quot;, start)
+
+    return response.content[start:end]
+
+def test_add_survey_ok(self):
+    self.assertEquals(Survey.objects.count(), 0)
+
+    response = self.client.get(reverse('admin:survey_survey_add'))
+    csrf = self.get_csrf_token(response)
+    post_data = { 'title': u'Test OK',
+                  'open_date': datetime.now(),
+                  'csrfmiddlewaretoken': csrf,
+                }
+
+    response = self.client.post(reverse('admin:survey_survey_add'), post_data)
+
+    self.assertRedirects(response, reverse('admin:survey_survey_changelist'))
+    self.assertEquals(Survey.objects.count(), 1)
+</pre>
+<p>(Note/Update: If I had waited until the next chapter, I would have found
+out how to integrate <a class="reference external" href="http://pypi.python.org/pypi/twill/0.9">Twill</a>
+with Django apps and none of this would have been necessary -- haha!)</p>
+</div>
+<div class="section" id="this-field-is-required-datetime">
+<h2>This field is required (datetime)</h2>
+<p>After this, although the response.status_code was finally 200, the
+article still wasn't created. Peering through response.content showed
+that the datetime field was considered to be missing. This is what the
+postdata should look like instead for a datetime field:</p>
+<pre class="literal-block">
+post_data = { 'title': u'Test OK',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'open_date_0': '2011-03-17',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'open_date_1': '9:50:00',
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'csrfmiddlewaretoken': csrf,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+</pre>
+<p>Test passes!</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - apache</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2010/05/django-mod_wsgi-and-php/">Django + mod_wsgi and PHP  | Slowly improving my httpd.conf-fu</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2010-05-21T22:42:00+01:00">
+                Published: Fri 21 May 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/apache/">apache</a> <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info --><p>Initially I followed the <a class="reference external" href="http://docs.djangoproject.com/en/dev/howto/deployment/modwsgi/">Django
+documentation</a>
+and the <a class="reference external" href="http://code.google.com/p/modwsgi/wiki/QuickConfigurationGuide">mod_wsgi
+documentation</a>
+to run Django on my local Apache server, but after installing mod_php5
+the 2 modules began conflicting with each other when I wanted both to
+run peacefully in parallel.</p>
+<p>PHP was to keep the default port 80 and Django was to run on port 9000.
+Here's how I triumphed over the slew of Error 500:</p>
+<ol class="arabic simple">
+<li>&lt;VirtualHost *:9000&gt; for WSGI</li>
+</ol>
+<p>2. Add the following statement before the &lt;VirtualHost *:9000&gt; line
+(that's the bit not mentioned in the documentation I was following, and
+that I want to document here for $future_self...)</p>
+<pre class="literal-block">
+Listen 127.0.0.1:9000
+</pre>
+<ol class="arabic simple" start="3">
+<li>Update the MEDIA_URL in settings.py to reference port 9000 as well.</li>
+</ol>
+<p>And they all lived on their respective port happily ever after.</p>
+                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

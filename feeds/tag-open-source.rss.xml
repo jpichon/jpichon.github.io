@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>jpichon.net - open-source</title><link>https://www.jpichon.net/</link><description></description><lastBuildDate>Tue, 22 Nov 2022 20:22:00 +0000</lastBuildDate><item><title>Moving to Mastodon</title><link>https://www.jpichon.net/blog/2022/11/moving-to-mastodon/</link><description>&lt;p&gt;Three years since my last post, haha. And a couple of hardware failures in the
+meantime, too. Let's see if I remember how to get set up with Pelican.&lt;/p&gt;
+&lt;p&gt;I dropped off Twitter a while back, but Mastodon is giving me hopeful vibes
+(could just be the "new-to-me site" feeling, of course!). Either way, wanting
+to add a link to my &lt;a rel="me"
+href="https://mastodon.ie/@jpichon"&gt;Mastodon&lt;/a&gt; profile and get rid of the
+Twitter one has motivated me to dust off this repository.&lt;/p&gt;
+&lt;p&gt;It feels &lt;em&gt;nostalgic&lt;/em&gt; to see a RSS feed link in my footer. I suspect I'm not the
+only one hungering again for a more decentralised web again. Or more like, it
+never went away but it got a lot less visible.&lt;/p&gt;
+&lt;p&gt;I've got some notes from EuroPython (it was in Dublin \o/) I'll dust up soon,
+and maybe I can start publishing my notes on the meetups I go to now that we're
+all allowed outside again. Get back in the blogging habit... It could happen!!&lt;/p&gt;
+&lt;p&gt;My apologies to long forgotten Planets this may appear in, haha, remove this
+blog freely!! Tags have their own RSS feeds as well
+(&lt;a href="https://www.jpichon.net/feeds/tag-open-source.rss.xml"&gt;open-source&lt;/a&gt;, etc).&lt;/p&gt;
+&lt;p&gt;No plan to add back a commenting section but feel free to chat on Mastodon.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Julie Pichon</dc:creator><pubDate>Tue, 22 Nov 2022 20:22:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2022-11-22:/blog/2022/11/moving-to-mastodon/</guid><category>Tech</category><category>open-source</category></item><item><title>Anki &amp; Japanese Support Add-on on Fedora 28: "Something something 32 bit support"</title><link>https://www.jpichon.net/blog/2018/12/anki-japanese-support-add-on-on-fedora-28-something-something-32-bit-support/</link><description>&lt;p&gt;For a few months now, I've been having issues with the &lt;a class="reference external" href="https://apps.ankiweb.net/"&gt;Anki&lt;/a&gt; Japanese support
+add-on. Normally the add-on adds the readings automatically when creating new
+cards, but lately that was failing with:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+An error occurred in an add-on.
+Please post on the add-on forum:
+https://anki.tenderapp.com/discussions/add-ons
+
+Traceback (most recent call last):
+  File &amp;quot;/usr/share/anki/aqt/webview.py&amp;quot;, line 18, in run
+    return unicode(self._bridge(unicode(str)))
+  File &amp;quot;/usr/share/anki/aqt/editor.py&amp;quot;, line 462, in bridge
+    &amp;quot;editFocusLost&amp;quot;, False, self.note, self.currentField):
+  File &amp;quot;/usr/share/anki/anki/hooks.py&amp;quot;, line 32, in runFilter
+    arg = func(arg, *args)
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 209, in onFocusLost
+    n[dst] = mecab.reading(srcTxt)
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 76, in reading
+    self.ensureOpen()
+  File &amp;quot;/home/jpichon/.local/share/Anki2/addons/japanese/reading.py&amp;quot;, line 73, in ensureOpen
+    raise Exception(&amp;quot;Please ensure your Linux system has 32 bit binary support.&amp;quot;)
+Exception: Please ensure your Linux system has 32 bit binary support.
+&lt;/pre&gt;
+&lt;p&gt;At first I thought, meh, the rest works fine, and usually I don't need to add
+the readings for &lt;em&gt;every&lt;/em&gt; word anyway, just the one that's new to me in the
+sentence so that shouldn't take too much time.&lt;/p&gt;
+&lt;p&gt;It took me a few months to realise I wasn't creating new cards anymore, just
+plopping them into a list of &amp;quot;cards to create when I have the time someday.&amp;quot;
+Whoops.&lt;/p&gt;
+&lt;p&gt;The solution, found via a &lt;a class="reference external" href="https://bbs.archlinux.org/viewtopic.php?pid=1681613#p1681613"&gt;ArchLinux thread&lt;/a&gt; is also dead simple:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ sudo dnf install libstdc++.i686 # Note the i686, that's the important bit!
+&lt;/pre&gt;
+&lt;p&gt;Better get on with that word list now.&lt;/p&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Wed, 26 Dec 2018 22:57:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2018-12-26:/blog/2018/12/anki-japanese-support-add-on-on-fedora-28-something-something-32-bit-support/</guid><category>Language_learning</category><category>japanese</category><category>open-source</category></item><item><title>Migrated to Pelican</title><link>https://www.jpichon.net/blog/2018/02/migrated-to-pelican/</link><description>&lt;p&gt;After 8 years of maintaining my lil' custom Django blog, it's time for a
+change! I'd been thinking about migrating for a while. After the first couple
+of years of excitement I started falling further and further behind framework
+upgrades, and my cute anti-spam system kicked the bucket a couple of years
+back, even though there never was much conversation on the blog. Drop me an
+email or a tweet if you want to chat about something here :)&lt;/p&gt;
+&lt;p&gt;I'd been postponing the migration because I thought it would be real painful to
+migrate both the content and keep the URL format the same, especially for a
+custom platform. It turned out to be really easy. Pelican rocks!&lt;/p&gt;
+&lt;div class="section" id="migrating-the-content"&gt;
+&lt;h2&gt;Migrating the content&lt;/h2&gt;
+&lt;p&gt;Pelican comes with an &lt;a class="reference external" href="http://docs.getpelican.com/en/stable/importer.html"&gt;import tool&lt;/a&gt; that supports bland
+little feeds like mine. By default my feed only displays 10 entries but since
+it's my code I just modified it locally to show them all. That probably ended
+up being one of the least straightforward parts of the process actually. I was
+super excited about Django when I first created the blog but not too familiar
+with how to manage Python dependencies. Thus, although I did write down the
+dependency names in a text file I wasn't forward looking enough to include
+version numbers. &lt;tt class="docutils literal"&gt;pip freeze&lt;/tt&gt; is my friend now. Thankfully I only had a
+couple of plugins to play guess-what-version at.&lt;/p&gt;
+&lt;p&gt;I did end up making a couple of changes to Pelican locally so it would work
+better with my content (yay open-source).&lt;/p&gt;
+&lt;p&gt;First, to avoid the &lt;tt class="docutils literal"&gt;&amp;lt;pre&amp;gt;&lt;/tt&gt; code snippets getting mangled with no linebreaks
+I ended up commenting out a few lines in &lt;a class="reference external" href="https://github.com/getpelican/pelican/blob/3.7.1/pelican/tools/pelican_import.py#L722-L724"&gt;fields2pelican()&lt;/a&gt;
+that look like they're meant to ensure the validity of the original HTML. I was
+using a wizard in the old blog so there's no reason it shouldn't be. I wasn't
+too worried about it and didn't notice side-effects during the migration.&lt;/p&gt;
+&lt;p&gt;Secondly, the files weren't created with the correct slugs and filenames, which
+caused some issues when rewriting the URLs. It looks like the feed parser
+doesn't look at the real slug so I figured out where the URL was at in
+&lt;a class="reference external" href="https://github.com/getpelican/pelican/blob/3.7.1/pelican/tools/pelican_import.py#L494"&gt;feed2fields()&lt;/a&gt;
+(in &lt;tt class="docutils literal"&gt;entry.id&lt;/tt&gt; for me) and changed the &lt;tt class="docutils literal"&gt;slug = slugify(entry.title)&lt;/tt&gt; line
+to break down that value and extract the real slug.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="adjusting-the-content"&gt;
+&lt;h2&gt;Adjusting the content&lt;/h2&gt;
+&lt;p&gt;Now, I use tags quite liberally and on the feed that was marked with &amp;quot;Tagged
+with: blah, bleh, bloh&amp;quot; at the end of an article. I wrote a short script to
+scrap that line from the rst files created in the previous step, add the
+discovered tags to :tags: in the metadata and remove the 'Tagged with'
+line. That was fun!  The script is ugly and bugs were found along the way, but
+it did the job and now it even works when there are so many tags on an entry
+that they're spread over several lines ;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="rewriting-the-urls"&gt;
+&lt;h2&gt;Rewriting the URLs&lt;/h2&gt;
+&lt;p&gt;I don't know if I should even give this a heading. Figuring out rewrite rules
+was giving me cold sweats but it turns out Pelican gives you &lt;a class="reference external" href="http://docs.getpelican.com/en/stable/settings.html#url-settings"&gt;handy settings&lt;/a&gt; out of the
+box to have your URLs look like whatever you want. It's really easy. I mean, I
+don't think I broke anything?!&lt;/p&gt;
+&lt;p&gt;Except the feeds, but after some thinking that's something I decided to do on
+purpose. The blog has ended up aggregated in a lot of places I don't even
+remember, and I was really concerned about 8 years of entries somehow getting
+newer timestamps and flooding the planets I'm on. So, brand new feeds. I'll
+update the two or three planets I remember being a part of, and the others as I
+find them or they find me again :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="going-mad-with-sed"&gt;
+&lt;h2&gt;Going mad with sed&lt;/h2&gt;
+&lt;p&gt;After putting what I had so far on a temporary place online, a couple of
+additional issues popped up:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;When the feed was imported, some of the internal URLs were copied as full
+URLs rather than relative ones. That means there were a bunch of references
+to &lt;a class="reference external" href="http://localhost:8000"&gt;http://localhost:8000&lt;/a&gt;, since I'd used a local copy of the feed.&lt;/li&gt;
+&lt;li&gt;The theme, images and most of the links didn't work because they expected the
+site to start at / but I was working off a temporary sub-directory for the
+test version.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I've never used &lt;tt class="docutils literal"&gt;sed&lt;/tt&gt; so much in my life. I'm going to be an expert at it for
+the next three days at least, until I forget it all again. Here, writing some
+of them down now for future-me when how to use groups becomes a distant memory:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Fix the images!&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;f&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-rl&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;image:: http:\/\/localhost:8000&amp;quot;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/image:: http:\/\/localhost:8000/image:: {filename}/g&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Fix the internal links!&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/&amp;lt;\/blog\/[0-9]*\/[0-9]*/&amp;lt;{static}\/Tech/g&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;content/Tech/*
+$&lt;span class="w"&gt; &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/\({filename.*\)\/&amp;gt;`__/\1.rst&amp;gt;`__/g&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Fix the tags!&lt;/span&gt;
+$&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;f&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;grep&lt;span class="w"&gt; &lt;/span&gt;-rl&lt;span class="w"&gt; &lt;/span&gt;/tag/&lt;span class="w"&gt; &lt;/span&gt;*&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;do&lt;/span&gt;&lt;span class="w"&gt;  &lt;/span&gt;sed&lt;span class="w"&gt; &lt;/span&gt;-i&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;s/\/tag\/\(.*\)\//{tag}\1/g&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$f&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I think I had to do a bunch of other ad-hoc modifications. I also expect to
+find more niggles which I'll fix as I see them, but for now I'm happy with the
+current shape of things. I can't overstate how much easier this was than I
+expected. The stuff that took the most time (remembering how to run the custom
+blog code locally, importing tags, sedding all the things) was nearly all
+self-inflicted, and the whole process was over in a couple of evenings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="blogging-from-emacs"&gt;
+&lt;h2&gt;Blogging from emacs&lt;/h2&gt;
+&lt;p&gt;Sure feels nice.&lt;/p&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Fri, 23 Feb 2018 19:12:00 +0000</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2018-02-23:/blog/2018/02/migrated-to-pelican/</guid><category>Tech</category><category>open-source</category><category>pelican</category></item><item><title>TripleO Deep Dive: Internationalisation in the UI</title><link>https://www.jpichon.net/blog/2017/07/tripleo-deep-dive-internationalisation-ui/</link><description>&lt;p&gt;Yesterday, as part of the &lt;a class="reference external" href="https://etherpad.openstack.org/p/tripleo-deep-dive-topics"&gt;TripleO Deep
+Dives&lt;/a&gt;
+series I gave a short introduction to internationalisation in &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui"&gt;TripleO
+UI&lt;/a&gt;: the technical aspects
+of it, as well as a quick overview of how we work with the I18n team.&lt;/p&gt;
+&lt;p&gt;You can catch the recording on
+&lt;a class="reference external" href="https://bluejeans.com/s/XmuHa"&gt;BlueJeans&lt;/a&gt; or
+&lt;a class="reference external" href="https://www.youtube.com/watch?v=dmAw7b2yUEo"&gt;YouTube&lt;/a&gt;, and below's a
+transcript.&lt;/p&gt;
+&lt;p&gt;~&lt;/p&gt;
+&lt;div class="section" id="life-and-journey-of-a-string"&gt;
+&lt;h2&gt;Life and Journey of a String&lt;/h2&gt;
+&lt;p&gt;Internationalisation was added to the UI during Ocata - just a release
+ago. &lt;a class="reference external" href="https://twitter.com/florianfuchs"&gt;Florian&lt;/a&gt; implemented most of
+it and did the lion's share of the work, as can be seen &lt;a class="reference external" href="https://blueprints.launchpad.net/tripleo/+spec/tripleo-ui-i18n-support-for-js"&gt;on the
+blueprint&lt;/a&gt;
+if you're curious about the nitty-gritty details.&lt;/p&gt;
+&lt;div class="section" id="addition-to-the-codebase"&gt;
+&lt;h3&gt;Addition to the codebase&lt;/h3&gt;
+&lt;p&gt;Here's &lt;a class="reference external" href="https://review.openstack.org/#/c/416564/3/src/js/components/plan/NewPlan.js"&gt;an example
+patch&lt;/a&gt;
+from during the transition. On the left you can see how things were
+hard-coded, and on the right you can see the new defineMessages()
+interface we now use. Obviously new patches should directly look like on
+the right hand-side nowadays.&lt;/p&gt;
+&lt;p&gt;The defineMessages() dictionary requires a unique id and default English
+string for every message. Optionally, you can also provide a description
+if you think there could be confusion or to clarify the meaning. The
+description will be shown in Zanata to the translators - remember they
+see no other context, only the string itself.&lt;/p&gt;
+&lt;p&gt;For example, &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/src/js/components/plan/PlanFormTabs.js#L29-L33"&gt;a string might sound active like if it were related to an
+action/button but actually be a descriptive help
+string&lt;/a&gt;.
+Or some expressions are known to be confusing in English - &amp;quot;provide a
+node&amp;quot; has been the source of multiple &lt;a class="reference external" href="http://lists.openstack.org/pipermail/openstack-dev/2016-July/098746.html"&gt;discussions on
+list&lt;/a&gt;
+and live so might as well pre-empt questions and &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/src/js/components/nodes/NodesTableView.js#L31-L36"&gt;offer additional
+context to help the translators decide on an appropriate
+translation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="extraction-conversion"&gt;
+&lt;h3&gt;Extraction &amp;amp; conversion&lt;/h3&gt;
+&lt;p&gt;Now we know how to add an internationalised string to the codebase - how
+do these get extracted into a file that will be uploaded to Zanata?&lt;/p&gt;
+&lt;p&gt;All of the following steps are described in the &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e868/docs/translation.rst"&gt;translation
+documentation&lt;/a&gt;
+in the tripleo-ui repository. Assuming you've already run the
+installation steps (basically, &lt;em&gt;npm install&lt;/em&gt;):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ npm run build
+&lt;/pre&gt;
+&lt;p&gt;This does a lot more than just extracting strings - it prepares the code
+for being deployed in production. Once this ends you'll be able to find
+your newly extracted messages under the &lt;em&gt;i18n&lt;/em&gt; directory:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ ls i18n/extracted-messages/src/js/components
+&lt;/pre&gt;
+&lt;p&gt;You can see the directory structure is kept the same as the source code.
+And if you peek into one of the files, you'll note the content is
+basically the same as what we had in our defineMessages() dictionary:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ cat i18n/extracted-messages/src/js/components/Login.json
+[
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;UserAuthenticator.authenticating&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Authenticating...&amp;quot;
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;Login.username&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Username&amp;quot;
+  },
+  {
+    &amp;quot;id&amp;quot;: &amp;quot;Login.usernameRequired&amp;quot;,
+    &amp;quot;defaultMessage&amp;quot;: &amp;quot;Username is required.&amp;quot;
+  },
+[...]
+&lt;/pre&gt;
+&lt;p&gt;However, JSON is not a format that Zanata understands by default. I
+think the latest version we upgraded to, or the next one might have some
+support for it, but since there's no i18n JSON standard it's somewhat
+limited. In open-source software projects, po/pot files are generally
+the standard to go with.&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ npm run json2pot
+
+&amp;gt; tripleo-ui&amp;#64;7.1.0 json2pot /home/jpichon/devel/tripleo-ui
+&amp;gt; rip json2pot ./i18n/extracted-messages/**/*.json -o ./i18n/messages.pot
+
+&amp;gt; [react-intl-po] write file -&amp;gt; ./i18n/messages.pot ✔️
+
+$ cat i18n/messages.pot
+msgid &amp;quot;&amp;quot;
+msgstr &amp;quot;&amp;quot;
+&amp;quot;POT-Creation-Date: 2017-07-07T09:14:10.098Z\n&amp;quot;
+&amp;quot;Content-Type: text/plain; charset=UTF-8\n&amp;quot;
+&amp;quot;Content-Transfer-Encoding: 8bit\n&amp;quot;
+&amp;quot;MIME-Version: 1.0\n&amp;quot;
+&amp;quot;X-Generator: react-intl-po\n&amp;quot;
+
+
+#: ./i18n/extracted-messages/src/js/components/nodes/RegisterNodesDialog.json
+#. [RegisterNodesDialog.noNodesToRegister] - undefined
+msgid &amp;quot;&amp;quot;No Nodes To Register&amp;quot;&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/nodes/NodesToolbar/NodesToolbar.json
+#. [Toolbar.activeFilters] - undefined
+#: ./i18n/extracted-messages/src/js/components/validations/ValidationsToolbar.json
+#. [Toolbar.activeFilters] - undefined
+msgid &amp;quot;Active Filters:&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/nodes/RegisterNodesDialog.json
+#. [RegisterNodesDialog.addNew] - Small button, to add a new Node
+msgid &amp;quot;Add New&amp;quot;
+msgstr &amp;quot;&amp;quot;
+
+#: ./i18n/extracted-messages/src/js/components/plan/PlanFormTabs.json
+#. [PlanFormTabs.addPlanName] - Tooltip for &amp;quot;Plan Name&amp;quot; form field
+msgid &amp;quot;Add a Plan Name&amp;quot;
+msgstr &amp;quot;&amp;quot;
+[...]
+&lt;/pre&gt;
+&lt;p&gt;This messages.pot file is what will be automatically uploaded to Zanata.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="infra-from-the-git-repo-to-zanata"&gt;
+&lt;h3&gt;Infra: from the git repo, to Zanata&lt;/h3&gt;
+&lt;p&gt;The following steps are done by the infrastructure scripts. There's
+&lt;a class="reference external" href="https://docs.openstack.org/infra/manual/creators.html#enabling-translation-infrastructure"&gt;infra documentation on how to enable translations for your
+project&lt;/a&gt;,
+in our case as the first internationalised JavaScript project we had to
+update the scripts a little as well. This is useful to know if an issue
+happens with the infra jobs; debugging will probably bring you here.&lt;/p&gt;
+&lt;p&gt;The scripts live in the &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/tree/605299/jenkins/scripts"&gt;project-config infra
+repo&lt;/a&gt;
+and there are three files of interest for us:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/common_translation_update.sh"&gt;common_translation_update.sh&lt;/a&gt;
+- a bunch of common functions&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L241"&gt;propose_translation_update.sh&lt;/a&gt;
+- proposes the translations back to the repository (we'll talk about
+it in a bit)&lt;/li&gt;
+&lt;li&gt;&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L75"&gt;upstream_translation_update.sh&lt;/a&gt;
+- that sends the translations up to Zanata&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this case, upstream_translation_update.sh is the file of interest
+to us: it simply &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/master/jenkins/scripts/upstream_translation_update.sh#L75-L79"&gt;sets up the project on line
+76&lt;/a&gt;,
+then &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L115"&gt;sends the pot file up to Zanata on line
+115&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What does &amp;quot;setting up the project&amp;quot; entails? It's a function in
+common_translations_update.sh, that pretty much &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/common_translation_update.sh#L252-L271"&gt;runs the steps we
+talked about in the previous section, and also creates a config file to
+talk to
+Zanata&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="monitoring-the-post-jobs"&gt;
+&lt;h3&gt;Monitoring the post jobs&lt;/h3&gt;
+&lt;p&gt;Post jobs run after a patch has already merged - usually to upload
+tarballs where they should be, update the documentation pages, etc, and
+also upload messages catalogues onto Zanata. Being a 'post' job however
+means that if something goes wrong, there is no notification on the
+original review so it's easy to miss.&lt;/p&gt;
+&lt;p&gt;Here's the &lt;a class="reference external" href="http://status.openstack.org/openstack-health/#/g/build_queue/post?groupKey=build_queue&amp;amp;searchJob=tripleo-ui"&gt;OpenStack Health page to monitor 'post' jobs related to
+tripleo-ui&lt;/a&gt;.
+Scroll to the bottom - hopefully tripleo-ui-upstream-translation-update
+is still green! It's good to keep an eye on it although it's easy to
+forget. Thankfully, AJaeger from #openstack-infra has been great at
+filing bugs and letting us know when &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1691006"&gt;something does go
+wrong&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="debugging-when-things-go-wrong-an-example"&gt;
+&lt;h3&gt;Debugging when things go wrong: an example&lt;/h3&gt;
+&lt;p&gt;We had a couple of issues whereby a &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1674011"&gt;linebreak gets
+introduced&lt;/a&gt; into one
+of the strings, which works fine in JSON but breaks our pot file. If you
+look at the content from the bug (the full logs are no longer
+accessible):&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+2017-03-16 12:55:13.468428 | + zanata-cli -B -e push --copy-trans False
+[...]
+2017-03-16 12:55:15.391220 | [INFO] Found source documents:
+2017-03-16 12:55:15.391405 | [INFO]            i18n/messages
+2017-03-16 12:55:15.531164 | [ERROR] Operation failed: missing end-quote
+&lt;/pre&gt;
+&lt;p&gt;You'll notice the first line is &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/upstream_translation_update.sh#L115"&gt;the last function we call in the
+upstream_translation_update.sh
+script&lt;/a&gt;;
+for debugging that gives you an idea of the steps to follow to
+reproduce. The &lt;a class="reference external" href="https://translate.zanata.org"&gt;upstream Zanata
+instance&lt;/a&gt; also lets you create toy
+projects, if you want to test uploads yourself (this can't be done
+directly on the OpenStack Zanata instance.)&lt;/p&gt;
+&lt;p&gt;This particular newline issue has popped up a couple of times already.
+We're treating it with band-aids at the moment, ideally we'd get a
+proper test on the gate to prevent it from happening again: this is why
+&lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1674011"&gt;this bug is still
+open&lt;/a&gt;. I'm not very
+familiar with JavaScript testing and haven't had a chance to look into
+it yet; if you'd like to give it a shot that'd be a useful contribution
+:)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="zanata-and-contributing-translations"&gt;
+&lt;h3&gt;Zanata, and contributing translations&lt;/h3&gt;
+&lt;p&gt;The OpenStack Zanata instance lives at &lt;a class="reference external" href="https://translate.openstack.org"&gt;https://translate.openstack.org&lt;/a&gt;.
+This is where the translators do their work. &lt;a class="reference external" href="https://translate.openstack.org/project/view/tripleo-ui"&gt;Here's the page for
+tripleo-ui&lt;/a&gt;,
+you can see there is one project per branch (stable/ocata and master,
+for now). Sort by &amp;quot;Percent Translated&amp;quot; to see the languages currently
+translated. Here's an example of the &lt;a class="reference external" href="https://translate.openstack.org/webtrans/translate?project=tripleo-ui&amp;amp;iteration=stable-ocata&amp;amp;localeId=es&amp;amp;locale=en-US&amp;amp;dswid=-8746#view:doc;doc:i18n/messages"&gt;translator's view, for
+Spanish&lt;/a&gt;:
+you can see the English string on the left, and the translator fills in
+the right side. No context! Just strings.&lt;/p&gt;
+&lt;p&gt;At this stage of the release cycle, the focus would be on 'master,'
+although it is still early to do translations; there is a lot of churn
+still.&lt;/p&gt;
+&lt;p&gt;If you'd like to contribute translations, the &lt;a class="reference external" href="https://wiki.openstack.org/wiki/I18n"&gt;I18n
+team&lt;/a&gt; has &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/"&gt;good
+documentation&lt;/a&gt; about &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/official_translator.html"&gt;how to
+go about how to do
+it&lt;/a&gt;.
+The short version: sign up on Zanata, request to join your language
+team, once you're approved - you're good to go!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="return-of-the-string"&gt;
+&lt;h3&gt;Return of the string&lt;/h3&gt;
+&lt;p&gt;Now that we have our strings available in multiple languages, it's time
+for another infra job to kick in and bring them into our repository.
+This is where
+&lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L241-L257"&gt;propose_translation_update.sh&lt;/a&gt;
+comes in. We pull the po files from Zanata, convert them to JSON, then
+do a git commit that will be proposed to Gerrit.&lt;/p&gt;
+&lt;p&gt;The &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L245"&gt;cleanup
+step&lt;/a&gt;
+does more than it might seem. It checks if files are translated over a
+certain ratio (~75% for code), which avoids adding new languages when
+there might only be one or two words translated (e.g. someone just
+testing Zanata to see how it works). Switching to your language and yet
+having the vast majority of the UI still appear in English is not a
+great user experience.&lt;/p&gt;
+&lt;p&gt;In theory, files that were added but are now below 40% should get
+automatically removed, however this &lt;a class="reference external" href="https://storyboard.openstack.org/#!/story/2000949"&gt;doesn't quite work for
+JavaScript&lt;/a&gt; at the
+moment - another opportunity to help! Manual cleanups can be done in the
+meantime, but it's a rare event so not a major issue.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="monitoring-the-periodic-jobs"&gt;
+&lt;h3&gt;Monitoring the periodic jobs&lt;/h3&gt;
+&lt;p&gt;Zanata is checked once a day every morning, there is an &lt;a class="reference external" href="http://status.openstack.org/openstack-health/#/g/build_queue/periodic?groupKey=build_queue&amp;amp;searchJob=tripleo-ui"&gt;OpenStack
+Health
+page&lt;/a&gt;
+for this as well. You can see there are two jobs at the moment
+(hopefully green!), one per branch:
+tripleo-ui-propose-translation-update and
+tripleo-ui-propose-translation-update-ocata. The job should run every
+day even if there are no updates - it simply means there might not be a
+git review proposed at the end.&lt;/p&gt;
+&lt;p&gt;We haven't had issues with the periodic job so far, though the debugging
+process would be the same: figure out based on the failure if it is
+happening at the infra script stage or in one of our commands (e.g. &lt;em&gt;npm
+run po2json&lt;/em&gt;), try to reproduce and fix. I'm sure super-helpful AJaeger
+would also let us know if he were to notice an issue here.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="automated-patches"&gt;
+&lt;h3&gt;Automated patches&lt;/h3&gt;
+&lt;p&gt;You may have seen the &lt;a class="reference external" href="https://review.openstack.org/#/q/project:openstack/tripleo-ui+topic:zanata/translations"&gt;automated translations
+updates&lt;/a&gt;
+pop up on Gerrit. The commit message has some &lt;a class="reference external" href="https://docs.openstack.org/i18n/latest/reviewing-translation-import.html"&gt;tips on how to
+review&lt;/a&gt;
+these: basically don't agonise over the translation contents as problems
+there should be handled in Zanata anyway, just make sure the format
+looks good and is unlikely to break the code. A &lt;a class="reference external" href="https://github.com/openstack-infra/project-config/blob/605299/jenkins/scripts/propose_translation_update.sh#L251"&gt;JSON validation
+tool&lt;/a&gt;
+runs during the infra prep step in order to &amp;quot;prettify&amp;quot; the JSON blob and
+limit the size of the diffs, therefore once the patch&amp;nbsp; makes it out to
+Gerrit we know the JSON is well-formed at least.&lt;/p&gt;
+&lt;p&gt;Try to review these patches quickly to respect the translators' work.
+Not very nice to spend a lot of time on translating a project and yet
+not have your work included because no one was bothered to merge it :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="a-note-about-new-languages"&gt;
+&lt;h3&gt;A note about new languages...&lt;/h3&gt;
+&lt;p&gt;If the automated patch adds a new language, there'll be an &lt;a class="reference external" href="https://github.com/openstack/tripleo-ui/blob/68e8684162811c88fb10c8c43c8e59bec3510eb2/docs/translation.rst#adding-a-new-language"&gt;additional
+step
+required&lt;/a&gt;
+after merging the translations in order to enable it: adding a string
+with the language name to a constants file. Until recently, this took 3
+or 4 steps - &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bug/1682452"&gt;thanks to Honza for making it much
+simpler&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;This concludes the technical journey of a string. If you'd like to help
+with i18n tasks, we have &lt;a class="reference external" href="https://bugs.launchpad.net/tripleo/+bugs?field.tag=i18n"&gt;a few related
+bugs&lt;/a&gt; open.
+They go from very simple low-hanging-fruits you could use to make your
+first contribution to the UI, to weird buttons that have translations
+available yet show in English but only in certain modals, to the kind of
+CI resiliency tasks I linked to earlier. Something for everyone! ;)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="section" id="working-with-the-i18n-team"&gt;
+&lt;h2&gt;Working with the I18n team&lt;/h2&gt;
+&lt;p&gt;It's really all about communication. Starting with...&lt;/p&gt;
+&lt;div class="section" id="release-schedule-and-string-freezes"&gt;
+&lt;h3&gt;Release schedule and string freezes&lt;/h3&gt;
+&lt;p&gt;String freezes are noted on the &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html"&gt;main
+schedule&lt;/a&gt; but tend
+to fit the regular cycle-with-milestones work. This is a problem for a
+cycle-trailing project like tripleo-ui as we could be implementing
+features up to 2 weeks after the other projects, so we can't freeze
+strings that early.&lt;/p&gt;
+&lt;p&gt;There were discussions at the Atlanta PTG around whether the I18n should
+care at all about projects that don't respect the freeze deadlines. That
+would have made it impossible for projects like ours to ever make it
+onto the I18n official radar. The compromise was that cycle-trailing
+project should have a &lt;a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n"&gt;I18n cross-project
+liaison&lt;/a&gt;
+that communicates with the I18n PTL and team to inform them of
+deadlines, and also to ignore Soft Freeze and only do a Hard Freeze.&lt;/p&gt;
+&lt;p&gt;This will all be documented under an i18n governance tag; while waiting
+for it the &lt;a class="reference external" href="https://etherpad.openstack.org/p/i18n-horizon-release-collaboration-session"&gt;notes from the sessions are
+available&lt;/a&gt;
+for the curious!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-a-string-freeze-again"&gt;
+&lt;h3&gt;What's a String Freeze again?&lt;/h3&gt;
+&lt;p&gt;The two are defined on the schedule: &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html#p-soft-sf"&gt;soft
+freeze&lt;/a&gt;
+means not allowing changes to strings, as it invalidates the
+translator's work and forces them to retranslate; &lt;a class="reference external" href="https://releases.openstack.org/pike/schedule.html#p-hard-sf"&gt;hard
+freeze&lt;/a&gt;
+means no additions, changes or anything else in order to give
+translators a chance to catch up.&lt;/p&gt;
+&lt;p&gt;When we looked at Zanata earlier, there were &lt;a class="reference external" href="https://translate.openstack.org/iteration/view/tripleo-ui/master"&gt;translation percentages
+beside each
+language&lt;/a&gt;:
+the goal is always the satisfaction of reaching 100%. If we keep adding
+new strings then the goalpost keeps moving, which is discouraging and
+unfair.&lt;/p&gt;
+&lt;p&gt;Of course there's also an &amp;quot;exception process&amp;quot; when needed, to ask for
+permission to merge a string change with an explanation or at least a
+heads-up, by sending an email to the &lt;a class="reference external" href="http://lists.openstack.org/cgi-bin/mailman/listinfo/openstack-i18n"&gt;openstack-i18n mailing
+list&lt;/a&gt;.
+Not to be abused :)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="role-of-the-i18n-liaison"&gt;
+&lt;h3&gt;Role of the I18n liaison&lt;/h3&gt;
+&lt;p&gt;...Liaise?! Haha. The role is defined briefly on the &lt;a class="reference external" href="https://wiki.openstack.org/wiki/CrossProjectLiaisons#I18n"&gt;Cross-Projects
+Liaison wiki
+page&lt;/a&gt;.
+It's much more important toward the end of the cycle, when the codebase
+starts to stabilise, there are fewer changes and translators look at
+starting their work to be included in the release.&lt;/p&gt;
+&lt;p&gt;In general it's good to hang out on the #openstack-i18n IRC channel
+(very low traffic), &lt;a class="reference external" href="https://wiki.openstack.org/wiki/Meetings/I18nTeamMeeting"&gt;attend the weekly
+meeting&lt;/a&gt;
+(it alternates times), be available to answer questions, and keep the
+PTL informed of the I18n status of the project. In the case of
+cycle-trailing projects (quite a new release model still), it's also
+important to be around to explain the deadlines.&lt;/p&gt;
+&lt;p&gt;A couple of examples having an active liaison helps with:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Toward the end or after the release, once translations into the
+stable branch have settled, the stable translations get copied into
+the master branch on Zanata. The strings should still be fairly
+similar at that point and it avoids translators having to re-do the
+work. It's a manual process, so you need to let the I18n PTL know
+when there are no longer changes to stable/*.&lt;/li&gt;
+&lt;li&gt;Last cycle, because the cycle-trailing status of tripleo-ui was not
+correctly documented, a Zanata upgrade was planned right after the
+main release - which for us ended up being right when the codebase
+had stabilised enough and several translators had planned to be most
+active. Would have been solved with better, earlier communication :)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="section" id="post-release"&gt;
+&lt;h3&gt;Post-release&lt;/h3&gt;
+&lt;p&gt;After the Ocata release, I sent &lt;a class="reference external" href="http://imgur.com/a/tlnAx"&gt;a few
+screenshots&lt;/a&gt; of tripleo-ui to the i18n list
+so translators could see the result of their work. I don't know if
+anybody cared :-) But unlike Horizon, which has an informal test system
+available for translators to check their strings during the RC period,
+most of the people who volunteered translations had no idea what the UI
+looked like. It'd be cool if we could offer a test system with regular
+string updates next release - maybe just an undercloud on the new RDO
+cloud? Deployment success/failures strings wouldn't be verifiable but
+the rest would, while the system would be easier to maintain than a full
+dev TripleO environment - better than nothing. Perhaps an idea for the
+Queens cycle!&lt;/p&gt;
+&lt;p&gt;The I18n team has a &lt;a class="reference external" href="https://translate.openstack.org/"&gt;priority board on the Zanata main
+page&lt;/a&gt; (only visible when logged in
+I think). I'm grateful to see TripleO UI in there! :) Realistically
+we'll never move past Low or perhaps Medium priority which is fair, as
+TripleO doesn't have the same kind of reach or visibility that Horizon
+or the installation guides do. I'm happy that we're included! The
+OpenStack I18n team is probably the most volunteer-driven team in
+OpenStack. Let's be kind, respect string freezes and translators' time!
+\o/&lt;/p&gt;
+&lt;p&gt;&amp;lt;/braindump&amp;gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Fri, 07 Jul 2017 12:45:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2017-07-07:/blog/2017/07/tripleo-deep-dive-internationalisation-ui/</guid><category>Tech</category><category>open-source</category><category>openstack</category><category>talk-transcript</category><category>tripleo</category></item><item><title>git status &amp; unicode paths</title><link>https://www.jpichon.net/blog/2017/03/git-status-unicode-paths/</link><description>&lt;p&gt;I've had to set this up on three computers in the last couple of weeks
+and I forgot both how to do it and how to google for it effectively
+every single time, so here it goes as a memo to future-self for next
+time.&lt;/p&gt;
+&lt;p&gt;If your git status shows gibberish like this for non-ASCII file names:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git status
+On branch master
+[...]
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; modified:&amp;nbsp;&amp;nbsp; &amp;quot;\350\265\244\343\201\204\346\214\207&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;The solution is to &lt;a class="reference external" href="http://stackoverflow.com/questions/34549040/git-not-displaying-unicode-file-names"&gt;disable quotes in
+paths&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git config --global core.quotePath false
+&lt;/pre&gt;
+&lt;p&gt;Tadam:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ git status
+On branch master
+[...]
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; modified:&amp;nbsp; 赤い指
+&lt;/pre&gt;
+</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">jpichon</dc:creator><pubDate>Fri, 31 Mar 2017 20:53:00 +0100</pubDate><guid isPermaLink="false">tag:www.jpichon.net,2017-03-31:/blog/2017/03/git-status-unicode-paths/</guid><category>Tech</category><category>open-source</category></item></channel></rss>

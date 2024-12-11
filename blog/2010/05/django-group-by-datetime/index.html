@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Django: GROUP BY datetime</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="While trying to make the archive pages of this site more useful, I had a bit of trouble working with Django's annotation feature to give me the..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/05/django-group-by-datetime/" rel="bookmark"
+           title="Permalink to Django: GROUP BY datetime">Django: GROUP BY datetime</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-05-24T21:12:00+01:00">
+                Published: Mon 24 May 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>While trying to make the archive pages of this site more useful, I had a
+bit of trouble working with <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/db/aggregation/">Django's annotation
+feature</a>
+to give me the numbers I was looking for. I wanted to show on the index
+page how many posts were published in a given month. <a class="reference external" href="http://code.djangoproject.com/ticket/10302">This
+ticket</a> was very helpful
+to figure out how to do it, and as a bonus it means it will work more
+simply in future-Django :)</p>
+<p>At the moment, the workaround is unfortunately database specific. The
+ticket contains an example using SQLite, here's how I did it using
+PostgreSQL. I think with MySQL you'd need to play with YEAR() and
+MONTH() to get the same.</p>
+<pre class="literal-block">
+bymonth_select = {&quot;month&quot;: &quot;&quot;&quot;DATE_TRUNC('month', creation_date)&quot;&quot;&quot;} # Postgres specific
+months = Article.objects.exclude(draft=True).extra(select=bymonth_select).values('month').annotate(num_posts=Count('id')).order_by('-month')
+</pre>
+<p>I removed a couple of filters for readability, but this is basically a
+normal QuerySet with a couple of Django caveats:</p>
+<ol class="arabic simple">
+<li>Write your filters before the annotate call, as the Count() processes
+only <a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/db/aggregation/#order-of-annotate-and-filter-clauses">what comes before
+it</a></li>
+<li>.values('blah') for a GROUP BY effect, without it you'll get '1' for
+every record fetched back</li>
+<li>.order_by(), with or without an argument otherwise things will
+likely get messed up by the order_by of your Meta class if any --
+inspired by comment #8 of the ticket linked above, thanks!</li>
+</ol>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

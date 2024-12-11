@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>GUADEC 2010: "Building a strong post 3.0 Gnome story"</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="This is the talk that was hijacked by the release team to make the announcement about the delay in releasing Gnome 3. Gnome 3: Where we are..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2010/08/guadec-2010-building-strong-post-30-gnome-story/" rel="bookmark"
+           title="Permalink to GUADEC 2010: "Building a strong post 3.0 Gnome story"">GUADEC 2010: &quot;Building a strong post 3.0 Gnome story&quot;</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-08-04T20:47:00+01:00">
+                Published: Wed 04 August 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/gnome/">gnome</a> </p>
+</footer><!-- /.post-info -->      <p>This is <a class="reference external" href="http://guadec.org/index.php/guadec/2010/paper/view/123">the talk that was
+hijacked</a> by
+the release team to make the announcement about the delay in releasing
+Gnome 3.</p>
+<div class="section" id="gnome-3-where-we-are">
+<h2>Gnome 3: Where we are</h2>
+<p>Vincent Untz began by reminding us that there is a lot of excitement
+around Gnome 3 and Gnome Shell. To encourage the initial development
+effort around Gnome 3, the release team boldly stated 2 years ago that
+Gnome 2.30 would be Gnome 3. The community then reached a level of
+activity never seen in years. It was a very aggressive schedule, and it
+was meant that way: perhaps the work would not have started or not have
+been so intense without it.</p>
+<p>However, Gnome sticks to a predictable 6 months schedule, and
+<strong>quality</strong> matters more than anything else. We want people to love
+Gnome 3. After waiting 8 years since Gnome 2.0, we want this release to
+be amazing. That is why the release team decided to move Gnome 3.0
+release date to March 2011, having closely following mailing lists and
+using GUADEC as an opportunity to get the latest from every team.</p>
+<ul class="simple">
+<li>Many modules, such as Gnome-shell are nearly there and could be okay
+for a release in September. But we want this release to be amazing,
+not simply okay.</li>
+<li>Platform-wise, most people have stopped using the deprecated stuff,
+which is good.</li>
+<li>Some modules will need more time to migrate, such as gsettings and
+the Human Interface Guidelines update which would not be ready in 2
+months (Note: I attended a lightning talk about this and I like what
+they're planning on doing with this: a series of design patterns
+rather than a gigantic monolithic document that is hard to parse.
+They only started this the week before GUADEC though!)</li>
+</ul>
+</div>
+<div class="section" id="the-work-for-september">
+<h2>The work for September</h2>
+<p>Some may worry that this is a bit late for such an announcement, and too
+much work to prepare Gnome 2.32 in September. Some modules will need to
+switch back to Gtk2.</p>
+<p>There will also be a Gnome 3.0 beta release in September (\o/). The
+release team wants everyone to start using it, play with it, and report
+bugs. Application developers should start porting their application to
+Gtk3, as it will take time to get there and it would be better to start
+this work in September rather than next March.</p>
+<p>The talk ended with a list of TODOs for the release team.</p>
+<ul class="simple">
+<li>Revert to gtk2. They believe it was not that hard to move to 3,
+therefore it should not be hard to move back to 2. They're happy to
+help if people are not sure how to do this. Ideally this should be
+done though a new flag, to give an option to compile with gtk2 or
+gtk3 so that people focusing on the gtk3 effort may keep working on
+it.</li>
+<li>They will keep pushing for Gnome 3, Gnome 2.32 is only a step. Keep
+porting!</li>
+<li>Some modules such as Shell will be in feature freeze, to polish and
+finish what they've started.</li>
+<li>The release team will also push the community to implement designs.
+Good mockups are being made and we're happy about it, but then
+nothing is done about them.</li>
+</ul>
+<p>The questions part of the talk was interesting albeit a bit tense.</p>
+</div>
+<div class="section" id="gnome-2-32">
+<h2>Gnome 2.32</h2>
+<p>The first question was about the 6 months release schedule, and whether
+it really was a valid reason to have a 2.32. What would be the content,
+wouldn't it only take time away from people's work on Gnome 3?
+Maintainers cannot be forced to do anything, and if they have better
+reasons to work on 3 it's okay. Perhaps other maintainers will have
+built new features and will want them to be used by people without
+having to wait 9 months. The audience still worried about the
+maintenance burden and cost for people already depending on Gtk3
+features, but the speaker seemed confident that switching back to 2 was
+mostly about changing some configure options, and that no one had to do
+if it was too much overhead.</p>
+<p>Still maintainers in the audience insisted that having both 2.32 and a
+Beta meant twice the work. Why spend time on something that matters less
+and less? They also disagreed that having gnome-shell and 2.32 in the
+background was a good idea, as it's not how the design is done nor how
+it's meant to work. Gnome 3 should be more than the Shell. Untz seems to
+believe that many features do not rely on Gtk3 or the Shell.</p>
+<p>Maintainers contended that it wasn't the same amount of work for an
+application like Cheese compared to the core desktop. There is a burden
+to support 2 desktop environments in parallel. To which Untz answered
+that feature freeze was still planned for the following week, leading to
+a &quot;what's the point?&quot; question. Once again, if people don't want to do
+it, they don't have to.</p>
+</div>
+<div class="section" id="marketing">
+<h2>Marketing</h2>
+<p>Concerns about the marketing message were quickly relieved by someone
+from the marketing team, who said that the &quot;Beta&quot; label generates
+excitement. Anyone with a feature that is stable enough should stick it
+in, although the control centre is another matter. We still want to ship
+a quality product, if it only has half the features it's okay as long as
+they're stable. It will generate the buzz.</p>
+<p>There was a question about working with distros to help ship 3.0 in a
+way that is easier to install, to encourage people to try out the beta.
+There are instructions for many distros already, but it was suggested to
+also offer clear and prominent instructions on the Gnome front page once
+the beta's out.</p>
+<p>The last question was about what the schedule would look like for the
+next 6 months. Although the schedule will be mostly normal, with new
+modules and new features, some rules will be similar to now in that new
+applications won't be accepted in just because they're great. Likewise,
+it doesn't make sense to have a freeze for everything, but for some
+modules it does.</p>
+</div>
+<div class="section" id="final-words">
+<h2>Final words</h2>
+<p>Keep working on Gnome 3.0!</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

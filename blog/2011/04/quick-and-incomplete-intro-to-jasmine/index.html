@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>A Quick and Incomplete Intro to Jasmine | Javascript unit testing</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Recently I needed to find some sort of Javascript framework to start unit testing new code, some of which was using jQuery. I ended up deciding on..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/04/quick-and-incomplete-intro-to-jasmine/" rel="bookmark"
+           title="Permalink to A Quick and Incomplete Intro to Jasmine | Javascript unit testing">A Quick and Incomplete Intro to Jasmine  | Javascript unit testing</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-04-10T22:01:00+01:00">
+                Published: Sun 10 April 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/testing/">testing</a> </p>
+</footer><!-- /.post-info -->      <p>Recently I needed to find some sort of Javascript framework to start
+unit testing new code, some of which was using jQuery. I ended up
+deciding on <a class="reference external" href="http://pivotal.github.com/jasmine/">Jasmine</a>.</p>
+<div class="section" id="why-jasmine">
+<h2>Why Jasmine?</h2>
+<ul class="simple">
+<li>Primarily and essentially, it's maintained, it seems <a class="reference external" href="https://github.com/pivotal/jasmine">fairly
+active</a> and has a community
+around it: looking at the pull requests, github network, issues, code
+changes and glowing reviews all over the web</li>
+<li>It can test asynchronous calls</li>
+<li>It can integrate with a continuous integration system (though that
+seems to require an external plug-in, listed on the website? -- to be
+investigated more deeply when I need to set this up!)</li>
+<li>It attempts to be platform/language/etc agnostic, though you do feel
+a strong tie to Ruby, rummaging around</li>
+<li><a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Background">Other nice
+things</a></li>
+<li>And I've heard the name mentioned in local tech meetups and mailing
+lists, which is always good (it's good enough to be picked up by real
+people, who can potentially become a source of help in the future if
+needed :))</li>
+</ul>
+</div>
+<div class="section" id="getting-started-10-minutes">
+<h2>Getting started (~10 minutes)</h2>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>You should download Jasmine from this link:
+<a class="reference external" href="http://pivotal.github.com/jasmine/download.html">http://pivotal.github.com/jasmine/download.html</a>. It's actually a bit
+unclear from reading the
+<a class="reference external" href="https://github.com/pivotal/jasmine/wiki">wiki</a>, I initially
+downloaded the latest version from its associated tag and had trouble
+because the directory structure didn't seem to match the documentation.</p>
+</div>
+<div class="section" id="read-the-instructions">
+<h3>Read the instructions</h3>
+<p>The main wiki page really serves as the <a class="reference external" href="https://github.com/pivotal/jasmine/wiki">user
+guide</a>. Here're a few
+helpful links to get started, all short and useful:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Suites-and-specs">Suites and
+specs</a></li>
+<li><a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Matchers">Matchers</a></li>
+<li><a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Before-and-After">Before and
+After</a></li>
+<li>(For my project) <a class="reference external" href="https://github.com/pivotal/jasmine/wiki/Asynchronous-specs">Asynchronous
+tests</a></li>
+</ul>
+<p>There's a chapter on mocking as well, which I skipped until I need it --
+it's enough to try out already!</p>
+</div>
+<div class="section" id="interlude-vocabulary">
+<h3>Interlude: Vocabulary</h3>
+<p>I'm assuming this is because Jasmine is &quot;BDD&quot; (Behaviour Driven
+Development) and I come from TDD (Test Driven Development), but there
+was a bit of new vocabulary to get used to. Here's a short BDD to TDD
+dictionary.</p>
+<ul class="simple">
+<li><em>Spec</em>: Test</li>
+<li><em>beforeEach</em>: setUp</li>
+<li><em>afterEach</em>: tearDown</li>
+<li><em>Spies</em>: Mocks, mocking</li>
+<li><em>.toBeTruthy</em>: .assertTrue (it sounded like it could be approximately
+or almostEquals to my untrained ears)</li>
+</ul>
+</div>
+<div class="section" id="setting-up">
+<h3>Setting up</h3>
+<p>Have a look at <a class="reference external" href="https://github.com/pivotal/jasmine/wiki/A-simple-project">A simple
+project</a>
+for an extremely brief overview, and open the example specs, especially
+<a class="reference external" href="https://github.com/pivotal/jasmine/blob/master/example/spec/PlayerSpec.js">PlayerSpec.js</a>
+which I found really useful. That should be enough to get you going!</p>
+<p>Don't forget to include jQuery or whichever, in your spec runner file if
+using such a framework.</p>
+<p>I'm not sure yet what's the best structure for organising Javascript
+tests. I'd like to find out what people do. At the moment I've put my
+spec runner file and tests in the directory that makes the most sense
+semantically, but this means that by default the file would end up
+accessible on prod after deployment, which does not sound ideal. Any
+reading suggestions for me or best practices to share?</p>
+</div>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Debugging udev rules | under Debian</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="I've been playing with the Finch, however today I was unhappy to discover that the robot stopped working again for non-root users. The Finch..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/12/debugging-udev-rules/" rel="bookmark"
+           title="Permalink to Debugging udev rules | under Debian">Debugging udev rules  | under Debian</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-12-10T15:32:00+00:00">
+                Published: Sat 10 December 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/linux/">linux</a> </p>
+</footer><!-- /.post-info -->      <p>I've been playing with the <a class="reference external" href="http://www.finchrobot.com">Finch</a>,
+however today I was unhappy to discover that the robot stopped working
+again for non-root users. The Finch documentation helpfully links to
+<a class="reference external" href="http://whatnot.merichar.org/2011/06/14/finch-robot-udev-rules/">this blog
+post</a>
+on how to write a udev rule, which is the script I was using in the
+first place.</p>
+<pre class="literal-block">
+SUBSYSTEM==&quot;usb&quot;, SYSFS{idVendor}==&quot;2354&quot;, SYSFS{idProduct}==&quot;1111&quot;, MODE=&quot;0660&quot;, GROUP=&quot;plugdev&quot;
+</pre>
+<p>Time to figure out how to debug udev rules! The <a class="reference external" href="http://wiki.debian.org/udev">debian
+wiki</a> hints at a tool called
+<strong>udevtest</strong>, which doesn't exist on my system or in aptitude. Turns out
+nowadays one should use <strong>udevadm test</strong> instead. Here we go: thanks to
+<strong>lsusb</strong> I know that the Finch is on bus 001, device 007.</p>
+<pre class="literal-block">
+# udevadm test /dev/bus/001/007
+</pre>
+<p>In the output around the rules file for the finch, there is this:</p>
+<pre class="literal-block">
+add_rule: unknown key 'SYSFS{idVendor}' in /etc/udev/rules.d/55-finch.rules:1
+add_rule: invalid rule '/etc/udev/rules.d/55-finch.rules:1'
+</pre>
+<p>Looking for documentation on how to write udev rules, one would find the
+<a class="reference external" href="http://www.reactivated.net/writing_udev_rules.html#sysfsmatch">following
+guide</a>,
+which indicates that ATTR should be used instead of SYSFS. Let's rewrite
+the rule:</p>
+<pre class="literal-block">
+SUBSYSTEM==&quot;usb&quot;, ATTR{idVendor}==&quot;2354&quot;, ATTR{idProduct}==&quot;1111&quot;, MODE=&quot;0660&quot;, GROUP=&quot;plugdev&quot;
+</pre>
+<p>The error doesn't show in the <strong>udevadm test</strong> output anymore, and
+unplugging/replugging the Finch makes it usable by non-root users again.
+Victory!</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

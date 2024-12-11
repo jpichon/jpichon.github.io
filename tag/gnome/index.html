@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>jpichon.net - gnome</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://www.jpichon.net/blog/2015/04/switching-locale-gnome-3/">Switching locale (Gnome 3, Fedora 20)  | and making sure all the menus switch too</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-04-19T03:52:00+01:00">
+                Published: Sun 19 April 2015
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/gnome/">gnome</a> <a href="https://www.jpichon.net/tag/japanese/">japanese</a> <a href="https://www.jpichon.net/tag/linux/">linux</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info --><p>In the spirit of immersion, I switched the laptop's language to
+Japanese, however most of the Gnome menus remained in English even after
+switching the System Language altogether, logging out etc. Another
+profile on the laptop shows the menus for Activities, etc in Japanese
+just fine so it wasn't a missing package. I found the following in
+~/.profile, which seems a bit heavy-handed but does do the trick. For
+future reference:</p>
+<pre class="literal-block">
+LANG=&quot;ja_JP.UTF-8&quot;
+LANGUAGE=&quot;ja_JP.UTF-8&quot;
+LC_CTYPE=&quot;ja_JP.UTF-8&quot;
+LC_NUMERIC=&quot;ja_JP.UTF-8&quot;
+LC_TIME=&quot;ja_JP.UTF-8&quot;
+LC_COLLATE=&quot;ja_JP.UTF-8&quot;
+LC_MONETARY=&quot;ja_JP.UTF-8&quot;
+LC_MESSAGES=&quot;ja_JP.UTF-8&quot;
+LC_PAPER=&quot;ja_JP.UTF-8&quot;
+LC_NAME=&quot;ja_JP.UTF-8&quot;
+LC_ADDRESS=&quot;ja_JP.UTF-8&quot;
+LC_TELEPHONE=&quot;ja_JP.UTF-8&quot;
+LC_MEASUREMENT=&quot;ja_JP.UTF-8&quot;
+LC_IDENTIFICATION=&quot;ja_JP.UTF-8&quot;
+LC_ALL=
+</pre>
+<p>Note on restarting X one is asked if they want to change the names for
+the default folders like Documents, etc. Personally I find it makes
+using the CLI a pain and don't recommend it.</p>
+                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/08/making-your-first-contribution-open-source/" rel="bookmark"
+                           title="Permalink to "Making Your First Contribution To Open-Source" | Irish Hackerspaces Week 2011">&quot;Making Your First Contribution To Open-Source&quot;  | Irish Hackerspaces Week 2011</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-08-26T21:15:00+01:00">
+                Published: Fri 26 August 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/contributing/">contributing</a> <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/gnome/">gnome</a> <a href="https://www.jpichon.net/tag/ireland/">ireland</a> <a href="https://www.jpichon.net/tag/tog/">tog</a> </p>
+</footer><!-- /.post-info -->                <p><img alt="A CG character in front of a laptop thinking of various open-source projects" src="https://www.jpichon.net/site_media/images/2011/contributing_to_open-source.jpg" /></p>
+<p>I gave my presentation on &quot;making your first open-source contribution&quot;
+in <a class="reference external" href="http://www.tog.ie">Tog</a> yesterday evening and I think it went
+down well; I enjoyed delivering the talk and received positive comments
+about it afterwards -- although I do need to speak louder. I'm enjoying
+lightning talks! Now, what to speak about next …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/08/making-your-first-contribution-open-source/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/08/desktop-summit-2011-back/" rel="bookmark"
+                           title="Permalink to Desktop Summit 2011 - Back!">Desktop Summit 2011 - Back!</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-08-10T16:47:00+01:00">
+                Published: Wed 10 August 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/gnome/">gnome</a> </p>
+</footer><!-- /.post-info -->                <p>The <a class="reference external" href="http://desktopsummit.org">Desktop Summit</a> is finished for me,
+though it continues on with workshop and BoFs.</p>
+<p>Berlin's weather is pretty much like Dublin's with regard to the sky
+colour and rain status; though maybe with a few more degrees :) I quite
+enjoyed the conference, very happy to meet again the friends …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/08/desktop-summit-2011-back/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2011/08/desktop-summit-2011/" rel="bookmark"
+                           title="Permalink to Desktop Summit 2011">Desktop Summit 2011</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-08-04T19:27:00+01:00">
+                Published: Thu 04 August 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/gnome/">gnome</a> </p>
+</footer><!-- /.post-info -->                <p><img alt="I'm going to the Desktop Summit 2011" src="https://www.jpichon.net/site_media/images/2011/desktop_summit.png" /></p>
+<p>Tomorrow morning at ass o'clock, I fly to Berlin to attend the <a class="reference external" href="http://desktopsummit.org/">Desktop
+Summit</a> \o/ The <a class="reference external" href="https://desktopsummit.org/program">talk
+schedule</a> looks fantastic and I'm
+really looking forward to it, and to meeting again the friendly people
+from last year as well as new friendly faces.</p>
+<p>Woohoo! See you there!</p>
+
+                <a class="readmore" href="https://www.jpichon.net/blog/2011/08/desktop-summit-2011/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.jpichon.net/blog/2010/12/guadec-banshee/" rel="bookmark"
+                           title="Permalink to GUADEC: Inside the Banshee Awesome Factory">GUADEC: Inside the Banshee Awesome Factory</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2010-12-30T21:23:00+00:00">
+                Published: Thu 30 December 2010
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/contributing/">contributing</a> <a href="https://www.jpichon.net/tag/events/">events</a> <a href="https://www.jpichon.net/tag/gnome/">gnome</a> </p>
+</footer><!-- /.post-info -->                <p>Eek! Looking through my old drafts I can't believe I forgot to post
+this. I was waiting for the LWN link to become available to all -- but I
+guess it's never too late to share the awesome.</p>
+<p>Article: <a class="reference external" href="http://lwn.net/Articles/399296/">GUADEC: Banshee project reaches out for
+contributors</a> (LWN)</p>
+<p>This is the summary …</p>
+                <a class="readmore" href="https://www.jpichon.net/blog/2010/12/guadec-banshee/">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<nav>
+    Page 1 / 4
+        <a href="https://www.jpichon.net/tag/gnome/index2.html">&rang;</a>
+        <a href="https://www.jpichon.net/tag/gnome/index4.html">&Rang;</a>
+</nav>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>Tethering on the N900</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="As FOSDEM (woohoo \o/) draws closer and the likelihood of spending a lot of time in the airport doesn't change, I thought it was time to find out..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/02/tethering-on-the-n900/" rel="bookmark"
+           title="Permalink to Tethering on the N900">Tethering on the N900</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-02-02T19:34:00+00:00">
+                Published: Wed 02 February 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/linux/">linux</a> <a href="https://www.jpichon.net/tag/n900/">n900</a> <a href="https://www.jpichon.net/tag/open-source/">open-source</a> </p>
+</footer><!-- /.post-info -->      <p>As <a class="reference external" href="http://www.fosdem.org">FOSDEM</a> (woohoo \o/) draws closer and the
+likelihood of <a class="reference external" href="http://www.rte.ie/news/2011/0202/aerlingus.html">spending a lot of time in the
+airport</a> doesn't
+change, I thought it was time to find out how to use my N900 as a modem
+or for &quot;tethering&quot; as I'm told the proper word is.</p>
+<p>Some background:</p>
+<ul class="simple">
+<li>my laptop runs Debian Squeeze (unstable) -- the stable release is
+coming out this week-end by the way!</li>
+<li>my phone carrier is Meteor (Ireland) and I use their 3G/GPRS
+connection for data.</li>
+</ul>
+<div class="section" id="tethering-via-the-usb-cable">
+<h2>Tethering via the USB cable</h2>
+<p>The <a class="reference external" href="http://maemo.nokia.com/n900/tips/tethering/linux/">official Maemo
+webpage</a> makes it
+all sound real simple but it didn't quite work this way for me. The
+wizard did not appear either on Debian or when I tried on Ubuntu 10.10.
+Although the phone did show up in Network Manager -&gt; Wired networks, it
+only displayed as Disconnected and I couldn't find any option to set up
+a new 3G network.</p>
+<p>After many failed attempts, this is the <a class="reference external" href="http://forums.internettablettalk.com/showthread.php?p=804214">approach that worked for
+me</a>. It
+requires wvdial. One annoyance: it works once, then I need to unplug and
+re-plug the phone.</p>
+<p>Here's the wvdial information for Meteor Ireland:</p>
+<div class="line-block">
+<div class="line">APN: data.mymeteor.ie</div>
+<div class="line">Username: my</div>
+<div class="line">Password: meteor</div>
+</div>
+</div>
+<div class="section" id="tethering-via-bluetooth">
+<h2>Tethering via Bluetooth</h2>
+<p>Emboldened by my success I decided to follow the link to the <a class="reference external" href="http://wiki.debian.org/UseYourCellPhoneAsModem">Debian
+wiki</a> on how to set
+up the same using Bluetooth. I was very disappointed to see they
+recommend using a KDE app even under Gnome, and when I looked at the
+number of dependencies it would bring I thought I'd take my chance the
+Gnome way.</p>
+<p>...I'll skip on the embarrassing moments where I was thinking Gnome 3
+wasn't set up yet to handle Bluetooth then found out the Bluetooth
+service was actually turned off... *cough* I used the Bluetooth applet
+to pair with the phone and followed the rest of the instructions on the
+wiki page, until the rfcomm command brought up the following error.</p>
+<pre class="literal-block">
+Can't connect RFCOMM socket: Connection refused
+</pre>
+<p>Using &quot;<em>sdptool browse &lt;N900_MAC_ADDRESS&gt;</em>&quot; revealed that I did not
+have the &quot;Dial up networking service&quot; running on the phone. You actually
+need to install an extra app, available in the repos first (application
+name is: Bluetooth Dial-Up Networking). I then followed <a class="reference external" href="http://wiki.maemo.org/Debian-Tethering">these
+instructions on the Maemo
+wiki</a> to set up rfcomm.conf,
+until &quot;Restart the bluetooth stack&quot; in the first section, and ta-dah!
+With &quot;<em>wvdial bluetooth</em>&quot; I can now start the connection via Bluetooth.</p>
+<p>To be honest I'm sure this is a battery drain nightmare and I can't
+imagine tethering without the cable but heh! I learnt about several new
+tools and if I ever need it, it's there :-)</p>
+</div>
+<div class="section" id="final-wvdial-conf-in-all-its-mighty-glory">
+<h2>Final wvdial.conf, in all its mighty glory</h2>
+<pre class="literal-block">
+[Dialer Defaults]
+Init1 = ATZ
+Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0
+Baud = 460800
+New PPPD = yes
+ISDN = 0
+New PPPD = yes
+Phone = *99***1#
+Username = &quot;my&quot;
+Password = &quot;meteor&quot;
+Init6= AT+CGDCONT=1,&quot;IP&quot;,&quot;data.mymeteor.ie&quot;
+
+[Dialer usb]
+Modem Type = USB Modem
+Modem = /dev/ttyACM0
+
+[Dialer bluetooth]
+Modem = /dev/rfcomm0
+</pre>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

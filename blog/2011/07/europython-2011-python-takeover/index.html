@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>EuroPython 2011: Mark Ramm on A Python Takeover</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Link: Talk description and video 2 years and a half ago, SourceForge was all PHP except for one little Python service. SourceForge was originally..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/07/europython-2011-python-takeover/" rel="bookmark"
+           title="Permalink to EuroPython 2011: Mark Ramm on A Python Takeover">EuroPython 2011: Mark Ramm on A Python Takeover</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-07-12T21:25:00+01:00">
+                Published: Tue 12 July 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> </p>
+</footer><!-- /.post-info -->      <p>Link: <a class="reference external" href="http://ep2011.europython.eu/conference/talks/a-python-takeover">Talk description and
+video</a></p>
+<p>2 years and a half ago, SourceForge was all PHP except for one little
+Python service. SourceForge was originally written in 1999, when Python
+wasn't so great at the web. After 10 years though, it all started to
+atrophy.</p>
+<p>So SourceForge decided to do a little experiment and assigned 2 people
+to create FossFor.us. They chose a web framework, thinking that Python
+was good and impressed with the Django documentation: there was no real
+learning curve. Couchdb was a bit slow, though.</p>
+<p>The experiment was a success (although the site is now gone, due to
+managerial reasons if I understood correctly) and so they were then
+given 6 weeks to redo the download page/files of SourceForge. It had to
+be dynamic, to offer you a download relevant to your platform: they use
+the user agent string to figure out the operating system, and borrowed
+code from setuptools to figure out which release is the latest.</p>
+<p>Their admins loved Apache so they went with mod_wsgi, which worked out
+well.</p>
+<p>The whole system worked fine on a laptop handling all the traffic from
+SourceForge: that was the only load testing! And unfortunately when the
+system went live it took about 8 seconds to load a page. There was no
+CPU or memory usage. It turned out they saturated their gigabit Ethernet
+card, by loading all the releases, which some projects have a lot of
+(e.g. JBoss). Memcached turned out to be slower than MongoDB, because of
+pickling, the 4 megabytes objects and CPU.</p>
+<p>Finally they updated the list to not include all releases and the
+project was deemed a success! Thus everything shall become Python. They
+are developing their new platform openly,
+<a class="reference external" href="http://sourceforge.net/p/allura/">Allura</a>. They use a FUSE
+filesystem in Python to control permissions.</p>
+<p>From now on, they have an internal mandate that everything should be
+written using Python unless there is a good reason not to. And now
+SourceForge can compete again! As well as explore new directions.</p>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

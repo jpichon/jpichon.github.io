@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="Pelican" />
+        <meta name="description" content="A personal website with thoughts on open-source, software development, education and technology." />
+        <meta name="author" content="Julie Pichon" />
+        <title>EuroPython 2011: David Cramer on building scalable websites</title>
+        <link rel="stylesheet" href="https://www.jpichon.net/theme/css/main.css" />
+        <link href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="jpichon.net Atom Feed" />
+        <link href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="jpichon.net RSS Feed" />
+        <meta name="description" content="Link to talk description and video (videos should be public next week I believe) Performance (e.g. a request should return in less than 5 seconds)..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.jpichon.net/">jpichon.net</a></h1>
+                <nav><ul>
+                    <li><a href="https://www.jpichon.net/blog">Blog</a></li>
+                    <li><a href="https://www.jpichon.net/about/">About</a></li>
+                    <li><a href="https://www.jpichon.net/feeds/">Feeds</a></li>
+                    <li><a href="https://www.jpichon.net/speaking/">Speaking</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.jpichon.net/blog/2011/06/europython-2011-building-scalable-websites/" rel="bookmark"
+           title="Permalink to EuroPython 2011: David Cramer on building scalable websites">EuroPython 2011: David Cramer on building scalable websites</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2011-06-24T22:22:00+01:00">
+                Published: Fri 24 June 2011
+        </abbr>
+
+<!--                <address class="vcard author">
+                By                         <a class="url fn" href="https://www.jpichon.net/author/jpichon.html">jpichon</a>
+        </address>
+ -->
+<p>In <a href="https://www.jpichon.net/category/tech.html">Tech</a>.</p>
+<p>tags: <a href="https://www.jpichon.net/tag/django/">django</a> <a href="https://www.jpichon.net/tag/europython/">europython</a> <a href="https://www.jpichon.net/tag/python/">python</a> <a href="https://www.jpichon.net/tag/scaling/">scaling</a> </p>
+</footer><!-- /.post-info -->      <p><a class="reference external" href="http://ep2011.europython.eu/conference/talks/building-scalable-web-apps">Link to talk description and
+video</a>
+(videos should be public next week I believe)</p>
+<hr class="docutils" />
+<p>Performance (e.g. a request should return in less than 5 seconds) is not
+the same as scalability (e.g. a request should ALWAYS return in less
+than 5 seconds). Fortunately, it turns out that when you start working
+on scalability you usually end up improving performance as well -- note
+that this doesn't work the other way around.</p>
+<div class="section" id="common-bottlenecks">
+<h2>Common bottlenecks</h2>
+<p>The database is almost always an issue.</p>
+<p>Caching and invalidation help.</p>
+<p>They use Postgres for 98% of their data, it works great on good hardware
+with one master only (Disqus, his company, uses Django to serve 3
+billion page views a month)</p>
+</div>
+<div class="section" id="packaging-matters">
+<h2>Packaging matters</h2>
+<p>Packaging is key: it lets you repeat your deployment, makes it
+repeatable which is incredibly useful even when you're working by
+yourself. Unfortunately there are too many ways to do packaging in
+Python, and none that solves all the problem. He uses setuptools,
+because it usually works.</p>
+<p>Plenty of benefits to packaging:</p>
+<ul class="simple">
+<li>The handy 'develop' command installs all the dependencies.</li>
+<li>Dependencies are frozen.</li>
+<li>It's a great way to get a new team member quickly set up.</li>
+</ul>
+<p>Then, they use fabric to deploy consistently.</p>
+</div>
+<div class="section" id="database-s">
+<h2>Database(s)</h2>
+<p>This applies to any kind of datastore, which are the usual bottleneck.
+It can become difficult to scale once there is more than one server.</p>
+<p>The rest of the talk uses a Twitter clone as an example.</p>
+<p>For the public timeline, you select everything and order it by date.
+It's ok if there is only 1 database server, otherwise you need to use
+some sort of map/reduce variant to get it working. The index on date
+will be fairly heavy though. It's quite easy to cache (add tweet to a
+queue whenever it's added), and invalidate.</p>
+<p>For personal timelines, you can use <strong>vertical partitioning</strong>, with the
+user and tweets on separate machines. Unfortunately this means a SQL
+JOIN is not possible. <strong>Materialised views</strong> are a possible answer but
+there aren't supported by many databases (for instance it's not
+supported by MySQL. MySQL will generate a view by rerunning the query
+everytime, which means you can't index it).</p>
+<p>Using Postgres and Redis, you can have a sorted set, using the tweet id
+with the timestamp as its weight (will become ordering). Note that you
+can't have a never ending long tail of data, data will be truncated
+after 30 days or whatever (remove the data from Redis).</p>
+<p>Now the new problem is to scale Redis! You can partition per user, say
+if you keep 1000 tweets per user you can know how much space a user will
+take, and how many you can have per server.</p>
+<p>See: <a class="reference external" href="http://github.com/disqus/nydus">github.com/disqus/nydus</a> to
+package cluster of connections to Redis, it can be used like (?) a
+Django database. They store 64 redis nodes on the same machine in
+virtual machines.</p>
+</div>
+<div class="section" id="vertical-vs-horizontal-partitioning">
+<h2>Vertical vs. Horizontal partitioning</h2>
+<p>You can have:</p>
+<ul class="simple">
+<li>Master database with no indexes, only primary keys</li>
+<li>A database of users</li>
+<li>A database of tweets</li>
+</ul>
+<p>So far the hardware scales at the same time as their app. If you need
+more machines, more RAM, it's cheap enough, and when you need it again
+in a few years it will be the same price.</p>
+</div>
+<div class="section" id="asynchronous-tasks">
+<h2>Asynchronous tasks</h2>
+<p>Using Rabbit and Celery, you can use application triggers to manage your
+data, e.g. a signal on a model save() hook that adds the new item to a
+queue after it's been added to the database. This way, when the worker
+starts on the task it can add the new tweet to all the caches without
+blocking (e.g. if someone has 7 million followers, their tweet needs to
+be added to 7 million streams)</p>
+</div>
+<div class="section" id="building-an-api">
+<h2>Building an API</h2>
+<p>Having an API is important to scale your code and your architecture.
+Making sure that all the places in your code (the Django code, the Redis
+code, the REST part, whatever) all use the same API, or are refactored
+to use the same API so that you can change them all in one place.</p>
+</div>
+<div class="section" id="to-wrap-up">
+<h2>To wrap up</h2>
+<ul class="simple">
+<li>Use a framework (like Django, to do some of the legwork for you),
+then iterate. Start with querying the database then scale.</li>
+<li>Scaling can lead to performance but not the other way around.</li>
+<li>When you have a large infrastructure, architecture it in terms of
+services, it's easier to scale</li>
+<li>Consolidate the entry points, it becomes easier to optimise</li>
+</ul>
+</div>
+<div class="section" id="lessons-learnt">
+<h2>Lessons learnt</h2>
+<ul class="simple">
+<li>Have more upfront, for instance 64 VMs, so that you can scale up to
+64 machines if needed.</li>
+<li>Redistributing/rebalancing shards is a nightmare, plan far ahead.</li>
+<li>PUSH to the cache, don't PULL: otherwise if the data is not there,
+5000 users might request it at the same time and suddenly you have
+5000 hits to the database. Cache everything, it's easier to
+invalidate (everything is cached 5 minutes in memcached in their
+system)</li>
+<li>Write counters to denormalise views (updated via queues, stored in
+Redis I think)</li>
+<li>Push everything to a queue from the start, it will make processing
+faster -- there is no excuse, Celery is so easy to set up</li>
+<li>Don't write database triggers, handle the trigger logic in your queue</li>
+<li>Database pagination is slow and crappy: LIMIT 0, 1000 may be ok --
+LIMIT 1000, 2000 and suddenly the database has to count rows, it gets
+slower and consumes CPU and memory. There are easier ways to do
+pagination, he likes to do id chunks and select range of ids, it's
+very quick.</li>
+<li>Build with future sharding in mind. Think massive, use Puppet.</li>
+</ul>
+<p>One of the questions was: does that mean there are 7 million cache
+misses if someone deletes a tweet? Answer: Yes indeed.</p>
+</div>
+
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://www.jpichon.net/archives.html">Archives</a></li>
+                            <li><a href="https://www.jpichon.net/about">About</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <!--                             <li><a href="https://www.jpichon.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+ -->
+                            <li><a href="https://www.jpichon.net/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://github.com/jpichon">jpichon</a></li>
+                            <li><a rel="me" href="https://mastodon.ie/@jpichon">@jpichon@mastodon.ie</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+          <address id="about" class="vcard body">
+            Powered by <a href="http://getpelican.com/">Pelican</a>.
+            Theme based on the one made by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a
+          </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
